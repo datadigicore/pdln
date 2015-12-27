@@ -36,6 +36,7 @@ class login extends CI_Controller {
 					$result = $this->m_login->get_login($data);
 					if ($result == TRUE) {
 						$session_data = array(
+							'id' => $result->id,
 							'nama' => $result->nama,
 							'username' => $result->username,
 							'status' => $result->status,

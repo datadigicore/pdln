@@ -21,8 +21,8 @@
             
 
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
-            <input type="hidden" name="manage" value="add_data_diri">
-            <input type="hidden" name="id_user" value="2">
+            <input type="hidden" name="manage" value="uji_upload_file">
+            <!-- <input type="hidden" name="id_user" value="2"> -->
             <!-- <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home"> -->
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">No Aplikasi</label>
@@ -95,7 +95,7 @@
                         <option value="">---Pilih Sub Instansi Unit Utama---</option>
                         <option value="lainnya">Lain-lain</option>
                     </select>
-                    <div id=result></div>
+                    <div id="result"></div>
                    
                   </div>
               </div>
@@ -121,28 +121,28 @@
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Curiculum Vitae</label>
                   <div class="col-sm-9">
-                    <input type="file" name="upl_files[]" class="form-control" style="width: auto;">
+                    <input type="file" name="upl_files1" class="form-control" style="width: auto;">
                   </div>
               </div>
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Foto</label>
                   <div class="col-sm-9">
-                    <input type="file" name="upl_files[]" class="form-control" style="width: auto;">
+                    <input type="file" name="upl_files2" class="form-control" style="width: auto;">
                   </div>
               </div>
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Kartu Pegawai</label>
                   <div class="col-sm-9">
-                    <input type="file" name="upl_files[]" class="form-control" style="width: auto;">
+                    <input type="file" name="upl_files3" class="form-control" style="width: auto;">
                   </div>
               </div>
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Surat Tugas</label>
                   <div class="col-sm-9">
-                    <input type="file" name="upl_files[]" class="form-control" style="width: auto;">
+                    <input type="file" name="upl_files4" class="form-control" style="width: auto;">
                   </div>
               </div>
 
@@ -159,57 +159,3 @@
       </div>
     </section><! --/wrapper -->
   </section><!-- /MAIN CONTENT -->
-<!--main content end-->
-
-<script type="text/javascript">
-
-
-    $(document).ready(function()
-    {
-     
-     $("#pekerjaan_pemohon").change(function(){
-      if($(this).val() == "Lainnya"){
-       $("#pekerjaan_lain").show();
-      }else if ($(this).val()=="PNS"){
-       $("#pekerjaan_lain").hide();
-       $("#nip").show(); 
-      }
-      else{
-       $("#pekerjaan_lain").hide();
-       $("#nip").hide();
-      }          
-     });
-     $("#pekerjaan_lain").hide();
-     $("#nip").hide();
-
-    $("#jabatan_pemohon").change(function(){
-      if($(this).val() == "Lainnya"){
-       $("#jabatan_lain").show();
-      }
-      else{
-       $("#jabatan_lain").hide();       
-      }         
-     });
-    $("#jabatan_lain").hide();
-
-     $("#instansi_pemohon").change(function(){
-      id = $("#instansi_pemohon").val();      
-      $.ajax({
-                type: "post",
-                url : "<?php echo base_url('home/process') ?>",
-                data: {manage:'select_data',key:id}, 
-                datatype: "json",
-                success: function(result)
-                {
-                  //document.write(result);
-                  //$("#sub_instansi_pemohon").html();
-                  //$("#result").html(result);
-                }
-              });
-              return false;      
-      });
-     
-
-  });
-
-</script>

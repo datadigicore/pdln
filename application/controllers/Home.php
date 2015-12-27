@@ -138,7 +138,6 @@ class home extends CI_Controller {
 
   	  case 'add_data_diri':  	  	
   		//upload
-            $this->load->library('upload');
             $number_of_files_uploaded = count($_FILES['upl_files']['name']);
             // Faking upload calls to $_FILE
             for ($i = 0; $i < $number_of_files_uploaded; $i++){
@@ -221,6 +220,25 @@ class home extends CI_Controller {
 		  redirect('home');
 		}*/
   	  break;  	  
+
+      case 'uji_upload_file':
+        $config['upload_path'] = FCPATH.'../files/other';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $result_array = array();
+        for ($i = 0; $i < 4; $i++) {
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_files'.$i)) {
+              $this->upload->display_errors();
+            }
+            else {
+              $this->upload->data();
+            }
+          }
+        }
+        // Nanti load view nya diluar for.
+      break;
 
   	  case 'add_surat_unit_utama':
   	    $datadiri = $this->input->post('datadiri[]');
