@@ -340,10 +340,9 @@ class home extends CI_Controller {
       $table1 = "data_diri";
       $table2 = "surat_unit_utama";
       $table3 = "surat_undangan";
-      $table4 = "surat_bpkln";
-      $table5 = "instansi";
-    	$table6 = "sub_instansi";
-    	$key = "id";
+      $table4 = "instansi";
+    	$table5 = "sub_instansi";
+    	$key = "id_data_diri";
     	$column = array(
         array( 'db' => 'id_instansi', 	    							'dt' => 0),
         array( 'db' => 'nama_pemohon', 						'dt' => 1),
@@ -355,8 +354,8 @@ class home extends CI_Controller {
         array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 7),
         array( 'db' => 'nip_pemohon', 					'dt' => 8)
       );
-      $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi AND data_diri.no_aplikasi = surat_bpkln.no_aplikasi";
-    	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $table6, $key, $column, $where);
+      $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi";
+    	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
 	  break;
 
   	 //  case 'tab_proses_pdln':

@@ -15,12 +15,12 @@
                       <th>Id</th>
                       <th>Nama</th>                      
                       <th>Instansi</th>
-                      <th>Negara </th>
+                      <th>Negara</th>
                       <th>Waktu Awal Kegiatan</th>
                       <th>Waktu Akhir Kegiatan</th>
                       <th>Kegiatan</th>
                       <th>Sumber Dana</th>
-                      <th>Status</th>
+                      <th>NIP Pemohon</th>
                       <th style="width: 15%;">Aksi</th>
                   </tr>
               </thead>
