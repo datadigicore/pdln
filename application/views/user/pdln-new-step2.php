@@ -12,14 +12,11 @@
               <li><a><span class="badge">3</span> Surat Undangan Kunjungan</a></li>
             </ul>
             
-            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process">
+            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
 
-              <div class="form-group">
-                  <label class="col-lg-3 col-sm-3 control-label">No Aplikasi</label>
-                  <div class="col-sm-9">
-                    <input type="number" class="form-control" id="no_aplikasi" name="no_aplikasi" placeholder="No Aplikasi" min="0" max="999999999999999999">
-                  </div>
-              </div>
+               <?php if (isset($error_message)){?>
+                <input type="text" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi'];?>">
+              <?php } ?> 
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">No Surat Unit Utama</label>
@@ -62,6 +59,7 @@
                     <input type="file" name="upl_files1" class="form-control" style="width: auto;">
                   </div>
               </div>
+
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label"></label>

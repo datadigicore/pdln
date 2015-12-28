@@ -22,14 +22,9 @@
 
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
             <input type="hidden" name="manage" value="add_data_diri">
+            <input type="hidden" name="kondisi" value="lanjut">
             <!-- <input type="hidden" name="id_user" value="2"> -->
-            <!-- <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home"> -->
-              <div class="form-group">
-                  <label class="col-lg-3 col-sm-3 control-label">No Aplikasi</label>
-                  <div class="col-sm-9">
-                    <input type="number" class="form-control" id="no_aplikasi" name="no_aplikasi" placeholder="No Aplikasi" min="0" max="999999999999999999">
-                  </div>
-              </div>
+            <!-- <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home"> -->              
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Nama</label>
                   <div class="col-sm-9">
@@ -154,7 +149,8 @@
               </div>
             </form>
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
-              <input type="hidden" name="content" value="step1">
+              <input type="hidden" name="manage" value="add_data_diri">
+              <input type="hidden" name="kondisi" value="tambah">
               <a class="btn pdln-btn mb" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-plus-square"></i> Tambah Data Lain</a>
             </form>
           </div>
@@ -197,18 +193,42 @@
      $("#instansi_pemohon").change(function(){
       id = $("#instansi_pemohon").val();      
       $.ajax({
-                type: "post",
-                url : "<?php echo base_url('home/process') ?>",
-                data: {manage:'select_data',key:id},
-                success: function(result)
-                {
-                  //document.write(result);
-                  $("#sub_instansi_pemohon").html(result);
-                  //$("#result").html(result);
-                }
-              });
-              return false;      
+              type: "post",
+              url : "<?php echo base_url('home/process') ?>",
+              data: {manage:'select_data',key:id},
+              success: function(result)
+              {
+                //document.write(result);
+                $("#sub_instansi_pemohon").html(result);
+                //$("#result").html(result);
+              }
+            });
+            return false;      
       });
+
+  /*  $(document).on('submit', '#tambah_data_baru', function (e) {
+
+      var formURL = $(this).attr("action");
+      var addData = new FormData(this);
+
+      $.ajax({
+        type: "post",
+        data: addData,
+        url : formURL,
+        contentType: false,
+        cache: false,  
+        processData: false,
+        success: function(data)
+        {
+          $("#success-alert").alert();
+          $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+          $("#success-alert").alert('close');
+          });
+          setTimeout("location.href = redirectURL;",redirectTime);
+        }
+      });
+      return false;
+    });*/
      
 
   });

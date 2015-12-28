@@ -141,12 +141,12 @@ class home extends CI_Controller {
       break;
 
   	  case 'add_data_diri': 
-  	  	$this->session->set_flashdata('error_message', 'pesan');
-		  
-		  //buat redirect ke halaman lain
-		  $this->session->set_flashdata('content','step2');
-		  redirect('home'); 	  	
-  		/*//upload
+
+  	  	$kondisi = $this->input->post('kondisi');
+  	  	$max= $this->m_user->max_no_aplikasi();
+	  	$no_aplikasi = $max->no_aplikasi+1;
+		
+  		//upload
   	  	$config['upload_path'] = FCPATH.'../files/other';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $this->load->library('upload', $config);
@@ -171,8 +171,8 @@ class home extends CI_Controller {
         $surat_tugas = $_FILES['upl_files4']['name'];
 
         $data = array(
-  		  'id_user' => $_SESSION['logged']['id'],
-  		  'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
+  		  'id_user' => $_SESSION['logged']['id_user'],
+  		  'no_aplikasi' => $no_aplikasi,
 		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
 		  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
 		  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
@@ -190,16 +190,25 @@ class home extends CI_Controller {
 		);
         
         $result= $this->db->insert('data_diri',$data);
-        if ($result == TRUE) {	    
-	      $this->session->set_flashdata('error_message', $data);
-		  
-		  //buat redirect ke halaman lain
-		  $this->session->set_flashdata('content','step2');
-		  redirect('home');
+
+        //buat redirect ke halaman lain
+        
+        if ($result == TRUE) {
+        	if ($kondisi=="lanjut") {
+	  	  		$this->session->set_flashdata('error_message', $data);
+	  	  		$this->session->set_flashdata('content','step2');
+	  	  		redirect('home'); 	  	
+	  	  	}elseif ($kondisi=="tambah") {	  	  		
+	  	  		//print_r($max->no_aplikasi);
+	  	  		//print_r($no_aplikasi);
+	  	  		$this->session->set_flashdata('error_message', 'Silahkan Input Data Selanjutnya');
+	  	  		$this->session->set_flashdata('content','step1');
+	  	  		redirect('home'); 	  	
+	  	  	}	     
 		}
 		else {
 		  redirect('home');
-		}*/
+		}
             /*if ($result=1) {
                     echo "<script>alert('Data berhasil di simpan');window.location.href='http://localhost/dikbud/pdln/'</script>";
             }*/
@@ -210,7 +219,7 @@ class home extends CI_Controller {
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        $result_array = array();
+        $result_array = array();        
         for ($i = 1; $i <= 4; $i++) {
           if (!empty($_FILES['upl_files'.$i]['name'])) {
             if (!$this->upload->do_upload('upl_files'.$i)) {
@@ -227,14 +236,15 @@ class home extends CI_Controller {
 
   	  case 'add_surat_unit_utama': 
   	  	//upload
+  	  	print_r($_FILES);
   	  	$config['upload_path'] = FCPATH.'../files/surat_unit_utama';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        $result_array = array();
-        //for ($i = 1; $i <= 4; $i++) {
-          if (!empty($_FILES['upl_files1']['name'])) {
-            if (!$this->upload->do_upload('upl_files1')) {
+        $result_array = array();           
+	    for ($i = 1; $i <= 4; $i++) {
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_files'.$i)) {
               $error = $this->upload->display_errors();
 
             }
@@ -242,13 +252,12 @@ class home extends CI_Controller {
               $this->upload->data();
             }
           }
-        //}
+        }	
 
-        //insert 
-        $surat_unit_utama = $_FILES['upl_files1']['name'];	    
-  	  	$data = array(
-  	  				'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
-  	  				'id_user' => $_SESSION['logged']['id'],
+        //insert 	      
+        $surat_unit_utama = $_FILES['upl_files1']['name'];          
+  	  	$data = array(  	  				
+  	  				'id_user' => $_SESSION['logged']['id_user'],
   	  				'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
 					'no_surat_unit_utama' => $this->input->post('no_surat_unit_utama',TRUE),					
   	  				'tgl_surat_unit_utama' => $this->input->post('tgl_surat_unit_utama',TRUE),
@@ -272,9 +281,33 @@ class home extends CI_Controller {
   	  	break;
 
   	  case 'add_surat_undangan':
-  	    $datadiri = $this->input->post('datadiri[]');
+
+  	  	//upload
+  	  	print_r($_FILES);
+  	  	$config['upload_path'] = FCPATH.'../files/other';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $result_array = array();           
+	    for ($i = 1; $i <= 4; $i++) {
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_files'.$i)) {
+              $error = $this->upload->display_errors();
+
+            }
+            else {
+              $this->upload->data();
+            }
+          }
+        }
+
+        //insert
+
+        $surat_undangan = $_FILES['upl_files1']['name'];
+        $surat_perjanjian = $_FILES['upl_files2']['name'];
+
   	  	$data = array(
-  	  			    'id_user' => $this->input->post('id_user',TRUE),
+  	  			    'id_user' => $_SESSION['logged']['id_user'],
   	  				'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
   	  				'no_surat_undangan' => $this->input->post('no_surat_undangan',TRUE),
   	  				'tgl_surat_undangan' => $this->input->post('tgl_surat_undangan',TRUE),
@@ -286,15 +319,11 @@ class home extends CI_Controller {
   	  				'rincian_kegiatan' => $this->input->post('rincian_kegiatan',TRUE),
   	  				'sumber_dana_kegiatan' => $this->input->post('sumber_dana_kegiatan',TRUE),
   	  				'keterangan_sumber_dana_kegiatan' => $this->input->post('keterangan_sumber_dana_kegiatan',TRUE),
-  	  				'surat_undangan' => $this->input->post('surat_undangan',TRUE),
-  	  				'surat_perjanjian' => $this->input->post('surat_perjanjian',TRUE)
+  	  				'surat_undangan' => $surat_undangan,
+  	  				'surat_perjanjian' => $surat_perjanjian
   	  				 );
 
-  	  				 print_r($data);  
-
-  	  	$result = $this->m_user->add_data_pdln($data);
-  	  	//print_r($result);
-
+  	  	$result= $this->db->insert('surat_undangan',$data);  	  	
   	  	if ($result == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
 		  //buat redirect ke halaman lain

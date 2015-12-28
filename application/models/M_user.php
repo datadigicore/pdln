@@ -10,14 +10,14 @@ class m_user extends CI_Model {
 	}
 	function get_data_pdln($id) {		
 		$query = $this->db->get_where('data_pdln',$id);
-		return $query->row();;
+		return $query->row();
 	}
 	function add_data_pdln($data) {
 		$query = $this->db->insert('data_pdln', $data);
 		return $query;
 	}
 	function del_user($id) {
-		$query = $this->db->delete('user', array('id'=>$id));
+		$query = $this->db->delete('user', array('id_user'=>$id));
 		return $query;
 	}
 	function upd_data_pdln($id,$data) {
@@ -64,5 +64,11 @@ class m_user extends CI_Model {
 	function get_data_sub_instansi($id) {
 		$query = $this->db->get_where('sub_instansi',array('id_instansi' => $id));
 		return $query->result_array();
+	}
+
+	function max_no_aplikasi(){
+		$this->db->select_max('no_aplikasi');
+		$query = $this->db->get('data_diri');
+		return $query->row();
 	}
 } 

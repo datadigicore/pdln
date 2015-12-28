@@ -12,12 +12,12 @@
               <li class="active"><a><span class="badge">4</span> Surat Undangan Kunjungan</a></li>
             </ul>
             
-            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process">
-
-              <?php foreach ($error_message as $key => $value) {
-                echo "<input type='hidden' name='datadiri[]' value=$value>";
-              }
-              ?>
+            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
+            
+               <?php if (isset($error_message)){print_r($error_message);
+                echo "Ini darta nya loh";?>
+                <input type="text" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi'];?>">
+              <?php } ?> 
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">No Surat Undangan</label>
@@ -50,10 +50,10 @@
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Waktu Kegiatan</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" name="waktu_awal_kegiatan" placeholder="Waktu Mulai Kegiatan">
+                    <input type="date" class="form-control" name="tgl_awal_kegiatan" placeholder="Waktu Mulai Kegiatan">
                   </div>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" name="waktu_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan">
+                    <input type="date" class="form-control" name="tgl_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan">
                   </div>
               </div> 
 
@@ -74,7 +74,7 @@
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Rincian Kegiatan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="keterangan_kegiatan" placeholder="Rincian_Kegiatan">
+                    <input type="text" class="form-control" name="rincian_kegiatan" placeholder="Rincian_Kegiatan">
                   </div>
               </div>
 
@@ -100,14 +100,14 @@
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Surat Undangan</label>
                   <div class="col-sm-9">
-                    <input type="file" name="surat_undangan" class="form-control" style="width: auto;">
+                    <input type="file" name="upl_files1" class="form-control" style="width: auto;">
                   </div>
               </div>
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Surat Perjanjian</label>
                   <div class="col-sm-9">
-                    <input type="file" name="surat_perjanjian" class="form-control" style="width: auto;">
+                    <input type="file" name="upl_files2" class="form-control" style="width: auto;">
                   </div>
               </div>
 
