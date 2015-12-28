@@ -67,7 +67,7 @@
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">No. Passport</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id = "sub_instansi_pemohon" name="no_passport_pemohon" placeholder="No. Passport">
+                    <input type="text" class="form-control" name="no_passport_pemohon" placeholder="No. Passport">
                   </div>
               </div>
 
@@ -148,11 +148,14 @@
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label"></label>
-                  <div class="col-sm-9">
-                      <a class="btn pdln-btn mb" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-plus-square"></i> Tambah Data Lain</a>
+                  <div class="col-sm-9">                      
                       <a class="btn pdln-btn mb" title="Lanjut" onclick="$(this).closest('form').submit()"> Lanjut</a>
                   </div>
               </div>
+            </form>
+            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
+              <input type="hidden" name="content" value="step1">
+              <a class="btn pdln-btn mb" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-plus-square"></i> Tambah Data Lain</a>
             </form>
           </div>
         </div>
@@ -196,12 +199,11 @@
       $.ajax({
                 type: "post",
                 url : "<?php echo base_url('home/process') ?>",
-                data: {manage:'select_data',key:id}, 
-                datatype: "json",
+                data: {manage:'select_data',key:id},
                 success: function(result)
                 {
                   //document.write(result);
-                  //$("#sub_instansi_pemohon").html();
+                  $("#sub_instansi_pemohon").html(result);
                   //$("#result").html(result);
                 }
               });

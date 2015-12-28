@@ -132,8 +132,12 @@ class home extends CI_Controller {
 
       case 'select_data':      
       	$id = $this->input->post('key');      	
-      	$result = $this->m_user->get_data_sub_instansi($id);      	
-      	print_r($result);
+      	$result = $this->m_user->get_data_sub_instansi($id);
+      	foreach ($result as $item) {
+      	      		echo '<option value="'.$item["id"].'">'.$item["nama_sub_instansi"]."</option>";
+      	      	} 
+      	echo '<option value="lainnya">Lainnya</option>';     	
+      	//print_r($result);
       break;
 
   	  case 'add_data_diri': 

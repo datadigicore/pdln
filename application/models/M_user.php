@@ -62,17 +62,7 @@ class m_user extends CI_Model {
 	}
 
 	function get_data_sub_instansi($id) {
-		$this->db->select('*');
-		$this->db->from('sub_instansi');		
-		$this->db->where(array('id_instansi' => $id));
-		$query = $this->db->get();
-		if ($query->num_rows() > 0) 
-		{
-            foreach ($query->result_array() as $row){
-                    $data[] = $row;
-                }
-        }
-        $query->free_result();
-		return $query;
+		$query = $this->db->get_where('sub_instansi',array('id_instansi' => $id));
+		return $query->result_array();
 	}
 } 
