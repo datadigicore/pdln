@@ -21,7 +21,7 @@
             
 
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
-            <input type="hidden" name="manage" value="uji_upload_file">
+            <input type="hidden" name="manage" value="add_data_diri">
             <!-- <input type="hidden" name="id_user" value="2"> -->
             <!-- <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home"> -->
               <div class="form-group">
@@ -159,3 +159,56 @@
       </div>
     </section><! --/wrapper -->
   </section><!-- /MAIN CONTENT -->
+
+  <script type="text/javascript">
+
+
+    $(document).ready(function()
+    {
+     
+     $("#pekerjaan_pemohon").change(function(){
+      if($(this).val() == "Lainnya"){
+       $("#pekerjaan_lain").show();
+      }else if ($(this).val()=="PNS"){
+       $("#pekerjaan_lain").hide();
+       $("#nip").show(); 
+      }
+      else{
+       $("#pekerjaan_lain").hide();
+       $("#nip").hide();
+      }          
+     });
+     $("#pekerjaan_lain").hide();
+     $("#nip").hide();
+
+    $("#jabatan_pemohon").change(function(){
+      if($(this).val() == "Lainnya"){
+       $("#jabatan_lain").show();
+      }
+      else{
+       $("#jabatan_lain").hide();       
+      }         
+     });
+    $("#jabatan_lain").hide();
+
+     $("#instansi_pemohon").change(function(){
+      id = $("#instansi_pemohon").val();      
+      $.ajax({
+                type: "post",
+                url : "<?php echo base_url('home/process') ?>",
+                data: {manage:'select_data',key:id}, 
+                datatype: "json",
+                success: function(result)
+                {
+                  //document.write(result);
+                  //$("#sub_instansi_pemohon").html();
+                  //$("#result").html(result);
+                }
+              });
+              return false;      
+      });
+     
+
+  });
+
+</script>

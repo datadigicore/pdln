@@ -136,82 +136,59 @@ class home extends CI_Controller {
       	print_r($result);
       break;
 
-  	  case 'add_data_diri':  	  	
-  		//upload
-            $number_of_files_uploaded = count($_FILES['upl_files']['name']);
-            // Faking upload calls to $_FILE
-            for ($i = 0; $i < $number_of_files_uploaded; $i++){
-                $_FILES['userfile']['name']     = $_FILES['upl_files']['name'][$i];
-                $_FILES['userfile']['type']     = $_FILES['upl_files']['type'][$i];
-                $_FILES['userfile']['tmp_name'] = $_FILES['upl_files']['tmp_name'][$i];
-                $_FILES['userfile']['error']    = $_FILES['upl_files']['error'][$i];
-                $_FILES['userfile']['size']     = $_FILES['upl_files']['size'][$i];
-                $config = array(
-                //'file_name'     => $_FILES['upl_files']['name'][$i],
-                'allowed_types' => 'jpg|jpeg|png|gif|pdf',
-                'max_size'      => 3000,
-                'overwrite'     => FALSE,
+  	  case 'add_data_diri': 
+  	  	$this->session->set_flashdata('error_message', 'pesan');
+		  
+		  //buat redirect ke halaman lain
+		  $this->session->set_flashdata('content','step2');
+		  redirect('home'); 	  	
+  		/*//upload
+  	  	$config['upload_path'] = FCPATH.'../files/other';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $result_array = array();
+        for ($i = 1; $i <= 4; $i++) {
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_files'.$i)) {
+              $error = $this->upload->display_errors();
 
-                /* real path to upload folder ALWAYS */
-                'upload_path'    => './uploads/');
-                $this->upload->initialize($config);
-                if ( ! $this->upload->do_upload()){
-                    $error = array('error' => $this->upload->display_errors());
-                }
-                //$this->load->view('upload_form', $error);
-                else {
-                //$final_files_data[] = $this->upload->data();
-                    $final_files_data[] = $this->upload->data('file_name');
-                	var_dump($final_files_data);
-
-                // Continue processing the uploaded data
-                	//insert
-		            $file = $_FILES['upl_files']['name'];            
-		            $cv_pemohon = $file[0];
-		            $foto_pemohon = $file[1];
-		            $karpeg_pemohon = $file[2];
-		            $surat_tugas = $file[3];
-
-		            $data = array(
-			  		  'id_user' => $this->input->post('id_user',TRUE),
-			  		  'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
-					  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
-					  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
-					  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
-					  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
-					  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
-					  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
-					  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
-					  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
-					  'tgl_valid_passport' => $this->input->post('tgl_passport_pemohon', TRUE),
-					  'cv_pemohon' => $cv_pemohon,
-					  'foto_pemohon' => $foto_pemohon,
-					  'karpeg_pemohon' => $karpeg_pemohon,
-					  'surat_tugas_pemohon' => $surat_tugas
-					  
-					);
-		            
-		            $result= $this->db->insert('data_diri',$data);
-		                if ($result=1) {
-		                        echo "<script>alert('Data berhasil di simpan');window.location.href='http://localhost/dikbud/pdln/'</script>";
-		                }
-                }
             }
+            else {
+              $this->upload->data();
+            }
+          }
+        }
 
-            
+        //insert        
+        $cv_pemohon = $_FILES['upl_files1']['name'];
+        $foto_pemohon = $_FILES['upl_files2']['name'];
+        $karpeg_pemohon = $_FILES['upl_files3']['name'];
+        $surat_tugas = $_FILES['upl_files4']['name'];
 
-            //$insert=$this->m_data_pdln->inputdatapribadi($nama,$nip,$cv,$karpeg);
-
-
-
-
-
-
-		/*$result = $this->m_user->add_data_pdln($data);		
-	    if ($result == TRUE) {
-	    if(isset($data)){
+        $data = array(
+  		  'id_user' => $_SESSION['logged']['id'],
+  		  'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
+		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
+		  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
+		  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
+		  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
+		  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
+		  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
+		  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
+		  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
+		  'tgl_valid_passport' => $this->input->post('tgl_passport_pemohon', TRUE),
+		  'cv_pemohon' => $cv_pemohon,
+		  'foto_pemohon' => $foto_pemohon,
+		  'karpeg_pemohon' => $karpeg_pemohon,
+		  'surat_tugas_pemohon' => $surat_tugas
+		  
+		);
+        
+        $result= $this->db->insert('data_diri',$data);
+        if ($result == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
-		  $this->session->set_flashdata('error_message', 'Data Pengguna Berhasil di Tambahkan ke Dalam Database');
+		  
 		  //buat redirect ke halaman lain
 		  $this->session->set_flashdata('content','step2');
 		  redirect('home');
@@ -219,18 +196,22 @@ class home extends CI_Controller {
 		else {
 		  redirect('home');
 		}*/
+            /*if ($result=1) {
+                    echo "<script>alert('Data berhasil di simpan');window.location.href='http://localhost/dikbud/pdln/'</script>";
+            }*/
   	  break;  	  
 
       case 'uji_upload_file':
         $config['upload_path'] = FCPATH.'../files/other';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $result_array = array();
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 1; $i <= 4; $i++) {
           if (!empty($_FILES['upl_files'.$i]['name'])) {
             if (!$this->upload->do_upload('upl_files'.$i)) {
-              $this->upload->display_errors();
+              $error = $this->upload->display_errors();
+
             }
             else {
               $this->upload->data();
@@ -240,25 +221,41 @@ class home extends CI_Controller {
         // Nanti load view nya diluar for.
       break;
 
-  	  case 'add_surat_unit_utama':
-  	    $datadiri = $this->input->post('datadiri[]');
+  	  case 'add_surat_unit_utama': 
+  	  	//upload
+  	  	$config['upload_path'] = FCPATH.'../files/surat_unit_utama';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $result_array = array();
+        //for ($i = 1; $i <= 4; $i++) {
+          if (!empty($_FILES['upl_files1']['name'])) {
+            if (!$this->upload->do_upload('upl_files1')) {
+              $error = $this->upload->display_errors();
+
+            }
+            else {
+              $this->upload->data();
+            }
+          }
+        //}
+
+        //insert 
+        $surat_unit_utama = $_FILES['upl_files1']['name'];	    
   	  	$data = array(
-  	  				'id_user' => $this->input->post('id_user',TRUE),
+  	  				'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
+  	  				'id_user' => $_SESSION['logged']['id'],
   	  				'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
 					'no_surat_unit_utama' => $this->input->post('no_surat_unit_utama',TRUE),					
   	  				'tgl_surat_unit_utama' => $this->input->post('tgl_surat_unit_utama',TRUE),
   	  				'instansi_unit_utama' => $this->input->post('instansi_unit_utama',TRUE),
   	  				'penandatangan_surat_unit_utama' => $this->input->post('penandatangan_surat_unit_utama',TRUE),
   	  				'perihal_surat_unit_utama' => $this->input->post('perihal_surat_unit_utama',TRUE),
-  	  				'surat_unit_utama' => $this->input->post('surat_unit_utama',TRUE)
+  	  				'surat_unit_utama' => $surat_unit_utama
   	  				 );  
 
-  	  	/*$result = $this->m_user->upd_data_pdln($id_user,$tgl_input_data_diri, $data);
-  	  	print_r($result);
-
-  	  	if ($result == TRUE) {*/
-	    if(isset($data)){
-	    	print_r($data);
+  	  	$result= $this->db->insert('surat_unit_utama',$data);
+	    if ($result == TRUE) {	    	
 	      $this->session->set_flashdata('error_message', $data);
 		  //$this->session->set_flashdata('error_message', 'Data Pengguna Berhasil di Tambahkan ke Dalam Database');
 		  //buat redirect ke halaman lain

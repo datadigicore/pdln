@@ -14,10 +14,12 @@
             
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process">
 
-              <?php foreach ($error_message as $key => $value) {
-                echo "<input type='hidden' name='datadiri[]' value=$value>";
-              }
-              ?>
+              <div class="form-group">
+                  <label class="col-lg-3 col-sm-3 control-label">No Aplikasi</label>
+                  <div class="col-sm-9">
+                    <input type="number" class="form-control" id="no_aplikasi" name="no_aplikasi" placeholder="No Aplikasi" min="0" max="999999999999999999">
+                  </div>
+              </div>
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">No Surat Unit Utama</label>
@@ -43,7 +45,7 @@
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Pejabat Penandatangan Surat</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Penanggung_jawab_surat_unit_utama" placeholder="Pejabat Penandatangan Surat">
+                    <input type="text" class="form-control" name="penandatangan_surat_unit_utama" placeholder="Pejabat Penandatangan Surat">
                   </div>
               </div>
 
@@ -57,7 +59,7 @@
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Surat Unit Utama</label>
                   <div class="col-sm-9">
-                    <input type="file" name="surat_unit_utama" class="form-control" style="width: auto;">
+                    <input type="file" name="upl_files1" class="form-control" style="width: auto;">
                   </div>
               </div>
 
