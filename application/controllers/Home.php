@@ -185,7 +185,8 @@ class home extends CI_Controller {
 		  'cv_pemohon' => $cv_pemohon,
 		  'foto_pemohon' => $foto_pemohon,
 		  'karpeg_pemohon' => $karpeg_pemohon,
-		  'surat_tugas_pemohon' => $surat_tugas
+		  'surat_tugas_pemohon' => $surat_tugas,
+		  'status' => '1'
 		  
 		);
         
@@ -284,7 +285,7 @@ class home extends CI_Controller {
 
   	  	//upload
   	  	print_r($_FILES);
-  	  	$config['upload_path'] = FCPATH.'../files/other';
+  	  	$config['upload_path'] = FCPATH.'../files/surat_undangan';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
