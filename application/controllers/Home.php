@@ -33,13 +33,13 @@ class home extends CI_Controller {
 	$this->load->view('template/header');
 	$this->load->view('template/sidebar');
 	switch ($content) {
-	  case 'step1':  	
-  		$table = 'instansi';
-      	$data['instansi'] = $this->m_user->select_data($table);
+	  case 'step1':  	  		
+      	$data['instansi'] = $this->m_user->select_data();
       	//print_r($data);
 		$this->load->view('user/pdln-new-step1',$data);	  	
 	  break;
-	  case 'step2':
+	  case 'step2':	  	
+      	$data['sub_instansi'] = $this->m_user->select_data_sub_instansi();
 	  	$this->load->view('user/pdln-new-step2', $data);
 	  break;
 	  case 'step3':
@@ -170,7 +170,7 @@ class home extends CI_Controller {
         $karpeg_pemohon = $_FILES['upl_files3']['name'];
         $surat_tugas = $_FILES['upl_files4']['name'];
 
-        $data = array(
+        $datadiri = array(
   		  'id_user' => $_SESSION['logged']['id_user'],
   		  'no_aplikasi' => $no_aplikasi,
 		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
@@ -189,14 +189,24 @@ class home extends CI_Controller {
 		  'status' => '1'
 		  
 		);
-        
-        $result= $this->db->insert('data_diri',$data);
+
+		$data_surat =array(
+			'id_user' => $_SESSION['logged']['id_user'],
+  	  		'no_aplikasi' => $no_aplikasi
+			);
+
+
+
+        $result= $this->db->insert('data_diri',$datadiri);
+        $result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
+        $result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
+        $result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
 
         //buat redirect ke halaman lain
         
-        if ($result == TRUE) {
+        if ($result == TRUE ) {
         	if ($kondisi=="lanjut") {
-	  	  		$this->session->set_flashdata('error_message', $data);
+	  	  		$this->session->set_flashdata('error_message', $datadiri);
 	  	  		$this->session->set_flashdata('content','step2');
 	  	  		redirect('home'); 	  	
 	  	  	}elseif ($kondisi=="tambah") {	  	  		

@@ -35,7 +35,14 @@
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Instansi Unit Utama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="instansi_unit_utama" placeholder="Instansi Unit Utama">
+                    <select class="form-control" id="instansi_unit_utama" name="instansi_unit_utama">
+                        <!-- query dari db -->
+                        <option value="">---Pilih Instansi Unit Utama---</option>
+                        <?php foreach ($sub_instansi as $key => $value) {
+                          echo '<option value="'.$value['id_sub_instansi'].'">'.$value['nama_sub_instansi'].'</option>';                          
+                        }?>
+                        <!-- <option value="Lainnya">Lain-lain</option> -->
+                    </select>                    
                   </div>
               </div>
 

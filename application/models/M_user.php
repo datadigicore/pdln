@@ -60,6 +60,18 @@ class m_user extends CI_Model {
         //print_r($data);
         return $data;
 	}
+	function select_data_sub_instansi(){
+		$data = array();
+        $query = $this->db->get('sub_instansi');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $row){
+                    $data[] = $row;
+                }
+        }
+        $query->free_result();
+        //print_r($data);
+        return $data;	
+	}
 
 	function get_data_sub_instansi($id) {
 		$query = $this->db->get_where('sub_instansi',array('id_instansi' => $id));
@@ -70,5 +82,9 @@ class m_user extends CI_Model {
 		$this->db->select_max('no_aplikasi');
 		$query = $this->db->get('data_diri');
 		return $query->row();
+	}
+
+	function update_surat($table,$data,$no_aplikasi){
+		$this->db->update('$table', $data, array('no_aplikasi' => $no_aplikasi));
 	}
 } 
