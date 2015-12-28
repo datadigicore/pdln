@@ -20,8 +20,8 @@ class l_datatable {
             SSP::simple( $_POST, $sql_details, $table, $primaryKey, $columns )
         );        
     }
-    function get_table_join_6($table1, $table2, $table3, $primaryKey, $columns, $where){
-    // function get_table_join_6($table1, $table2, $table3, $table4, $table5, $table6, $primaryKey, $columns, $where){
+    // function get_table_join_6($table1, $table2, $table3, $primaryKey, $columns, $where){
+    function get_table_join_6($table1, $table2, $table3, $table4, $table5, $primaryKey, $columns, $where){
         $sql_details = array(
             'user' => $this->ci->db->username,
             'pass' => $this->ci->db->password,
@@ -30,8 +30,8 @@ class l_datatable {
         ); 
         require( 'ssp.class.php' );
         echo json_encode(
-            SSP::more_complex( $_POST, $sql_details, $table1, $table2, $table3, $primaryKey, $columns, $where)
-            // SSP::more_complex( $_POST, $sql_details, $table1, $table2, $table3, $table4, $table5, $table6, $primaryKey, $columns, $where)
+            // SSP::more_complex( $_POST, $sql_details, $table1, $table2, $table3, $primaryKey, $columns, $where)
+            SSP::more_complex( $_POST, $sql_details, $table1, $table2, $table3, $table4, $table5, $primaryKey, $columns, $where)
         );        
     }
 }
