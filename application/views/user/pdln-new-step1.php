@@ -184,8 +184,8 @@
     $("#jabatan_lain").hide();
 
      $("#instansi_pemohon").change(function(){
-      if ($(this).val() != "") {
-        $("#sub_instansi_pemohon").show();
+      /*if ($(this).val() != "") {
+        $("#sub_instansi_pemohon").show();*/
         id = $("#instansi_pemohon").val();      
         $.ajax({
                 type: "post",
@@ -199,11 +199,11 @@
                 }
               });
               return false;
-      }else{
+      /*}else{
         $("#sub_instansi_pemohon").hide();   
-      }      
+      }$("#sub_instansi_pemohon").hide();*/      
       });
-     $("#sub_instansi_pemohon").hide();
+     
 
   /*  $(document).on('submit', '#tambah_data_baru', function (e) {
 

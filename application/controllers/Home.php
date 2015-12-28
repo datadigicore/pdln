@@ -37,8 +37,7 @@ class home extends CI_Controller {
   		$table = 'instansi';
       	$data['instansi'] = $this->m_user->select_data($table);
       	//print_r($data);
-		$this->load->view('user/pdln-new-step1',$data);
-	  	
+		$this->load->view('user/pdln-new-step1',$data);	  	
 	  break;
 	  case 'step2':
 	  	$this->load->view('user/pdln-new-step2', $data);
