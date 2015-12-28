@@ -13,13 +13,9 @@
             </ul>
             
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
-            
-            <?php if (isset($error_message)){?>
-                <input type="text" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi'];?>">
-            <?php } ?> 
 
             <input type="hidden" name="manage" value="add_data_diri">
-            <input type="hidden" name="kondisi" value="tambah">
+            <input type="hidden" name="kondisi" value="lanjut">
 
             
               <div class="form-group">
@@ -144,7 +140,10 @@
                       <a class="btn pdln-btn mb" title="Lanjut" onclick="$(this).closest('form').submit()"> Lanjut</a>
                   </div>
               </div>
-            
+              </form>              
+              <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
+                <input type="hidden" name="manage" value="add_data_diri">
+                <input type="hidden" name="kondisi" value="tambah">            
               <a class="btn pdln-btn mb" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-plus-square"></i> Tambah Data Lain</a>
             </form>
           </div>

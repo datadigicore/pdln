@@ -62,7 +62,7 @@
                     <select class="form-control" name="kategori_kegiatan">
                         <option value="APBN">Workshop</option>
                         <option value="Pribadi">Seminar</option>
-                        <option value="Pengundang">Nelajar</option>
+                        <option value="Pengundang">Belajar</option>
                         <option value="lain-lain">Confference</option>
                         <option value="lain-lain">Pertemuan</option>
                         <option value="lain-lain">Pelatihan</option>

@@ -33,15 +33,11 @@ class home extends CI_Controller {
 	$this->load->view('template/header');
 	$this->load->view('template/sidebar');
 	switch ($content) {
-	  case 'step1':
-	  	if (isset($data)) {
-	  		$table = 'instansi';
-	      	$data['instansi'] = $this->m_user->select_data($table);
-	      	//print_r($data);
-			$this->load->view('user/pdln-new-step1',$data);
-	  	}else{
-	  		$this->load->view('user/pdln-new-step1',$data);
-	  	}
+	  case 'step1':  	
+  		$table = 'instansi';
+      	$data['instansi'] = $this->m_user->select_data($table);
+      	//print_r($data);
+		$this->load->view('user/pdln-new-step1',$data);
 	  	
 	  break;
 	  case 'step2':
@@ -150,93 +146,71 @@ class home extends CI_Controller {
   	  	$kondisi = $this->input->post('kondisi');
   	  	$max= $this->m_user->max_no_aplikasi();
 	  	$no_aplikasi = $max->no_aplikasi+1;
-
-	  	//upload
-	  	  	$config['upload_path'] = FCPATH.'../files/other';
-	        $config['allowed_types'] = 'gif|jpg|png|pdf';
-	        $this->load->library('upload', $config);
-	        $this->upload->initialize($config);
-	        $result_array = array();
-	        for ($i = 1; $i <= 4; $i++) {
-	          if (!empty($_FILES['upl_files'.$i]['name'])) {
-	            if (!$this->upload->do_upload('upl_files'.$i)) {
-	              $error = $this->upload->display_errors();
-
-	            }
-	            else {
-	              $this->upload->data();
-	            }
-	          }
-	        }
-
-	        //insert        
-	        $cv_pemohon = $_FILES['upl_files1']['name'];
-	        $foto_pemohon = $_FILES['upl_files2']['name'];
-	        $karpeg_pemohon = $_FILES['upl_files3']['name'];
-	        $surat_tugas = $_FILES['upl_files4']['name'];
-
-  	  	if ($kondisi=="lanjut") {
-  	  		
-  	  		$data = array(
-	  		  'id_user' => $_SESSION['logged']['id_user'],
-	  		  'no_aplikasi' => $no_aplikasi,
-			  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
-			  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
-			  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
-			  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
-			  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
-			  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
-			  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
-			  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
-			  'tgl_valid_passport' => $this->input->post('tgl_passport_pemohon', TRUE),
-			  'cv_pemohon' => $cv_pemohon,
-			  'foto_pemohon' => $foto_pemohon,
-			  'karpeg_pemohon' => $karpeg_pemohon,
-			  'surat_tugas_pemohon' => $surat_tugas,
-			  'status' => '1'
-			  
-			);
-
-  	  		$this->session->set_flashdata('error_message', $data);
-  	  		$this->session->set_flashdata('content','step2');
-  	  		redirect('home'); 	  	
-  	  	}elseif ($kondisi=="tambah") {  	  		
-
-	        $data = array(
-	  		  'id_user' => $_SESSION['logged']['id_user'],
-	  		  'no_aplikasi' => $no_aplikasi,
-			  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
-			  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
-			  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
-			  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
-			  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
-			  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
-			  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
-			  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
-			  'tgl_valid_passport' => $this->input->post('tgl_passport_pemohon', TRUE),
-			  'cv_pemohon' => $cv_pemohon,
-			  'foto_pemohon' => $foto_pemohon,
-			  'karpeg_pemohon' => $karpeg_pemohon,
-			  'surat_tugas_pemohon' => $surat_tugas,
-			  'status' => '1'
-			  
-			);
-	        
-	        //$result= $this->db->insert('data_diri',$data);
-
-	        //buat redirect ke halaman lain
-	        
-	        if (isset($data)) {        	
-	        	$this->session->set_flashdata('error_message', $data);
-  	  			$this->session->set_flashdata('content','step1');
-  	  			redirect('home'); 	  	
-			}
-			else {
-			  redirect('home');
-			}	  	  		
-  	  	}	       	  	
 		
-  		
+  		//upload
+  	  	$config['upload_path'] = FCPATH.'../files/other';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $result_array = array();
+        for ($i = 1; $i <= 4; $i++) {
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_files'.$i)) {
+              $error = $this->upload->display_errors();
+
+            }
+            else {
+              $this->upload->data();
+            }
+          }
+        }
+
+        //insert        
+        $cv_pemohon = $_FILES['upl_files1']['name'];
+        $foto_pemohon = $_FILES['upl_files2']['name'];
+        $karpeg_pemohon = $_FILES['upl_files3']['name'];
+        $surat_tugas = $_FILES['upl_files4']['name'];
+
+        $data = array(
+  		  'id_user' => $_SESSION['logged']['id_user'],
+  		  'no_aplikasi' => $no_aplikasi,
+		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
+		  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
+		  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
+		  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
+		  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
+		  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
+		  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
+		  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
+		  'tgl_valid_passport' => $this->input->post('tgl_passport_pemohon', TRUE),
+		  'cv_pemohon' => $cv_pemohon,
+		  'foto_pemohon' => $foto_pemohon,
+		  'karpeg_pemohon' => $karpeg_pemohon,
+		  'surat_tugas_pemohon' => $surat_tugas,
+		  'status' => '1'
+		  
+		);
+        
+        $result= $this->db->insert('data_diri',$data);
+
+        //buat redirect ke halaman lain
+        
+        if ($result == TRUE) {
+        	if ($kondisi=="lanjut") {
+	  	  		$this->session->set_flashdata('error_message', $data);
+	  	  		$this->session->set_flashdata('content','step2');
+	  	  		redirect('home'); 	  	
+	  	  	}elseif ($kondisi=="tambah") {	  	  		
+	  	  		//print_r($max->no_aplikasi);
+	  	  		//print_r($no_aplikasi);
+	  	  		$this->session->set_flashdata('error_message', 'Silahkan Input Data Selanjutnya');
+	  	  		$this->session->set_flashdata('content','step1');
+	  	  		redirect('home'); 	  	
+	  	  	}	     
+		}
+		else {
+		  redirect('home');
+		}
             /*if ($result=1) {
                     echo "<script>alert('Data berhasil di simpan');window.location.href='http://localhost/dikbud/pdln/'</script>";
             }*/
@@ -364,27 +338,25 @@ class home extends CI_Controller {
   	break;
 	  case 'tab_pdln':
       $table1 = "data_diri";
-      // $table2 = "surat_unit_utama";
-      // $table3 = "surat_undangan";
-     //  $table4 = "surat_bpkln";
-      $table2 = "instansi";
-    	$table3 = "sub_instansi";
-    	$key = "id_data_diri";
+      $table2 = "surat_unit_utama";
+      $table3 = "surat_undangan";
+      $table4 = "surat_bpkln";
+      $table5 = "instansi";
+    	$table6 = "sub_instansi";
+    	$key = "id";
     	$column = array(
-        array( 'db' => 'id_data_diri', 	    							'dt' => 0),
+        array( 'db' => 'id_instansi', 	    							'dt' => 0),
         array( 'db' => 'nama_pemohon', 						'dt' => 1),
-        array( 'db' => 'nama_instansi', 				'dt' => 2),
-        array( 'db' => 'nama_sub_instansi', 						'dt' => 3),
-        array( 'db' => 'jabatan_pemohon', 				'dt' => 4),
-        array( 'db' => 'pekerjaan_pemohon', 				'dt' => 5),
-        array( 'db' => 'nip_pemohon', 				'dt' => 6),
-        array( 'db' => 'no_passport_pemohon', 	'dt' => 7),
-        array( 'db' => 'no_hp_pemohon', 					'dt' => 8)
+        array( 'db' => 'instansi_unit_utama', 				'dt' => 2),
+        array( 'db' => 'negara_tujuan', 						'dt' => 3),
+        array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 4),
+        array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 5),
+        array( 'db' => 'rincian_kegiatan', 				'dt' => 6),
+        array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 7),
+        array( 'db' => 'nip_pemohon', 					'dt' => 8)
       );
-      $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon";
-      // $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi AND data_diri.no_aplikasi = surat_bpkln.no_aplikasi";
-      $this->l_datatable->get_table_join_6($table1, $table2, $table3, $key, $column, $where);
-    	// $this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $table6, $key, $column, $where);
+      $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi AND data_diri.no_aplikasi = surat_bpkln.no_aplikasi";
+    	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $table6, $key, $column, $where);
 	  break;
 
   	 //  case 'tab_proses_pdln':
