@@ -339,40 +339,45 @@ class home extends CI_Controller {
 		else {
 		  redirect('home');
 		}
-  	  	break;
+  	break;
+	  case 'tab_pdln':
+      $table1 = "data_diri";
+      $table2 = "surat_unit_utama";
+      $table3 = "surat_undangan";
+      $table4 = "surat_bpkln";
+      $table5 = "instansi";
+    	$table6 = "sub_instansi";
+    	$key = "id";
+    	$column = array(
+        array( 'db' => 'id_instansi', 	    							'dt' => 0),
+        array( 'db' => 'nama_pemohon', 						'dt' => 1),
+        array( 'db' => 'instansi_unit_utama', 				'dt' => 2),
+        array( 'db' => 'negara_tujuan', 						'dt' => 3),
+        array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 4),
+        array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 5),
+        array( 'db' => 'rincian_kegiatan', 				'dt' => 6),
+        array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 7),
+        array( 'db' => 'nip_pemohon', 					'dt' => 8)
+      );
+      $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi AND data_diri.no_aplikasi = surat_bpkln.no_aplikasi";
+    	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $table6, $key, $column, $where);
+	  break;
 
-  	  case 'tab_pdln':
-	  	$table = "data_pdln";
-	  	$key = "id";
-	  	$column = array(
-	      array( 'db' => 'id', 	    							'dt' => 0),
-	      array( 'db' => 'nama_pemohon', 						'dt' => 1),
-	      array( 'db' => 'instansi_unit_utama', 				'dt' => 2),
-	      array( 'db' => 'negara_tujuan', 						'dt' => 3),
-	      array( 'db' => 'waktu_awal_kegiatan', 				'dt' => 4),
-	      array( 'db' => 'waktu_akhir_kegiatan', 				'dt' => 5),
-	      array( 'db' => 'keterangan_kegiatan', 				'dt' => 6),
-	      array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 7),
-	      array( 'db' => 'keterangan_status', 					'dt' => 8)
-	    );
-	  	$this->l_datatable->get_table($table, $key, $column);
-  	  break;
-
-  	  case 'tab_proses_pdln':
-	  	$table = "data_pdln";
-	  	$key = "id";
-	  	$column = array(
-	      array( 'db' => 'id', 	    							'dt' => 0),
-	      array( 'db' => 'nama_pemohon', 						'dt' => 1),
-	      array( 'db' => 'no_surat_unit_utama',				 	'dt' => 2),
-	      array( 'db' => 'no_surat_setneg', 					'dt' => 3),
-	      array( 'db' => 'tgl_surat_setneg', 		 			'dt' => 4),
-	      array( 'db' => 'no_surat_kemlu', 						'dt' => 5),
-	      array( 'db' => 'tgl_surat_kemlu', 					'dt' => 6),
-	      array( 'db' => 'keterangan_status', 					'dt' => 7)
-	    );
-	  	$this->l_datatable->get_table($table, $key, $column);
-  	  break;
+  	 //  case 'tab_proses_pdln':
+	  	// $table = "data_pdln";
+	  	// $key = "id";
+	  	// $column = array(
+	   //    array( 'db' => 'id', 	    							'dt' => 0),
+	   //    array( 'db' => 'nama_pemohon', 						'dt' => 1),
+	   //    array( 'db' => 'no_surat_unit_utama',				 	'dt' => 2),
+	   //    array( 'db' => 'no_surat_setneg', 					'dt' => 3),
+	   //    array( 'db' => 'tgl_surat_setneg', 		 			'dt' => 4),
+	   //    array( 'db' => 'no_surat_kemlu', 						'dt' => 5),
+	   //    array( 'db' => 'tgl_surat_kemlu', 					'dt' => 6),
+	   //    array( 'db' => 'keterangan_status', 					'dt' => 7)
+	   //  );
+	  	// $this->l_datatable->get_table($table, $key, $column);
+  	 //  break;
   	 
   	  case 'terima_data':
 	  	$id = $this->input->post('key');
