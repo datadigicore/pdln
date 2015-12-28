@@ -19,7 +19,7 @@
             <?php } ?> 
 
             <input type="hidden" name="manage" value="add_data_diri">
-            <input type="hidden" name="kondisi" value="lanjut">
+            <input type="hidden" name="kondisi" value="tambah">
 
             
               <div class="form-group">

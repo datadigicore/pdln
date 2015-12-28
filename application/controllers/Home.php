@@ -150,71 +150,93 @@ class home extends CI_Controller {
   	  	$kondisi = $this->input->post('kondisi');
   	  	$max= $this->m_user->max_no_aplikasi();
 	  	$no_aplikasi = $max->no_aplikasi+1;
+
+	  	//upload
+	  	  	$config['upload_path'] = FCPATH.'../files/other';
+	        $config['allowed_types'] = 'gif|jpg|png|pdf';
+	        $this->load->library('upload', $config);
+	        $this->upload->initialize($config);
+	        $result_array = array();
+	        for ($i = 1; $i <= 4; $i++) {
+	          if (!empty($_FILES['upl_files'.$i]['name'])) {
+	            if (!$this->upload->do_upload('upl_files'.$i)) {
+	              $error = $this->upload->display_errors();
+
+	            }
+	            else {
+	              $this->upload->data();
+	            }
+	          }
+	        }
+
+	        //insert        
+	        $cv_pemohon = $_FILES['upl_files1']['name'];
+	        $foto_pemohon = $_FILES['upl_files2']['name'];
+	        $karpeg_pemohon = $_FILES['upl_files3']['name'];
+	        $surat_tugas = $_FILES['upl_files4']['name'];
+
+  	  	if ($kondisi=="lanjut") {
+  	  		
+  	  		$data = array(
+	  		  'id_user' => $_SESSION['logged']['id_user'],
+	  		  'no_aplikasi' => $no_aplikasi,
+			  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
+			  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
+			  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
+			  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
+			  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
+			  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
+			  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
+			  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
+			  'tgl_valid_passport' => $this->input->post('tgl_passport_pemohon', TRUE),
+			  'cv_pemohon' => $cv_pemohon,
+			  'foto_pemohon' => $foto_pemohon,
+			  'karpeg_pemohon' => $karpeg_pemohon,
+			  'surat_tugas_pemohon' => $surat_tugas,
+			  'status' => '1'
+			  
+			);
+
+  	  		$this->session->set_flashdata('error_message', $data);
+  	  		$this->session->set_flashdata('content','step2');
+  	  		redirect('home'); 	  	
+  	  	}elseif ($kondisi=="tambah") {  	  		
+
+	        $data = array(
+	  		  'id_user' => $_SESSION['logged']['id_user'],
+	  		  'no_aplikasi' => $no_aplikasi,
+			  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
+			  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
+			  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
+			  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
+			  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
+			  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
+			  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
+			  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
+			  'tgl_valid_passport' => $this->input->post('tgl_passport_pemohon', TRUE),
+			  'cv_pemohon' => $cv_pemohon,
+			  'foto_pemohon' => $foto_pemohon,
+			  'karpeg_pemohon' => $karpeg_pemohon,
+			  'surat_tugas_pemohon' => $surat_tugas,
+			  'status' => '1'
+			  
+			);
+	        
+	        //$result= $this->db->insert('data_diri',$data);
+
+	        //buat redirect ke halaman lain
+	        
+	        if (isset($data)) {        	
+	        	$this->session->set_flashdata('error_message', $data);
+  	  			$this->session->set_flashdata('content','step1');
+  	  			redirect('home'); 	  	
+			}
+			else {
+			  redirect('home');
+			}	  	  		
+  	  	}	       	  	
 		
-  		//upload
-  	  	$config['upload_path'] = FCPATH.'../files/other';
-        $config['allowed_types'] = 'gif|jpg|png|pdf';
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
-        $result_array = array();
-        for ($i = 1; $i <= 4; $i++) {
-          if (!empty($_FILES['upl_files'.$i]['name'])) {
-            if (!$this->upload->do_upload('upl_files'.$i)) {
-              $error = $this->upload->display_errors();
-
-            }
-            else {
-              $this->upload->data();
-            }
-          }
-        }
-
-        //insert        
-        $cv_pemohon = $_FILES['upl_files1']['name'];
-        $foto_pemohon = $_FILES['upl_files2']['name'];
-        $karpeg_pemohon = $_FILES['upl_files3']['name'];
-        $surat_tugas = $_FILES['upl_files4']['name'];
-
-        $data = array(
-  		  'id_user' => $_SESSION['logged']['id_user'],
-  		  'no_aplikasi' => $no_aplikasi,
-		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
-		  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
-		  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
-		  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
-		  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
-		  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
-		  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
-		  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
-		  'tgl_valid_passport' => $this->input->post('tgl_passport_pemohon', TRUE),
-		  'cv_pemohon' => $cv_pemohon,
-		  'foto_pemohon' => $foto_pemohon,
-		  'karpeg_pemohon' => $karpeg_pemohon,
-		  'surat_tugas_pemohon' => $surat_tugas,
-		  'status' => '1'
-		  
-		);
-        
-        $result= $this->db->insert('data_diri',$data);
-
-        //buat redirect ke halaman lain
-        
-        if ($result == TRUE) {
-        	if ($kondisi=="lanjut") {
-	  	  		$this->session->set_flashdata('error_message', $data);
-	  	  		$this->session->set_flashdata('content','step2');
-	  	  		redirect('home'); 	  	
-	  	  	}elseif ($kondisi=="tambah") {	  	  		
-	  	  		//print_r($max->no_aplikasi);
-	  	  		//print_r($no_aplikasi);
-	  	  		$this->session->set_flashdata('error_message', 'Silahkan Input Data Selanjutnya');
-	  	  		$this->session->set_flashdata('content','step1');
-	  	  		redirect('home'); 	  	
-	  	  	}	     
-		}
-		else {
-		  redirect('home');
-		}
+  		
             /*if ($result=1) {
                     echo "<script>alert('Data berhasil di simpan');window.location.href='http://localhost/dikbud/pdln/'</script>";
             }*/
