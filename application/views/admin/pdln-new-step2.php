@@ -14,16 +14,11 @@ main content start-->
             </ul>
 
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>admin">
-          <!-- foreach ($data as $key => $value) {
-            print_r($value['nama_pemohon']);
-          }  -->    
 
-              <!--<div class="form-group">
-                  <label class="col-lg-3 col-sm-3 control-label">ID</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="id" placeholder="No Surat" value="$data">
-                  </div>
-              </div> -->
+              <?php if (isset($error_message)){print_r($error_message);
+                echo "Ini darta nya loh";?>
+                <input type="text" class="form-control" name="no_aplikasi" placeholder="<?php echo $error_message['no_aplikasi'];?>" value="<?php echo $error_message['no_aplikasi'];?>">
+              <?php } ?> 
 
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">No Surat</label>
