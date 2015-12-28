@@ -82,13 +82,13 @@
                         <?php foreach ($instansi as $key => $value) {
                           echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
                         }?>
-                        <option value="Lainnya">Lain-lain</option>
+                        <!-- <option value="Lainnya">Lain-lain</option> -->
                     </select>
 
                     <select class="form-control" id="sub_instansi_pemohon" name="sub_instansi_pemohon" >
                         <!-- query dari db -->
                         <option value="">---Pilih Sub Instansi Unit Utama---</option>
-                        <option value="lainnya">Lain-lain</option>
+                        <!-- <option value="lainnya">Lain-lain</option> -->
                     </select>
                     <div id="result"></div>
                    
@@ -185,26 +185,32 @@
        $("#jabatan_lain").show();
       }
       else{
-       $("#jabatan_lain").hide();       
+       $("#jabatan_lain").hide();
       }         
      });
     $("#jabatan_lain").hide();
 
      $("#instansi_pemohon").change(function(){
-      id = $("#instansi_pemohon").val();      
-      $.ajax({
-              type: "post",
-              url : "<?php echo base_url('home/process') ?>",
-              data: {manage:'select_data',key:id},
-              success: function(result)
-              {
-                //document.write(result);
-                $("#sub_instansi_pemohon").html(result);
-                //$("#result").html(result);
-              }
-            });
-            return false;      
+      if ($(this).val() != "") {
+        $("#sub_instansi_pemohon").show();
+        id = $("#instansi_pemohon").val();      
+        $.ajax({
+                type: "post",
+                url : "<?php echo base_url('home/process') ?>",
+                data: {manage:'select_data',key:id},
+                success: function(result)
+                {
+                  //document.write(result);
+                  $("#sub_instansi_pemohon").html(result);
+                  //$("#result").html(result);
+                }
+              });
+              return false;
+      }else{
+        $("#sub_instansi_pemohon").hide();   
+      }      
       });
+     $("#sub_instansi_pemohon").hide();
 
   /*  $(document).on('submit', '#tambah_data_baru', function (e) {
 

@@ -136,7 +136,7 @@ class home extends CI_Controller {
       	foreach ($result as $item) {
       	      		echo '<option value="'.$item["id"].'">'.$item["nama_sub_instansi"]."</option>";
       	      	} 
-      	echo '<option value="lainnya">Lainnya</option>';     	
+      	/*echo '<option value="lainnya">Lainnya</option>';     	*/
       	//print_r($result);
       break;
 
