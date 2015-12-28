@@ -47,52 +47,51 @@ class home extends CI_Controller {
 	  break;
 
 	  case 'view':
-	      $id = array('id' => $this->input->post('id'));
+	  	//ini load data dari data diri nya udh bener
+	      $no_aplikasi_data_diri = array('no_aplikasi_data_diri' => $this->input->post('id'));
+	      $no_aplikasi = array('no_aplikasi' => $this->input->post('id'));
+	      $table1='data_diri';
+	      $table2='surat_unit_utama';
+	      $table3='surat_undangan';
 	      $kondisi = array('kondisi' => $this->input->post('kondisi'));
-	      $result = $this->m_user->get_data_pdln($id);
-	      if ($result == true) {
+	      $datadiri = $this->m_user->get_data_pdln($table1,$no_aplikasi_data_diri);
+	      $data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
+	      $data_surat_undangan = $this->m_user->get_data_pdln($table3,$no_aplikasi);
+	      /*print_r($datadiri);
+	      print_r($data_surat_unit_utama);
+	      print_r($data_surat_undangan);*/
+	      //if ($result == true) {
 	        $data = array(
-	          'id' => $result->id,
-	          'id_user' => $result->id_user,
-	          'nama' => $result->nama_pemohon,
-	          'pekerjaan_pemohon' => $result->pekerjaan_pemohon,
-	          'NIP' => $result->nip_pemohon,
-	          'no_telp' => $result->no_hp_pemohon,
-	          'no_passport' => $result->no_passport_pemohon,
-	          'valid_passport' => $result->valid_passport_pemohon,
-	          'instansi_pemohon' => $result->instansi_pemohon,
-	          'jabatan_pemohon' => $result->jabatan_pemohon,
-	          'cv_pemohon' => $result->cv_pemohon,
-	          'foto_pemohon' => $result->foto_pemohon,
-	          'karpeg_pemohon' => $result->karpeg_pemohon,
-	          'no_surat_asal' => $result->no_surat_asal,
-	          'tgl_surat_asal' => $result->tgl_surat_asal,
-	          'penanggung_jawab_surat_asal' => $result->penanggung_jawab_surat_asal,
-	          'instansi_surat_asal' => $result->instansi_surat_asal,
-	          'perihal_surat_asal' => $result->perihal_surat_asal,
-	          'surat_instansi_asal' => $result->surat_instansi_asal,
-	          'no_surat_unit_utama' => $result->no_surat_unit_utama,
-	          'tgl_surat_unit_utama' => $result->tgl_surat_unit_utama,
-	          'penanggung_jawab_surat_unit_utama' => $result->penanggung_jawab_surat_unit_utama,
-	          'instansi_unit_utama' => $result->instansi_unit_utama,
-	          'perihal_surat_unit_utama' => $result->perihal_surat_unit_utama,
-	          'tgl_surat_unit_utama' => $result->tgl_surat_unit_utama,
-	          'instansi_unit_utama' => $result->instansi_unit_utama,
-	          'perihal_surat_unit_utama' => $result->perihal_surat_unit_utama,
-	          'surat_unit_utama' => $result->surat_unit_utama,
-	          'no_surat_undangan' => $result->no_surat_undangan,
-	          'tgl_surat_undangan' => $result->tgl_surat_undangan,
-	          'instansi_pengundang' => $result->instansi_pengundang,
-	          'negara_tujuan' => $result->negara_tujuan,
-	          'waktu_awal_kegiatan' => $result->waktu_awal_kegiatan,
-	          'waktu_akhir_kegiatan' => $result->waktu_akhir_kegiatan,
-	          'keterangan_kegiatan' => $result->keterangan_kegiatan,
-	          'sumber_dana_kegiatan' => $result->sumber_dana_kegiatan,
-	          'keterangan_sumber_dana_kegiatan' => $result->keterangan_sumber_dana_kegiatan,
-	          'surat_undangan' => $result->surat_undangan,
-	          'surat_perjanjian' => $result->surat_perjanjian,
-	          'status' => $result->status,
-	          'keterangan_status' => $result->keterangan_status
+	          'id_data_diri' => $datadiri->id_data_diri,
+	          'id_user' => $datadiri->id_user,
+	          'nama_pemohon' => $datadiri->nama_pemohon,
+	          'pekerjaan_pemohon' => $datadiri->pekerjaan_pemohon,
+	          'nip_pemohon' => $datadiri->nip_pemohon,
+	          'no_hp_pemohon' => $datadiri->no_hp_pemohon,
+	          'no_passport_pemohon' => $datadiri->no_passport_pemohon,
+	          'tgl_valid_passport' => $datadiri->tgl_valid_passport,
+	          'instansi_pemohon' => $datadiri->instansi_pemohon,
+	          'jabatan_pemohon' => $datadiri->jabatan_pemohon,
+	          'cv_pemohon' => $datadiri->cv_pemohon,
+	          'foto_pemohon' => $datadiri->foto_pemohon,
+	          'karpeg_pemohon' => $datadiri->karpeg_pemohon,
+	          'no_surat_unit_utama' => $data_surat_unit_utama->no_surat_unit_utama,
+	          'tgl_surat_unit_utama' => $data_surat_unit_utama->tgl_surat_unit_utama,
+	          'penandatangan_surat_unit_utama' => $data_surat_unit_utama->penandatangan_surat_unit_utama,
+	          'instansi_unit_utama' => $data_surat_unit_utama->instansi_unit_utama,
+	          'perihal_surat_unit_utama' => $data_surat_unit_utama->perihal_surat_unit_utama,
+	          'surat_unit_utama' => $data_surat_unit_utama->surat_unit_utama,
+	          'no_surat_undangan' => $data_surat_undangan->no_surat_undangan,
+	          'tgl_surat_undangan' => $data_surat_undangan->tgl_surat_undangan,
+	          'instansi_pengundang' => $data_surat_undangan->instansi_pengundang,
+	          'negara_tujuan' => $data_surat_undangan->negara_tujuan,
+	          'tgl_awal_kegiatan' => $data_surat_undangan->tgl_awal_kegiatan,
+	          'tgl_akhir_kegiatan' => $data_surat_undangan->tgl_akhir_kegiatan,
+	          'rincian_kegiatan' => $data_surat_undangan->rincian_kegiatan,
+	          'sumber_dana_kegiatan' => $data_surat_undangan->sumber_dana_kegiatan,
+	          'keterangan_sumber_dana_kegiatan' => $data_surat_undangan->keterangan_sumber_dana_kegiatan,
+	          'surat_undangan' => $data_surat_undangan->surat_undangan,
+	          'surat_perjanjian' => $data_surat_undangan->surat_perjanjian	          
 	        );
 
 			if($kondisi['kondisi']=='view'){
@@ -102,7 +101,7 @@ class home extends CI_Controller {
 			}
 			
 
-	      }
+	     // }
 	  break;
 	  case 'edit':
 	  	$this->load->view('user/pdln-edit');
@@ -156,7 +155,6 @@ class home extends CI_Controller {
           if (!empty($_FILES['upl_files'.$i]['name'])) {
             if (!$this->upload->do_upload('upl_files'.$i)) {
               $error = $this->upload->display_errors();
-
             }
             else {
               $this->upload->data();
@@ -354,8 +352,8 @@ class home extends CI_Controller {
 	    $table4 = "instansi";
 		$table5 = "sub_instansi";
 		$key = "id_data_diri";
-		$column = array(
-	    array( 'db' => 'id_instansi', 	    				'dt' => 0),
+		$column = array(	    
+	    array( 'db' => 'no_aplikasi_data_diri', 			'dt' => 0),
 	    array( 'db' => 'nama_pemohon', 						'dt' => 1),
 	    array( 'db' => 'instansi_unit_utama', 				'dt' => 2),
 	    array( 'db' => 'negara_tujuan', 					'dt' => 3),
@@ -365,7 +363,7 @@ class home extends CI_Controller {
 	    array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 7),
 	    array( 'db' => 'nip_pemohon', 						'dt' => 8)
 	 	 );
-      	$where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi";
+      	$where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi";
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
 	  break;
 

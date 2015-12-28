@@ -8,8 +8,8 @@ class m_user extends CI_Model {
 		$query = $this->db->select('data_pdln');
 		return $query;
 	}
-	function get_data_pdln($id) {		
-		$query = $this->db->get_where('data_pdln',$id);
+	function get_data_pdln($table,$no_aplikasi) {		
+		$query = $this->db->get_where($table,$no_aplikasi);
 		return $query->row();
 	}
 	function add_data_pdln($data) {
@@ -36,12 +36,13 @@ class m_user extends CI_Model {
                 'instansi.id',
                 'sub_instansi.id_instansi',
 		);
-
 		$this->db->select($data);
 		$this->db->from('data_diri');
+		$this->db->join('instansi', 'instansi.id=data_diri.instansi_pemohon');
+		$this->db->join('sub_instansi', 'sub_instansi.id_sub_instansi=data_diri.sub_instansi_pemohon');
 		$this->db->join('surat_unit_utama','data_diri.no_aplikasi=surat_unit_utama.no_aplikasi','inner');
 		$this->db->join('surat_undangan', 'data_diri.no_aplikasi=surat_unit_utama.no_aplikasi','inner');
-		$this->db->join('sub_instansi', 'instansi.id=sub_instansi.id_instansi','inner');
+		
 		$this->db->order_by('no_aplikasi','DESC');
 		$this->db->limit($limit, $offset);
 		$query = $this->db->get();

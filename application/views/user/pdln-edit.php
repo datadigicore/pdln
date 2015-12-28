@@ -8,46 +8,46 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div id="links">                        
-                        <img src="<?php base_url();?>files/foto/<?php echo $foto_pemohon ?>" class="img-responsive">
+                        <img src="<?php base_url();?>files/other/<?php echo $foto_pemohon ?>" class="img-responsive">
                         <input type="file" id="foto_pemohon" class="form-control" style="width: 50;">
                     </div>
                     
                 </div>
-                <input type="hidden" id="id" class="form-control" value="<?php echo $id ?>">
+                <input type="hidden" id="id" class="form-control" value="<?php echo $id_data_diri ?>">
                 <input type="hidden" id="id_user" class="form-control" value="<?php echo $id_user ?>">
                 <div class="col-sm-9">
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Nama</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" id="nama_pemohon" class="form-control" value="<?php echo $nama ?>">
+                            <input type="text" id="nama_pemohon" class="form-control" value="<?php echo $nama_pemohon ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>NIP</strong></label>
                         <div class="col-lg-8">
-                            <input type="number" id="nip_pemohon" class="form-control" value="<?php echo $NIP ?>">
+                            <input type="number" id="nip_pemohon" class="form-control" value="<?php echo $nip_pemohon ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>No. Telepon</strong></label>
                         <div class="col-lg-8">
-                            <input type="number" id="no_hp_pemohon" class="form-control" value="<?php echo $no_telp ?>">
+                            <input type="number" id="no_hp_pemohon" class="form-control" value="<?php echo $no_hp_pemohon ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>No. Passport</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" id="no_passport_pemohon" class="form-control" value="<?php echo $no_passport ?>">
+                            <input type="text" id="no_passport_pemohon" class="form-control" value="<?php echo $no_passport_pemohon ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Habis Masa Berlaku Passport</strong></label>
                         <div class="col-lg-8">
-                            <input type="date" id="valid_passport_pemohon" class="form-control" value="<?php echo $valid_passport ?>">
+                            <input type="date" id="valid_passport_pemohon" class="form-control" value="<?php echo $tgl_valid_passport ?>">
                         </div>
                     </div>
 
@@ -81,7 +81,7 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
                         <div class="col-lg-8">                            
-                            <input type="file" id="cv_pemohon" class="form-control" style="width: auto;" value="<?php echo $no_telp ?>">
+                            <input type="file" id="cv_pemohon" class="form-control" style="width: auto;" value="<?php echo $cv_pemohon ?>">
                         </div>
                     </div>
 
@@ -91,55 +91,6 @@
                             <input type="file" id="karpeg_pemohon" class="form-control" style="width: auto;" value="<?php echo $karpeg_pemohon ?>">
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <h4>Surat Instansi Awal</h4>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>No. Surat Instansi Awal</strong></label>
-                        <div class="col-lg-8">
-                            <input type="text" class="form-control" id="no_surat_asal" value="<?php echo $no_surat_asal ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Instansi Awal</strong></label>
-                        <div class="col-lg-8">
-                            <input type="date" class="form-control" id="tgl_surat_asal" placeholder="Tanggal Surat" value="<?php echo $tgl_surat_asal ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Penanggung Jawab</strong></label>
-                        <div class="col-lg-8">
-                            <input type="text" class="form-control" id="penanggung_jawab_surat_asal" placeholder="Penanggung Jawab" value="<?php echo $penanggung_jawab_surat_asal ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Asal</strong></label>
-                        <div class="col-lg-8">
-                            <input type="text" class="form-control" id="instansi_surat_asal" placeholder="Instansi Surat Asal" value="<?php echo $instansi_surat_asal ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Perihal</strong></label>
-                        <div class="col-lg-8">
-                            <input type="text" class="form-control" id="perihal_surat_asal" placeholder="Perihal" value="<?php echo $perihal_surat_asal ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Instansi Awal</strong></label>
-                        <div class="col-lg-8">
-                            <input type="file" id="surat_instansi_asal" class="form-control" style="width: auto;" value="<?php echo $surat_instansi_asal ?>">
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
@@ -179,7 +130,7 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Penanggung Jawab Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" id="Penanggung_jawab_surat_unit_utama" placeholder="Penanggung Jawab" value="<?php echo $penanggung_jawab_surat_unit_utama ?>">
+                            <input type="text" class="form-control" id="Penanggung_jawab_surat_unit_utama" placeholder="Penanggung Jawab" value="<?php echo $penandatangan_surat_unit_utama ?>">
                         </div>
                     </div>
 
@@ -229,17 +180,17 @@
                 <div class="form-group">
                   <label class="col-lg-4 col-sm-4 control-label">Waktu Kegiatan</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" id="waktu_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $waktu_awal_kegiatan ?>">
+                    <input type="date" class="form-control" id="waktu_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $tgl_awal_kegiatan ?>">
                   </div>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" id="waktu_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $waktu_akhir_kegiatan ?>">
+                    <input type="date" class="form-control" id="waktu_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $tgl_akhir_kegiatan ?>">
                   </div>
                 </div> 
 
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Kegiatan</strong></label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" id="keterangan_kegiatan" placeholder="Rincian_Kegiatan" value="<?php echo $keterangan_kegiatan ?>">
+                        <input type="text" class="form-control" id="keterangan_kegiatan" placeholder="Rincian_Kegiatan" value="<?php echo $rincian_kegiatan ?>">
                     </div>
                 </div>
 

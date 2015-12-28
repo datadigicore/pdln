@@ -5,7 +5,7 @@
       <div class="col-lg-12">
         <div class="form-panel">
             <form class="form-horizontal style-form">
-            <input type="hidden" id="id" class="form-control" value="<?php echo $id ?>">
+            <input type="hidden" id="id" class="form-control" value="<?php echo $id_data_diri ?>">
             <div class="row">
                 <div class="col-sm-3">
                     <img src="<?php base_url();?>files/foto/<?php echo $foto_pemohon ?>" class="img-responsive">
@@ -14,35 +14,35 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Nama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $nama ?></p>
+                            <p class="form-control-static"><?php echo $nama_pemohon ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>NIP</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $NIP ?></p>
+                            <p class="form-control-static"><?php echo $nip_pemohon ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>No. Telepon</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $no_telp ?></p>
+                            <p class="form-control-static"><?php echo $no_hp_pemohon ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>No. Passport</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $no_passport ?></p>
+                            <p class="form-control-static"><?php echo $no_passport_pemohon ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Habis Masa Berlaku Passport</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $valid_passport ?></p>
+                            <p class="form-control-static"><?php echo $tgl_valid_passport ?></p>
                         </div>
                     </div>
 
@@ -83,56 +83,6 @@
                 </div>
             </div>
 
-            <h2>Surat Instansi Awal</h2>
-            <br>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>No. Surat Instansi Awal</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $no_surat_asal ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Instansi Awal</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $tgl_surat_asal ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Penanggung Jawab</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $penanggung_jawab_surat_asal ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Asal</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $instansi_surat_asal ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Perihal</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $perihal_surat_asal ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Instansi Awal</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><a href="#">Unduh</a></p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
             <h2>Surat Unit Utama</h2>
             <br>
 
@@ -170,7 +120,7 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Penanggung Jawab Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $penanggung_jawab_surat_unit_utama ?></p>
+                            <p class="form-control-static"><?php echo $penandatangan_surat_unit_utama ?></p>
                         </div>
                     </div>
 
@@ -220,14 +170,14 @@
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Waktu Kegiatan</strong></label>
                     <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $waktu_awal_kegiatan ?> <br> <?php echo $waktu_akhir_kegiatan ?></p>
+                        <p class="form-control-static"><?php echo $tgl_awal_kegiatan ?> <br> <?php echo $tgl_akhir_kegiatan ?></p>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Kegiatan</strong></label>
                     <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $keterangan_kegiatan ?></p>
+                        <p class="form-control-static"><?php echo $rincian_kegiatan ?></p>
                     </div>
                 </div>
 
@@ -252,12 +202,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Status</strong></label>
-                    <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $keterangan_status ?></p>
-                    </div>
-                </div>
                 </div>
             </div>
 
@@ -265,8 +209,8 @@
          </div>
         </div>
 
-        <a id="btn-terima" title="Terima" class="btn btn-success mb" data-toggle="modal"><i class="fa fa-check"></i> Terima</a>
-        <a data-toggle="modal" id="btn-tolak" title="Tolak" class="btn btn-danger mb" ><i class="fa fa-close"></i> Tolak</a>
+        <!-- <a id="btn-terima" title="Terima" class="btn btn-success mb" data-toggle="modal"><i class="fa fa-check"></i> Terima</a>
+        <a data-toggle="modal" id="btn-tolak" title="Tolak" class="btn btn-danger mb" ><i class="fa fa-close"></i> Tolak</a> -->
         
         <a id="btn-menlu" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
         <a id="btn-setneg" title="Cetak Surat ke Menlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Menlu</a>
