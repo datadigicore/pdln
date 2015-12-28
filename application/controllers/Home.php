@@ -109,6 +109,9 @@ class home extends CI_Controller {
 	  case 'proses_permohonan':
 	  	$this->load->view('user/proses_permohonan');
 	  	break;
+	  case 'disetujui_setneg':
+	  	$this->load->view('user/disetujui_setneg');
+	  	break;
 	  case 'cetak_surat':
 	  	$this->load->view('user/cetak_surat');
 	  	break;

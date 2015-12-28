@@ -103,6 +103,16 @@
 
             <li>
                 <form method="POST" action="<?php echo base_url();?>home">
+                    <input type="hidden" name="content" value="disetujui_setneg">
+                    <a onclick="$(this).closest('form').submit()">
+                    <i class="fa fa-check-square-o"></i>
+                        Disetujui Setneg
+                    </a>
+                </form>
+            </li>
+
+            <li>
+                <form method="POST" action="<?php echo base_url();?>home">
                     <input type="hidden" name="content" value="cetak_surat">
                     <a onclick="$(this).closest('form').submit()">
                     <i class="fa fa-print"></i>
