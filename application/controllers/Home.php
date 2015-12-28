@@ -364,25 +364,27 @@ class home extends CI_Controller {
   	break;
 	  case 'tab_pdln':
       $table1 = "data_diri";
-      $table2 = "surat_unit_utama";
-      $table3 = "surat_undangan";
-      $table4 = "surat_bpkln";
-      $table5 = "instansi";
-    	$table6 = "sub_instansi";
-    	$key = "id";
+      // $table2 = "surat_unit_utama";
+      // $table3 = "surat_undangan";
+     //  $table4 = "surat_bpkln";
+      $table2 = "instansi";
+    	$table3 = "sub_instansi";
+    	$key = "id_data_diri";
     	$column = array(
-        array( 'db' => 'id_instansi', 	    							'dt' => 0),
+        array( 'db' => 'id_data_diri', 	    							'dt' => 0),
         array( 'db' => 'nama_pemohon', 						'dt' => 1),
-        array( 'db' => 'instansi_unit_utama', 				'dt' => 2),
-        array( 'db' => 'negara_tujuan', 						'dt' => 3),
-        array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 4),
-        array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 5),
-        array( 'db' => 'rincian_kegiatan', 				'dt' => 6),
-        array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 7),
-        array( 'db' => 'nip_pemohon', 					'dt' => 8)
+        array( 'db' => 'nama_instansi', 				'dt' => 2),
+        array( 'db' => 'nama_sub_instansi', 						'dt' => 3),
+        array( 'db' => 'jabatan_pemohon', 				'dt' => 4),
+        array( 'db' => 'pekerjaan_pemohon', 				'dt' => 5),
+        array( 'db' => 'nip_pemohon', 				'dt' => 6),
+        array( 'db' => 'no_passport_pemohon', 	'dt' => 7),
+        array( 'db' => 'no_hp_pemohon', 					'dt' => 8)
       );
-      $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi AND data_diri.no_aplikasi = surat_bpkln.no_aplikasi";
-    	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $table6, $key, $column, $where);
+      $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon";
+      // $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi AND data_diri.no_aplikasi = surat_bpkln.no_aplikasi";
+      $this->l_datatable->get_table_join_6($table1, $table2, $table3, $key, $column, $where);
+    	// $this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $table6, $key, $column, $where);
 	  break;
 
   	 //  case 'tab_proses_pdln':
