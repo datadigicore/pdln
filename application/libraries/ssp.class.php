@@ -400,7 +400,8 @@ class SSP {
         );
     }
 
-    static function more_complex ( $request, $conn, $table1, $table2, $table3, $table4, $table5, $table6, $primaryKey, $columns, $whereResult=null, $whereAll=null ) {
+    static function more_complex ( $request, $conn, $table1, $table2, $table3, $primaryKey, $columns, $whereResult=null, $whereAll=null ) {
+    // static function more_complex ( $request, $conn, $table1, $table2, $table3, $table4, $table5, $table6, $primaryKey, $columns, $whereResult=null, $whereAll=null ) {
         $bindings = array();
         $db = self::db( $conn );
         $localWhereResult = array();
@@ -432,7 +433,7 @@ class SSP {
         // Main query to actually get the data
         $data = self::sql_exec( $db, $bindings,
             "SELECT SQL_CALC_FOUND_ROWS `".implode("`, `", self::pluck($columns, 'db'))."`
-             FROM `$table1`,`$table2`,`$table3`,`$table4`,`$table5`,`$table6`
+             FROM `$table1`,`$table2`,`$table3`
              $where
              $order
              $limit"
