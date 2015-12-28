@@ -84,7 +84,8 @@ class m_user extends CI_Model {
 		return $query->row();
 	}
 
-	function update_surat($table,$data,$no_aplikasi){
-		$this->db->update('$table', $data, array('no_aplikasi' => $no_aplikasi));
+	function update_surat($table,$data,$id_user,$no_aplikasi){
+		$query = $this->db->update($table, $data, array('id_user'=> $id_user,'no_aplikasi' => $no_aplikasi));
+		return $query;
 	}
 } 

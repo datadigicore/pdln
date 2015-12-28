@@ -266,10 +266,11 @@ class home extends CI_Controller {
         }	
 
         //insert 	      
-        $surat_unit_utama = $_FILES['upl_files1']['name'];          
-  	  	$data = array(  	  				
-  	  				'id_user' => $_SESSION['logged']['id_user'],
-  	  				'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
+        $surat_unit_utama = $_FILES['upl_files1']['name'];
+        $no_aplikasi = $this->input->post('no_aplikasi');
+        $table = 'surat_unit_utama';
+        $id_user = $_SESSION['logged']['id_user'];
+  	  	$data = array(
 					'no_surat_unit_utama' => $this->input->post('no_surat_unit_utama',TRUE),					
   	  				'tgl_surat_unit_utama' => $this->input->post('tgl_surat_unit_utama',TRUE),
   	  				'instansi_unit_utama' => $this->input->post('instansi_unit_utama',TRUE),
@@ -278,9 +279,9 @@ class home extends CI_Controller {
   	  				'surat_unit_utama' => $surat_unit_utama
   	  				 );  
 
-  	  	$result= $this->db->insert('surat_unit_utama',$data);
-	    if ($result == TRUE) {	    	
-	      $this->session->set_flashdata('error_message', $data);
+  	  	$result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);
+	    if ($result == TRUE) {
+	      $this->session->set_flashdata('error_message', $no_aplikasi);
 		  //$this->session->set_flashdata('error_message', 'Data Pengguna Berhasil di Tambahkan ke Dalam Database');
 		  //buat redirect ke halaman lain
 		  $this->session->set_flashdata('content','step3');
@@ -316,10 +317,11 @@ class home extends CI_Controller {
 
         $surat_undangan = $_FILES['upl_files1']['name'];
         $surat_perjanjian = $_FILES['upl_files2']['name'];
+        $no_aplikasi = $this->input->post('no_aplikasi');
+        $table = 'surat_undangan';
+        $id_user = $_SESSION['logged']['id_user'];
 
-  	  	$data = array(
-  	  			    'id_user' => $_SESSION['logged']['id_user'],
-  	  				'no_aplikasi' => $this->input->post('no_aplikasi',TRUE),
+  	  	$data = array(  	  			    
   	  				'no_surat_undangan' => $this->input->post('no_surat_undangan',TRUE),
   	  				'tgl_surat_undangan' => $this->input->post('tgl_surat_undangan',TRUE),
   	  				'instansi_pengundang' => $this->input->post('instansi_pengundang',TRUE),
@@ -334,7 +336,7 @@ class home extends CI_Controller {
   	  				'surat_perjanjian' => $surat_perjanjian
   	  				 );
 
-  	  	$result= $this->db->insert('surat_undangan',$data);  	  	
+  	  	$result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);
   	  	if ($result == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
 		  //buat redirect ke halaman lain
@@ -346,42 +348,42 @@ class home extends CI_Controller {
 		}
   	break;
 	  case 'tab_pdln':
-      $table1 = "data_diri";
-      $table2 = "surat_unit_utama";
-      $table3 = "surat_undangan";
-      $table4 = "instansi";
-    	$table5 = "sub_instansi";
-    	$key = "id_data_diri";
-    	$column = array(
-        array( 'db' => 'id_instansi', 	    							'dt' => 0),
-        array( 'db' => 'nama_pemohon', 						'dt' => 1),
-        array( 'db' => 'instansi_unit_utama', 				'dt' => 2),
-        array( 'db' => 'negara_tujuan', 						'dt' => 3),
-        array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 4),
-        array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 5),
-        array( 'db' => 'rincian_kegiatan', 				'dt' => 6),
-        array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 7),
-        array( 'db' => 'nip_pemohon', 					'dt' => 8)
-      );
-      $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi";
+	    $table1 = "data_diri";
+	    $table2 = "surat_unit_utama";
+	    $table3 = "surat_undangan";
+	    $table4 = "instansi";
+		$table5 = "sub_instansi";
+		$key = "id_data_diri";
+		$column = array(
+	    array( 'db' => 'id_instansi', 	    				'dt' => 0),
+	    array( 'db' => 'nama_pemohon', 						'dt' => 1),
+	    array( 'db' => 'instansi_unit_utama', 				'dt' => 2),
+	    array( 'db' => 'negara_tujuan', 					'dt' => 3),
+	    array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 4),
+	    array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 5),
+	    array( 'db' => 'rincian_kegiatan', 					'dt' => 6),
+	    array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 7),
+	    array( 'db' => 'nip_pemohon', 						'dt' => 8)
+	 	 );
+      	$where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi = surat_undangan.no_aplikasi";
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
 	  break;
 
-  	 //  case 'tab_proses_pdln':
-	  	// $table = "data_pdln";
-	  	// $key = "id";
-	  	// $column = array(
-	   //    array( 'db' => 'id', 	    							'dt' => 0),
-	   //    array( 'db' => 'nama_pemohon', 						'dt' => 1),
-	   //    array( 'db' => 'no_surat_unit_utama',				 	'dt' => 2),
-	   //    array( 'db' => 'no_surat_setneg', 					'dt' => 3),
-	   //    array( 'db' => 'tgl_surat_setneg', 		 			'dt' => 4),
-	   //    array( 'db' => 'no_surat_kemlu', 						'dt' => 5),
-	   //    array( 'db' => 'tgl_surat_kemlu', 					'dt' => 6),
-	   //    array( 'db' => 'keterangan_status', 					'dt' => 7)
-	   //  );
-	  	// $this->l_datatable->get_table($table, $key, $column);
-  	 //  break;
+  	  /*case 'tab_proses_pdln':
+	  	$table = "data_pdln";
+	  	$key = "id";
+	  	$column = array(
+	      array( 'db' => 'id_data_diri',						'dt' => 0),
+	      array( 'db' => 'nama_pemohon', 						'dt' => 1),
+	      array( 'db' => 'no_surat_unit_utama',				 	'dt' => 2),
+	      array( 'db' => 'no_surat_setneg', 					'dt' => 3),
+	      array( 'db' => 'tgl_surat_setneg', 		 			'dt' => 4),
+	      array( 'db' => 'no_surat_kemlu', 						'dt' => 5),
+	      array( 'db' => 'tgl_surat_kemlu', 					'dt' => 6),
+	      array( 'db' => 'keterangan_status', 					'dt' => 7)
+	    );
+	  	$this->l_datatable->get_table($table, $key, $column);
+  	  break;*/
   	 
   	  case 'terima_data':
 	  	$id = $this->input->post('key');
