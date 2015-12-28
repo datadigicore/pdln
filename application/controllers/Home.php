@@ -34,10 +34,15 @@ class home extends CI_Controller {
 	$this->load->view('template/sidebar');
 	switch ($content) {
 	  case 'step1':
-	  	$table = 'instansi';
-      	$data['instansi'] = $this->m_user->select_data($table);
-      	//print_r($data);
-		$this->load->view('user/pdln-new-step1',$data);
+	  	if (isset($data)) {
+	  		$table = 'instansi';
+	      	$data['instansi'] = $this->m_user->select_data($table);
+	      	//print_r($data);
+			$this->load->view('user/pdln-new-step1',$data);
+	  	}else{
+	  		$this->load->view('user/pdln-new-step1',$data);
+	  	}
+	  	
 	  break;
 	  case 'step2':
 	  	$this->load->view('user/pdln-new-step2', $data);

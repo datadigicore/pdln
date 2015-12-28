@@ -14,9 +14,8 @@
             
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
             
-               <?php if (isset($error_message)){print_r($error_message);
-                echo "Ini darta nya loh";?>
-                <input type="text" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi'];?>">
+               <?php if (isset($error_message)){?>
+                <input type="hidden" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi'];?>">
               <?php } ?> 
 
               <div class="form-group">

@@ -11,20 +11,17 @@
               <li><a><span class="badge">2</span> Surat Unit Utama</a></li>
               <li><a><span class="badge">3</span> Surat Undangan Kunjungan</a></li>
             </ul>
-
-            <?php if (isset($error_message)){?>
-              <div class="alert alert-<?php echo $alert_type;?> fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Perhatian!</strong><br><?php echo $error_message; ?>
-              </div>
-            <?php } ?>            
             
-
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
+            
+            <?php if (isset($error_message)){?>
+                <input type="text" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi'];?>">
+            <?php } ?> 
+
             <input type="hidden" name="manage" value="add_data_diri">
             <input type="hidden" name="kondisi" value="lanjut">
-            <!-- <input type="hidden" name="id_user" value="2"> -->
-            <!-- <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home"> -->              
+
+            
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Nama</label>
                   <div class="col-sm-9">
@@ -147,10 +144,7 @@
                       <a class="btn pdln-btn mb" title="Lanjut" onclick="$(this).closest('form').submit()"> Lanjut</a>
                   </div>
               </div>
-            </form>
-            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
-              <input type="hidden" name="manage" value="add_data_diri">
-              <input type="hidden" name="kondisi" value="tambah">
+            
               <a class="btn pdln-btn mb" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-plus-square"></i> Tambah Data Lain</a>
             </form>
           </div>
