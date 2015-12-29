@@ -8,11 +8,12 @@
             <table class="table  table-striped table-bordered pdln-table table-curved" cellspacing="0" width="100%">
               <thead>
                   <tr>
-                      <th>Id</th>
+                      <th>No Aplikasi</th>
                       <th>Nama</th>                      
                       <th>No SP Setneg</th>
                       <th>Tanggal SP Setneg </th>
                       <th>Sumber Dana</th>
+                      <th>Keterangan Lolos </th>
                       <th style="width: 15%;">Aksi</th>
                   </tr>
               </thead>
@@ -26,9 +27,36 @@
 
 <script type="text/javascript">
           $(document).ready(function(){
-            var table = $(".table").DataTable();
+            var table = $(".table").DataTable({
+              "processing": true,
+              "serverSide": true,
+              "ajax": {
+                "url": "<?php echo base_url('home/process') ?>",
+                "data": {manage:'tab_persetujuan_setneg'},
+                "type": "POST"
+              },
+              "columnDefs" : [
+                {"targets" : 0,
+                 "visible" : false},
+                {"targets" : 1,
+                "visible" : false},
+                {"targets" : 2},
+                {"targets" : 3}, 
+                {"targets" : 4},                
+                {"targets" : 5},
+                {"orderable": false,
+                 "data": null,
+                 "defaultContent":  '<div class="text-center">'+
+                                    '<a style="margin:0 2px;" id="btn-edit" href="#modal-tambahdata" class="btn btn-success btn-sm" data-toggle="modal"><i class="fa fa-edit"></i></a>'+
+                                    /*'<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
+                                    '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+*/
+                                    '</div>',
+                 "targets": 6}
+              ],
+              "order": [[ 0, "desc" ]]
+            });
             var tabrow;
-
+          
             $(document).on("click", "#btn-view", function (){
               content = 'view';
               var tr = $(this).closest('tr');
