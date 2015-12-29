@@ -32,6 +32,7 @@ class m_mpdf extends CI_Model {
     $query = $this->db->where('surat_bpkln.no_aplikasi = 2');
     $query = $this->db->get();
         return $query->row_array();
+    }
 
     function get_pdln_more($no_aplikasi) {
         // $query = $this->db->get_where('data_diri');
