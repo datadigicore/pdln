@@ -22,6 +22,11 @@
 
             <div class="text-center">
               <form method="POST" action="<?php echo base_url();?>c_mpdf">
+
+                <input type="hidden" name="content" value="step1">
+                <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
+                <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
+
                 <a class="btn btn-warning" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-print"></i> Cetak Surat</a>
               </form>              
             </div>

@@ -15,19 +15,17 @@
   <tr>
       <td width="15%">Nomor</td>
       <td width="5%" align="right">:</td>
-      <td width="65%"><?php echo $no_surat_asal?></td>
-      <td width="25%" align="right"><?php echo strftime("%d %B %Y", strtotime(date("Y-m-d")));?></td>
+      
   </tr>
   <tr>
       <td>Lampiran</td>
       <td align="right">:</td>
-      <td>1(Satu) Berkas</td>
+      <td>2(Dua) Berkas</td>
   </tr>
   <tr>
       <td valign="top">Hal</td>
       <td align="right" valign="top">:</td>
-      <td><?php echo $keterangan_kegiatan?><br>
-      <?php echo $nama_pemohon?></td>
+      <td><?php echo $query['0']['rincian_kegiatan']?>
   </tr>
 </table>
 <br>
@@ -38,23 +36,21 @@ Jakarta
 <br>
 <p align="justify" style="margin-bottom:0;">Sesuai dengan surat Kepala Pusat Pengembangan dan Perlindungan,
 Badan Pengembangan dan Pembinaan Bahasa Kemendikbud No. 0690/I2/LN/2015, tanggal 3 September 2015, hal seperti tersebut pada Pokok surat,
-dengan hormat mohon persetujuan Saudara atas penugasan 2 orang staf teknis dari Pengembangan dan Perlindungan, Badan Pengembangan
+dengan hormat mohon persetujuan Saudara atas penugasan <?php echo count(array_filter($query)); ?> orang staf teknis dari Pengembangan dan Perlindungan, Badan Pengembangan
 dan Pembinaan Bahasa yakni:
 <br>
 <br>
 <table>
-  <tr>
-    <td style="padding-left:20px">1. </td>
-    <td><?php echo $nama_pemohon?>, / </td>
-    <td>NIP. <?php echo $nip_pemohon?></td>
-  </tr>
-  <tr>
-    <td style="padding-left:20px">2. </td>
-    <td><?php echo $nama_pemohon?>, / </td>
-    <td>NIP. <?php echo $nip_pemohon?></td>
-  </tr>
+  <?php $i = 1; foreach ($query as $item) { ?>
+    <tr>
+      <td style="padding-left:20px"><?php echo $i; ?></td>
+      <td><?php echo $item['nama_pemohon']; ?>,</td>
+      <td>/</td>
+      <td>NIP. <?php echo $item['nip_pemohon']?></td>
+    </tr>  
+  <?php $i++; } ?>
 </table><br>
-<?php echo $keterangan_kegiatan?> mulai tanggal <?php echo date("d", strtotime($waktu_awal_kegiatan));?> s.d. <?php echo strftime("%d %B %Y", strtotime($waktu_akhir_kegiatan));?>. Sumber pendanaan dari <?php echo $sumber_dana_kegiatan?>.
+<?php echo $query['0']['rincian_kegiatan']?> mulai tanggal <?php echo date("d", strtotime($query[0]['tgl_awal_kegiatan']));?> s.d. <?php echo strftime("%d %B %Y", strtotime($query[0]['tgl_akhir_kegiatan']));?>. Sumber pendanaan dari <?php echo $query[0]['sumber_dana_kegiatan']?>.
 <p align="justify">Sebagai bahan pertimbangan Saudara, bersama ini kami lampirkan berkas yang berkaitan dengan penugasan mereka.<br><br>
 Atas perhatian dan kerjasama Saudara, kami ucapkan terima kasih.</p>
 <br>

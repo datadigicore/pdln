@@ -25,29 +25,22 @@ Daftar Peserta</p>
     <th>Jangka Waktu</th>
     <th>Tempat Penugasan</th>
   </tr>
-  <tr>
-    <td>1. </td>
-    <td>Mellyanti<br>NIP. <?php echo $nip_pemohon?></td>
-    <td><?php echo $jabatan_pemohon?></td>
-    <td rowspan="4">Sebagai petugas pelaksana Ujian Kompetensi Guru</td>
-    <td rowspan="4"><?php echo date("d", strtotime($waktu_awal_kegiatan));?> s.d. <?php echo strftime("%d %B %Y", strtotime($waktu_akhir_kegiatan));?></td>
-    <td rowspan="4">Den Haag Belanda</td>
-  </tr>
-  <tr>
-    <td>2. </td>
-    <td>Etna Betty<br>NIP. <?php echo $nip_pemohon?>332132</td>
-    <td>Perencanaan Kebutuhan</td>
-  </tr>
-  <tr>
-    <td>3. </td>
-    <td>Agus Subarianto<br>NIP. <?php echo $nip_pemohon?>54352</td>
-    <td>Perencanaan Kebutuhan</td>
-  </tr>
-  <tr>
-    <td>4. </td>
-    <td>Firdaus Syah<br>NIP. <?php echo $nip_pemohon?>567722</td>
-    <td>Perencanaan Kebutuhan</td>
-  </tr>
+  <?php $i = 1; foreach ($query as $item) { if ($i == 1) { ?>
+    <tr>
+      <td><?php echo $i; ?></td>
+      <td><?php echo $item['nama_pemohon']; ?><br>NIP. <?php echo $item['nip_pemohon']; ?></td>
+      <td><?php echo $item['jabatan_pemohon']; ?></td>
+      <td rowspan="<?php echo count(array_filter($query)); ?>"><?php echo $item['rincian_kegiatan']; ?></td>
+      <td rowspan="<?php echo count(array_filter($query)); ?>"><?php echo date("d", strtotime($item['tgl_awal_kegiatan']));?> s.d. <?php echo strftime("%d %B %Y", strtotime($item['tgl_akhir_kegiatan']));?></td>
+      <td rowspan="<?php echo count(array_filter($query)); ?>"><?php echo $item['negara_tujuan']; ?></td>
+    </tr>
+  <?php } else { ?>
+    <tr>
+        <td><?php echo $i; ?></td>
+        <td><?php echo $item['nama_pemohon']; ?><br>NIP. <?php echo $item['nip_pemohon']; ?></td>
+        <td><?php echo $item['jabatan_pemohon']; ?></td>
+      </tr>
+  <?php } $i++; }?>
 </table>
 <br>
 <table width="100%">
