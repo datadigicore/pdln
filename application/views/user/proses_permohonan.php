@@ -13,13 +13,12 @@
             <table class="table  table-striped table-bordered pdln-table table-curved table-checkable" cellspacing="0" width="100%">
               <thead>
                   <tr>
-                      <th>Id</th>
+                      <th>No Aplikasi</th>
                       <th>Nama</th>                      
                       <th>No. Surat Unit Utama</th>
                       <th>No. Surat Setneg </th>
                       <th>Tgl. Surat Setneg </th>
-                      <th>No. Surat Kemlu </th>
-                      <th>Tgl. Surat Kemlu </th>
+                      <th>Keterangan</th>                      
                       <th>Status</th>
                       <th style="width: 15%;">Aksi</th>
                   </tr>
@@ -84,7 +83,6 @@
                 {"targets" : 4},
                 {"targets" : 5},
                 {"targets" : 6},
-                {"targets" : 7},
                 {"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
@@ -92,7 +90,7 @@
                                     '<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
                                     '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+
                                     '</div>',
-                 "targets": 8}
+                 "targets": 7}
               ],
               "order": [[ 0, "desc" ]]
             });
@@ -144,26 +142,24 @@
               tabrow = table.row( tr );
               $("#no_surat_setneg").val(tabrow.data()[3]);
               $("#tgl_surat_setneg").val(tabrow.data()[4]);
-              $("#no_surat_menlu").val(tabrow.data()[5]);
-              $("#tgl_surat_menlu").val(tabrow.data()[6]);
+              $("#data_lain_bpkln").val(tabrow.data()[5]);
             });
 
             $("#tambahdata").click(function(){
-              row_id = tabrow.data()[0];
+              row_no_aplikasi = tabrow.data()[0];
               row_no_setneg = $("#no_surat_setneg").val();
               row_tgl_setneg = $("#tgl_surat_setneg").val();
-              row_no_menlu = $("#no_surat_menlu").val();
-              row_tgl_menlu = $("#tgl_surat_menlu").val();
+              row_keterangan = $("#data_lain_bpkln").val();              
               $.ajax({
                 type: "post",
                 url : "<?php echo base_url('home/process') ?>",
                 data: {
                         manage:'tambah_surat_pdln',
-                        key:row_id,
+                        key:row_no_aplikasi,
                         no_surat_setneg:row_no_setneg,
                         tgl_surat_setneg:row_tgl_setneg,
-                        no_surat_menlu:row_no_menlu,
-                        tgl_surat_menlu:row_tgl_menlu
+                        data_lain_bpkln:row_keterangan,
+                        
                       },
                 success: function(data)
                 {
@@ -242,9 +238,7 @@
         <br>
         <input type="date" class="form-control" placeholder="Tanggal Surat Setneg" autofocus id="tgl_surat_setneg" name="tgl_surat_setneg" required >
         <br>
-        <input type="text" class="form-control" placeholder="Nomor Surat Menlu" autofocus id="no_surat_menlu" name="no_surat_menlu" required>
-        <br>
-        <input type="date" class="form-control" placeholder="Tanggal Surat Menlu" autofocus id="tgl_surat_menlu" name="tgl_surat_menlu" required>
+        <input type="text" class="form-control" placeholder="Nomor Surat Menlu" autofocus id="data_lain_bpkln" name="data_lain_bpkln" required>        
       </div>
       <div class="modal-footer">
         <a id="tambahdata" class="btn btn-success">Submit</a>
