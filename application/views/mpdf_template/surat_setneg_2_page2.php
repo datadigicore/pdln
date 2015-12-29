@@ -1,6 +1,6 @@
 <table width="100%">
   <tr>
-	<td align="left" valign="middle"><img width="14%" src="<?php echo base_url()?>images/logo_kemdikbud.jpg"></td>
+	<td align="left" valign="middle"><img width="14%" src="<?php echo base_url()?>img/logo_kemdikbud.jpg"></td>
 	<td align="center" valign="middle" width="85%">
 	  <h3>KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN</h3>
 	  Jalan Jenderal Sudirman, Senayan, Jakarta 10270<br>

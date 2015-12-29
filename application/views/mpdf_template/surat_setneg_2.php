@@ -1,6 +1,6 @@
 <table width="100%">
   <tr>
-	<td align="left" valign="middle"><img width="14%" src="<?php echo base_url()?>images/logo_kemdikbud.jpg"></td>
+	<td align="left" valign="middle"><img width="14%" src="<?php echo base_url()?>img/logo_kemdikbud.jpg"></td>
 	<td align="center" valign="middle" width="85%">
 	  <h3>KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN</h3>
 	  Jalan Jenderal Sudirman, Senayan, Jakarta 10270<br>
@@ -25,48 +25,56 @@
   <tr>
       <td valign="top">Hal</td>
       <td align="right" valign="top">:</td>
-      <td><?php echo $query['0']['rincian_kegiatan']?>
+      <td>Persetujuan Perjalanan Dinas Luar Negeri</td>
   </tr>
 </table>
 <br>
-Yth. Kepala Biro Kerja Sama Teknik Luar Negeri<br>
-Kementerian Sekretariat Luar Negeri RI<br>
-Jalan Veteran No. 17 - 18<br>
-Jakarta
-<br>
-<p align="justify" style="margin-bottom:0;">Sesuai dengan surat Kepala Pusat Pengembangan dan Perlindungan,
-Badan Pengembangan dan Pembinaan Bahasa Kemendikbud No. 0690/I2/LN/2015, tanggal 3 September 2015, hal seperti tersebut pada Pokok surat,
-dengan hormat mohon persetujuan Saudara atas penugasan <?php echo count(array_filter($query)); ?> orang staf teknis dari Pengembangan dan Perlindungan, Badan Pengembangan
+Yth. Sekretaris Jenderal, u.p. Kepala Biro Perencanaan dan Kerja Sama Luar Negeri<br>
+Kementerian Pendidikan dan Kebudayaan<br>
+Jl. Jend. Sudirman Pintu 1 Senayan Jakarta 10270<br>
+<p align="justify" style="margin-bottom:0;">Sehubungan dengan surat Kepala Biro Perencanaan dan Kerja Sama Luar Negeri,
+Kementerian Pendidikan dan Kebudayaan nomor 100707/A1.3/LN/2015 tanggal 4 Desember 2015 hal tersebut di atas,
+dengan hormat diberitahukan bahwa Pemerintah menyetujui perjalanan dinas luar negeri bagi <?php echo count(array_filter($query)); ?> orang peserta sebagaimana tercantum dalam daftar terlampir.
 dan Pembinaan Bahasa yakni:
 <br>
 <br>
+Persetujuan Pemerintah ini diberikan dengan ketentuan sebagai berikut :
 <table>
-  <?php $i = 1; foreach ($query as $item) { ?>
-    <tr>
-      <td style="padding-left:20px"><?php echo $i; ?></td>
-      <td><?php echo $item['nama_pemohon']; ?>,</td>
-      <td>/</td>
-      <td>NIP. <?php echo $item['nip_pemohon']?></td>
-    </tr>  
-  <?php $i++; } ?>
-</table><br>
-<?php echo $query['0']['rincian_kegiatan']?> mulai tanggal <?php echo date("d", strtotime($query[0]['tgl_awal_kegiatan']));?> s.d. <?php echo strftime("%d %B %Y", strtotime($query[0]['tgl_akhir_kegiatan']));?>. Sumber pendanaan dari <?php echo $query[0]['sumber_dana_kegiatan']?>.
-<p align="justify">Sebagai bahan pertimbangan Saudara, bersama ini kami lampirkan berkas yang berkaitan dengan penugasan mereka.<br><br>
-Atas perhatian dan kerjasama Saudara, kami ucapkan terima kasih.</p>
-<br>
+  <tr>
+    <td valign="top">1. </td>
+    <td align="justify">Biaya perjalanan dinas dibebankan pada anggaran Direktorat Jenderal Guru dan Tenaga Kependidikan.</td>
+  </tr>
+  <tr>
+    <td valign="top">2. </td>
+    <td align="justify">Perjalanan dinas luar negeri dilakukan untuk kepentingan penyelenggaraan pemerintahan yang sangat tinggi.</td>
+  </tr>
+  <tr>
+    <td valign="top">3. </td>
+    <td align="justify">Yang bersangkutan menghubungi Kedutaan Besar RI/Perwakilan RI di negara setempat untuk menyampaikan maksud kedatangan.</td>
+  </tr>
+  <tr>
+    <td valign="top">4. </td>
+    <td align="justify">Laporan tertulis hasil perjalanan dinas tersebut agar disampaikan kepada Kementerian Sekretariat Negara.</td>
+  </tr>
+</table>
+<p align="justify">Atas perhatian dan kerjasama Saudara, kami ucapkan terima kasih.</p>
 <table width="100%">
   <tr>
-    <td width="56%"></td>
+    <td width="46%"></td>
     <td>
-      A.n Sekretaris Jenderal<br>
-      Kepala Biro Perencanaan dan Kerjasama Luar Negeri<br>
-      <br><br><br>
-      Suharti<br>
-      NIP. 196410191990021001<br>
+      A.n Sekretaris Kementerian Skretariat Negara<br>
+      Kepala Biro Kerja Sama Teknik Luar Negeri<br>
+      <br><br>
+      Rika Kiswardani
     </td>
   </tr>
 </table>
 <br>
 Tembusan Yth.:<br>
-1. Sesjen Kemdikbud;<br>
-2. Kepala Bidang Pengembangan dan Pembinaan Bahasa.
+1. Seskemensetneg sebagai laporan<br>
+2. Kepala BPKP<br>
+3. Dirjen Anggara, Kemenkeu<br>
+4. Dirjen Perbendaharaan, Kemenkeu<br>
+5. Dir. Konsuler, Kemenlu<br>
+6. Dubes/Kepala Perwakilan RI setempat<br>
+7. Yang Bersangkutan<br>
