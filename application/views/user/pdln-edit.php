@@ -364,7 +364,7 @@
                 success: function(data)
                 {                    
                     var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
-                    var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(id);                    
+                    var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(no_aplikasi);                    
                     $form.append($input);
                     $("body").append($form);
                     $form.submit();

@@ -466,8 +466,12 @@ class home extends CI_Controller {
 	  	$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
 	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
 	  	$result_surat_bpkln= $this->m_user->update_surat($table4,$data_surat_bpkln,$id_user,$no_aplikasi);
-	  	
-	  	if ($result_surat_bpkln == TRUE) {	    
+	  	print_r($result_datadiri);
+	  	print_r($result_surat_unit_utama);
+	  	print_r($result_surat_undangan);
+	  	print_r($result_surat_bpkln);
+
+	  	/*if ($result_surat_bpkln == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
 		  //buat redirect ke halaman lain
 		  $this->session->set_flashdata('content','home');
@@ -475,7 +479,7 @@ class home extends CI_Controller {
 		}
 		else {
 		  redirect('home');
-		}
+		}*/
   	  break;
 
   	  case 'tambah_surat_pdln':
