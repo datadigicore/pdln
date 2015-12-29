@@ -12,8 +12,8 @@ class c_mpdf extends CI_Controller {
 		// print_r($result);
 		// print('</pre>');
 		// die;
-		$menset = "setneg";
-		$jenis = "setneg2";
+		$menset = "menlu";
+		$jenis = "";
 		$nip = $result['nip_pemohon'];
 		if ($menset == "menlu") {
 			$html=$this->load->view('mpdf_template/surat_menlu', $result, true);
