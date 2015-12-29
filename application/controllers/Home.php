@@ -373,21 +373,44 @@ class home extends CI_Controller {
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
 	  break;
 
-  	  /*case 'tab_proses_pdln':
-	  	$table = "data_pdln";
-	  	$key = "id";
+  	  case 'tab_proses_pdln':
+	  	$table1 = "data_diri";
+	    $table2 = "surat_unit_utama";
+	    $table3 = "surat_bpkln";
+	    $table4 = "instansi";
+		$table5 = "sub_instansi";
+		$key = "id_data_diri";
 	  	$column = array(
-	      array( 'db' => 'id_data_diri',						'dt' => 0),
+	      array( 'db' => 'no_aplikasi_data_diri',				'dt' => 0),
 	      array( 'db' => 'nama_pemohon', 						'dt' => 1),
 	      array( 'db' => 'no_surat_unit_utama',				 	'dt' => 2),
 	      array( 'db' => 'no_surat_setneg', 					'dt' => 3),
 	      array( 'db' => 'tgl_surat_setneg', 		 			'dt' => 4),
-	      array( 'db' => 'no_surat_kemlu', 						'dt' => 5),
-	      array( 'db' => 'tgl_surat_kemlu', 					'dt' => 6),
-	      array( 'db' => 'keterangan_status', 					'dt' => 7)
+	      array( 'db' => 'data_lain_bpkln', 		 			'dt' => 5),
+	      array( 'db' => 'status', 								'dt' => 6)     
 	    );
-	  	$this->l_datatable->get_table($table, $key, $column);
-  	  break;*/
+	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi";
+    	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
+  	  break;
+
+  	  case 'tab_persetujuan_setneg':
+	  	$table1 = "data_diri";
+	    $table2 = "surat_undangan";
+	    $table3 = "surat_bpkln";
+	    $table4 = "instansi";
+		$table5 = "sub_instansi";
+		$key = "id_data_diri";
+	  	$column = array(
+	      array( 'db' => 'no_aplikasi_data_diri',				'dt' => 0),
+	      array( 'db' => 'nama_pemohon', 						'dt' => 1),	      
+	      array( 'db' => 'no_surat_setneg', 					'dt' => 2),
+	      array( 'db' => 'tgl_surat_setneg', 		 			'dt' => 3),
+	      array( 'db' => 'keterangan_sumber_dana_kegiatan',		'dt' => 4),
+	      array( 'db' => 'data_lain_bpkln', 		 			'dt' => 5)
+	    );
+	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi AND data_diri.status='Diterima'";
+    	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
+  	  break;
   	 
   	  case 'terima_data':
 	  	$id = $this->input->post('key');
@@ -485,15 +508,23 @@ class home extends CI_Controller {
 		}*/
   	  break;
 
-  	  case 'tambah_surat_pdln':
-  	  	$id = $this->input->post('key');
-	  	$data = array(
+  	  case 'tambah_surat_pdln':  	  
+  	  	$no_aplikasi = $this->input->post('key');
+  	  	$id_user = $_SESSION['logged']['id_user'];
+  	  	$table = 'surat_bpkln';
+  	  	$table1= 'data_diri';
+	  	$data_surat_bpkln = array(
 		  'no_surat_setneg' => $this->input->post('no_surat_setneg',TRUE),
 		  'tgl_surat_setneg' => $this->input->post('tgl_surat_setneg',TRUE),
-		  'no_surat_kemlu' => $this->input->post('no_surat_menlu', TRUE),
-		  'tgl_surat_kemlu' => $this->input->post('tgl_surat_menlu', TRUE),
+		  'data_lain_bpkln' => $this->input->post('data_lain_bpkln', TRUE),
 		);
-	  	$this->m_user->upd_data_pdln($id, $data);
+
+		$datadiri= array('status' =>'Diterima');
+
+		$this->m_user->update_surat($table,$data_surat_bpkln,$id_user,$no_aplikasi);
+		$this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
+
+	  	//$this->m_user->upd_data_pdln($no_aplikasi, $data);
   	  break;
 
   	  case 'upload':

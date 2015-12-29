@@ -5,14 +5,16 @@
         <div class="col-lg-12">
           <div class="form-panel">
             <h4 class="mb"><i class="fa fa-angle-right"></i> Cetak Surat ke Setneg</h4>
-            <form class="form-horizontal style-form" method="get">
+            <form class="form-horizontal style-form" form method="POST" action="<?php echo base_url();?>c_mpdf/tab_cetak_surat">
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">No Surat Unit Utama</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="no_surat_unit_utama" placeholder="No Surat Unit Utama">
+                    <input type="text" class="form-control" name="no_surat_bpkln_setneg" placeholder="No Surat Unit Utama ke Setneg">
+                    <a style="margin:0 2px;" onclick="$(this).closest('form').submit()" class="btn btn-primary"><i class="fa fa-search"></i></a>
                   </div>
+
                   <div class="col-sm-1">                    
-                  </div> 
+                  </div>
               </div>
             </form>
 
@@ -20,9 +22,11 @@
 
             <div class="text-center">
               <form method="POST" action="<?php echo base_url();?>c_mpdf">
+
                 <input type="hidden" name="content" value="step1">
                 <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
                 <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
+
                 <a class="btn btn-warning" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-print"></i> Cetak Surat</a>
               </form>              
             </div>
@@ -42,14 +46,7 @@
                   <?php foreach ($query as $item) { ?>
                     <tr>
                       <td><?php echo $item['nama_pemohon']; ?></td>
-                      <td><i><?php 
-                        if ($item['status'] == 1) {
-                          echo "Diterima";
-                        }
-                        else {
-                          echo "Ditolak";
-                        }
-                       ?></i></td>
+                      <td><i><?php $item['status'];?></i></td>
                       <td><?php echo $item['nama_instansi']; ?></td>
                       <td><?php echo $item['rincian_kegiatan']; ?></td>
                       <td><?php echo $item['tgl_awal_kegiatan']; ?></td>
