@@ -7,18 +7,22 @@ class c_mpdf extends CI_Controller {
 		$timenow = unix_to_human(now('Asia/Jakarta'), TRUE, 'us');
 		$time = date("Ymd-Hi", strtotime($timenow));
 		$this->load->model('m_mpdf');
-		$result = $this->m_mpdf->get_pdln();
 		// print('<pre>');
 		// print_r($result);
 		// print('</pre>');
 		// die;
-		$menset = "menlu";
-		$jenis = "";
-		$nip = $result['nip_pemohon'];
-		if ($menset == "menlu") {
+		$banyak = $this->input->post('banyak', TRUE);
+		$noaplikasi = $this->input->post('no_aplikasi', TRUE);
+		$menset = "";
+		$jenis = "setneg2";
+		if ($banyak == 1) {
+			$result= $this->m_mpdf->get_pdln();
+			$nip = $result->no_surat_undangan;
 			$html=$this->load->view('mpdf_template/surat_menlu', $result, true);
 		}
 		else{
+			$result['query'] = $this->m_mpdf->get_pdln_more($noaplikasi);
+			$nip = $result[0]['no_surat_undangan'];
 			switch ($jenis) {
 				case 'setneg2':
 					$html1=$this->load->view('mpdf_template/surat_setneg_2', $result, true); 
