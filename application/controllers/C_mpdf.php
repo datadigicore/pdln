@@ -45,7 +45,7 @@ class c_mpdf extends CI_Controller {
 		$this->load->library('l_mpdf');
 		$mpdf = $this->l_mpdf->load();
 		$mpdf=new mPDF('','A4','','',30,20,20,25); 
-		if ($banyak == 1) {
+		if ($banyak == 1 or $jenis == "setneg2es2") {
 			$mpdf->WriteHTML($html);
 		}
 		else {
