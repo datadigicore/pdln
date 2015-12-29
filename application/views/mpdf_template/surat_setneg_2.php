@@ -20,7 +20,7 @@
   <tr>
       <td>Lampiran</td>
       <td align="right">:</td>
-      <td>1(Satu) Berkas</td>
+      <td>2(Dua) Berkas</td>
   </tr>
   <tr>
       <td valign="top">Hal</td>
