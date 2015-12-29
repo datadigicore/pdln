@@ -37,34 +37,22 @@
               </thead>
        
               <tbody>
-                  <tr>
-                      <td>Nama 1</td>
-                      <td><i>Diterima</i></td>
-                      <td>Universitas Pendidikan Ganesha</td>
-                      <td>Mengikuti dan mempresentasikan di TRI-LELE International Conference Toward Global English Horizon di Bangkok</td>
-                      <td>20 - 21 Januari 2015</td>
-                  </tr>
-                  <tr>
-                      <td>Nama 2</td>
-                      <td><i>Diterima</i></td>
-                      <td>Universitas Pendidikan Ganesha</td>
-                      <td>Mengikuti dan mempresentasikan di TRI-LELE International Conference Toward Global English Horizon di Bangkok</td>
-                      <td>20 - 21 Januari 2015</td>
-                  </tr>
-                  <tr>
-                      <td>Nama 3</td>
-                      <td><i>Diterima</i></td>
-                      <td>Universitas Pendidikan Ganesha</td>
-                      <td>Mengikuti dan mempresentasikan di TRI-LELE International Conference Toward Global English Horizon di Bangkok</td>
-                      <td>20 - 21 Januari 2015</td>
-                  </tr>
-                  <tr>
-                      <td>Nama 4</td>
-                      <td><i>Diterima</i></td>
-                      <td>Universitas Pendidikan Ganesha</td>
-                      <td>Mengikuti dan mempresentasikan di TRI-LELE International Conference Toward Global English Horizon di Bangkok</td>
-                      <td>20 - 21 Januari 2015</td>
-                  </tr>
+                  <?php foreach ($query as $item) { ?>
+                    <tr>
+                      <td><?php echo $item['nama_pemohon']; ?></td>
+                      <td><i><?php 
+                        if ($item['status'] == 1) {
+                          echo "Diterima";
+                        }
+                        else {
+                          echo "Ditolak";
+                        }
+                       ?></i></td>
+                      <td><?php echo $item['nama_instansi']; ?></td>
+                      <td><?php echo $item['rincian_kegiatan']; ?></td>
+                      <td><?php echo $item['tgl_awal_kegiatan']; ?></td>
+                    </tr>
+                  <?php } ?>
               </tbody>
             </table>
 

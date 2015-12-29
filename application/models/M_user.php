@@ -14,6 +14,15 @@ class m_user extends CI_Model {
     $query = $this->db->get();
     return $query->result_array();
 	}
+  function list_user_surat() {   
+    $query = $this->db->select('*');
+    $query = $this->db->from('data_diri, instansi, sub_instansi, surat_undangan');
+    $query = $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $query = $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
 	function get_data_pdln($table,$no_aplikasi) {		
 		$query = $this->db->get_where($table,$no_aplikasi);
 		return $query->row();
