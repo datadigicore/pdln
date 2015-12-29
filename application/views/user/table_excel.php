@@ -25,195 +25,26 @@ Bulan Tahun 2014<br><br>
             </tr>
         </thead>
         <tbody>
+            <?php $i=1; foreach ($query as $item) { ?>
             <tr>
-                <td>1</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $item['perihal_surat_unit_utama']; ?></td>
+                <td><?php echo $item['tgl_surat_undangan']; ?></td>
+                <td><?php echo $item['instansi_unit_utama']; ?></td>
+                <td><?php echo $item['no_surat_unit_utama']; ?></td>
+                <td><?php echo $item['tgl_surat_unit_utama']; ?></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
+                <td></td>
+                <td><?php echo $item['nama_pemohon']; ?></td>
+                <td><?php echo $item['jabatan_pemohon']; ?></td>
+                <td><?php echo $item['nama_instansi']; ?></td>
+                <td><?php echo $item['rincian_kegiatan']; ?></td>
+                <td><?php echo $item['negara_tujuan']; ?></td>
+                <td><?php echo $item['tgl_awal_kegiatan']; ?></td>
+                <td><?php echo $item['sumber_dana_kegiatan']; ?></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>2015&UN6WR4L/LN/2014</td>
-                <td>2-May-2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>76122/A2.3/LN/2014</td>
-                <td>14-May-2014</td>
-                <td>B-8464/Kemsetneg/Setmen/KTLN</td>
-                <td>22-May-2014</td>
-                <td>Dr. sc.agr. Yudi Nurul Insan, S.Pi, M.Si</td>
-                <td>Staf Pengajar</td>
-                <td>Universitas Padjajaran</td>
-                <td>Menghadiri 5 th, International Congress of the International Society for Applied Phsycology</td>
-                <td>Australia</td>
-                <td>22 Jun 2014</td>
-                <td>Universitas Padjajaran</td>
-            </tr>
+            <?php $i++; } ?>
         </tbody>
     </table>
