@@ -405,57 +405,73 @@ class home extends CI_Controller {
   	  break;
 
   	  case 'edit_data_pdln':
-  	  	$id = $this->input->post('key');  	  	
+  	  	//$no_aplikasi = $this->input->post('key');  	  	
   	  	/*echo gettype($id);*/
-	  	$data = array(
+	  	$datadiri = array(
 	      'nama_pemohon' => $this->input->post('nama_pemohon',TRUE),
 	      'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
 	      'nip_pemohon' => $this->input->post('nip_pemohon',TRUE),
 	      'no_hp_pemohon' => $this->input->post('no_hp_pemohon',TRUE),
 	      'no_passport_pemohon' => $this->input->post('no_passport_pemohon',TRUE),
-	      'valid_passport_pemohon' => $this->input->post('valid_passport_pemohon',TRUE),
+	      'tgl_valid_passport' => $this->input->post('tgl_valid_passport',TRUE),
 	      'instansi_pemohon' => $this->input->post('instansi_pemohon',TRUE),
 	      'jabatan_pemohon' => $this->input->post('jabatan_pemohon',TRUE),
 	      'cv_pemohon' => $this->input->post('cv_pemohon',TRUE),
 	      'foto_pemohon' => $this->input->post('foto_pemohon',TRUE),
-	      'karpeg_pemohon' => $this->input->post('karpeg_pemohon',TRUE),
-	      'no_surat_asal' => $this->input->post('no_surat_asal',TRUE),
-	      'tgl_surat_asal' => $this->input->post('tgl_surat_asal',TRUE),
-	      'penanggung_jawab_surat_asal' => $this->input->post('penanggung_jawab_surat_asal',TRUE),
-	      'instansi_surat_asal' => $this->input->post('instansi_surat_asal',TRUE),
-	      'perihal_surat_asal' => $this->input->post('perihal_surat_asal',TRUE),
-	      'surat_instansi_asal' => $this->input->post('surat_instansi_asal',TRUE),
+	      'karpeg_pemohon' => $this->input->post('karpeg_pemohon',TRUE)
+	      );
+
+	  	$data_surat_unit_utama = array(
 	      'no_surat_unit_utama' => $this->input->post('no_surat_unit_utama',TRUE),
 	      'tgl_surat_unit_utama' => $this->input->post('tgl_surat_unit_utama',TRUE),
-	      'penanggung_jawab_surat_unit_utama' => $this->input->post('penanggung_jawab_surat_unit_utama',TRUE),
+	      'penandatangan_surat_unit_utama' => $this->input->post('penandatangan_surat_unit_utama',TRUE),
 	      'instansi_unit_utama' => $this->input->post('instansi_unit_utama',TRUE),
 	      'perihal_surat_unit_utama' => $this->input->post('perihal_surat_unit_utama',TRUE),	      
-	      'surat_unit_utama' => $this->input->post('surat_unit_utama',TRUE),
+	      'surat_unit_utama' => $this->input->post('surat_unit_utama',TRUE)
+	      );
+
+	      $data_surat_undangan = array(
 	      'no_surat_undangan' => $this->input->post('no_surat_undangan',TRUE),
 	      'tgl_surat_undangan' => $this->input->post('tgl_surat_undangan',TRUE),
 	      'instansi_pengundang' => $this->input->post('instansi_pengundang',TRUE),
 	      'negara_tujuan' => $this->input->post('negara_tujuan',TRUE),
-	      'waktu_awal_kegiatan' => $this->input->post('waktu_awal_kegiatan',TRUE),
-	      'waktu_akhir_kegiatan' => $this->input->post('waktu_akhir_kegiatan',TRUE),
-	      'keterangan_kegiatan' => $this->input->post('keterangan_kegiatan',TRUE),
+	      'tgl_awal_kegiatan' => $this->input->post('tgl_awal_kegiatan',TRUE),
+	      'tgl_akhir_kegiatan' => $this->input->post('tgl_akhir_kegiatan',TRUE),
+	      'rincian_kegiatan' => $this->input->post('rincian_kegiatan',TRUE),
 	      'sumber_dana_kegiatan' => $this->input->post('sumber_dana_kegiatan',TRUE),
 	      'keterangan_sumber_dana_kegiatan' => $this->input->post('keterangan_sumber_dana_kegiatan',TRUE),
 	      'surat_undangan' => $this->input->post('surat_undangan',TRUE),
-	      'surat_perjanjian' => $this->input->post('surat_perjanjian',TRUE),	      
+	      'surat_perjanjian' => $this->input->post('surat_perjanjian',TRUE)
+	      );
+
+	      $data_surat_bpkln = array(	      
 		  'no_surat_bpkln_setneg' => $this->input->post('no_surat_bpkln_setneg',TRUE),
 		  'tgl_surat_bpkln_setneg' => $this->input->post('tgl_surat_bpkln_setneg',TRUE),
 		  'no_surat_bpkln_kemlu' => $this->input->post('no_surat_bpkln_kemlu', TRUE),
-		  'tgl_surat_bpkln_kemlu' => $this->input->post('tgl_surat_bpkln_kemlu', TRUE),
-		  'tgl_update_data' => date('Y-m-d H:i:s')
+		  'tgl_surat_bpkln_kemlu' => $this->input->post('tgl_surat_bpkln_kemlu', TRUE)		  
 		);
 
 		//print_r($data);
 		//print_r($id);
 
-	  	$result = $this->m_user->upd_data_pdln($id, $data);
-	  	//print_r($result);
-	  	/*
-	  	if ($result == TRUE) {	    
+	    $id_user = $_SESSION['logged']['id_user'];
+	    //$no_aplikasi_data_diri = $this->input->post('key');
+	    $no_aplikasi = $this->input->post('key');
+	    $table1='data_diri';
+	    $table2='surat_unit_utama';
+	    $table3='surat_undangan';
+	    $table4='surat_bpkln';
+
+	  	$result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
+	  	$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
+	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
+	  	$result_surat_bpkln= $this->m_user->update_surat($table4,$data_surat_bpkln,$id_user,$no_aplikasi);
+	  	print_r($result_datadiri);
+	  	print_r($result_surat_unit_utama);
+	  	print_r($result_surat_undangan);
+	  	print_r($result_surat_bpkln);
+
+	  	/*if ($result_surat_bpkln == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
 		  //buat redirect ke halaman lain
 		  $this->session->set_flashdata('content','home');
