@@ -13,7 +13,7 @@
                     </div>
                     
                 </div>
-                <input type="hidden" id="id" class="form-control" value="<?php echo $id_data_diri ?>">
+                <input type="hidden" id="no_aplikasi" class="form-control" value="<?php echo $id_data_diri ?>">
                 <input type="hidden" id="id_user" class="form-control" value="<?php echo $id_user ?>">
                 <div class="col-sm-9">
                     <div class="form-group">
@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Habis Masa Berlaku Passport</strong></label>
                         <div class="col-lg-8">
-                            <input type="date" id="valid_passport_pemohon" class="form-control" value="<?php echo $tgl_valid_passport ?>">
+                            <input type="date" id="tgl_valid_passport" class="form-control" value="<?php echo $tgl_valid_passport ?>">
                         </div>
                     </div>
 
@@ -130,7 +130,7 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Penanggung Jawab Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" id="Penanggung_jawab_surat_unit_utama" placeholder="Penanggung Jawab" value="<?php echo $penandatangan_surat_unit_utama ?>">
+                            <input type="text" class="form-control" id="penandatangan_surat_unit_utama" placeholder="Penanggung Jawab" value="<?php echo $penandatangan_surat_unit_utama ?>">
                         </div>
                     </div>
 
@@ -180,17 +180,17 @@
                 <div class="form-group">
                   <label class="col-lg-4 col-sm-4 control-label">Waktu Kegiatan</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" id="waktu_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $tgl_awal_kegiatan ?>">
+                    <input type="date" class="form-control" id="tgl_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $tgl_awal_kegiatan ?>">
                   </div>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" id="waktu_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $tgl_akhir_kegiatan ?>">
+                    <input type="date" class="form-control" id="tgl_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $tgl_akhir_kegiatan ?>">
                   </div>
                 </div> 
 
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Kegiatan</strong></label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" id="keterangan_kegiatan" placeholder="Rincian_Kegiatan" value="<?php echo $rincian_kegiatan ?>">
+                        <input type="text" class="form-control" id="rincian_kegiatan" placeholder="Rincian_Kegiatan" value="<?php echo $rincian_kegiatan ?>">
                     </div>
                 </div>
 
@@ -285,28 +285,22 @@
 
     $("#editdata").click(function(){ 
 
-        id = $("#id").val(); 
+        no_aplikasi = $("#no_aplikasi").val(); 
         id_user = $("#id_user").val(); 
         nama_pemohon = $("#nama_pemohon").val(); 
         pekerjaan_pemohon = $("#pekerjaan_pemohon").val(); 
         nip_pemohon = $("#nip_pemohon").val(); 
         no_hp_pemohon = $("#no_hp_pemohon").val(); 
         no_passport_pemohon = $("#no_passport_pemohon").val(); 
-        valid_passport_pemohon = $("#valid_passport_pemohon").val(); 
+        tgl_valid_passport = $("#tgl_valid_passport").val(); 
         instansi_pemohon = $("#instansi_pemohon").val(); 
         jabatan_pemohon = $("#jabatan_pemohon").val(); 
         cv_pemohon = $("#cv_pemohon").val(); 
         foto_pemohon = $("#foto_pemohon").val(); 
         karpeg_pemohon = $("#karpeg_pemohon").val(); 
-        no_surat_asal = $("#no_surat_asal").val(); 
-        tgl_surat_asal = $("#tgl_surat_asal").val();
-        penanggung_jawab_surat_asal = $("#penanggung_jawab_surat_asal").val(); 
-        instansi_surat_asal = $("#instansi_surat_asal").val(); 
-        perihal_surat_asal = $("#perihal_surat_asal").val(); 
-        surat_instansi_asal = $("#surat_instansi_asal").val(); 
         no_surat_unit_utama = $("#no_surat_unit_utama").val(); 
         tgl_surat_unit_utama = $("#tgl_surat_unit_utama").val(); 
-        penanggung_jawab_surat_unit_utama = $("#penanggung_jawab_surat_unit_utama").val(); 
+        penandatangan_surat_unit_utama = $("#penandatangan_surat_unit_utama").val(); 
         instansi_unit_utama = $("#instansi_unit_utama").val(); 
         perihal_surat_unit_utama = $("#perihal_surat_unit_utama").val(); 
         surat_unit_utama = $("#surat_unit_utama").val(); 
@@ -314,9 +308,9 @@
         tgl_surat_undangan = $("#tgl_surat_undangan").val(); 
         instansi_pengundang = $("#instansi_pengundang").val(); 
         negara_tujuan = $("#negara_tujuan").val(); 
-        waktu_awal_kegiatan = $("#waktu_awal_kegiatan").val(); 
-        waktu_akhir_kegiatan = $("#waktu_akhir_kegiatan").val(); 
-        keterangan_kegiatan = $("#keterangan_kegiatan").val(); 
+        tgl_awal_kegiatan = $("#tgl_awal_kegiatan").val(); 
+        tgl_akhir_kegiatan = $("#tgl_akhir_kegiatan").val(); 
+        rincian_kegiatan = $("#rincian_kegiatan").val(); 
         sumber_dana_kegiatan = $("#sumber_dana_kegiatan").val(); 
         keterangan_sumber_dana_kegiatan = $("#keterangan_sumber_dana_kegiatan").val(); 
         surat_undangan = $("#surat_undangan").val(); 
@@ -331,27 +325,21 @@
                 url : "<?php echo base_url('home/process') ?>",
                 data: {
                         manage:'edit_data_pdln',
-                        key:id,
+                        key:no_aplikasi,
                         nama_pemohon:nama_pemohon,
                         pekerjaan_pemohon:pekerjaan_pemohon,
                         nip_pemohon:nip_pemohon,
                         no_hp_pemohon:no_hp_pemohon,
                         no_passport_pemohon :no_passport_pemohon, 
-                        valid_passport_pemohon :valid_passport_pemohon, 
+                        tgl_valid_passport :tgl_valid_passport, 
                         instansi_pemohon :instansi_pemohon, 
                         jabatan_pemohon :jabatan_pemohon, 
                         cv_pemohon :cv_pemohon, 
                         foto_pemohon :foto_pemohon, 
                         karpeg_pemohon :karpeg_pemohon, 
-                        no_surat_asal :no_surat_asal, 
-                        tgl_surat_asal :tgl_surat_asal,
-                        penanggung_jawab_surat_asal :penanggung_jawab_surat_asal, 
-                        instansi_surat_asal :instansi_surat_asal, 
-                        perihal_surat_asal :perihal_surat_asal, 
-                        surat_instansi_asal :surat_instansi_asal, 
                         no_surat_unit_utama :no_surat_unit_utama, 
                         tgl_surat_unit_utama :tgl_surat_unit_utama, 
-                        penanggung_jawab_surat_unit_utama :penanggung_jawab_surat_unit_utama, 
+                        penandatangan_surat_unit_utama :penandatangan_surat_unit_utama, 
                         instansi_unit_utama :instansi_unit_utama, 
                         perihal_surat_unit_utama :perihal_surat_unit_utama, 
                         surat_unit_utama :surat_unit_utama, 
@@ -359,9 +347,9 @@
                         tgl_surat_undangan :tgl_surat_undangan, 
                         instansi_pengundang :instansi_pengundang, 
                         negara_tujuan :negara_tujuan, 
-                        waktu_awal_kegiatan :waktu_awal_kegiatan, 
-                        waktu_akhir_kegiatan :waktu_akhir_kegiatan, 
-                        keterangan_kegiatan :keterangan_kegiatan, 
+                        tgl_awal_kegiatan :tgl_awal_kegiatan, 
+                        tgl_akhir_kegiatan :tgl_akhir_kegiatan, 
+                        rincian_kegiatan :rincian_kegiatan, 
                         sumber_dana_kegiatan :sumber_dana_kegiatan, 
                         keterangan_sumber_dana_kegiatan :keterangan_sumber_dana_kegiatan, 
                         surat_undangan :surat_undangan, 
