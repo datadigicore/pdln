@@ -49,4 +49,13 @@ class c_mpdf extends CI_Controller {
 		}
 		$mpdf->Output();
 	}
+
+	function tab_cetak_surat(){
+		$this->load->model('m_mpdf');
+		$query['query'] = $this->m_mpdf->get_pdln_cari();
+
+		$this->session->set_flashdata('error_message', $query);
+	  	 $this->session->set_flashdata('content','cetak_surat');
+		//$this->load->view('user/cetak_surat', $query);
+	}
 }

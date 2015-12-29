@@ -5,6 +5,7 @@ class m_mpdf extends CI_Model {
         parent::__construct();
 	}
 	function get_pdln() {
+    $no_surat_bpkln_setneg = $this->input->post('no_surat_bpkln_setneg');
 		// $query = $this->db->get_where('data_diri');
     $query = $this->db->select('*');
     $query = $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
@@ -12,7 +13,23 @@ class m_mpdf extends CI_Model {
     $query = $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
     $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
     $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    //$query = $this->db->where('surat_bpkln.no_aplikasi' = $no_surat_bpkln_setneg);
     $query = $this->db->get();
 		return $query->row_array();
 	}
+
+    function get_pdln_cari() {
+    $no_surat_bpkln_setneg = $this->input->post('no_surat_bpkln_setneg');
+    print_r($no_surat_bpkln_setneg);
+        // $query = $this->db->get_where('data_diri');
+    $query = $this->db->select('*');
+    $query = $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama,surat_bpkln');
+    $query = $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $query = $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi');
+    $query = $this->db->where('surat_bpkln.no_aplikasi = 2');
+    $query = $this->db->get();
+        return $query->row_array();
+    }
 } 
