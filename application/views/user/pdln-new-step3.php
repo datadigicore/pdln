@@ -9,7 +9,7 @@
             <ul class="nav nav-wizard">
               <li><a><span class="badge">1</span> Data Diri</a></li>
               <li><a><span class="badge">2</span> Surat Unit Utama</a></li>
-              <li class="active"><a><span class="badge">4</span> Surat Undangan Kunjungan</a></li>
+              <li class="active"><a><span class="badge">3</span> Surat Undangan Kunjungan</a></li>
             </ul>
             
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
@@ -92,7 +92,7 @@
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">Keterangan Sumber Dana</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="keterangan_sumber_dana_kegiatan" placeholder="Mis : Beasiswa Ditjen Dikti">
+                    <input type="text" class="form-control" name="keterangan_sumber_dana_kegiatan" placeholder="Mis : JICA dan Kemendikbud">
                   </div>
               </div>
 

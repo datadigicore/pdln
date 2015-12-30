@@ -5,7 +5,10 @@
         <div class="col-lg-12">
           <div class="form-panel">
             <h4 class="mb"><i class="fa fa-angle-right"></i> Cetak Surat ke Setneg</h4>
-            <form class="form-horizontal style-form" form method="POST" action="<?php echo base_url();?>c_mpdf/tab_cetak_surat">
+            <form class="form-horizontal style-form" form method="POST" action="<?php echo base_url();?>c_mpdf">
+            <input type="hidden" name="content" value="step1">
+                <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
+                <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
               <div class="form-group">
                   <label class="col-lg-3 col-sm-3 control-label">No Surat Unit Utama</label>
                   <div class="col-sm-8">

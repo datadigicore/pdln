@@ -57,8 +57,8 @@ class home extends CI_Controller {
 	      $datadiri = $this->m_user->get_data_pdln($table1,$no_aplikasi_data_diri);
 	      $data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
 	      $data_surat_undangan = $this->m_user->get_data_pdln($table3,$no_aplikasi);
-	      /*print_r($datadiri);
-	      print_r($data_surat_unit_utama);
+	      //print_r($datadiri);
+	      /*print_r($data_surat_unit_utama);
 	      print_r($data_surat_undangan);*/
 	      //if ($result == true) {
 	        $data = array(
@@ -149,7 +149,7 @@ class home extends CI_Controller {
 
   	  	$kondisi = $this->input->post('kondisi');
   	  	$max= $this->m_user->max_no_aplikasi();
-	  	$no_aplikasi = $max->no_aplikasi+1;
+	  	$no_aplikasi = $max->no_aplikasi_data_diri+1;
 		
   		//upload
   	  	$config['upload_path'] = FCPATH.'../files/other';
@@ -176,7 +176,7 @@ class home extends CI_Controller {
 
         $datadiri = array(
   		  'id_user' => $_SESSION['logged']['id_user'],
-  		  'no_aplikasi' => $no_aplikasi,
+  		  'no_aplikasi_data_diri' => $no_aplikasi,
 		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
 		  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
 		  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
@@ -344,7 +344,7 @@ class home extends CI_Controller {
   	  	if ($result == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
 		  //buat redirect ke halaman lain
-		  $this->session->set_flashdata('content','view');
+		  $this->session->set_flashdata('content','home');
 		  redirect('home');
 		}
 		else {

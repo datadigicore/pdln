@@ -238,7 +238,7 @@
         <br>
         <input type="date" class="form-control" placeholder="Tanggal Surat Setneg" autofocus id="tgl_surat_setneg" name="tgl_surat_setneg" required >
         <br>
-        <input type="text" class="form-control" placeholder="Nomor Surat Menlu" autofocus id="data_lain_bpkln" name="data_lain_bpkln" required>        
+        <input type="text" class="form-control" placeholder="Keterangan yang mendapat SP Setneg" autofocus id="data_lain_bpkln" name="data_lain_bpkln" required>        
       </div>
       <div class="modal-footer">
         <a id="tambahdata" class="btn btn-success">Submit</a>

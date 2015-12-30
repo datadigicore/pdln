@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div id="links">                        
-                        <img src="<?php base_url();?>files/other/<?php echo $foto_pemohon ?>" class="img-responsive">
+                        <img src="<?php base_url();?>files/foto/<?php echo $foto_pemohon ?>" class="img-responsive">
                         <input type="file" id="foto_pemohon" class="form-control" style="width: 50;">
                     </div>
                     

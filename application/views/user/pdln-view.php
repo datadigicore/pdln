@@ -212,8 +212,8 @@
         <!-- <a id="btn-terima" title="Terima" class="btn btn-success mb" data-toggle="modal"><i class="fa fa-check"></i> Terima</a>
         <a data-toggle="modal" id="btn-tolak" title="Tolak" class="btn btn-danger mb" ><i class="fa fa-close"></i> Tolak</a> -->
         
-        <a id="btn-menlu" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
-        <a id="btn-setneg" title="Cetak Surat ke Menlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Menlu</a>
+        <a href="20151229-1017-menlu-.pdf" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
+        <a href="20151229-1017-menlu-.pdf" title="Cetak Surat ke Menlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Menlu</a>
         <!-- <a id="btn-tambahdata" class="btn pdln-btn mb" title="Edit this item"><i class="fa fa-plus-square"></i> Sunting</a> -->
 
       </div>

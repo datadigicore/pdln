@@ -95,7 +95,7 @@ class m_user extends CI_Model {
 	}
 
 	function max_no_aplikasi(){
-		$this->db->select_max('no_aplikasi');
+		$this->db->select_max('no_aplikasi_data_diri');
 		$query = $this->db->get('data_diri');
 		return $query->row();
 	}
