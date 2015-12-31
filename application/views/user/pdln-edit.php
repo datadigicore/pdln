@@ -9,7 +9,7 @@
                 <div class="col-sm-3">
                     <div id="links">                        
                         <img src="<?php base_url();?>files/foto/<?php echo $foto_pemohon ?>" class="img-responsive">
-                        <input type="file" id="foto_pemohon" class="form-control" style="width: 50;">
+                        <input type="file" id="foto_pemohon" class="form-control" style="width: 50;" value="<?php $foto_pemohon?>">
                     </div>
                     
                 </div>
@@ -45,16 +45,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Habis Masa Berlaku Passport</strong></label>
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Terbit Passport</strong></label>
                         <div class="col-lg-8">
-                            <input type="date" id="tgl_valid_passport" class="form-control" value="<?php echo $tgl_valid_passport ?>">
+                            <input type="date" id="tgl_terbit_passport" class="form-control" value="<?php echo $tgl_terbit_passport ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Kadaluarsa Passport</strong></label>
+                        <div class="col-lg-8">
+                            <input type="date" id="tgl_habis_passport" class="form-control" value="<?php echo $tgl_habis_passport ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Pekerjaan</strong></label>
                         <div class="col-lg-8">
-                          <select class="form-control" id="pekerjaan_pemohon">
+                          <select class="form-control" id="pekerjaan_pemohon" name="pekerjaan_pemohon">
                             <option value="<?php echo $pekerjaan_pemohon ?>"><?php echo $pekerjaan_pemohon ?></option>
                             <option value="<?php echo $pekerjaan_pemohon ?>">---------</option>
                             <option value="PNS">PNS</option>
@@ -114,9 +121,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Unit Utama</strong></label>
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" id="instansi_unit_utama" placeholder="Instansi Unit Utama" value="<?php echo $instansi_unit_utama ?>">
+                            <input type="text" id="instansi_pemohon" class="form-control" value="<?php echo $instansi_unit_utama ?>">
                         </div>
                     </div>
 
@@ -282,6 +289,52 @@
 <!--main content end-->
 
 <script type="text/javascript">
+    $("#pekerjaan_pemohon").change(function(){
+      if($(this).val() == "Lainnya"){
+       $("#pekerjaan_lain").show();
+      }else if ($(this).val()=="PNS"){
+       $("#pekerjaan_lain").hide();
+       $("#nip").show(); 
+      }
+      else{
+       $("#pekerjaan_lain").hide();
+       $("#nip").hide();
+      }          
+     });
+     $("#pekerjaan_lain").hide();
+     $("#nip").hide();
+
+    $("#jabatan_pemohon").change(function(){
+      if($(this).val() == "Lainnya"){
+       $("#jabatan_lain").show();
+      }
+      else{
+       $("#jabatan_lain").hide();
+      }         
+     });
+    $("#jabatan_lain").hide();
+
+     $("#instansi_pemohon").change(function(){
+      if ($(this).val() != "") {
+        $("#sub_instansi_pemohon").show();
+        id = $("#instansi_pemohon").val();      
+        $.ajax({
+                type: "post",
+                url : "<?php echo base_url('home/process') ?>",
+                data: {manage:'select_data',key:id},
+                success: function(result)
+                {
+                  //document.write(result);
+                  $("#sub_instansi_pemohon").html(result);
+                  //$("#result").html(result);
+                }
+              });
+              return false;
+      }else{
+        $("#sub_instansi_pemohon").hide();   
+      }      
+      });
+     $("#sub_instansi_pemohon").hide();
 
     $("#editdata").click(function(){ 
 
@@ -292,8 +345,10 @@
         nip_pemohon = $("#nip_pemohon").val(); 
         no_hp_pemohon = $("#no_hp_pemohon").val(); 
         no_passport_pemohon = $("#no_passport_pemohon").val(); 
-        tgl_valid_passport = $("#tgl_valid_passport").val(); 
+        tgl_terbit_passport = $("#tgl_terbit_passport").val(); 
+        tgl_habis_passport = $("#tgl_habis_passport").val(); 
         instansi_pemohon = $("#instansi_pemohon").val(); 
+        sub_instansi_pemohon = $("#sub_instansi_pemohon").val(); 
         jabatan_pemohon = $("#jabatan_pemohon").val(); 
         cv_pemohon = $("#cv_pemohon").val(); 
         foto_pemohon = $("#foto_pemohon").val(); 
@@ -302,6 +357,7 @@
         tgl_surat_unit_utama = $("#tgl_surat_unit_utama").val(); 
         penandatangan_surat_unit_utama = $("#penandatangan_surat_unit_utama").val(); 
         instansi_unit_utama = $("#instansi_unit_utama").val(); 
+        sub_instansi_unit_utama = $("#sub_instansi_unit_utama").val(); 
         perihal_surat_unit_utama = $("#perihal_surat_unit_utama").val(); 
         surat_unit_utama = $("#surat_unit_utama").val(); 
         no_surat_undangan = $("#no_surat_undangan").val(); 

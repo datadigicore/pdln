@@ -40,9 +40,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Habis Masa Berlaku Passport</strong></label>
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Terbit Passport</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $tgl_valid_passport ?></p>
+                            <p class="form-control-static"><?php echo $tgl_terbit_passport ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Kadaluarsa Passport</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><?php echo $tgl_habis_passport ?></p>
                         </div>
                     </div>
 

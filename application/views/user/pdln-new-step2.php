@@ -37,12 +37,19 @@
                   <div class="col-sm-9">
                     <select class="form-control" id="instansi_unit_utama" name="instansi_unit_utama">
                         <!-- query dari db -->
-                        <option value="">---Pilih Instansi Unit Utama---</option>
+                        <option value="-">---Pilih Instansi Unit Utama---</option>
                         <?php foreach ($sub_instansi as $key => $value) {
                           echo '<option value="'.$value['id_sub_instansi'].'">'.$value['nama_sub_instansi'].'</option>';                          
                         }?>
                         <!-- <option value="Lainnya">Lain-lain</option> -->
+                    </select>
+
+                     <select class="form-control" id="sub_instansi_pemohon" name="sub_instansi_pemohon" >
+                        <!-- query dari db -->
+                        <option value="-">---Pilih Sub Instansi Unit Utama---</option>
+                        <!-- <option value="lainnya">Lain-lain</option> -->
                     </select>                    
+
                   </div>
               </div>
 
@@ -85,3 +92,32 @@
     </section><! --/wrapper -->
   </section><!-- /MAIN CONTENT -->
 <!--main content end-->
+
+<script type="text/javascript">
+
+$(document).ready(function()
+    {
+  
+  $("#instansi_pemohon").change(function(){
+      if ($(this).val() != "") {
+        $("#sub_instansi_pemohon").show();
+        id = $("#instansi_pemohon").val();      
+        $.ajax({
+                type: "post",
+                url : "<?php echo base_url('home/process') ?>",
+                data: {manage:'select_data',key:id},
+                success: function(result)
+                {
+                  //document.write(result);
+                  $("#sub_instansi_pemohon").html(result);
+                  //$("#result").html(result);
+                }
+              });
+              return false;
+      }else{
+        $("#sub_instansi_pemohon").hide();   
+      }      
+      });
+     $("#sub_instansi_pemohon").hide();
+
+</script>

@@ -13,14 +13,15 @@
               <thead>
                   <tr>
                       <th>Id</th>
-                      <th>Nama</th>                      
+                      <th>Nama</th>
+                      <th>NIP Pemohon</th>
                       <th>Instansi</th>
+                      <th>Sub Instansi</th>
                       <th>Negara</th>
                       <th>Waktu Awal Kegiatan</th>
                       <th>Waktu Akhir Kegiatan</th>
                       <th>Kegiatan</th>
-                      <th>Sumber Dana</th>
-                      <th>NIP Pemohon</th>
+                      <th>Sumber Dana</th>                      
                       <th style="width: 15%;">Aksi</th>
                   </tr>
               </thead>
@@ -52,13 +53,14 @@
                 {"targets" : 6},
                 {"targets" : 7},
                 {"targets" : 8},
+                {"targets" : 9},
                 {"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
                                     '<a style="margin:0 2px;" id="btn-view" class="btn btn-primary"><i class="fa fa-search"></i></a>'+
                                     '<a style="margin:0 2px;" id="btn-edit" class="btn btn-success"><i class="fa fa-edit"></i></a>'+
                                     '</div>',
-                 "targets": 9}
+                 "targets": 10}
               ],
               "order": [[ 0, "desc" ]]
             });
@@ -147,191 +149,6 @@
       </div>
       <div class="modal-footer">
         <a id="deleteProject" class="btn btn-danger">Hapus</a>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-      </div>
-    </div>
-</div>
-
-
-<!-- Modal View Data-->
-<div class="modal fade" id="modal-viewProject" tabindex="-1" data-backdrop="static" data-keyboard="false">
-  <div class="modal-content">
-      <div class="modal-header" style="background-color:green;">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Data PDLN</h4>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="content" value="home">
-        <br>        
-        <img id="foto_pemohon" src="<?php base_url();?>img/img_person.jpg" class="img-responsive">
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Nama</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="nama_pemohon" name="nama_pemohon" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>NIP</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="nip_pemohon" name="nip_pemohon" disabled="true">
-        </div>
-        <br>            
-        <label class="col-lg-4 col-sm-4 control-label"><strong>No. Telepon</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="no_hp_pemohon" name="no_hp_pemohon" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>No. Passport</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="no_passport_pemohon" name="no_passport_pemohon" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Masa Berakhir Passport</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="valid_passport_pemohon" name="valid_passport_pemohon" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Pekerjaan</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="pekerjaan_pemohon" name="pekerjaan_pemohon" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="instansi_pemohon" name="instansi_pemohon" disabled="true">
-        </div>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Jabatan</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="jabatan_pemohon" name="jabatan_pemohon" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
-        <div class="col-lg-8">
-            <p class="form-control-static"><a href="#">Unduh</a></p>
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
-        <div class="col-lg-8">
-            <p class="form-control-static"><a href="#">Unduh</a></p>
-        </div>
-        <br>
-
-        <h4>Surat Instansi Awal</h4>
-
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>No. Surat Instansi Awal</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="no_surat_asal" name="no_surat_asal" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Instansi Awal</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="tgl_surat_asal" name="tgl_surat_asal" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Penanggung Jawab</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="penanggung_jawab_surat_asal" name="penanggung_jawab_surat_asal" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Asal</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="instansi_surat_asal" name="instansi_surat_asal" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Perihal</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="perihal_surat_asal" name="perihal_surat_asal" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Instansi Awal</strong></label>
-        <div class="col-lg-8">
-            <p class="form-control-static"><a href="#">Unduh</a></p>
-        </div>
-        <br>
-
-    <h4>Surat Unit Utama</h4>
-
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Unit Utama</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="no_surat_unit_utama" name="no_surat_unit_utama" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Unit Utama</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="tgl_surat_unit_utama" name="tgl_surat_unit_utama" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Utama</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="instansi_surat_unit_utama" name="instansi_surat_unit_utama" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Perihal</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="perihal_surat_unit_utama" name="perihal_surat_unit_utama" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Penanggung Jawab</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="penanggung_jawab_surat_unit_utama" name="penanggung_jawab_surat_unit_utama" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
-        <div class="col-lg-8">
-            <p class="form-control-static"><a href="#">Unduh</a></p>
-        </div>
-        <br>
-
-    <h4>Surat Undangan</h4>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Undangan</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="no_surat_undangan" name="no_surat_undangan" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Undangan</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="tgl_surat_undangan" name="tgl_surat_undangan" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Undangan</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="instansi_pengundang" name="instansi_pengundang" disabled="true">
-        </div>        
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Negara Tujuan</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="negara_tujuan" name="negara_tujuan" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Kegiatan</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="keterangan_kegiatan" name="keterangan_kegiatan" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Sumber Dana</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="keterangan_sumber_dana_kegiatan" name="keterangan_sumber_dana_kegiatan" disabled="true">
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Udangan</strong></label>
-        <div class="col-lg-8">
-            <p class="form-control-static"><a href="#">Unduh</a></p>
-        </div>
-        <br>
-        <label class="col-lg-4 col-sm-4 control-label"><strong>Status</strong></label>
-        <div class="col-lg-8">
-            <input type="text" id="keterangan_status" name="keterangan_status" disabled="true">
-        </div>
-        <br>
-
-      <div class="modal-footer">
-
-        <a id="viewProject" class="btn btn-success">Terima</a>
-      <!-- 
-        <a id="viewProject" class="btn btn-success">Pending</a>
-        <a id="viewProject" class="btn btn-success">Tolak</a> -->
         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
       </div>
     </div>

@@ -69,7 +69,8 @@ class home extends CI_Controller {
 	          'nip_pemohon' => $datadiri->nip_pemohon,
 	          'no_hp_pemohon' => $datadiri->no_hp_pemohon,
 	          'no_passport_pemohon' => $datadiri->no_passport_pemohon,
-	          'tgl_valid_passport' => $datadiri->tgl_valid_passport,
+	          'tgl_terbit_passport' => $datadiri->tgl_terbit_passport,
+	          'tgl_habis_passport' => $datadiri->tgl_habis_passport,
 	          'instansi_pemohon' => $datadiri->instansi_pemohon,
 	          'jabatan_pemohon' => $datadiri->jabatan_pemohon,
 	          'cv_pemohon' => $datadiri->cv_pemohon,
@@ -138,6 +139,7 @@ class home extends CI_Controller {
       case 'select_data':      
       	$id = $this->input->post('key');      	
       	$result = $this->m_user->get_data_sub_instansi($id);
+      	echo '<option value="-">---Pilih Sub Instansi</option>';
       	foreach ($result as $item) {
       	      		echo '<option value="'.$item["id_sub_instansi"].'">'.$item["nama_sub_instansi"]."</option>";
       	      	} 
@@ -174,6 +176,15 @@ class home extends CI_Controller {
         $karpeg_pemohon = $_FILES['upl_files3']['name'];
         $surat_tugas = $_FILES['upl_files4']['name'];
 
+        $pekerjaan_pemohon = $this->input->post('pekerjaan_pemohon',TRUE);
+        if ($pekerjaan_pemohon=="PNS") {
+        	$pekerjaan_lainnya = "PNS";
+        }else if ($pekerjaan_pemohon == "Swasta") {
+        	$pekerjaan_lainnya = "Swasta";
+        }else{
+        	$pekerjaan_lainnya = $this->input->post('pekerjaan_lainnya',TRUE);
+        }
+
         $datadiri = array(
   		  'id_user' => $_SESSION['logged']['id_user'],
   		  'no_aplikasi_data_diri' => $no_aplikasi,
@@ -184,13 +195,15 @@ class home extends CI_Controller {
 		  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
 		  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
 		  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
+		  'pekerjaan_lainnya' => $pekerjaan_lainnya,
 		  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
-		  'tgl_valid_passport' => $this->input->post('tgl_passport_pemohon', TRUE),
+		  'tgl_terbit_passport' => $this->input->post('tgl_terbit_passport_pemohon', TRUE),
+		  'tgl_habis_passport' => $this->input->post('tgl_habis_passport_pemohon', TRUE),
 		  'cv_pemohon' => $cv_pemohon,
 		  'foto_pemohon' => $foto_pemohon,
 		  'karpeg_pemohon' => $karpeg_pemohon,
 		  'surat_tugas_pemohon' => $surat_tugas,
-		  'status' => '1'
+		  'status' => 'Permohonan'
 		  
 		);
 
@@ -198,7 +211,6 @@ class home extends CI_Controller {
 			'id_user' => $_SESSION['logged']['id_user'],
   	  		'no_aplikasi' => $no_aplikasi
 			);
-
 
 
         $result= $this->db->insert('data_diri',$datadiri);
@@ -361,13 +373,15 @@ class home extends CI_Controller {
 		$column = array(	    
 	    array( 'db' => 'no_aplikasi_data_diri', 			'dt' => 0),
 	    array( 'db' => 'nama_pemohon', 						'dt' => 1),
-	    array( 'db' => 'instansi_unit_utama', 				'dt' => 2),
-	    array( 'db' => 'negara_tujuan', 					'dt' => 3),
-	    array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 4),
-	    array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 5),
-	    array( 'db' => 'rincian_kegiatan', 					'dt' => 6),
-	    array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 7),
-	    array( 'db' => 'nip_pemohon', 						'dt' => 8)
+	    array( 'db' => 'nip_pemohon', 						'dt' => 2),
+	    array( 'db' => 'nama_instansi', 					'dt' => 3),
+	    array( 'db' => 'nama_sub_instansi', 				'dt' => 4),
+	    array( 'db' => 'negara_tujuan', 					'dt' => 5),
+	    array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 6),
+	    array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 7),
+	    array( 'db' => 'rincian_kegiatan', 					'dt' => 8),
+	    array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 9)
+	    
 	 	 );
       	$where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi";
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
@@ -384,10 +398,12 @@ class home extends CI_Controller {
 	      array( 'db' => 'no_aplikasi_data_diri',				'dt' => 0),
 	      array( 'db' => 'nama_pemohon', 						'dt' => 1),
 	      array( 'db' => 'no_surat_unit_utama',				 	'dt' => 2),
-	      array( 'db' => 'no_surat_setneg', 					'dt' => 3),
-	      array( 'db' => 'tgl_surat_setneg', 		 			'dt' => 4),
-	      array( 'db' => 'data_lain_bpkln', 		 			'dt' => 5),
-	      array( 'db' => 'status', 								'dt' => 6)     
+	      array( 'db' => 'no_surat_bpkln_setneg',				'dt' => 3),
+	      array( 'db' => 'tgl_surat_bpkln_setneg',			 	'dt' => 4),
+	      array( 'db' => 'no_surat_setneg', 					'dt' => 5),
+	      array( 'db' => 'tgl_surat_setneg', 		 			'dt' => 6),
+	      array( 'db' => 'data_lain_bpkln', 		 			'dt' => 7),
+	      array( 'db' => 'status', 								'dt' => 8)     
 	    );
 	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi";
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
@@ -439,7 +455,8 @@ class home extends CI_Controller {
 	      'nip_pemohon' => $this->input->post('nip_pemohon',TRUE),
 	      'no_hp_pemohon' => $this->input->post('no_hp_pemohon',TRUE),
 	      'no_passport_pemohon' => $this->input->post('no_passport_pemohon',TRUE),
-	      'tgl_valid_passport' => $this->input->post('tgl_valid_passport',TRUE),
+	      'tgl_terbit_passport' => $this->input->post('tgl_terbit_passport',TRUE),
+	      'tgl_habis_passport' => $this->input->post('tgl_habis_passport',TRUE),
 	      'instansi_pemohon' => $this->input->post('instansi_pemohon',TRUE),
 	      'jabatan_pemohon' => $this->input->post('jabatan_pemohon',TRUE),
 	      'cv_pemohon' => $this->input->post('cv_pemohon',TRUE),

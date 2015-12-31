@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 30, 2015 at 05:19 PM
+-- Generation Time: Dec 31, 2015 at 11:00 AM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -299,8 +299,10 @@ CREATE TABLE IF NOT EXISTS `data_diri` (
   `sub_instansi_pemohon` varchar(50) NOT NULL,
   `jabatan_pemohon` varchar(100) NOT NULL,
   `pekerjaan_pemohon` varchar(50) NOT NULL,
+  `pekerjaan_lainnya` varchar(50) NOT NULL,
   `no_passport_pemohon` varchar(30) NOT NULL,
-  `tgl_valid_passport` date NOT NULL,
+  `tgl_terbit_passport` date NOT NULL,
+  `tgl_habis_passport` date NOT NULL,
   `cv_pemohon` varchar(50) NOT NULL,
   `foto_pemohon` varchar(50) NOT NULL,
   `karpeg_pemohon` varchar(50) NOT NULL,
@@ -314,10 +316,10 @@ CREATE TABLE IF NOT EXISTS `data_diri` (
 -- Dumping data for table `data_diri`
 --
 
-INSERT INTO `data_diri` (`id_data_diri`, `id_user`, `no_aplikasi_data_diri`, `nama_pemohon`, `nip_pemohon`, `no_hp_pemohon`, `instansi_pemohon`, `sub_instansi_pemohon`, `jabatan_pemohon`, `pekerjaan_pemohon`, `no_passport_pemohon`, `tgl_valid_passport`, `cv_pemohon`, `foto_pemohon`, `karpeg_pemohon`, `surat_tugas_pemohon`, `status`, `other_data`) VALUES
-(2, 2, 2, 'Sutresna', '0876678285678876', '08767966788', '1', '1', 'Eselon 1', 'PNS', 's4785678656789987', '2015-12-24', '', 'user.png', '', 'surat.jpg', 'Diterima', ''),
-(17, 2, 3, 'Pebi Wijaya', '123456789123456789', '085711008788', '1', '4', 'Eselon 1', 'PNS', 's756391823', '2020-02-03', 'user.png', 'user.png', 'user.png', 'user.png', '1', ''),
-(18, 2, 4, 'Erman', '12345678986762', '083652813374', '1', '1', 'Eselon 1', 'PNS', 's23836336345', '2020-02-02', 'user.png', 'user.png', 'user.png', 'user.png', '1', '');
+INSERT INTO `data_diri` (`id_data_diri`, `id_user`, `no_aplikasi_data_diri`, `nama_pemohon`, `nip_pemohon`, `no_hp_pemohon`, `instansi_pemohon`, `sub_instansi_pemohon`, `jabatan_pemohon`, `pekerjaan_pemohon`, `pekerjaan_lainnya`, `no_passport_pemohon`, `tgl_terbit_passport`, `tgl_habis_passport`, `cv_pemohon`, `foto_pemohon`, `karpeg_pemohon`, `surat_tugas_pemohon`, `status`, `other_data`) VALUES
+(2, 2, 2, 'Sutresna', '0876678285678876', '08767966788', '1', '1', 'Eselon 1', 'PNS', '', 's4785678656789987', '0000-00-00', '0000-00-00', '', '', '', 'surat.jpg', 'Diterima', ''),
+(17, 2, 3, 'Pebi Wijaya', '123456789123456789', '085711008788', '1', '4', 'Eselon 1', 'PNS', '', 's756391823', '2020-02-03', '0000-00-00', 'user.png', 'user.png', 'user.png', 'user.png', '1', ''),
+(18, 2, 4, 'Erman', '12345678986762', '083652813374', '1', '1', 'Eselon 1', 'PNS', '', 's23836336345', '2020-02-02', '0000-00-00', 'user.png', 'user.png', 'user.png', 'user.png', '1', '');
 
 -- --------------------------------------------------------
 

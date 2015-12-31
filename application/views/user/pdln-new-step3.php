@@ -60,12 +60,13 @@
                   <label class="col-lg-3 col-sm-3 control-label">Kategori Kegiatan</label>
                   <div class="col-sm-9">
                     <select class="form-control" name="kategori_kegiatan">
-                        <option value="APBN">Workshop</option>
-                        <option value="Pribadi">Seminar</option>
-                        <option value="Pengundang">Belajar</option>
-                        <option value="lain-lain">Confference</option>
-                        <option value="lain-lain">Pertemuan</option>
-                        <option value="lain-lain">Pelatihan</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="Seminar">Seminar</option>
+                        <option value="Belajar">Belajar</option>
+                        <option value="Conferrence">Confference</option>
+                        <option value="Pertemuan">Pertemuan</option>
+                        <option value="Pelatihan">Pelatihan</option>
+                        <option value="Lainnya">Lainnya</option>
                     </select>
                   </div>
               </div>

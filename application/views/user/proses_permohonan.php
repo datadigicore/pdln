@@ -16,6 +16,8 @@
                       <th>No Aplikasi</th>
                       <th>Nama</th>                      
                       <th>No. Surat Unit Utama</th>
+                      <th>No. Surat BPKLN (setneg)</th>
+                      <th>Tgl. Surat BPKLN (setneg)</th>
                       <th>No. Surat Setneg </th>
                       <th>Tgl. Surat Setneg </th>
                       <th>Keterangan</th>                      
@@ -83,6 +85,8 @@
                 {"targets" : 4},
                 {"targets" : 5},
                 {"targets" : 6},
+                {"targets" : 7},
+                {"targets" : 8},
                 {"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
@@ -90,7 +94,7 @@
                                     /*'<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
                                     '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+*/
                                     '</div>',
-                 "targets": 7}
+                 "targets": 9}
               ],
               "order": [[ 0, "desc" ]]
             });

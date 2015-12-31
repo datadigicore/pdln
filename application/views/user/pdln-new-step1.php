@@ -60,9 +60,16 @@
               </div>
 
               <div class="form-group">
-                  <label class="col-lg-3 col-sm-3 control-label">Tanggal Habis Masa Berlaku Passport</label>
+                  <label class="col-lg-3 col-sm-3 control-label">Tanggal Terbit Passport</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" name="tgl_passport_pemohon">
+                    <input type="date" class="form-control" name="tgl_terbit_passport_pemohon">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-lg-3 col-sm-3 control-label">Tanggal kadaluarsa Passport</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" name="tgl_habis_passport_pemohon">
                   </div>
               </div>
 
