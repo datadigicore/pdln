@@ -459,12 +459,6 @@ label {
 	font-weight: 400;
 }
 
-.form-horizontal.style-form .form-group {
-	border-bottom: 1px solid #eff2f7;
-	padding-bottom: 15px;
-	margin-bottom: 15px;
-}
-
 .round-form {
 	border-radius: 500px;
 	-webkit-border-radius: 500px;
