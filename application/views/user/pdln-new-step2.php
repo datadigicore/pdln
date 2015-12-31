@@ -38,13 +38,13 @@
                     <select class="form-control" id="instansi_unit_utama" name="instansi_unit_utama">
                         <!-- query dari db -->
                         <option value="-">---Pilih Instansi Unit Utama---</option>
-                        <?php foreach ($sub_instansi as $key => $value) {
-                          echo '<option value="'.$value['id_sub_instansi'].'">'.$value['nama_sub_instansi'].'</option>';                          
+                        <?php foreach ($instansi as $key => $value) {
+                          echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
                         }?>
                         <!-- <option value="Lainnya">Lain-lain</option> -->
                     </select>
 
-                     <select class="form-control" id="sub_instansi_pemohon" name="sub_instansi_pemohon" >
+                     <select class="form-control" id="sub_instansi_unit_utama" name="sub_instansi_unit_utama" >
                         <!-- query dari db -->
                         <option value="-">---Pilih Sub Instansi Unit Utama---</option>
                         <!-- <option value="lainnya">Lain-lain</option> -->
@@ -96,12 +96,12 @@
 <script type="text/javascript">
 
 $(document).ready(function()
-    {
+  {
   
-  $("#instansi_pemohon").change(function(){
+    $("#instansi_unit_utama").change(function(){
       if ($(this).val() != "") {
-        $("#sub_instansi_pemohon").show();
-        id = $("#instansi_pemohon").val();      
+        $("#sub_instansi_unit_utama").show();
+        id = $("#instansi_unit_utama").val();      
         $.ajax({
                 type: "post",
                 url : "<?php echo base_url('home/process') ?>",
@@ -109,15 +109,17 @@ $(document).ready(function()
                 success: function(result)
                 {
                   //document.write(result);
-                  $("#sub_instansi_pemohon").html(result);
+                  $("#sub_instansi_unit_utama").html(result);
                   //$("#result").html(result);
                 }
               });
               return false;
       }else{
-        $("#sub_instansi_pemohon").hide();   
+        $("#sub_instansi_unit_utama").hide();   
       }      
-      });
-     $("#sub_instansi_pemohon").hide();
+    });
+     $("#sub_instansi_unit_utama").hide();
+
+  });
 
 </script>

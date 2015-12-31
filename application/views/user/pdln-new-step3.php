@@ -40,9 +40,16 @@
               </div>
 
               <div class="form-group">
-                  <label class="col-lg-3 col-sm-3 control-label">Negara Tujuan</label>
+                  <label class="col-lg-3 col-sm-3 control-label">Negara Tujuan</label>                  
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="negara_tujuan" placeholder="Negara Tujuan">
+                    <select class="form-control" id="negara_tujuan" name="negara_tujuan">
+                        <!-- query dari db -->
+                        <option value="">---Pilih Instansi Unit Utama---</option>
+                        <?php foreach ($countries as $key => $value) {
+                          echo '<option value="'.$value['country_name'].'">'.$value['country_name'].'</option>';                          
+                        }?>
+                        <!-- <option value="Lainnya">Lain-lain</option> -->
+                    </select>                  
                   </div>
               </div>
 

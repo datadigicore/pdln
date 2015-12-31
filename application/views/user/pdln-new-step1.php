@@ -34,7 +34,7 @@
                         <option value="Swasta">Swasta</option>
                         <option value="Lainnya">Lainnya</option>
                     </select>
-                      <input type="text" class="form-control" id="pekerjaan_lain" name="pekerjaan_lain" placeholder="Pekerjaan">
+                      <input type="text" class="form-control" id="pekerjaan_lain" name="pekerjaan_lainnya" placeholder="Pekerjaan">
                   </div>
               </div>
 

@@ -64,9 +64,9 @@ class m_user extends CI_Model {
 		return $query->result_array();
 	}
 
-	function select_data() {
+	function select_data($table) {
 		$data = array();
-        $query = $this->db->get('instansi');
+        $query = $this->db->get($table);
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $row){
                     $data[] = $row;
