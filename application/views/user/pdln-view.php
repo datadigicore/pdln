@@ -2,100 +2,113 @@
 <section id="main-content">
   <section class="wrapper site-min-height">
     <div class="row mt">
+        <div class="col-lg-12">
+            <a href="20151229-1017-menlu-.pdf" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
+            <a href="20151229-1017-menlu-.pdf" title="Cetak Surat ke Menlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Menlu</a>
+        </div>
+    </div>
+
+    <div class="row">
       <div class="col-lg-12">
-        <div class="form-panel">
-            <form class="form-horizontal style-form">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs pdln-tab" role="tablist">
+            <li role="presentation" class="active"><a href="#datadiri" aria-controls="datadiri" role="tab" data-toggle="tab">Data Diri</a></li>
+            <li role="presentation"><a href="#unitutama" aria-controls="unitutama" role="tab" data-toggle="tab">Surat Unit Utama</a></li>
+            <li role="presentation"><a href="#undangan" aria-controls="undangan" role="tab" data-toggle="tab">Surat Undangan Kunjungan</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <form class="form-horizontal style-form">
+            <!-- Hidden Input -->
             <input type="hidden" id="id" class="form-control" value="<?php echo $id_data_diri ?>">
-            <div class="row">
-                <div class="col-sm-3">
-                    <img src="<?php base_url();?>files/foto/<?php echo $foto_pemohon ?>" class="img-responsive">
+
+            <div class="tab-content pdln-panel">
+                <div role="tabpanel" class="tab-pane active" id="datadiri">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>Nama</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $nama_pemohon ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>NIP</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $nip_pemohon ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>No. Telepon</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $no_hp_pemohon ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>No. Passport</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $no_passport_pemohon ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Terbit Passport</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $tgl_terbit_passport ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Kadaluarsa Passport</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $tgl_habis_passport ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>Pekerjaan</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $pekerjaan_pemohon ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $instansi_pemohon ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>Jabatan</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $jabatan_pemohon ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><a href="#" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><a href="#" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <img src="<?php base_url();?>files/foto/<?php echo $foto_pemohon ?>" class="img-responsive img-thumbnail">
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-9">
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Nama</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $nama_pemohon ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>NIP</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $nip_pemohon ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>No. Telepon</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $no_hp_pemohon ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>No. Passport</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $no_passport_pemohon ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Terbit Passport</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $tgl_terbit_passport ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Kadaluarsa Passport</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $tgl_habis_passport ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Pekerjaan</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $pekerjaan_pemohon ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $instansi_pemohon ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Jabatan</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $jabatan_pemohon ?></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><a href="#" >Unduh</a></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
-                        <div class="col-lg-8">
-                            <p class="form-control-static"><a href="#">Unduh</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Surat Unit Utama</h2>
-            <br>
-
-            <div class="row">
-                <div class="col-sm-12">
-
+                <div role="tabpanel" class="tab-pane" id="unitutama">
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
@@ -134,93 +147,80 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><a href="#">Unduh</a></p>
+                            <p class="form-control-static"><a href="#" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="undangan">
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Undangan</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><?php echo $no_surat_undangan ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Undangan</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><?php echo $tgl_surat_undangan ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Undangan</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><?php echo $instansi_pengundang ?></p>
+                        </div>        
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Negara Tujuan</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><?php echo $negara_tujuan ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Waktu Kegiatan</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><?php echo $tgl_awal_kegiatan ?> <br> <?php echo $tgl_akhir_kegiatan ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Kegiatan</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><?php echo $rincian_kegiatan ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Sumber Dana</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><?php echo $sumber_dana_kegiatan ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-lg-4 col-sm-4 control-label">Keterangan Sumber Dana</label>
+                      <div class="col-lg-8">
+                        <p class="form-control-static"><?php echo $keterangan_sumber_dana_kegiatan ?></p>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Udangan</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><a href="#" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <h2>Surat Undangan</h2>
-            <br>
-
-            <div class="row">
-                <div class="col-sm-12">
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Undangan</strong></label>
-                    <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $no_surat_undangan ?></p>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Undangan</strong></label>
-                    <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $tgl_surat_undangan ?></p>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Undangan</strong></label>
-                    <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $instansi_pengundang ?></p>
-                    </div>        
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Negara Tujuan</strong></label>
-                    <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $negara_tujuan ?></p>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Waktu Kegiatan</strong></label>
-                    <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $tgl_awal_kegiatan ?> <br> <?php echo $tgl_akhir_kegiatan ?></p>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Kegiatan</strong></label>
-                    <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $rincian_kegiatan ?></p>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Sumber Dana</strong></label>
-                    <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $sumber_dana_kegiatan ?></p>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-lg-4 col-sm-4 control-label">Keterangan Sumber Dana</label>
-                  <div class="col-lg-8">
-                    <p class="form-control-static"><?php echo $keterangan_sumber_dana_kegiatan ?></p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Udangan</strong></label>
-                    <div class="col-lg-8">
-                        <p class="form-control-static"><a href="#">Unduh</a></p>
-                    </div>
-                </div>
-
-                </div>
-            </div>
-
-          </form>
-         </div>
-        </div>
+        </form>
+      </div>
 
         <!-- <a id="btn-terima" title="Terima" class="btn btn-success mb" data-toggle="modal"><i class="fa fa-check"></i> Terima</a>
         <a data-toggle="modal" id="btn-tolak" title="Tolak" class="btn btn-danger mb" ><i class="fa fa-close"></i> Tolak</a> -->
-        
-        <a href="20151229-1017-menlu-.pdf" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
-        <a href="20151229-1017-menlu-.pdf" title="Cetak Surat ke Menlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Menlu</a>
         <!-- <a id="btn-tambahdata" class="btn pdln-btn mb" title="Edit this item"><i class="fa fa-plus-square"></i> Sunting</a> -->
 
       </div>
