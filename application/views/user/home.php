@@ -35,6 +35,7 @@
 <script type="text/javascript">
           $(document).ready(function(){
             var table = $(".table").DataTable({
+              "scrollX" : true,
               "processing": true,
               "serverSide": true,
               "ajax": {
