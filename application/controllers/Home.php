@@ -17,6 +17,15 @@ class home extends CI_Controller {
 	  redirect('login');
 	}
   }
+  public function download(){
+    $image_name = "yohanes.png";
+    $image_path =  FCPATH."../files/other/$image_name";
+    header('Content-Type: application/octet-stream');
+    header("Content-Disposition: attachment; filename=$image_name");
+    ob_clean();
+    flush();
+    readfile($image_path);
+  }
   public function index() {
   	if (!empty($this->session->flashdata('error_message'))) {
 	  $data = array(
