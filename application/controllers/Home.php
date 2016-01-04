@@ -114,6 +114,9 @@ class home extends CI_Controller {
 	  case 'proses_permohonan':
 	  	$this->load->view('user/proses_permohonan');
 	  	break;
+	  case 'update_bpkln':
+	  	$this->load->view('user/update_bpkln');
+	  	break;
 	  case 'disetujui_setneg':
 	  	$this->load->view('user/disetujui_setneg');
 	  	break;
@@ -267,7 +270,7 @@ class home extends CI_Controller {
 
   	  case 'add_surat_unit_utama': 
   	  	//upload
-  	  	print_r($_FILES);
+  	  	//print_r($_FILES);
   	  	$config['upload_path'] = FCPATH.'../files/surat_unit_utama';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $this->load->library('upload', $config);
@@ -310,7 +313,7 @@ class home extends CI_Controller {
 		else {
 		  redirect('home');
 		}
-  	  	break;
+  	  break;
 
   	  case 'add_surat_undangan':
 
@@ -429,6 +432,25 @@ class home extends CI_Controller {
 	      array( 'db' => 'data_lain_bpkln', 		 			'dt' => 5)
 	    );
 	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi AND data_diri.status='Diterima'";
+    	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
+  	  break;
+
+  	  case 'tab_update_bpkln':
+  	  	$table1 = "data_diri";
+	    $table2 = "surat_unit_utama";
+	    $table3 = "surat_bpkln";
+	    $table4 = "instansi";
+		$table5 = "sub_instansi";
+		$key = "id_data_diri";
+	  	$column = array(
+	      array( 'db' => 'no_aplikasi_data_diri',				'dt' => 0),	      
+	      array( 'db' => 'no_surat_unit_utama',				 	'dt' => 1),
+	      array( 'db' => 'no_surat_bpkln_setneg',				'dt' => 2),
+	      array( 'db' => 'tgl_surat_bpkln_setneg',			 	'dt' => 3),
+	      array( 'db' => 'no_surat_bpkln_kemlu', 				'dt' => 4),
+	      array( 'db' => 'tgl_surat_bpkln_kemlu',				'dt' => 5),
+	    );
+	   	$where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi";
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
   	  break;
   	 
@@ -565,6 +587,55 @@ class home extends CI_Controller {
 		$this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
 
 	  	//$this->m_user->upd_data_pdln($no_aplikasi, $data);
+  	  break;
+
+  	  case 'tambah_surat_bpkln':
+
+  	  	$config['upload_path'] = FCPATH.'../files/surat_bpkln';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $result_array = array();
+
+        $surat_bpkln_setneg = $_FILES['upl_files1']['name'];
+        $surat_bpkln_kemlu = $_FILES['upl_files2']['name'];
+        $no_aplikasi = $this->input->post('key');
+        $table = 'surat_bpkln';
+        $id_user = $_SESSION['logged']['id_user'];          
+	    
+		for ($i = 1; $i <= 2; $i++) {
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_files'.$i)) {
+              $error = $this->upload->display_errors();
+
+            }
+            else {
+              $this->upload->data();
+            }
+          }
+        }
+
+        //insert 	              
+  	  	$data = array(
+					'no_surat_bpkln_setneg' => $this->input->post('no_surat_bpkln_setneg',TRUE),					
+  	  				'tgl_surat_bpkln_setneg' => $this->input->post('tgl_surat_bpkln_setneg',TRUE),
+  	  				'surat_bpkln_setneg' => $surat_bpkln_setneg,
+  	  				'no_surat_bpkln_kemlu' => $this->input->post('no_surat_bpkln_kemlu',TRUE),
+  	  				'tgl_surat_bpkln_kemlu' => $this->input->post('tgl_surat_bpkln_kemlu',TRUE),
+  	  				'surat_bpkln_kemlu' => $surat_bpkln_kemlu
+  	  				 );  
+
+  	  	$result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);  	  	
+	    if ($result == TRUE) {
+	      $this->session->set_flashdata('error_message', $no_aplikasi);
+		  //$this->session->set_flashdata('error_message', 'Data Pengguna Berhasil di Tambahkan ke Dalam Database');
+		  //buat redirect ke halaman lain
+		  $this->session->set_flashdata('content','step3');
+		  redirect('home');
+		}
+		else {
+		  redirect('home');
+		}
   	  break;
 
   	  case 'upload':

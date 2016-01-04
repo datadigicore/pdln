@@ -464,6 +464,69 @@ class SSP {
         );
     }
 
+    static function more_complex2 ( $request, $conn, $table1, $table2, $primaryKey, $columns, $whereResult=null, $whereAll=null ) {
+        $bindings = array();
+        $db = self::db( $conn );
+        $localWhereResult = array();
+        $localWhereAll = array();
+        $whereAllSql = '';
+
+        // Build the SQL query string from the request
+        $limit = self::limit( $request, $columns );
+        $order = self::order( $request, $columns );
+        $where = self::filter( $request, $columns, $bindings );
+
+        $whereResult = self::_flatten( $whereResult );
+        $whereAll = self::_flatten( $whereAll );
+
+        if ( $whereResult ) {
+            $where = $where ?
+                $where .' AND '.$whereResult :
+                'WHERE '.$whereResult;
+        }
+
+        if ( $whereAll ) {
+            $where = $where ?
+                $where .' AND '.$whereAll :
+                'WHERE '.$whereAll;
+
+            $whereAllSql = 'WHERE '.$whereAll;
+        }
+
+        // Main query to actually get the data
+        $data = self::sql_exec( $db, $bindings,
+            "SELECT SQL_CALC_FOUND_ROWS `".implode("`, `", self::pluck($columns, 'db'))."`
+             FROM `$table1`,`$table2`,`$table3`,`$table4`,`$table5`
+             $where
+             $order
+             $limit"
+        );
+
+        // Data set length after filtering
+        $resFilterLength = self::sql_exec( $db,
+            "SELECT FOUND_ROWS()"
+        );
+        $recordsFiltered = $resFilterLength[0][0];
+
+        // Total data set length
+        $resTotalLength = self::sql_exec( $db, $bindings,
+            "SELECT COUNT(`{$primaryKey}`)
+             FROM   `$table1` ".
+            $whereAllSql
+        );
+        $recordsTotal = $resTotalLength[0][0];
+
+        /*
+         * Output
+         */
+        return array(
+            "draw"            => intval( $request['draw'] ),
+            "recordsTotal"    => intval( $recordsTotal ),
+            "recordsFiltered" => intval( $recordsFiltered ),
+            "data"            => self::data_output( $columns, $data )
+        );
+    }
+
     /**
      * Connect to the database
      *

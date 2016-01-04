@@ -23,10 +23,6 @@
                         Proses Permohonan
                     </a>
                 </form>
-                <!-- <a href="<?php echo base_url();?>proses_permohonan.php">
-                    <i class="fa fa-check-square-o"></i>
-                    <span>Proses Permohonan</span>
-                </a> -->
             </li>
 
             <li>
@@ -37,10 +33,6 @@
                         Cetak Surat
                     </a>
                 </form>
-                <!-- <a href="<?php echo base_url();?>cetak_surat.php">
-                    <i class="fa fa-print"></i>
-                    <span>Cetak Surat</span>
-                </a> -->
             </li>
 
             <li class="sub-menu">
@@ -93,6 +85,16 @@
 
             <li>
                 <form method="POST" action="<?php echo base_url();?>home">
+                    <input type="hidden" name="content" value="update_bpkln">
+                    <a onclick="$(this).closest('form').submit()">
+                    <i class="fa fa-check-square-o"></i>
+                        Update Surat BPKLN
+                    </a>
+                </form>
+            </li>
+
+            <li>
+                <form method="POST" action="<?php echo base_url();?>home">
                     <input type="hidden" name="content" value="proses_permohonan">
                     <a onclick="$(this).closest('form').submit()">
                     <i class="fa fa-check-square-o"></i>
@@ -118,11 +120,7 @@
                     <i class="fa fa-print"></i>
                         Cetak Surat
                     </a>
-                </form>
-                <!-- <a href="<?php echo base_url();?>cetak_surat.php">
-                    <i class="fa fa-print"></i>
-                    <span>Cetak Surat</span>
-                </a> -->
+                </form>                
             </li>
 
             <li class="sub-menu">
