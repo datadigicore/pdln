@@ -63,7 +63,7 @@
                     <div class="col-sm-9">
                       <select class="form-control" id="instansi_pemohon" name="instansi_pemohon">
                           <!-- query dari db -->
-                          <option value="">---Pilih Instansi Unit Utama---</option>
+                          <option value="-">---Pilih Instansi Unit Utama---</option>
                           <?php foreach ($instansi as $key => $value) {
                             echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
                           }?>
@@ -72,7 +72,7 @@
 
                       <select class="form-control" id="sub_instansi_pemohon" name="sub_instansi_pemohon" style="margin-top: 15px;">
                           <!-- query dari db -->
-                          <option value="">---Pilih Sub Instansi Unit Utama---</option>
+                          <option value="-">---Pilih Sub Instansi Unit Utama---</option>
                           <!-- <option value="lainnya">Lain-lain</option> -->
                       </select>
                       <div id="result"></div>
@@ -84,7 +84,7 @@
                     <label class="col-lg-3 col-sm-3 control-label">Jabatan</label>
                     <div class="col-sm-9">
                       <select class="form-control" id="jabatan_pemohon" name="jabatan_pemohon" onchange="jabatan_pemohona(this.value)">
-                          <option value="">---Pilih Jabatan---</option>
+                          <option value="-">---Pilih Jabatan---</option>
                           <option value="Eselon 1">Eselon 1</option>
                           <option value="Eselon 2">Eselon 2</option>
                           <option value="Eselon 3">Eselon 3</option>
@@ -217,7 +217,7 @@
     $("#jabatan_lain").hide();
 
      $("#instansi_pemohon").change(function(){
-      if ($(this).val() != "") {
+      if ($(this).val() != "-") {
         $("#sub_instansi_pemohon").show();
         id = $("#instansi_pemohon").val();      
         $.ajax({

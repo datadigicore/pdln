@@ -80,6 +80,7 @@
                     <label class="col-lg-3 col-sm-3 control-label">Kategori Kegiatan</label>
                     <div class="col-sm-9">
                       <select class="form-control" name="kategori_kegiatan">
+                          <option value="-">---Pilih Kegiatan---</option>
                           <option value="Workshop">Workshop</option>
                           <option value="Seminar">Seminar</option>
                           <option value="Belajar">Belajar</option>
@@ -102,6 +103,7 @@
                     <label class="col-lg-3 col-sm-3 control-label">Sumber Dana</label>
                     <div class="col-sm-9">
                       <select class="form-control" name="sumber_dana_kegiatan">
+                          <option value="-">---Pilih Sumber Dana---</option>
                           <option value="APBN">APBN (Pemerintah)</option>
                           <option value="Pribadi">Pribadi (Dana Sendiri)</option>
                           <option value="Pengundang">Pengundang (Sponsor)</option>

@@ -144,26 +144,28 @@
             $(document).on("click", "#btn-edit", function (){
               var tr = $(this).closest('tr');
               tabrow = table.row( tr );
-              $("#no_surat_setneg").val(tabrow.data()[3]);
-              $("#tgl_surat_setneg").val(tabrow.data()[4]);
-              $("#data_lain_bpkln").val(tabrow.data()[5]);
+              $("#no_surat_setneg").val(tabrow.data()[5]);
+              $("#tgl_surat_setneg").val(tabrow.data()[6]);
+              $("#data_lain_bpkln").val(tabrow.data()[7]);
             });
 
-            $("#tambahdata").click(function(){
+            $("#tambahdata").click(function(){              
               row_no_aplikasi = tabrow.data()[0];
               row_no_setneg = $("#no_surat_setneg").val();
               row_tgl_setneg = $("#tgl_surat_setneg").val();
-              row_keterangan = $("#data_lain_bpkln").val();              
+              row_keterangan = $("#data_lain_bpkln").val();
+              row_surat_setneg = $("#surat_setneg").val();
               $.ajax({
                 type: "post",
                 url : "<?php echo base_url('home/process') ?>",
+                Contenttype: "multipart/form-data",
                 data: {
                         manage:'tambah_surat_pdln',
                         key:row_no_aplikasi,
                         no_surat_setneg:row_no_setneg,
                         tgl_surat_setneg:row_tgl_setneg,
                         data_lain_bpkln:row_keterangan,
-                        
+                        surat_setneg:row_surat_setneg                        
                       },
                 success: function(data)
                 {
@@ -234,15 +236,21 @@
   <div class="modal-content">
       <div class="modal-header" style="background-color:green;">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Tambah Data Surat</h4>
-      </div>
+        <h4 class="modal-title" id="myModalLabel">Tambah Data Surat Dari Setneg</h4>
+      </div>      
       <div class="modal-body">
         <input type="hidden" name="content" value="addnew">
+        <label>No. Surat Setneg</label>
         <input type="text" class="form-control" placeholder="Nomor Surat Setneg" autofocus id="no_surat_setneg" name="no_surat_setneg" required>
         <br>
+        <label>Tgl. Surat Setneg</label>
         <input type="date" class="form-control" placeholder="Tanggal Surat Setneg" autofocus id="tgl_surat_setneg" name="tgl_surat_setneg" required >
         <br>
+        <label>Keterangan Surat Setneg</label>
         <input type="text" class="form-control" placeholder="Keterangan yang mendapat SP Setneg" autofocus id="data_lain_bpkln" name="data_lain_bpkln" required>        
+        <br>
+        <label>Surat Setneg</label>
+        <input type="file" class="form-control" autofocus id="surat_setneg" name="surat_setneg" required>        
       </div>
       <div class="modal-footer">
         <a id="tambahdata" class="btn btn-success">Submit</a>

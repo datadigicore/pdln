@@ -112,7 +112,7 @@ $(document).ready(function()
   {
   
     $("#instansi_unit_utama").change(function(){
-      if ($(this).val() != "") {
+      if ($(this).val() != "-") {
         $("#sub_instansi_unit_utama").show();
         id = $("#instansi_unit_utama").val();      
         $.ajax({

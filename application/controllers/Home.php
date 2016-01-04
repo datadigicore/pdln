@@ -272,34 +272,34 @@ class home extends CI_Controller {
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        $result_array = array();           
-	    for ($i = 1; $i <= 4; $i++) {
-          if (!empty($_FILES['upl_files'.$i]['name'])) {
-            if (!$this->upload->do_upload('upl_files'.$i)) {
-              $error = $this->upload->display_errors();
+        $result_array = array();
 
-            }
-            else {
-              $this->upload->data();
-            }
-          }
-        }	
-
-        //insert 	      
         $surat_unit_utama = $_FILES['upl_files1']['name'];
         $no_aplikasi = $this->input->post('no_aplikasi');
         $table = 'surat_unit_utama';
-        $id_user = $_SESSION['logged']['id_user'];
+        $id_user = $_SESSION['logged']['id_user'];          
+	    
+		if (!empty($_FILES['upl_files1']['name'])) {
+			if (!$this->upload->do_upload('upl_files1')) {
+			  $error = $this->upload->display_errors();			  
+			}
+			else {
+			  $this->upload->data();
+			}
+		}
+
+        //insert 	              
   	  	$data = array(
 					'no_surat_unit_utama' => $this->input->post('no_surat_unit_utama',TRUE),					
   	  				'tgl_surat_unit_utama' => $this->input->post('tgl_surat_unit_utama',TRUE),
   	  				'instansi_unit_utama' => $this->input->post('instansi_unit_utama',TRUE),
+  	  				'sub_instansi_unit_utama' => $this->input->post('sub_instansi_unit_utama',TRUE),
   	  				'penandatangan_surat_unit_utama' => $this->input->post('penandatangan_surat_unit_utama',TRUE),
   	  				'perihal_surat_unit_utama' => $this->input->post('perihal_surat_unit_utama',TRUE),
-  	  				'surat_unit_utama' => $surat_unit_utama
+  	  				'surat_unit_utama' => $surat_unit_utama  	  				
   	  				 );  
 
-  	  	$result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);
+  	  	$result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);  	  	
 	    if ($result == TRUE) {
 	      $this->session->set_flashdata('error_message', $no_aplikasi);
 		  //$this->session->set_flashdata('error_message', 'Data Pengguna Berhasil di Tambahkan ke Dalam Database');
@@ -512,24 +512,42 @@ class home extends CI_Controller {
 	  	$result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
 	  	$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
 	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
-	  	$result_surat_bpkln= $this->m_user->update_surat($table4,$data_surat_bpkln,$id_user,$no_aplikasi);
-	  	print_r($result_datadiri);
-	  	print_r($result_surat_unit_utama);
-	  	print_r($result_surat_undangan);
-	  	print_r($result_surat_bpkln);
+	  	$result_surat_bpkln= $this->m_user->update_surat($table4,$data_surat_bpkln,$id_user,$no_aplikasi);	  
 
-	  	/*if ($result_surat_bpkln == TRUE) {	    
+	  	if ($result_surat_bpkln == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
 		  //buat redirect ke halaman lain
 		  $this->session->set_flashdata('content','home');
 		  redirect('home');
 		}
 		else {
-		  redirect('home');
-		}*/
+			print_r($result_datadiri);
+		  	print_r($result_surat_unit_utama);
+		  	print_r($result_surat_undangan);
+		  	print_r($result_surat_bpkln);
+		  //redirect('home');
+		}
   	  break;
 
-  	  case 'tambah_surat_pdln':  	  
+  	  case 'tambah_surat_pdln':
+  	  	$config['upload_path'] = FCPATH.'../files/surat_setneg';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $result_array = array();        
+        
+        if (!empty($_FILES['surat_setneg']['name'])) {
+          if (!$this->upload->do_upload('surat_setneg')) {
+            $error = $this->upload->display_errors();
+
+          }
+          else {
+            $this->upload->data();
+          }
+        }
+        
+
+
   	  	$no_aplikasi = $this->input->post('key');
   	  	$id_user = $_SESSION['logged']['id_user'];
   	  	$table = 'surat_bpkln';
@@ -538,6 +556,7 @@ class home extends CI_Controller {
 		  'no_surat_setneg' => $this->input->post('no_surat_setneg',TRUE),
 		  'tgl_surat_setneg' => $this->input->post('tgl_surat_setneg',TRUE),
 		  'data_lain_bpkln' => $this->input->post('data_lain_bpkln', TRUE),
+		  'surat_setneg' => $this->input->post('surat_setneg',TRUE)
 		);
 
 		$datadiri= array('status' =>'Diterima');
