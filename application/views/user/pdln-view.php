@@ -92,14 +92,14 @@
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><a href="#" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><a href="#" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                                 </div>
                             </div>
                         </div>
