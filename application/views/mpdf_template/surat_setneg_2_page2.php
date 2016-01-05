@@ -11,10 +11,25 @@
 </table>
 <hr/>
 <br><br>
-<p align="center">Lampiran Surat Sekretaris Kementerian Sekretariat Negara<br>
-No: B-24488 / Kemensetneg/Setmen/KTLN/LN.00.00/12/2015<br>
-Tanggal <?php echo strftime("%d %B %Y", strtotime(date("Y-m-d")));?>
-Daftar Peserta</p>
+<table>
+  <tr>
+      <td width="15%">Nomor</td>
+      <td width="5%" align="right">:</td>
+      <td><?php for ($i=0; $i < 20; $i++) { echo "&nbsp;"; } echo "/A1.3/LN/".date("Y") ?></td>
+  </tr>
+  <tr>
+      <td>Lampiran</td>
+      <td align="right">:</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td valign="top">Tanggal</td>
+      <td align="right" valign="top">:</td>
+      <td></td>
+  </tr>
+</table><br>
+<p align="center" style="text-transform: uppercase;font-weight: bold;">Daftar Peserta <?php echo $query[0]['rincian_kegiatan'] ?><br>
+Tanggal <?php echo strftime("%d", strtotime($query[0]['tgl_awal_kegiatan']))." S.D. ".strftime("%d %B %Y", strtotime($query[0]['tgl_akhir_kegiatan']));?></p>
 <br>
 <table border="1" cellpadding="8" style="border-collapse:collapse;">
   <tr>

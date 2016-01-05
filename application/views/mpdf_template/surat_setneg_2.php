@@ -15,12 +15,12 @@
   <tr>
       <td width="15%">Nomor</td>
       <td width="5%" align="right">:</td>
-      
+      <td><?php for ($i=0; $i < 20; $i++) { echo "&nbsp;"; } echo "/A1.3/LN/".date("Y") ?></td>
   </tr>
   <tr>
       <td>Lampiran</td>
       <td align="right">:</td>
-      <td>2(Dua) Berkas</td>
+      <td>Satu Berkas</td>
   </tr>
   <tr>
       <td valign="top">Hal</td>

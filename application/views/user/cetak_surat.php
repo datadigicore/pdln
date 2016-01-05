@@ -33,7 +33,7 @@
                 <a class="btn btn-warning" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-print"></i> Cetak Surat</a>
               </form>              
             </div>
-
+            <br>
             <table class="table  table-striped table-bordered pdln-table table-curved" cellspacing="0" width="100%">
               <thead>
                   <tr>
