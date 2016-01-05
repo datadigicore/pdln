@@ -93,7 +93,21 @@ class m_user extends CI_Model {
 		$query = $this->db->get_where('sub_instansi',array('id_instansi' => $id));
 		return $query->result_array();
 	}
-
+  function get_country() {
+    $query = $this->db->get('countries');
+    return $query->result_array();
+  }
+  function get_nip() {
+    $query = $this->db->get('data_diri');
+    return $query->result_array();
+  }
+  function get_sumber() {
+    $this->db->select('sumber_dana_kegiatan');
+    $this->db->from('surat_undangan');
+    $this->db->group_by("sumber_dana_kegiatan");
+    $query = $this->db->get();
+    return $query->result_array();
+  }
 	function max_no_aplikasi(){
 		$this->db->select_max('no_aplikasi_data_diri');
 		$query = $this->db->get('data_diri');

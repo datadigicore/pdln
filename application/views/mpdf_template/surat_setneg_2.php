@@ -40,7 +40,7 @@ yang akan mengikuti kegiatan <?php echo $query[0]['rincian_kegiatan'] ?>, di <i>
 <?php echo strftime("%d", strtotime($query[0]['tgl_awal_kegiatan']))." s.d. ".strftime("%d %B %Y", strtotime($query[0]['tgl_akhir_kegiatan']));?> 
 atas biaya <?php echo $query[0]['sumber_dana_kegiatan'] ?>, <?php echo $query[0]['keterangan_sumber_dana_kegiatan'] ?>.
 <br>
-<p align="justify">Sebagai bahan pertimbangan Saudara, bersama ini dilampirkan berkas yang berkaitan dengan penugasan mereka</p>
+<p align="justify">Sebagai bahan pertimbangan Saudara, bersama ini dilampirkan berkas yang berkaitan dengan penugasan mereka.</p>
 <p align="justify">Atas perhatian dan kerja sama Saudara, kami menyampaikan terima kasih.</p><br>
 <table width="100%">
   <tr>
