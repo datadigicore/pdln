@@ -144,36 +144,52 @@
               $("#tgl_surat_bpkln_kemlu").val(tabrow.data()[5]);
             });
 
-            $("#tambahdata").click(function(){              
-              row_no_aplikasi = tabrow.data()[0];
-              row_no_surat_bpkln_setneg = $("#no_surat_bpkln_setneg").val();
-              row_tgl_surat_bpkln_setneg = $("#tgl_surat_bpkln_setneg").val();
-              row_no_surat_bpkln_kemlu = $("#no_surat_bpkln_kemlu").val();
-              row_tgl_surat_bpkln_kemlu = $("#tgl_surat_bpkln_kemlu").val();
-              row_upl_file1 = $("#upl_file1").val();
-              row_upl_file2 = $("#upl_file2").val();
-              $.ajax({
-                type: "post",
-                url : "<?php echo base_url('home/process') ?>",
-                Contenttype: "multipart/form-data",
-                data: {
-                        manage:'tambah_surat_bpkln',
-                        key:row_no_aplikasi,
-                        no_surat_bpkln_setneg:row_no_surat_bpkln_setneg,
-                        tgl_surat_bpkln_setneg:row_tgl_surat_bpkln_setneg,
-                        no_surat_bpkln_kemlu:row_no_surat_bpkln_kemlu,
-                        tgl_surat_bpkln_kemlu:row_tgl_surat_bpkln_kemlu,
-                        upl_file1:row_upl_file1,
-                        upl_file2:row_upl_file2
-                      },
-                success: function(data)
-                {
-                  table.draw();
-                  $("#modal-tambahdata").modal('hide');
-                }
-              });
-              return false;
+            // $("#tambahdata").click(function(){              
+            //   row_no_aplikasi = tabrow.data()[0];
+            //   row_no_surat_bpkln_setneg = $("#no_surat_bpkln_setneg").val();
+            //   row_tgl_surat_bpkln_setneg = $("#tgl_surat_bpkln_setneg").val();
+            //   row_no_surat_bpkln_kemlu = $("#no_surat_bpkln_kemlu").val();
+            //   row_tgl_surat_bpkln_kemlu = $("#tgl_surat_bpkln_kemlu").val();
+            //   row_upl_file1 = $("#upl_file1").val();
+            //   row_upl_file2 = $("#upl_file2").val();
+            //   $.ajax({
+            //     type: "post",
+            //     url : "<?php echo base_url('home/process') ?>",
+            //     mimeType: "multipart/form-data",
+            //     data: {
+            //             manage:'tambah_surat_bpkln',
+            //             key:row_no_aplikasi,
+            //             no_surat_bpkln_setneg:row_no_surat_bpkln_setneg,
+            //             tgl_surat_bpkln_setneg:row_tgl_surat_bpkln_setneg,
+            //             no_surat_bpkln_kemlu:row_no_surat_bpkln_kemlu,
+            //             tgl_surat_bpkln_kemlu:row_tgl_surat_bpkln_kemlu,
+            //             upl_file1:row_upl_file1,
+            //             upl_file2:row_upl_file2
+            //           },
+            //     success: function(data)
+            //     {
+                  // table.draw();
+                  // $("#modal-tambahdata").modal('hide');
+            //     }
+            //   });
+            //   return false;
+            // });
+            $("#uploadForm").submit(function(e){
+            e.preventDefault();
+            $.ajax({
+              url: $(this).attr("action"),
+              type: "POST",
+              data:  new FormData(this),
+              contentType: false,
+              cache: false,
+              processData:false,
+              success: function(data){
+                table.draw();
+                $("#modal-tambahdata").modal('hide');
+              },
+              error: function(){}           
             });
+          });
             
             $(document).on("click", "#nonaktif", function (){
               var tr = $(this).closest('tr');
@@ -233,32 +249,34 @@
 
 <div class="modal fade" id="modal-tambahdata" tabindex="-1" data-backdrop="static" data-keyboard="false">
   <div class="modal-content">
+  <form id="uploadForm" action="<?php echo base_url('home/process') ?>" method="post" enctype="multipart/form-data">
       <div class="modal-header" style="background-color:green;">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Tambah Data Surat Dari Setneg</h4>
       </div>      
       <div class="modal-body">
-        <input type="hidden" name="content" value="addnew">
+        <input type="hidden" name="manage" value="tambah_surat_bpkln">
         <label>No. Surat BPKLN ke Setneg</label>
-        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Setneg" autofocus id="no_surat_bpkln_setneg" name="no_surat_bpkln_setneg" required>
+        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Setneg" autofocus id="no_surat_bpkln_setneg" name="no_surat_bpkln_setneg">
         <br>
         <label>Tgl. Surat BPKLN ke Setneg</label>
-        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" required >
+        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" >
         <br>
         <label>Surat BPKLN ke Setneg</label>
-        <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1" required>   
+        <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1">   
         <label>No. Surat BPKLN ke Kemlu</label>
-        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Kemlu" autofocus id="no_surat_bpkln_kemlu" name="no_surat_bpkln_kemlu" required>
+        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Kemlu" autofocus id="no_surat_bpkln_kemlu" name="no_surat_bpkln_kemlu">
         <br>
         <label>Tgl. Surat BPKLN ke Kemlu</label>
-        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Kemlu" autofocus id="tgl_surat_bpkln_kemlu" name="tgl_surat_bpkln_kemlu" required >
+        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Kemlu" autofocus id="tgl_surat_bpkln_kemlu" name="tgl_surat_bpkln_kemlu" >
         <br>
         <label>Surat BPKLN ke Kemlu</label>
-        <input type="file" class="form-control" autofocus id="upl_file2" name="upl_file2" required>        
+        <input type="file" class="form-control" autofocus id="upl_file2" name="upl_file2">        
       </div>
       <div class="modal-footer">
-        <a id="tambahdata" class="btn btn-success">Submit</a>
+        <button type="submit" class="btn btn-success">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
       </div>
-    </div>
+    </form>
+  </div>
 </div>

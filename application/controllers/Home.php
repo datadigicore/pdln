@@ -599,31 +599,33 @@ class home extends CI_Controller {
   	  break;
 
   	  case 'tambah_surat_bpkln':
-
-  	  	$config['upload_path'] = FCPATH.'../files/surat_bpkln';
+        
+  	  	$config['upload_path'] = FCPATH.'../files/surat_bpkln/';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $result_array = array();
 
-        $surat_bpkln_setneg = $_FILES['upl_files1']['name'];
-        $surat_bpkln_kemlu = $_FILES['upl_files2']['name'];
+        $surat_bpkln_setneg = $_FILES['upl_file1']['name'];
+        $surat_bpkln_kemlu = $_FILES['upl_file2']['name'];
         $no_aplikasi = $this->input->post('key');
         $table = 'surat_bpkln';
         $id_user = $_SESSION['logged']['id_user'];          
-	    
+        
 		for ($i = 1; $i <= 2; $i++) {
-          if (!empty($_FILES['upl_files'.$i]['name'])) {
-            if (!$this->upload->do_upload('upl_files'.$i)) {
+          if (!empty($_FILES['upl_file'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_file'.$i)) {
               $error = $this->upload->display_errors();
 
             }
             else {
+              // echo "string";
+              // move_uploaded_file($_FILES['upl_file'.$i]['name'], $config['upload_path'].$name);
               $this->upload->data();
             }
           }
         }
-
+        // die();
         //insert 	              
   	  	$data = array(
 					'no_surat_bpkln_setneg' => $this->input->post('no_surat_bpkln_setneg',TRUE),					
