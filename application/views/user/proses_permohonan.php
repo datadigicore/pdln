@@ -144,6 +144,7 @@
             $(document).on("click", "#btn-edit", function (){
               var tr = $(this).closest('tr');
               tabrow = table.row( tr );
+              $("#row_no_aplikasi").val(tabrow.data()[0]);
               $("#no_surat_setneg").val(tabrow.data()[5]);
               $("#tgl_surat_setneg").val(tabrow.data()[6]);
               $("#data_lain_bpkln").val(tabrow.data()[7]);
@@ -258,6 +259,7 @@
       </div>      
       <div class="modal-body">
         <input type="hidden" name="manage" value="tambah_surat_pdln">
+        <input type="hidden" name="key" id="row_no_aplikasi">
         <label>No. Surat Setneg</label>
         <input type="text" class="form-control" placeholder="Nomor Surat Setneg" autofocus id="no_surat_setneg" name="no_surat_setneg" required>
         <br>

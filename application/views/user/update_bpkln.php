@@ -140,6 +140,7 @@
             $(document).on("click", "#btn-edit", function (){
               var tr = $(this).closest('tr');
               tabrow = table.row( tr );
+              $("#row_no_aplikasi").val(tabrow.data()[0]);
               $("#no_surat_bpkln_setneg").val(tabrow.data()[3]);
               $("#tgl_surat_bpkln_setneg").val(tabrow.data()[4]);
               $("#no_surat_bpkln_kemlu").val(tabrow.data()[5]);
@@ -147,7 +148,7 @@
             });
 
             $("#uploadForm").submit(function(e){
-            e.preventDefault();
+            e.preventDefault();            
             $.ajax({
               url: $(this).attr("action"),
               type: "POST",
@@ -229,6 +230,7 @@
       </div>      
       <div class="modal-body">
         <input type="hidden" name="manage" value="tambah_surat_bpkln">
+        <input type="hidden" name="key" id="row_no_aplikasi">
         <label>No. Surat BPKLN ke Setneg</label>
         <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Setneg" autofocus id="no_surat_bpkln_setneg" name="no_surat_bpkln_setneg">
         <br>

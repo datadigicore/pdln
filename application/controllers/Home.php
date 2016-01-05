@@ -176,9 +176,11 @@ class home extends CI_Controller {
   		//upload
   	  	$config['upload_path'] = FCPATH.'../files/other';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $result_array = array();
+
         for ($i = 1; $i <= 4; $i++) {
           if (!empty($_FILES['upl_files'.$i]['name'])) {
             if (!$this->upload->do_upload('upl_files'.$i)) {
@@ -286,6 +288,7 @@ class home extends CI_Controller {
   	  	//print_r($_FILES);
   	  	$config['upload_path'] = FCPATH.'../files/surat_unit_utama';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $result_array = array();
@@ -312,8 +315,11 @@ class home extends CI_Controller {
   	  				'sub_instansi_unit_utama' => $this->input->post('sub_instansi_unit_utama',TRUE),
   	  				'penandatangan_surat_unit_utama' => $this->input->post('penandatangan_surat_unit_utama',TRUE),
   	  				'perihal_surat_unit_utama' => $this->input->post('perihal_surat_unit_utama',TRUE),
-  	  				'surat_unit_utama' => $surat_unit_utama  	  				
-  	  				 );  
+  	  				
+  	  				 ); 
+  	  	if (!empty($surat_unit_utama)) {
+  	  		$data['surat_unit_utama'] = $surat_unit_utama;
+  	  	}
 
   	  	$result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);  	  	
 	    if ($result == TRUE) {
@@ -330,10 +336,10 @@ class home extends CI_Controller {
 
   	  case 'add_surat_undangan':
 
-  	  	//upload
-  	  	print_r($_FILES);
+  	  	//upload  	  	
   	  	$config['upload_path'] = FCPATH.'../files/surat_undangan';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $result_array = array();           
@@ -490,6 +496,26 @@ class home extends CI_Controller {
   	  case 'edit_data_pdln':
   	  	//$no_aplikasi = $this->input->post('key');  	  	
   	  	/*echo gettype($id);*/
+
+  	  	$config['upload_path'] = FCPATH.'../files/other';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $result_array = array();   
+
+	    for ($i = 1; $i <= 6; $i++) {
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_files'.$i)) {
+              $error = $this->upload->display_errors();
+
+            }
+            else {
+              $this->upload->data();
+            }
+          }
+        }
+
 	  	$datadiri = array(
 	      'nama_pemohon' => $this->input->post('nama_pemohon',TRUE),
 	      'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
@@ -499,11 +525,27 @@ class home extends CI_Controller {
 	      'tgl_terbit_passport' => $this->input->post('tgl_terbit_passport',TRUE),
 	      'tgl_habis_passport' => $this->input->post('tgl_habis_passport',TRUE),
 	      'instansi_pemohon' => $this->input->post('instansi_pemohon',TRUE),
-	      'jabatan_pemohon' => $this->input->post('jabatan_pemohon',TRUE),
-	      'cv_pemohon' => $this->input->post('cv_pemohon',TRUE),
-	      'foto_pemohon' => $this->input->post('foto_pemohon',TRUE),
-	      'karpeg_pemohon' => $this->input->post('karpeg_pemohon',TRUE)
+	      'jabatan_pemohon' => $this->input->post('jabatan_pemohon',TRUE)
 	      );
+
+	  	if (!empty($_FILES['upl_files1']['name'])) {
+  	  		$datadiri['foto_pemohon'] = $_FILES['upl_files1']['name'];
+  	  	}else{
+  	  		$datadiri['foto_pemohon'] = $this->input->post('upl_files1',TRUE);
+  	  	}
+
+  	  	if (!empty($_FILES['upl_files2']['name'])) {
+  	  		$datadiri['cv_pemohon'] = $_FILES['upl_files2']['name'];
+  	  	}else{
+  	  		$datadiri['cv_pemohon'] = $this->input->post('upl_files2',TRUE);
+  	  	}
+
+  	  	if (!empty($_FILES['upl_files3']['name'])) {
+  	  		$datadiri['karpeg_pemohon'] = $_FILES['upl_files3']['name'];
+  	  	}else{
+  	  		$datadiri['karpeg_pemohon'] = $this->input->post('upl_files3',TRUE);
+  	  	}
+
 
 	  	$data_surat_unit_utama = array(
 	      'no_surat_unit_utama' => $this->input->post('no_surat_unit_utama',TRUE),
@@ -511,7 +553,7 @@ class home extends CI_Controller {
 	      'penandatangan_surat_unit_utama' => $this->input->post('penandatangan_surat_unit_utama',TRUE),
 	      'instansi_unit_utama' => $this->input->post('instansi_unit_utama',TRUE),
 	      'perihal_surat_unit_utama' => $this->input->post('perihal_surat_unit_utama',TRUE),	      
-	      'surat_unit_utama' => $this->input->post('surat_unit_utama',TRUE)
+	      'surat_unit_utama' => $_FILES['upl_files4']['name']
 	      );
 
 	      $data_surat_undangan = array(
@@ -524,12 +566,11 @@ class home extends CI_Controller {
 	      'rincian_kegiatan' => $this->input->post('rincian_kegiatan',TRUE),
 	      'sumber_dana_kegiatan' => $this->input->post('sumber_dana_kegiatan',TRUE),
 	      'keterangan_sumber_dana_kegiatan' => $this->input->post('keterangan_sumber_dana_kegiatan',TRUE),
-	      'surat_undangan' => $this->input->post('surat_undangan',TRUE),
-	      'surat_perjanjian' => $this->input->post('surat_perjanjian',TRUE)
+	      'surat_undangan' => $_FILES['upl_files5']['name'],
+	      'surat_perjanjian' => $_FILES['upl_files6']['name']
 	      );
 
-		//print_r($data);
-		//print_r($id);
+		print_r($datadiri);		
 
 	    $id_user = $_SESSION['logged']['id_user'];
 	    //$no_aplikasi_data_diri = $this->input->post('key');
@@ -543,7 +584,7 @@ class home extends CI_Controller {
 	  	$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
 	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);	  	
 
-	  	if ($result_surat_bpkln == TRUE) {	    
+	  	/*if ($result_surat_bpkln == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
 		  //buat redirect ke halaman lain
 		  $this->session->set_flashdata('content','home');
@@ -551,12 +592,13 @@ class home extends CI_Controller {
 		}
 		else {		
 		  redirect('home');
-		}
+		}*/
   	  break;
 
   	  case 'tambah_surat_pdln':
   	  	$config['upload_path'] = FCPATH.'../files/surat_setneg';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $result_array = array();        
@@ -600,6 +642,7 @@ class home extends CI_Controller {
         
   	  	$config['upload_path'] = FCPATH.'../files/surat_bpkln/';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $result_array = array();
@@ -629,7 +672,7 @@ class home extends CI_Controller {
   	  				'no_surat_bpkln_kemlu' => $this->input->post('no_surat_bpkln_kemlu',TRUE),
   	  				'tgl_surat_bpkln_kemlu' => $this->input->post('tgl_surat_bpkln_kemlu',TRUE),
   	  				'surat_bpkln_kemlu' => $surat_bpkln_kemlu
-  	  				 );  
+  	  				 );  	
 
   	  	$result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);  	  	
 	    if ($result == TRUE) {

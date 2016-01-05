@@ -9,7 +9,15 @@
                 <div class="col-sm-3">
                     <div id="links">                        
                         <img src="<?php base_url();?>files/foto/<?php echo $foto_pemohon ?>" class="img-responsive">
-                        <input type="file" id="foto_pemohon" class="form-control" style="width: 50;" value="<?php $foto_pemohon?>">
+                        <?php if ($foto_pemohon!=""){ 
+                            echo "<input type='hidden' id='upl_files1' value='$foto_pemohon'> <br>";
+                            /*echo "<input type='file' id='upl_files1' class='form-control' style='width: auto;'' disable='true'>";*/
+                            echo "$foto_pemohon   <a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            }else{?>
+                                <input type="file" id="upl_files1" class="form-control" style="width: auto;">
+                            <?php
+                            }
+                            ?>
                     </div>
                     
                 </div>
@@ -87,15 +95,29 @@
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
-                        <div class="col-lg-8">                            
-                            <input type="file" id="cv_pemohon" class="form-control" style="width: auto;" value="<?php echo $cv_pemohon ?>">
+                        <div class="col-lg-8">
+                            <?php if ($cv_pemohon!=""){ 
+                                echo "<input type='hidden' id='upl_files2' value='$cv_pemohon'>";
+                                echo "$cv_pemohon   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            }else{?>
+                                <input type="file" id="upl_files2" class="form-control" style="width: auto;">
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
                         <div class="col-lg-8">
-                            <input type="file" id="karpeg_pemohon" class="form-control" style="width: auto;" value="<?php echo $karpeg_pemohon ?>">
+                            <?php if ($karpeg_pemohon!=""){ 
+                                echo "<input type='hidden' id='upl_files3' value='$karpeg_pemohon'>";
+                                echo "$karpeg_pemohon   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            }else{?>
+                                <input type="file" id="upl_files3" class="form-control" style="width: auto;">
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -144,7 +166,14 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <input type="file" id="surat_unit_utama" class="form-control" style="width: auto;" value="<?php echo $surat_unit_utama ?>">
+                            <?php if ($surat_unit_utama!=""){ 
+                                echo "<input type='hidden' id='upl_files4' value='$surat_unit_utama'>";
+                                echo "$surat_unit_utama   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            }else{?>
+                                <input type="file" id="upl_files4" class="form-control" style="width: auto;">
+                            <?php
+                            }
+                            ?>
 
                         </div>
                     </div>
@@ -225,14 +254,29 @@
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Udangan</strong></label>
                     <div class="col-lg-8">
-                        <input type="file" id="surat_undangan" class="form-control" style="width: auto;" value="<?php echo $surat_undangan ?>">
+                        <?php if ($surat_undangan!=""){ 
+                            echo "<input type='hidden' id='upl_files5' value='$surat_undangan'>";
+                            echo "$surat_undangan   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            }else{?>
+                                <input type="file" id="upl_files5" class="form-control" style="width: auto;">
+                            <?php
+                            }
+                            ?>
+                        
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Perjanjian</strong></label>
                     <div class="col-lg-8">
-                        <input type="file" id="surat_perjanjian" class="form-control" style="width: auto;" value="<?php echo $surat_perjanjian ?>">
+                        <?php if ($surat_perjanjian!=""){ 
+                            echo "<input type='hidden' id='upl_files6' value='$surat_perjanjian'>";
+                            echo "$surat_perjanjian   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            }else{?>
+                                <input type="file" id="upl_files6" class="form-control" style="width: auto;">
+                            <?php
+                            }
+                            ?>
                     </div>
                 </div>
               </div>
@@ -303,6 +347,7 @@
 
     $("#editdata").click(function(){ 
 
+        foto_pemohon =$('#foto_pemohon').val();
         no_aplikasi = $("#no_aplikasi").val(); 
         id_user = $("#id_user").val(); 
         nama_pemohon = $("#nama_pemohon").val(); 
@@ -315,16 +360,16 @@
         instansi_pemohon = $("#instansi_pemohon").val(); 
         sub_instansi_pemohon = $("#sub_instansi_pemohon").val(); 
         jabatan_pemohon = $("#jabatan_pemohon").val(); 
-        cv_pemohon = $("#cv_pemohon").val(); 
-        foto_pemohon = $("#foto_pemohon").val(); 
-        karpeg_pemohon = $("#karpeg_pemohon").val(); 
+        upl_files2 = $("#upl_files2").val(); 
+        upl_files1 = $("#upl_files1").val(); 
+        upl_files3 = $("#upl_files3").val(); 
         no_surat_unit_utama = $("#no_surat_unit_utama").val(); 
         tgl_surat_unit_utama = $("#tgl_surat_unit_utama").val(); 
         penandatangan_surat_unit_utama = $("#penandatangan_surat_unit_utama").val(); 
         instansi_unit_utama = $("#instansi_unit_utama").val(); 
         sub_instansi_unit_utama = $("#sub_instansi_unit_utama").val(); 
         perihal_surat_unit_utama = $("#perihal_surat_unit_utama").val(); 
-        surat_unit_utama = $("#surat_unit_utama").val(); 
+        upl_files4 = $("#upl_files4").val(); 
         no_surat_undangan = $("#no_surat_undangan").val(); 
         tgl_surat_undangan = $("#tgl_surat_undangan").val(); 
         instansi_pengundang = $("#instansi_pengundang").val(); 
@@ -334,8 +379,8 @@
         rincian_kegiatan = $("#rincian_kegiatan").val(); 
         sumber_dana_kegiatan = $("#sumber_dana_kegiatan").val(); 
         keterangan_sumber_dana_kegiatan = $("#keterangan_sumber_dana_kegiatan").val(); 
-        surat_undangan = $("#surat_undangan").val(); 
-        surat_perjanjian = $("#surat_perjanjian").val();
+        upl_files5 = $("#upl_files5").val(); 
+        upl_files6 = $("#upl_files6").val();
 
         $.ajax({
                 type: "post",
@@ -343,6 +388,7 @@
                 data: {
                         manage:'edit_data_pdln',
                         key:no_aplikasi,
+                        foto_pemohon:foto_pemohon,
                         nama_pemohon:nama_pemohon,
                         pekerjaan_pemohon:pekerjaan_pemohon,
                         nip_pemohon:nip_pemohon,
@@ -352,15 +398,15 @@
                         tgl_habis_passport:tgl_habis_passport,
                         instansi_pemohon :instansi_pemohon, 
                         jabatan_pemohon :jabatan_pemohon, 
-                        cv_pemohon :cv_pemohon, 
-                        foto_pemohon :foto_pemohon, 
-                        karpeg_pemohon :karpeg_pemohon, 
+                        upl_files2 :upl_files2, 
+                        upl_files1 :upl_files1, 
+                        upl_files3 :upl_files3, 
                         no_surat_unit_utama :no_surat_unit_utama, 
                         tgl_surat_unit_utama :tgl_surat_unit_utama, 
                         penandatangan_surat_unit_utama :penandatangan_surat_unit_utama, 
                         instansi_unit_utama :instansi_unit_utama, 
                         perihal_surat_unit_utama :perihal_surat_unit_utama, 
-                        surat_unit_utama :surat_unit_utama, 
+                        upl_files4 :upl_files4, 
                         no_surat_undangan :no_surat_undangan, 
                         tgl_surat_undangan :tgl_surat_undangan, 
                         instansi_pengundang :instansi_pengundang, 
@@ -370,18 +416,18 @@
                         rincian_kegiatan :rincian_kegiatan, 
                         sumber_dana_kegiatan :sumber_dana_kegiatan, 
                         keterangan_sumber_dana_kegiatan :keterangan_sumber_dana_kegiatan, 
-                        surat_undangan :surat_undangan, 
-                        surat_perjanjian :surat_perjanjian,
+                        upl_files5 :upl_files5, 
+                        upl_files6 :upl_files6,
 
                       },
 
                 success: function(data)
                 {                    
-                    var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
+                    /*var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
                     var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(no_aplikasi);                    
                     $form.append($input);
                     $("body").append($form);
-                    $form.submit();
+                    $form.submit();*/
                 }
               });
               return false;   
