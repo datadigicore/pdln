@@ -619,13 +619,10 @@ class home extends CI_Controller {
 
             }
             else {
-              // echo "string";
-              // move_uploaded_file($_FILES['upl_file'.$i]['name'], $config['upload_path'].$name);
               $this->upload->data();
             }
           }
         }
-        // die();
         //insert 	              
   	  	$data = array(
 					'no_surat_bpkln_setneg' => $this->input->post('no_surat_bpkln_setneg',TRUE),					
