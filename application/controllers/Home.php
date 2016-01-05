@@ -34,10 +34,14 @@ class home extends CI_Controller {
 	$this->load->view('template/sidebar');
 	switch ($content) {
 	  case 'step1':
+	  	if (!empty($data)) {
+	  		$this->load->view('user/pdln-new-step1loop',$data);
+	  	}else{
 	  	$table = 'instansi';
       	$data['instansi'] = $this->m_user->select_data($table);
       	//print_r($data);
-		$this->load->view('user/pdln-new-step1',$data);	  	
+		$this->load->view('user/pdln-new-step1',$data);
+		}
 	  break;
 	  case 'step2':	  	
       	$table = 'instansi';
@@ -235,7 +239,7 @@ class home extends CI_Controller {
 	  	  	}elseif ($kondisi=="tambah") {	  	  		
 	  	  		//print_r($max->no_aplikasi);
 	  	  		//print_r($no_aplikasi);
-	  	  		$this->session->set_flashdata('error_message', 'Silahkan Input Data Selanjutnya');
+	  	  		$this->session->set_flashdata('error_message', $datadiri);
 	  	  		$this->session->set_flashdata('content','step1');
 	  	  		redirect('home'); 	  	
 	  	  	}	     
@@ -412,7 +416,8 @@ class home extends CI_Controller {
 	      array( 'db' => 'data_lain_bpkln', 		 			'dt' => 7),
 	      array( 'db' => 'status', 								'dt' => 8)     
 	    );
-	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi";
+	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon 
+	    AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi";
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
   	  break;
 
@@ -443,12 +448,13 @@ class home extends CI_Controller {
 		$table5 = "sub_instansi";
 		$key = "id_data_diri";
 	  	$column = array(
-	      array( 'db' => 'no_aplikasi_data_diri',				'dt' => 0),	      
-	      array( 'db' => 'no_surat_unit_utama',				 	'dt' => 1),
-	      array( 'db' => 'no_surat_bpkln_setneg',				'dt' => 2),
-	      array( 'db' => 'tgl_surat_bpkln_setneg',			 	'dt' => 3),
-	      array( 'db' => 'no_surat_bpkln_kemlu', 				'dt' => 4),
-	      array( 'db' => 'tgl_surat_bpkln_kemlu',				'dt' => 5),
+	      array( 'db' => 'no_aplikasi_data_diri',				'dt' => 0),
+	      array( 'db' => 'nama_pemohon', 						'dt' => 1),	      
+	      array( 'db' => 'no_surat_unit_utama',				 	'dt' => 2),
+	      array( 'db' => 'no_surat_bpkln_setneg',				'dt' => 3),
+	      array( 'db' => 'tgl_surat_bpkln_setneg',			 	'dt' => 4),
+	      array( 'db' => 'no_surat_bpkln_kemlu', 				'dt' => 5),
+	      array( 'db' => 'tgl_surat_bpkln_kemlu',				'dt' => 6),
 	    );
 	   	$where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi";
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
@@ -513,13 +519,6 @@ class home extends CI_Controller {
 	      'surat_perjanjian' => $this->input->post('surat_perjanjian',TRUE)
 	      );
 
-	      $data_surat_bpkln = array(	      
-		  'no_surat_bpkln_setneg' => $this->input->post('no_surat_bpkln_setneg',TRUE),
-		  'tgl_surat_bpkln_setneg' => $this->input->post('tgl_surat_bpkln_setneg',TRUE),
-		  'no_surat_bpkln_kemlu' => $this->input->post('no_surat_bpkln_kemlu', TRUE),
-		  'tgl_surat_bpkln_kemlu' => $this->input->post('tgl_surat_bpkln_kemlu', TRUE)		  
-		);
-
 		//print_r($data);
 		//print_r($id);
 
@@ -533,8 +532,7 @@ class home extends CI_Controller {
 
 	  	$result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
 	  	$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
-	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
-	  	$result_surat_bpkln= $this->m_user->update_surat($table4,$data_surat_bpkln,$id_user,$no_aplikasi);	  
+	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);	  	
 
 	  	if ($result_surat_bpkln == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
@@ -542,12 +540,8 @@ class home extends CI_Controller {
 		  $this->session->set_flashdata('content','home');
 		  redirect('home');
 		}
-		else {
-			print_r($result_datadiri);
-		  	print_r($result_surat_unit_utama);
-		  	print_r($result_surat_undangan);
-		  	print_r($result_surat_bpkln);
-		  //redirect('home');
+		else {		
+		  redirect('home');
 		}
   	  break;
 

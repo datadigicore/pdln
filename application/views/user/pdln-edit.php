@@ -237,41 +237,6 @@
                 </div>
               </div>
             </div>
-
-            <h4>Surat BPKLN</h4>
-
-            <div class="row">
-                <div class="col-sm-12">
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat BPKLN ke Setneg</strong></label>
-                    <div class="col-lg-8">
-                        <input type="text" class="form-control" id="no_surat_bpkln_setneg" placeholder="No Surat BPKLN ke Setneg" >
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat BPKLN ke Setneg</strong></label>
-                    <div class="col-lg-8">
-                        <input type="date" class="form-control" id="tgl_surat_bpkln_setneg" placeholder="Tanggal Surat BPKLN ke Setneg">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat BPKLN ke Kemlu</strong></label>
-                    <div class="col-lg-8">
-                        <input type="text" class="form-control" id="no_surat_bpkln_kemlu" placeholder="Nomor Surat BPKLN ke Kemlu">
-                    </div>        
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat BPKLN ke Kemlu</strong></label>
-                    <div class="col-lg-8">
-                        <input type="date" class="form-control" id="tgl_surat_bpkln_kemlu" placeholder="Tanggal Surat BPKLN ke Kemlu">
-                    </div>
-                </div>
-
-
           </form>
          </div>
         </div>
@@ -371,10 +336,6 @@
         keterangan_sumber_dana_kegiatan = $("#keterangan_sumber_dana_kegiatan").val(); 
         surat_undangan = $("#surat_undangan").val(); 
         surat_perjanjian = $("#surat_perjanjian").val();
-        no_surat_bpkln_setneg = $("#no_surat_bpkln_setneg").val(); 
-        tgl_surat_bpkln_setneg = $("#tgl_surat_bpkln_setneg").val(); 
-        no_surat_bpkln_kemlu = $("#no_surat_bpkln_kemlu").val(); 
-        tgl_surat_bpkln_kemlu = $("#tgl_surat_bpkln_kemlu").val();
 
         $.ajax({
                 type: "post",
@@ -411,10 +372,6 @@
                         keterangan_sumber_dana_kegiatan :keterangan_sumber_dana_kegiatan, 
                         surat_undangan :surat_undangan, 
                         surat_perjanjian :surat_perjanjian,
-                        no_surat_bpkln_setneg :no_surat_bpkln_setneg, 
-                        tgl_surat_bpkln_setneg :tgl_surat_bpkln_setneg, 
-                        no_surat_bpkln_kemlu :no_surat_bpkln_kemlu, 
-                        tgl_surat_bpkln_kemlu :tgl_surat_bpkln_kemlu
 
                       },
 

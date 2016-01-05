@@ -104,7 +104,7 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <img src="<?php base_url();?>files/foto/<?php echo $foto_pemohon ?>" class="img-responsive img-thumbnail">
+                            <img src="<?php base_url();?>files/other/<?php echo $foto_pemohon ?>" class="img-responsive img-thumbnail">
                         </div>
                     </div>
                 </div>
