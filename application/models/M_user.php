@@ -105,8 +105,17 @@ class m_user extends CI_Model {
 		return $query;
 	}
 
-	function update_data_diri($table,$data,$id_user,$no_aplikasi){
-		$query = $this->db->update($table, $data, array('id_user'=> $id_user,'no_aplikasi_data_diri' => $no_aplikasi));
+	function update_data_diri($table,$data,$id_user,$no_aplikasi,$id_data_diri){
+		$query = $this->db->update($table, $data, array('id_instansi' => $id_data_diri, 'id_user'=> $id_user,'no_aplikasi_data_diri' => $no_aplikasi));
 		return $query;
+	}
+
+	function join(){
+		$this->db->select('*');
+		$this->db->from('data_diri');
+		$this->db->join('instansi', 'instansi.id = data_diri.instansi_pemohon');		
+		$query = $this->db->get();
+		return $query;
+
 	}
 } 

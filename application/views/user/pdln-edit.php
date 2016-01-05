@@ -8,11 +8,11 @@
             <div class="row">            
                 <div class="col-sm-3">
                     <div id="links">                        
-                        <img src="<?php echo '../files/other/'.$foto_pemohon; ?>" class="img-responsive"> 
-                        <?php if ($foto_pemohon!=""){                             
-                            echo "<input type='hidden' name='txt_upl_files1' value='$foto_pemohon'> <br>";
+                        <img src="<?php echo '../files/other/'.$data['foto_pemohon']; ?>" class="img-responsive"> 
+                        <?php if ($data['foto_pemohon']!=""){
+                            echo '<input type="hidden" name="txt_upl_files1" value="'.$data["foto_pemohon"].'"> <br>';
                             /*echo "<input type='file' name='upl_files1' class='form-control' style='width: auto;'' disable='true'>";*/
-                            echo "$foto_pemohon   <a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            echo ' "'.$data["foto_pemohon"].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files1" class="form-control">
                             <?php
@@ -21,48 +21,48 @@
                     </div>
                     
                 </div>
-                <input type="hidden" name="no_aplikasi_data_diri" class="form-control" value="<?php echo $no_aplikasi_data_diri ?>">
-                <input type="hidden" name="id_user" class="form-control" value="<?php echo $id_user ?>">
+                <input type="hidden" name="no_aplikasi_data_diri" class="form-control" value="<?php echo $data['no_aplikasi_data_diri'] ?>">
+                <input type="hidden" name="id_user" class="form-control" value="<?php echo $data['id_user'] ?>">
                 <div class="col-sm-9">
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Nama</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" name="nama_pemohon" class="form-control" value="<?php echo $nama_pemohon ?>">
+                            <input type="text" name="nama_pemohon" class="form-control" value="<?php echo $data['nama_pemohon'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>NIP</strong></label>
                         <div class="col-lg-8">
-                            <input type="number" name="nip_pemohon" class="form-control" value="<?php echo $nip_pemohon ?>">
+                            <input type="number" name="nip_pemohon" class="form-control" value="<?php echo $data['nip_pemohon'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>No. Telepon</strong></label>
                         <div class="col-lg-8">
-                            <input type="number" name="no_hp_pemohon" class="form-control" value="<?php echo $no_hp_pemohon ?>">
+                            <input type="number" name="no_hp_pemohon" class="form-control" value="<?php echo $data['no_hp_pemohon'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>No. Passport</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" name="no_passport_pemohon" class="form-control" value="<?php echo $no_passport_pemohon ?>">
+                            <input type="text" name="no_passport_pemohon" class="form-control" value="<?php echo $data['no_passport_pemohon'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Terbit Passport</strong></label>
                         <div class="col-lg-8">
-                            <input type="date" name="tgl_terbit_passport" class="form-control" value="<?php echo $tgl_terbit_passport ?>">
+                            <input type="date" name="tgl_terbit_passport" class="form-control" value="<?php echo $data['tgl_terbit_passport'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Kadaluarsa Passport</strong></label>
                         <div class="col-lg-8">
-                            <input type="date" name="tgl_habis_passport" class="form-control" value="<?php echo $tgl_habis_passport ?>">
+                            <input type="date" name="tgl_habis_passport" class="form-control" value="<?php echo $data['tgl_habis_passport'] ?>">
                         </div>
                     </div>
 
@@ -70,8 +70,8 @@
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Pekerjaan</strong></label>
                         <div class="col-lg-8">
                           <select class="form-control" name="pekerjaan_pemohon" name="pekerjaan_pemohon">
-                            <option value="<?php echo $pekerjaan_pemohon ?>"><?php echo $pekerjaan_pemohon ?></option>
-                            <option value="<?php echo $pekerjaan_pemohon ?>">---------</option>
+                            <option value="<?php echo $data['pekerjaan_pemohon'] ?>"><?php echo $data['pekerjaan_pemohon'] ?></option>
+                            <option value="<?php echo $data['pekerjaan_pemohon'] ?>">---------</option>
                             <option value="PNS">PNS</option>
                             <option value="Swasta">Swasta</option>
                             <option value="Lainnya">Lainnya</option>
@@ -80,25 +80,41 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi</strong></label>
-                        <div class="col-lg-8">
-                            <input type="text" name="instansi_pemohon" class="form-control" value="<?php echo $instansi_pemohon ?>">
-                        </div>
+                    <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi</strong></label>
+                    <div class="col-sm-8">
+                      <select class="form-control" id="instansi_pemohon" name="instansi_pemohon">
+                          <!-- query dari db -->
+                          <option value="<?php echo $data['instansi_pemohon']?>"><?php echo $data['instansi_pemohon']?></option>
+                          <option value="-">---Pilih Instansi Unit Utama---</option>
+                          <?php echo "ini datanya";print_r($instansi); foreach ($instansi as $key => $value) {
+                            echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
+                          }?>
+                          <!-- <option value="Lainnya">Lain-lain</option> -->
+                      </select>
+
+                      <select class="form-control" id="sub_instansi_pemohon" name="sub_instansi_pemohon" style="margin-top: 15px;">
+                          <!-- query dari db -->
+                          <option value="-">---Pilih Sub Instansi Unit Utama---</option>
+                          <!-- <option value="lainnya">Lain-lain</option> -->
+                      </select>
+                      <div id="result"></div>
+                     
                     </div>
+                  </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Jabatan</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" name="jabatan_pemohon" class="form-control"value="<?php echo $jabatan_pemohon ?>">
+                            <input type="text" name="jabatan_pemohon" class="form-control"value="<?php echo $data['jabatan_pemohon'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
                         <div class="col-lg-8">
-                            <?php if ($cv_pemohon!=""){ 
-                                echo "<input type='hidden' name='txt_upl_files2' value='$cv_pemohon'>";
-                                echo "$cv_pemohon   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            <?php if ($data['cv_pemohon']!=""){ 
+                                echo '<input type="hidden" name="txt_upl_files1" value="'.$data["cv_pemohon"].'">';
+                                echo ' "'.$data["cv_pemohon"].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files2" class="form-control" style="width: auto;">
                             <?php
@@ -110,9 +126,9 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
                         <div class="col-lg-8">
-                            <?php if ($karpeg_pemohon!=""){ 
-                                echo "<input type='hidden' name='txt_upl_files3' value='$karpeg_pemohon'>";
-                                echo "$karpeg_pemohon   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            <?php if ($data['karpeg_pemohon']!=""){ 
+                                echo '<input type="hidden" name="txt_upl_files2" value="'.$data['karpeg_pemohon'].'">';
+                                echo ' "'.$data["karpeg_pemohon"].'"  '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
                                 <input type="file" name="upl_files3" class="form-control" style="width: auto;">
                             <?php
@@ -124,9 +140,9 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Tugas</strong></label>
                         <div class="col-lg-8">
-                            <?php if ($surat_tugas_pemohon!=""){ 
-                                echo "<input type='hidden' name='txt_upl_files7' value='$surat_tugas_pemohon'>";
-                                echo "$surat_tugas_pemohon   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            <?php if ($data['surat_tugas_pemohon']!=""){ 
+                                echo '<input type="hidden" name="txt_upl_files2" value="'.$data['surat_tugas_pemohon'].'">';
+                                echo ' "'.$data['surat_tugas_pemohon'].'" '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
                                 <input type="file" name="upl_files7" class="form-control" style="width: auto;">
                             <?php
@@ -145,44 +161,62 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" name="no_surat_unit_utama" placeholder="No Surat" value="<?php echo $no_surat_unit_utama ?>">
+                            <input type="text" class="form-control" name="no_surat_unit_utama" placeholder="No Surat" value="<?php echo $data['no_surat_unit_utama'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <input type="date" class="form-control" name="tgl_surat_unit_utama" placeholder="Tanggal Surat" value="<?php echo $tgl_surat_unit_utama ?>">
+                            <input type="date" class="form-control" name="tgl_surat_unit_utama" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_unit_utama'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi</strong></label>
-                        <div class="col-lg-8">
-                            <input type="text" name="instansi_pemohon" class="form-control" value="<?php echo $instansi_unit_utama ?>">
-                        </div>
+                    <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi</strong></label>
+                    <div class="col-sm-8">
+                      <select class="form-control" id="instansi_unit_utama" name="instansi_unit_utama">
+                          <!-- query dari db -->
+                          <option value="<?php echo $data['instansi_unit_utama'] ?>"><?php echo $data['instansi_unit_utama'] ?></option>
+                          <option value="-">---Pilih Instansi Unit Utama---</option>
+                          <?php echo "ini datanya";print_r($instansi); foreach ($instansi as $key => $value) {
+                            echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
+                          }?>
+                          <!-- <option value="Lainnya">Lain-lain</option> -->
+                      </select>
+
+                      <select class="form-control" id="sub_instansi_unit_utama" name="sub_instansi_unit_utama" style="margin-top: 15px;">
+                          <!-- query dari db -->
+                          <option value="-">---Pilih Sub Instansi Unit Utama---</option>
+                          <!-- <option value="lainnya">Lain-lain</option> -->
+                      </select>
+                      <div id="result"></div>
+                     
                     </div>
+                  </div>
+
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Perihal</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" name="perihal_surat_unit_utama" placeholder="Perihal" value="<?php echo $perihal_surat_unit_utama ?>">
+                            <input type="text" class="form-control" name="perihal_surat_unit_utama" placeholder="Perihal" value="<?php echo $data['perihal_surat_unit_utama'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Penanggung Jawab Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" name="penandatangan_surat_unit_utama" placeholder="Penanggung Jawab" value="<?php echo $penandatangan_surat_unit_utama ?>">
+                            <input type="text" class="form-control" name="penandatangan_surat_unit_utama" placeholder="Penanggung Jawab" value="<?php echo $data['penandatangan_surat_unit_utama'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <?php if ($surat_unit_utama!=""){ 
-                                echo "<input type='hidden' name='txt_upl_files4' value='$surat_unit_utama'>";
-                                echo "$surat_unit_utama   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                            <?php if ($data['surat_unit_utama']!=""){ 
+                                echo '<input type="hidden" name="txt_upl_files2" value="'.$data['surat_unit_utama'].'">';
+                                echo ' "'.$data['surat_unit_utama'].'" '; 
+                                echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
                                 <input type="file" name="upl_files4" class="form-control" style="width: auto;">
                             <?php
@@ -202,45 +236,45 @@
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Undangan</strong></label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" name="no_surat_undangan" placeholder="No Surat" value="<?php echo $no_surat_undangan ?>">
+                        <input type="text" class="form-control" name="no_surat_undangan" placeholder="No Surat" value="<?php echo $data['no_surat_undangan'] ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Undangan</strong></label>
                     <div class="col-lg-8">
-                        <input type="date" class="form-control" name="tgl_surat_undangan" placeholder="Tanggal Surat" value="<?php echo $tgl_surat_undangan ?>">
+                        <input type="date" class="form-control" name="tgl_surat_undangan" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_undangan'] ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Undangan</strong></label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" name="instansi_pengundang" placeholder="Instansi Unit Utama" value="<?php echo $instansi_pengundang ?>">
+                        <input type="text" class="form-control" name="instansi_pengundang" placeholder="Instansi Unit Utama" value="<?php echo $data['instansi_pengundang'] ?>">
                     </div>        
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Negara Tujuan</strong></label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" name="negara_tujuan" placeholder="Negara Tujuan" value="<?php echo $negara_tujuan ?>">
+                        <input type="text" class="form-control" name="negara_tujuan" placeholder="Negara Tujuan" value="<?php echo $data['negara_tujuan'] ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-4 col-sm-4 control-label">Waktu Kegiatan</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" name="tgl_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $tgl_awal_kegiatan ?>">
+                    <input type="date" class="form-control" name="tgl_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $data['tgl_awal_kegiatan'] ?>">
                   </div>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" name="tgl_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $tgl_akhir_kegiatan ?>">
+                    <input type="date" class="form-control" name="tgl_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $data['tgl_akhir_kegiatan'] ?>">
                   </div>
                 </div> 
 
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Kegiatan</strong></label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" name="rincian_kegiatan" placeholder="Rincian_Kegiatan" value="<?php echo $rincian_kegiatan ?>">
+                        <input type="text" class="form-control" name="rincian_kegiatan" placeholder="Rincian_Kegiatan" value="<?php echo $data['rincian_kegiatan'] ?>">
                     </div>
                 </div>
 
@@ -248,8 +282,8 @@
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Sumber Dana</strong></label>
                     <div class="col-lg-8">
                     <select class="form-control" name="sumber_dana_kegiatan">
-                        <option value="<?php echo $sumber_dana_kegiatan ?>"><?php echo $sumber_dana_kegiatan ?></option>
-                        <option value="<?php echo $sumber_dana_kegiatan ?>">--------</option>
+                        <option value="<?php echo $data['sumber_dana_kegiatan'] ?>"><?php echo $data['sumber_dana_kegiatan'] ?></option>
+                        <option value="<?php echo $data['sumber_dana_kegiatan'] ?>">---Pilih Sumber Dana---</option>
                         <option value="APBN">APBN (Pemerintah)</option>
                         <option value="Pribadi">Pribadi (Dana Sendiri)</option>
                         <option value="Pengundang">Pengundang (Sponsor)</option>
@@ -261,16 +295,16 @@
                 <div class="form-group">
                   <label class="col-lg-4 col-sm-4 control-label">Keterangan Sumber Dana</label>
                   <div class="col-lg-8">
-                    <input type="text" class="form-control" name="keterangan_sumber_dana_kegiatan" placeholder="Mis : Beasiswa Ditjen Dikti" value="<?php echo $keterangan_sumber_dana_kegiatan ?>">
+                    <input type="text" class="form-control" name="keterangan_sumber_dana_kegiatan" placeholder="Mis : Beasiswa Ditjen Dikti" value="<?php echo $data['keterangan_sumber_dana_kegiatan'] ?>">
                   </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Udangan</strong></label>
                     <div class="col-lg-8">
-                        <?php if ($surat_undangan!=""){ 
-                            echo "<input type='hidden' name='txt_upl_files5' value='$surat_undangan'>";
-                            echo "$surat_undangan   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                        <?php if ($data['surat_undangan']!=""){ 
+                            echo '<input type="hidden" name="txt_upl_files5" value="'.$data['surat_undangan'].'">';
+                            echo ' "'.$data['surat_undangan'].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files5" class="form-control" style="width: auto;">
                             <?php
@@ -283,9 +317,9 @@
                 <div class="form-group">
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Perjanjian</strong></label>
                     <div class="col-lg-8">
-                        <?php if ($surat_perjanjian!=""){ 
-                            echo "<input type='hidden' name='txt_upl_files6' value='$surat_perjanjian'>";
-                            echo "$surat_perjanjian   "; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                        <?php if ($data['surat_perjanjian']!=""){ 
+                            echo '<input type="hidden" name="txt_upl_files5" value="'.$data['surat_perjanjian'].'">';
+                            echo ' "'.$data['surat_perjanjian'].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files6" class="form-control" style="width: auto;">
                             <?php
@@ -359,6 +393,28 @@
       }      
       });
      $("#sub_instansi_pemohon").hide();
+
+     $("#instansi_unit_utama").change(function(){
+      if ($(this).val() != "") {
+        $("#sub_instansi_unit_utama").show();
+        id = $("#instansi_unit_utama").val();      
+        $.ajax({
+                type: "post",
+                url : "<?php echo base_url('home/process') ?>",
+                data: {manage:'select_data',key:id},
+                success: function(result)
+                {
+                  //document.write(result);
+                  $("#sub_instansi_unit_utama").html(result);
+                  //$("#result").html(result);
+                }
+              });
+              return false;
+      }else{
+        $("#sub_instansi_unit_utama").hide();   
+      }      
+      });
+     $("#sub_instansi_unit_utama").hide();
 
     $("#editdata").click(function(){ 
 

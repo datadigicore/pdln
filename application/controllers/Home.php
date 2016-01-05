@@ -59,6 +59,8 @@ class home extends CI_Controller {
 	  break;
 
 	  case 'view':
+	  	$table = 'instansi';
+      	$data['instansi'] = $this->m_user->select_data($table);      	
 	  	//ini load data dari data diri nya udh bener
 	      $no_aplikasi_data_diri = array('no_aplikasi_data_diri' => $this->input->post('id'));
 	      $no_aplikasi = array('no_aplikasi' => $this->input->post('id'));
@@ -67,13 +69,14 @@ class home extends CI_Controller {
 	      $table3='surat_undangan';
 	      $kondisi = array('kondisi' => $this->input->post('kondisi'));
 	      $datadiri = $this->m_user->get_data_pdln($table1,$no_aplikasi_data_diri);
+	      //$datadiri = $this->m_user->join();
 	      $data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
 	      $data_surat_undangan = $this->m_user->get_data_pdln($table3,$no_aplikasi);
 	      //print_r($datadiri);
 	      /*print_r($data_surat_unit_utama);
 	      print_r($data_surat_undangan);*/
 	      //if ($result == true) {
-	        $data = array(
+	        $data['data'] = array(
 	          'id_data_diri' => $datadiri->id_data_diri,
 	          'id_user' => $datadiri->id_user,
 	          'no_aplikasi_data_diri' => $datadiri->no_aplikasi_data_diri,
@@ -260,17 +263,6 @@ class home extends CI_Controller {
 	  	  		$this->session->set_flashdata('content','step2');
 	  	  		redirect('home'); 	  	
 			}
-        	/*if ($kondisi=="lanjut") {
-	  	  		$this->session->set_flashdata('error_message', $datadiri);
-	  	  		$this->session->set_flashdata('content','step2');
-	  	  		redirect('home'); 	  	
-	  	  	}elseif ($kondisi=="tambah") {	  	  		
-	  	  		//print_r($max->no_aplikasi);
-	  	  		//print_r($no_aplikasi);
-	  	  		$this->session->set_flashdata('error_message', $datadiri);
-	  	  		$this->session->set_flashdata('content','step1');
-	  	  		redirect('home'); 	  	
-	  	  	}	     */
 		}
 		else {
 		  redirect('home');
@@ -514,9 +506,9 @@ class home extends CI_Controller {
   	  	//$no_aplikasi = $this->input->post('key');  	  	
   	  	/*echo gettype($id);*/
   	  	//echo "masuk data 22";
-  	  	echo "<pre>";
+  	  	/*echo "<pre>";
   	  	print_r($_POST);
-  	  	echo "</pre>";
+  	  	echo "</pre>";*/
   	  	$no_aplikasi = $this->input->post('no_aplikasi_data_diri',TRUE);
 		$id_user = $_SESSION['logged']['id_user'];
 	    $table1='data_diri';
