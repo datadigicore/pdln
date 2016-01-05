@@ -92,19 +92,19 @@
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $cv_pemohon?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $karpeg_pemohon?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <img src="<?php base_url();?>files/foto/<?php echo $foto_pemohon ?>" class="img-responsive img-thumbnail">
+                            <img src="<?php base_url();?>files/other/<?php echo $foto_pemohon ?>" class="img-responsive img-thumbnail">
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><a href="#" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                            <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $surat_unit_utama?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Udangan</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><a href="#" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                            <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $surat_undangan?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                         </div>
                     </div>
                 </div>

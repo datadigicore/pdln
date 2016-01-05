@@ -149,6 +149,23 @@
               $("#data_lain_bpkln").val(tabrow.data()[7]);
             });
 
+            $("#uploadForm").submit(function(e){
+            e.preventDefault();
+            $.ajax({
+              url: $(this).attr("action"),
+              type: "POST",
+              data:  new FormData(this),
+              contentType: false,
+              cache: false,
+              processData:false,
+              success: function(data){
+                table.draw();
+                $("#modal-tambahdata").modal('hide');
+              },
+              error: function(){}           
+            });
+            });
+
             $("#tambahdata").click(function(){              
               row_no_aplikasi = tabrow.data()[0];
               row_no_setneg = $("#no_surat_setneg").val();
@@ -234,12 +251,13 @@
 
 <div class="modal fade" id="modal-tambahdata" tabindex="-1" data-backdrop="static" data-keyboard="false">
   <div class="modal-content">
+    <form id="uploadForm" action="<?php echo base_url('home/process') ?>" method="post" enctype="multipart/form-data">
       <div class="modal-header" style="background-color:green;">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Tambah Data Surat Dari Setneg</h4>
       </div>      
       <div class="modal-body">
-        <input type="hidden" name="content" value="addnew">
+        <input type="hidden" name="manage" value="tambah_surat_pdln">
         <label>No. Surat Setneg</label>
         <input type="text" class="form-control" placeholder="Nomor Surat Setneg" autofocus id="no_surat_setneg" name="no_surat_setneg" required>
         <br>
@@ -253,8 +271,9 @@
         <input type="file" class="form-control" autofocus id="surat_setneg" name="surat_setneg" required>        
       </div>
       <div class="modal-footer">
-        <a id="tambahdata" class="btn btn-success">Submit</a>
+        <button type="submit" class="btn btn-success">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
       </div>
+    </form>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <!--main content start-->
   <section id="main-content">
     <section class="wrapper site-min-height">
-      <h3><i class="fa fa-angle-right"></i> Proses Permohonan</h3>
+      <h3><i class="fa fa-angle-right"></i> Surat BPKLN</h3>
       <div class="row mt">
         <div class="col-lg-12">
           <div class="pdln-panel">
@@ -14,6 +14,7 @@
               <thead>
                   <tr>
                       <th>No Aplikasi</th>
+                      <th>Nama</th>
                       <th>No. Surat Unit Utama</th>
                       <th>No. Surat BPKLN (setneg)</th>
                       <th>Tgl. Surat BPKLN (setneg)</th>
@@ -81,6 +82,7 @@
                 {"targets" : 3}, 
                 {"targets" : 4},
                 {"targets" : 5},
+                {"targets" : 6},
                 {"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
@@ -88,7 +90,7 @@
                                     /*'<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
                                     '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+*/
                                     '</div>',
-                 "targets": 6}
+                 "targets": 7}
               ],
               "order": [[ 0, "desc" ]]
             });
@@ -138,10 +140,10 @@
             $(document).on("click", "#btn-edit", function (){
               var tr = $(this).closest('tr');
               tabrow = table.row( tr );
-              $("#no_surat_bpkln_setneg").val(tabrow.data()[2]);
-              $("#tgl_surat_bpkln_setneg").val(tabrow.data()[3]);
-              $("#no_surat_bpkln_kemlu").val(tabrow.data()[4]);
-              $("#tgl_surat_bpkln_kemlu").val(tabrow.data()[5]);
+              $("#no_surat_bpkln_setneg").val(tabrow.data()[3]);
+              $("#tgl_surat_bpkln_setneg").val(tabrow.data()[4]);
+              $("#no_surat_bpkln_kemlu").val(tabrow.data()[5]);
+              $("#tgl_surat_bpkln_kemlu").val(tabrow.data()[6]);
             });
 
             $("#uploadForm").submit(function(e){
@@ -159,7 +161,8 @@
               },
               error: function(){}           
             });
-          });
+            });
+          
             
             $(document).on("click", "#nonaktif", function (){
               var tr = $(this).closest('tr');
@@ -175,7 +178,7 @@
                 }
               });
               return false;
-            })
+            });
           });
 
 

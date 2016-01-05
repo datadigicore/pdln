@@ -18,7 +18,10 @@
               <input type="hidden" name="manage" value="add_data_diri">
               <input type="hidden" name="kondisi" value="lanjut">
 
-              
+              <?php if (isset($error_message)){?>
+                <input type="text" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi_data_diri'];?>">
+              <?php } ?> 
+
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Identitas</h3>
@@ -42,6 +45,7 @@
                     <label class="col-lg-3 col-sm-3 control-label">Pekerjaan</label>
                     <div class="col-sm-9">
                       <select class="form-control" id="pekerjaan_pemohon" name="pekerjaan_pemohon">
+                          <option value="<?php echo $error_message['pekerjaan_pemohon'];?>"><?php echo $error_message['pekerjaan_pemohon'];?></option>
                           <option value="">---Pilih Pekerjaan---</option>
                           <option value="PNS">PNS</option>
                           <option value="Swasta">Swasta</option>
@@ -165,7 +169,7 @@
 
               <div class="form-group">
                 <div class="col-sm-9">      
-                    <a class="btn btn-success mb" id = "btn-new" title="Tambah data baru"><i class="fa fa-plus-square"></i> Tambah Data Lain</a>                
+                    <a class="btn btn-success mb" title="Tambah data baru" href="#"><i class="fa fa-plus-square"></i> Tambah Data Lain</a>                
                     <a class="btn btn-primary mb" title="Lanjut" onclick="$(this).closest('form').submit()"><i class="fa fa-check-square-o"></i> Simpan dan Lanjut</a>
                 </div>
               </div>
@@ -216,65 +220,7 @@
      });
     $("#jabatan_lain").hide();
 
-     $("#instansi_pemohon").change(function(){
-      if ($(this).val() != "-") {
-        $("#sub_instansi_pemohon").show();
-        id = $("#instansi_pemohon").val();      
-        $.ajax({
-                type: "post",
-                url : "<?php echo base_url('home/process') ?>",
-                data: {manage:'select_data',key:id},
-                success: function(result)
-                {
-                  //document.write(result);
-                  $("#sub_instansi_pemohon").html(result);
-                  //$("#result").html(result);
-                }
-              });
-              return false;
-      }else{
-        $("#sub_instansi_pemohon").hide();   
-      }      
-      });
-     $("#sub_instansi_pemohon").hide();
-
-
-     $(document).on("click", "#btn-new", function (){              
-              kondisi = 'tambah';
-              manage = 'add_data_diri';
-              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home/process') ?>");              
-              var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','manage').val(manage);
-              var $input3=$(document.createElement('input')).css({display:'none'}).attr('name','kondisi').val(kondisi);
-              $form.append($input2).append($input3);
-              $("body").append($form);
-              $form.submit();
-            });
-
-  /*  $(document).on('submit', '#tambah_data_baru', function (e) {
-
-      var formURL = $(this).attr("action");
-      var addData = new FormData(this);
-
-      $.ajax({
-        type: "post",
-        data: addData,
-        url : formURL,
-        contentType: false,
-        cache: false,  
-        processData: false,
-        success: function(data)
-        {
-          $("#success-alert").alert();
-          $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
-          $("#success-alert").alert('close');
-          });
-          setTimeout("location.href = redirectURL;",redirectTime);
-        }
-      });
-      return false;
-    });*/
-     
-
+    
   });
 
 </script>
