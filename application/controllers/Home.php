@@ -43,14 +43,9 @@ class home extends CI_Controller {
 	$this->load->view('template/sidebar');
 	switch ($content) {
 	  case 'step1':
-	  	if (!empty($data)) {
-	  		$this->load->view('user/pdln-new-step1loop',$data);
-	  	}else{
-	  	$table = 'instansi';
+  	  	$table = 'instansi';
       	$data['instansi'] = $this->m_user->select_data($table);
-      	//print_r($data);
-		$this->load->view('user/pdln-new-step1',$data);
-		}
+		$this->load->view('user/pdln-new-step1',$data);		
 	  break;
 	  case 'step2':	  	
       	$table = 'instansi';
@@ -170,10 +165,14 @@ class home extends CI_Controller {
       break;
 
   	  case 'add_data_diri': 
-
-  	  	$kondisi = $this->input->post('kondisi');
-  	  	$max= $this->m_user->max_no_aplikasi();
-	  	$no_aplikasi = $max->no_aplikasi_data_diri+1;
+  	  	$cek = $this->input->post('no_aplikasi');
+  	  	if(isset($cek)){
+  	  		$no_aplikasi = $this->input->post('no_aplikasi');
+  	  	}else{
+  	  		$max= $this->m_user->max_no_aplikasi();
+	  		$no_aplikasi = $max->no_aplikasi_data_diri+1;
+  	  	}
+  	  	//$kondisi = $this->input->post('kondisi');  	  	
 		
   		//upload
   	  	$config['upload_path'] = FCPATH.'../files/other';
@@ -238,14 +237,30 @@ class home extends CI_Controller {
 
 
         $result= $this->db->insert('data_diri',$datadiri);
-        $result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
-        $result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
-        $result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
 
         //buat redirect ke halaman lain
         
         if ($result == TRUE ) {
-        	if ($kondisi=="lanjut") {
+        	if($this->input->post('tambah') == "tambah"){
+    			$kondisi = "tambah";
+    			/*print_r($kondisi);
+    			print_r($datadiri);*/
+    			$this->session->set_flashdata('error_message', $datadiri);
+	  	  		$this->session->set_flashdata('content','step1');
+	  	  		redirect('home'); 	  	
+			}
+			if($this->input->post('lanjut')=="lanjut"){
+				$result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
+        		$result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
+        		$result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
+			    $kondisi = "lanjut";
+			    /*print_r($kondisi);
+    			print_r($datadiri);*/
+			    $this->session->set_flashdata('error_message', $datadiri);
+	  	  		$this->session->set_flashdata('content','step2');
+	  	  		redirect('home'); 	  	
+			}
+        	/*if ($kondisi=="lanjut") {
 	  	  		$this->session->set_flashdata('error_message', $datadiri);
 	  	  		$this->session->set_flashdata('content','step2');
 	  	  		redirect('home'); 	  	
@@ -255,7 +270,7 @@ class home extends CI_Controller {
 	  	  		$this->session->set_flashdata('error_message', $datadiri);
 	  	  		$this->session->set_flashdata('content','step1');
 	  	  		redirect('home'); 	  	
-	  	  	}	     
+	  	  	}	     */
 		}
 		else {
 		  redirect('home');
@@ -547,7 +562,7 @@ class home extends CI_Controller {
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $result_array = array(); 
-	    
+
 	    for ($i = 1; $i <= 7; $i++) {
 	    	$nama_file="";
 	    	$data_file=$this->input->post('txt_upl_files'.$i);

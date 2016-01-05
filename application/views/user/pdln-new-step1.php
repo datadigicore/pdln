@@ -16,9 +16,12 @@
 
             <!-- HIDDEN INPUT -->
               <input type="hidden" name="manage" value="add_data_diri">
-              <input type="hidden" name="kondisi" value="lanjut">
+              <input type="hidden" name="kondisi" value="tambah">
 
-              
+              <?php if (isset($error_message)){?>
+                <input type="text" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi_data_diri'];?>">
+              <?php } ?> 
+
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Identitas</h3>
@@ -165,8 +168,8 @@
 
               <div class="form-group">
                 <div class="col-sm-9">      
-                    <a class="btn btn-success mb" id = "btn-new" title="Tambah data baru"><i class="fa fa-plus-square"></i> Tambah Data Lain</a>                
-                    <a class="btn btn-primary mb" title="Lanjut" onclick="$(this).closest('form').submit()"><i class="fa fa-check-square-o"></i> Simpan dan Lanjut</a>
+                    <input type="submit" name="tambah" value="tambah" title="Tambah data baru">
+                    <input type="submit" name="lanjut" value="lanjut"title="Lanjut">
                 </div>
               </div>
             </form>   

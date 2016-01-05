@@ -8,8 +8,8 @@
             <div class="row">            
                 <div class="col-sm-3">
                     <div id="links">                        
-                        <img src="<?php echo '../files/other/'.$foto_pemohon; ?>" class="img-responsive">
-                        <?php if ($foto_pemohon!=""){ 
+                        <img src="<?php echo '../files/other/'.$foto_pemohon; ?>" class="img-responsive"> 
+                        <?php if ($foto_pemohon!=""){                             
                             echo "<input type='hidden' name='txt_upl_files1' value='$foto_pemohon'> <br>";
                             /*echo "<input type='file' name='upl_files1' class='form-control' style='width: auto;'' disable='true'>";*/
                             echo "$foto_pemohon   <a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
@@ -303,7 +303,7 @@
         <a class="btn btn-success" title="Update" id="editdata"><i class="fa fa-check-square-o"></i>Update</a>
         <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home">
             <input type="hidden" name="content" value="home">
-            <a class="btn btn-danger" title="Update" onclick="$(this).closest('form').submit()"><i class="fa fa-remove"></i>Cancel</a>
+            <a class="btn btn-danger" title="Cancel" onclick="$(this).closest('form').submit()"><i class="fa fa-remove"></i>Cancel</a>
         </form>
 
       </div>
@@ -373,11 +373,11 @@
               processData: false,  // tell jQuery not to process the data
               contentType: false   // tell jQuery not to set contentType
             }).done(function( data ) {
-                /*var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
+                var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
                 var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id_user').val();                    
                 $form.append($input);
                 $("body").append($form);
-                $form.submit();*/
+                $form.submit();
 
             }); 
     });
