@@ -498,7 +498,7 @@ class home extends CI_Controller {
   	  case 'edit_data_pdln':
   	  	//$no_aplikasi = $this->input->post('key');  	  	
   	  	/*echo gettype($id);*/
-  	  	echo "masuk data 22";
+  	  	//echo "masuk data 22";
   	  	echo "<pre>";
   	  	print_r($_POST);
   	  	echo "</pre>";
@@ -508,14 +508,6 @@ class home extends CI_Controller {
 	    $table2='surat_unit_utama';
 	    $table3='surat_undangan';
 	    $table4='surat_bpkln';
-
-  	  	
-  	  	$config['upload_path'] = FCPATH.'../files/other';
-        $config['allowed_types'] = 'gif|jpg|png|pdf';
-        $config['encrypt_name'] = TRUE;
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
-        $result_array = array();   
 
       	$datadiri = array(
 	      'nama_pemohon' => $this->input->post('nama_pemohon',TRUE),
@@ -549,7 +541,13 @@ class home extends CI_Controller {
 	      'keterangan_sumber_dana_kegiatan' => $this->input->post('keterangan_sumber_dana_kegiatan',TRUE)	      
 	      );
   
-
+	    $config['upload_path'] = FCPATH.'../files/other';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $result_array = array(); 
+	    
 	    for ($i = 1; $i <= 7; $i++) {
 	    	$nama_file="";
 	    	$data_file=$this->input->post('txt_upl_files'.$i);
@@ -569,19 +567,19 @@ class home extends CI_Controller {
 			          }
 			}else echo "data== $data_file <br/>";
 
-			if(!empty($_FILES['upl_files1']['name'])){
+			if($i==1){
 					$datadiri['foto_pemohon']=$nama_file;
-			}else if(!empty($_FILES['upl_files2']['name'])){
+			}else if($i==2){
 					$datadiri['cv_pemohon']=$nama_file;
-			}else if(!empty($_FILES['upl_files3']['name'])){
+			}else if($i==3){
 					$datadiri['karpeg_pemohon']=$nama_file;	
-			}else if(!empty($_FILES['upl_files4']['name'])){
+			}else if($i==4){
 					$data_surat_unit_utama['surat_unit_utama']=$nama_file;	
-			}else if(!empty($_FILES['upl_files5']['name'])){
+			}else if($i==5){
 					$data_surat_undangan['surat_undangan']=$nama_file;	
-			}else if(!empty($_FILES['upl_files6']['name'])){
+			}else if($i==6){
 					$data_surat_undangan['surat_perjanjian']=$nama_file;	
-			}else if(!empty($_FILES['upl_files7']['name'])){
+			}else if($i==7){
 					$datadiri['surat_tugas_pemohon']=$nama_file;	
 			}
         }

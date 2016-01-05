@@ -14,7 +14,7 @@
                             /*echo "<input type='file' name='upl_files1' class='form-control' style='width: auto;'' disable='true'>";*/
                             echo "$foto_pemohon   <a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
-                                <input type="file" name="upl_files1" class="form-control" style="width: auto;">
+                                <input type="file" name="upl_files1" class="form-control">
                             <?php
                             }
                             ?>
