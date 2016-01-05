@@ -8,11 +8,11 @@
           <label class="col-lg-3 col-sm-3 control-label">Filter berdasarkan</label>
           <div class="col-sm-9">
             <select class="form-control" id="pilihexport" name="pilihexport" required>
-                <option disabled selected>Pilih salah satu</option>
+                <option value="" disabled selected>Pilih salah satu</option>
                 <option value="negara">Negara</option>
                 <option value="nip">NIP</option>
                 <option value="sumber">Sumber Dana</option>
-                <!-- <option>Unitutama</option> -->
+                <!-- <option>Unit Utama</option> -->
                 <option value="waktu">Waktu Berkunjung</option>
             </select>
           </div>
@@ -52,7 +52,7 @@
   $("#pilihexport").change(function(){
     if($(this).val() == "negara"){
       clear();
-      $("<select class='form-control' id='negara' name='negara'></select>").insertAfter( $( "#pilihexport" ) );
+      $("<select class='form-control' id='negara' name='negara' required></select>").insertAfter( $( "#pilihexport" ) );
       $.ajax({
         type: "post",
         url : "<?php echo base_url('home/process') ?>",
@@ -65,7 +65,7 @@
     }
     else if ($(this).val()=="nip"){
      clear();
-     $("<select class='form-control' id='nip' name='nip'></select>").insertAfter( $( "#pilihexport" ) );
+     $("<select class='form-control' id='nip' name='nip' required></select>").insertAfter( $( "#pilihexport" ) );
       $.ajax({
         type: "post",
         url : "<?php echo base_url('home/process') ?>",
@@ -78,7 +78,7 @@
     }
     else if ($(this).val()=="sumber"){
      clear();
-     $("<select class='form-control' id='sumber' name='sumber'></select>").insertAfter( $( "#pilihexport" ) );
+     $("<select class='form-control' id='sumber' name='sumber' required></select>").insertAfter( $( "#pilihexport" ) );
       $.ajax({
         type: "post",
         url : "<?php echo base_url('home/process') ?>",
@@ -91,8 +91,8 @@
     }
     else if ($(this).val()=="waktu"){
      clear();
-     $("<input type='date' id='waktu_awal' class='form-control' name='waktu'>").insertAfter( $( "#pilihexport" ) );
-     $("<input type='date' id='waktu_akhir' class='form-control' name='waktu'>").insertAfter( $( "#waktu_awal" ) );
+     $("<input type='date' id='waktu_awal' class='form-control' name='waktu_awal' required>").insertAfter( $( "#pilihexport" ) );
+     $("<input type='date' id='waktu_akhir' class='form-control' name='waktu_akhir' required>").insertAfter( $( "#waktu_awal" ) );
     }
   })
 </script>

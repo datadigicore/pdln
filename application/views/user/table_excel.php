@@ -1,6 +1,6 @@
 Rekapitulasi Nama<br>
 Pejabat, Pegawai, Dosen, Guru dan Mahasiswa/Siswa ke Luar Negeri<br>
-Tahun 2016<br><br>
+Tahun <?php echo date("Y"); ?><br><br>
 <table >
         <thead>
             <tr>

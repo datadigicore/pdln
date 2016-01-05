@@ -169,28 +169,28 @@ class home extends CI_Controller {
 
       case 'select_country':      
         $result = $this->m_user->get_country();
-        echo '<option selected disabled>--- Pilih Negara ---</option>';
+        echo '<option value="" selected disabled>--- Pilih Negara ---</option>';
         foreach ($result as $item) {
           echo '<option value="'.$item["country_name"].'">'.$item["country_name"]."</option>";
         } 
       break;
       case 'select_nip':
         $result = $this->m_user->get_nip();
-        echo '<option selected disabled>--- Pilih NIP ---</option>';
+        echo '<option value="" selected disabled>--- Pilih NIP ---</option>';
         foreach ($result as $item) {
           echo '<option value="'.$item["nip_pemohon"].'">'.$item["nip_pemohon"]."</option>";
         } 
       break;
       case 'select_sumber':
         $result = $this->m_user->get_sumber();
-        echo '<option selected disabled>--- Pilih Sumber Dana ---</option>';
+        echo '<option value="" selected disabled>--- Pilih Sumber Dana ---</option>';
         foreach ($result as $item) {
           echo '<option value="'.$item["sumber_dana_kegiatan"].'">'.$item["sumber_dana_kegiatan"]."</option>";
         } 
       break;
       case 'select_waktu':
         $result = $this->m_user->get_sumber();
-        echo '<option selected disabled>--- Pilih Sumber Dana ---</option>';
+        echo '<option value="" selected disabled>--- Pilih Sumber Dana ---</option>';
         foreach ($result as $item) {
           echo '<option value="'.$item["sumber_dana_kegiatan"].'">'.$item["sumber_dana_kegiatan"]."</option>";
         } 
