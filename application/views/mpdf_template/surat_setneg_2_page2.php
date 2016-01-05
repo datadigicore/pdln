@@ -60,12 +60,14 @@ Tanggal <?php echo strftime("%d", strtotime($query[0]['tgl_awal_kegiatan']))." S
 <br>
 <table width="100%">
   <tr>
-    <td width="56%"></td>
+    <td width="60%"></td>
     <td>
-      A.n Sekretaris Kementerian Sekretariat Negara<br>
-      Kepala Biro Kerja Sama Teknik Luar Negeri<br>
+      A.n Sekretaris Jenderal<br>
+      Kepala Biro Perencanaan dan <br>
+      Kerja Sama Teknik Luar Negeri<br>
       <br><br><br>
-      Rika Kiswardani<br>
+      Suharti<br>
+      NIP. 196911211992032002
     </td>
   </tr>
 </table>

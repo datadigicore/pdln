@@ -26,8 +26,8 @@
   <tr>
       <td valign="top">Hal</td>
       <td align="right" valign="top">:</td>
-      <td><?php echo $rincian_kegiatan?><br>
-      <?php echo $nama_pemohon?></td>
+      <td>Permohonan paspor dinas, <i>exit permit</i><br>
+      dan rekomendasi visa</td>
   </tr>
 </table>
 <br>
@@ -38,7 +38,7 @@ Jakarta<br>
 <p align="justify">Dengan hormat kami mohon dengan hormat bantuan Saudara agar dapat kiranya diberikan paspor dinas, <i>exit permit</i> dan rekomendasi visa bagi:</p>
 <p><?php echo $nama_pemohon?> NIP. <?php echo $nip_pemohon?><br>
 <?php echo $nama_instansi?>, <?php echo $nama_sub_instansi?>, <?php echo $jabatan_pemohon?>.</p>
-<p align="justify">Untuk mengikuti <?php echo $rincian_kegiatan?> pada tanggal <?php echo date("d", strtotime($tgl_awal_kegiatan));?> S.D. <?php echo strftime("%d %B %Y", strtotime($tgl_akhir_kegiatan));?>. Sumber pendanaan dari <?php echo $sumber_dana_kegiatan?>.</p>
+<p align="justify">Untuk mengikuti <?php echo $rincian_kegiatan?> pada tanggal <?php echo date("d", strtotime($tgl_awal_kegiatan));?> S.D. <?php echo strftime("%d %B %Y", strtotime($tgl_akhir_kegiatan));?>. Sumber pendanaan dari <?php echo $sumber_dana_kegiatan?>, <?php echo $keterangan_sumber_dana_kegiatan?>.</p>
 <p>Atas perhatian dan kerja sama Saudara, kami menyampaikan terima kasih.</p>
 <br>
 <table width="100%">
@@ -49,8 +49,8 @@ Jakarta<br>
 	  Kepala Bagian Kerjasama Luar Negeri<br>
     u.b<br>
 	  <br><br><br>
-	  Evy Margaretha<br>
-	  NIP. 197903302005012002<br>
+	  Yaya Sutarya<br>
+    NIP. 197401122000121005
 	</td>
   </tr>
 </table>

@@ -12,7 +12,7 @@
                 <option>Negara</option>
                 <option>NIP</option>
                 <option>Sumber Dana</option>
-                <option>Unitutama/option>
+                <option>Unitutama</option>
                 <option>Waktu Berkunjung</option>
             </select>
           </div>

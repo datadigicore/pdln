@@ -3,8 +3,17 @@
   <section class="wrapper site-min-height">
     <div class="row mt">
         <div class="col-lg-12">
-            <a href="20151229-1017-menlu-.pdf" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
-            <a href="20151229-1017-menlu-.pdf" title="Cetak Surat ke Menlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Menlu</a>
+            <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf/cetak_surat" style="float:left; margin-right:12px">
+                <input type="hidden" name="iduser" value="<?php echo $id_data_diri ?>">
+                <input type="hidden" name="kategori" value="setneg">
+                <input type="hidden" name="noaplikasi" value="<?php echo $no_aplikasi_data_diri ?>">
+                <a onclick="$(this).closest('form').submit()" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
+              </form>
+            <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf/cetak_surat">
+                <input type="hidden" name="iduser" value="<?php echo $id_data_diri ?>">
+                <input type="hidden" name="kategori" value="menlu">
+                <a onclick="$(this).closest('form').submit()" title="Cetak Surat ke Menlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Menlu</a>
+              </form>          
         </div>
     </div>
 
@@ -104,7 +113,7 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <img src="<?php echo '../files/other/'.$foto_pemohon; ?>" class="img-responsive img-thumbnail">
+                            <img src="<?php echo '../files/foto/'.$foto_pemohon; ?>" class="img-responsive img-thumbnail">
                         </div>
                     </div>
                 </div>
