@@ -16,8 +16,7 @@
   <tr>
       <td width="15%">Nomor </td>
       <td width="5%" align="right">:</td>
-      <td width="65%"></td>
-      
+      <td><?php for ($i=0; $i < 20; $i++) { echo "&nbsp;"; } echo "/A1.3/LN/".date("Y") ?></td>
   </tr>
   <tr>
       <td>Lampiran</td>
@@ -33,14 +32,14 @@
 </table>
 <br>
 Yth. Direktur Konsuler<br>
-Kementerian Luar Negeri RI<br>
-Jalan Taman Pejambon 6<br>
+Kementerian Luar Negeri<br>
+Jln. Taman Pejambon 6<br>
 Jakarta<br>
-<p align="justify">Bersama ini kami mohon dengan hormat bantuan Saudara untuk memberikan Paspor Dinas, Exit Permit dan Rekomendasi Visa:</p>
-<p><u><?php echo $nama_pemohon?></u> NIP. <?php echo $nip_pemohon?><br><?php echo $jabatan_pemohon?>, <?php echo $instansi_pemohon?></p>
-<p align="justify"><?php echo $rincian_kegiatan?> pada tanggal <?php echo date("d", strtotime($tgl_awal_kegiatan));?> s.d. <?php echo strftime("%d %B %Y", strtotime($tgl_akhir_kegiatan));?>. Sumber pendanaan dari <?php echo $sumber_dana_kegiatan?>.</p>
-<p align="justify">Sebagai bahan pertimbangan Saudara, bersama ini dilampirkan daftar riwayat hidup yang bersangkutan.</p>
-<p>Atas perhatian dan kerjasama Saudara, kami ucapkan terima kasih.</p>
+<p align="justify">Dengan hormat kami mohon dengan hormat bantuan Saudara agar dapat kiranya diberikan paspor dinas, <i>exit permit</i> dan rekomendasi visa bagi:</p>
+<p><?php echo $nama_pemohon?> NIP. <?php echo $nip_pemohon?><br>
+<?php echo $nama_instansi?>, <?php echo $nama_sub_instansi?>, <?php echo $jabatan_pemohon?>.</p>
+<p align="justify">Untuk mengikuti <?php echo $rincian_kegiatan?> pada tanggal <?php echo date("d", strtotime($tgl_awal_kegiatan));?> S.D. <?php echo strftime("%d %B %Y", strtotime($tgl_akhir_kegiatan));?>. Sumber pendanaan dari <?php echo $sumber_dana_kegiatan?>.</p>
+<p>Atas perhatian dan kerja sama Saudara, kami menyampaikan terima kasih.</p>
 <br>
 <table width="100%">
   <tr>
@@ -48,6 +47,7 @@ Jakarta<br>
 	<td>
 	  A.n Kepala Biro Perencanaan dan Kerjasama Luar Negeri<br>
 	  Kepala Bagian Kerjasama Luar Negeri<br>
+    u.b<br>
 	  <br><br><br>
 	  Evy Margaretha<br>
 	  NIP. 197903302005012002<br>
@@ -55,6 +55,5 @@ Jakarta<br>
   </tr>
 </table>
 <br><br>
-Tembusan Yth.:<br>
-1. Sesjen Kemdikbud<br>
-2. Dir Konsuler Kemlu<br>
+Tembusan :<br>
+Karo Perencanaan dan KLN

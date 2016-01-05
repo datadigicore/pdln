@@ -11,7 +11,8 @@ class c_mpdf extends CI_Controller {
 		// print_r($result);
 		// print('</pre>');
 		// die;
-		$banyak = $this->input->post('banyak', TRUE);
+		$banyak = 1;
+		// $banyak = $this->input->post('banyak', TRUE);
 		// $banyak = 1;
 		$noaplikasi = $this->input->post('no_aplikasi', TRUE);
 		$menset = "";
