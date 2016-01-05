@@ -17,8 +17,8 @@ class home extends CI_Controller {
 	  redirect('login');
 	}
   }
-  public function download(){
-    $image_name = "yohanes.png";
+  public function download($image_name){
+    //$image_name = "yohanes.png";
     $image_path =  FCPATH."../files/other/$image_name";
     header('Content-Type: application/octet-stream');
     header("Content-Disposition: attachment; filename=$image_name");
@@ -259,7 +259,7 @@ class home extends CI_Controller {
             /*if ($result=1) {
                     echo "<script>alert('Data berhasil di simpan');window.location.href='http://localhost/dikbud/pdln/'</script>";
             }*/
-  	  break;  	  
+  	  break; 	  
 
       case 'uji_upload_file':
         $config['upload_path'] = FCPATH.'../files/other';
@@ -564,7 +564,7 @@ class home extends CI_Controller {
         if (!empty($_FILES['surat_setneg']['name'])) {
           if (!$this->upload->do_upload('surat_setneg')) {
             $error = $this->upload->display_errors();
-
+            $datasurat = array('surat_setneg' => $_FILES['surat_setneg']['name'] );            
           }
           else {
             $this->upload->data();
@@ -580,14 +580,18 @@ class home extends CI_Controller {
 	  	$data_surat_bpkln = array(
 		  'no_surat_setneg' => $this->input->post('no_surat_setneg',TRUE),
 		  'tgl_surat_setneg' => $this->input->post('tgl_surat_setneg',TRUE),
-		  'data_lain_bpkln' => $this->input->post('data_lain_bpkln', TRUE),
-		  'surat_setneg' => $this->input->post('surat_setneg',TRUE)
+		  'data_lain_bpkln' => $this->input->post('data_lain_bpkln', TRUE)		  
 		);
 
 		$datadiri= array('status' =>'Diterima');
 
+		if (!empty($datasurat)) {
+			$this->m_user->update_surat($table,$datasurat,$id_user,$no_aplikasi);
+		}
+
 		$this->m_user->update_surat($table,$data_surat_bpkln,$id_user,$no_aplikasi);
 		$this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
+
 
 	  	//$this->m_user->upd_data_pdln($no_aplikasi, $data);
   	  break;

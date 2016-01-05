@@ -146,37 +146,6 @@
               $("#tgl_surat_bpkln_kemlu").val(tabrow.data()[6]);
             });
 
-<<<<<<< HEAD
-            $("#tambahdata").click(function(){              
-              row_no_aplikasi = tabrow.data()[0];
-              row_no_surat_bpkln_setneg = $("#no_surat_bpkln_setneg").val();
-              row_tgl_surat_bpkln_setneg = $("#tgl_surat_bpkln_setneg").val();
-              row_no_surat_bpkln_kemlu = $("#no_surat_bpkln_kemlu").val();
-              row_tgl_surat_bpkln_kemlu = $("#tgl_surat_bpkln_kemlu").val();
-              row_upl_file1 = $("#upl_file1").val();
-              row_upl_file2 = $("#upl_file2").val();
-              $.ajax({
-                type: "post",
-                url : "<?php echo base_url('home/process') ?>",
-                contenttype: "multipart/form-data",
-                data: {
-                        manage:'tambah_surat_bpkln',
-                        key:row_no_aplikasi,
-                        no_surat_bpkln_setneg:row_no_surat_bpkln_setneg,
-                        tgl_surat_bpkln_setneg:row_tgl_surat_bpkln_setneg,
-                        no_surat_bpkln_kemlu:row_no_surat_bpkln_kemlu,
-                        tgl_surat_bpkln_kemlu:row_tgl_surat_bpkln_kemlu,
-                        upl_file1:row_upl_file1,
-                        upl_file2:row_upl_file2
-                      },
-                success: function(data)
-                {
-                  table.draw();
-                  $("#modal-tambahdata").modal('hide');
-                }
-              });
-              return false;
-=======
             $("#uploadForm").submit(function(e){
             e.preventDefault();
             $.ajax({
@@ -191,9 +160,9 @@
                 $("#modal-tambahdata").modal('hide');
               },
               error: function(){}           
->>>>>>> 74a96ded30a2041a7aa73043f5454397a3afe505
             });
-          });
+            });
+          
             
             $(document).on("click", "#nonaktif", function (){
               var tr = $(this).closest('tr');
@@ -209,7 +178,7 @@
                 }
               });
               return false;
-            })
+            });
           });
 
 
