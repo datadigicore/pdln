@@ -20,7 +20,7 @@
         <!-- Tab panes -->
         <form class="form-horizontal style-form">
             <!-- Hidden Input -->
-            <input type="hidden" id="id" class="form-control" value="<?php echo $id_data_diri ?>">
+            <input type="hidden" id="id" class="form-control" value="<?php echo $data['id_data_diri'] ?>">
 
             <div class="tab-content pdln-panel">
                 <div role="tabpanel" class="tab-pane active" id="datadiri">
@@ -29,82 +29,82 @@
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Nama</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><?php echo $nama_pemohon ?></p>
+                                    <p class="form-control-static"><?php echo $data['nama_pemohon'] ?></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>NIP</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><?php echo $nip_pemohon ?></p>
+                                    <p class="form-control-static"><?php echo $data['nip_pemohon'] ?></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>No. Telepon</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><?php echo $no_hp_pemohon ?></p>
+                                    <p class="form-control-static"><?php echo $data['no_hp_pemohon'] ?></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>No. Passport</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><?php echo $no_passport_pemohon ?></p>
+                                    <p class="form-control-static"><?php echo $data['no_passport_pemohon'] ?></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Terbit Passport</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><?php echo $tgl_terbit_passport ?></p>
+                                    <p class="form-control-static"><?php echo $data['tgl_terbit_passport'] ?></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Kadaluarsa Passport</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><?php echo $tgl_habis_passport ?></p>
+                                    <p class="form-control-static"><?php echo $data['tgl_habis_passport'] ?></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Pekerjaan</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><?php echo $pekerjaan_pemohon ?></p>
+                                    <p class="form-control-static"><?php echo $data['pekerjaan_pemohon'] ?></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><?php echo $instansi_pemohon ?></p>
+                                    <p class="form-control-static"><?php echo $data['instansi_pemohon'] ?></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Jabatan</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><?php echo $jabatan_pemohon ?></p>
+                                    <p class="form-control-static"><?php echo $data['jabatan_pemohon'] ?></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $cv_pemohon?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data['cv_pemohon'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $karpeg_pemohon?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                    <p class="form-control-static"><a href="<?php echo base_url(); ?>home/download/<?php echo $data['karpeg_pemohon'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <img src="<?php echo '../files/other/'.$foto_pemohon; ?>" class="img-responsive img-thumbnail">
+                            <img src="<?php echo '../files/other/'.$data['foto_pemohon']; ?>" class="img-responsive img-thumbnail">
                         </div>
                     </div>
                 </div>
@@ -112,42 +112,42 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $no_surat_unit_utama ?></p>
+                            <p class="form-control-static"><?php echo $data['no_surat_unit_utama'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $tgl_surat_unit_utama ?></p>
+                            <p class="form-control-static"><?php echo $data['tgl_surat_unit_utama'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $instansi_unit_utama ?></p>
+                            <p class="form-control-static"><?php echo $data['instansi_unit_utama'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Perihal</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $perihal_surat_unit_utama ?></p>
+                            <p class="form-control-static"><?php echo $data['perihal_surat_unit_utama'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Penanggung Jawab Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $penandatangan_surat_unit_utama ?></p>
+                            <p class="form-control-static"><?php echo $data['penandatangan_surat_unit_utama'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $surat_unit_utama?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                            <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data['surat_unit_utama'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                         </div>
                     </div>
                 </div>
@@ -155,63 +155,63 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Undangan</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $no_surat_undangan ?></p>
+                            <p class="form-control-static"><?php echo $data['no_surat_undangan'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Undangan</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $tgl_surat_undangan ?></p>
+                            <p class="form-control-static"><?php echo $data['tgl_surat_undangan'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Undangan</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $instansi_pengundang ?></p>
+                            <p class="form-control-static"><?php echo $data['instansi_pengundang'] ?></p>
                         </div>        
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Negara Tujuan</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $negara_tujuan ?></p>
+                            <p class="form-control-static"><?php echo $data['negara_tujuan'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Waktu Kegiatan</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $tgl_awal_kegiatan ?> <br> <?php echo $tgl_akhir_kegiatan ?></p>
+                            <p class="form-control-static"><?php echo $data['tgl_awal_kegiatan'] ?> <br> <?php echo $data['tgl_akhir_kegiatan'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Kegiatan</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $rincian_kegiatan ?></p>
+                            <p class="form-control-static"><?php echo $data['rincian_kegiatan'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Sumber Dana</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><?php echo $sumber_dana_kegiatan ?></p>
+                            <p class="form-control-static"><?php echo $data['sumber_dana_kegiatan'] ?></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                       <label class="col-lg-4 col-sm-4 control-label">Keterangan Sumber Dana</label>
                       <div class="col-lg-8">
-                        <p class="form-control-static"><?php echo $keterangan_sumber_dana_kegiatan ?></p>
+                        <p class="form-control-static"><?php echo $data['keterangan_sumber_dana_kegiatan'] ?></p>
                       </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Udangan</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $surat_undangan?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                            <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data['surat_undangan'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
                         </div>
                     </div>
                 </div>

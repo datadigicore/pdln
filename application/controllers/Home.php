@@ -69,7 +69,7 @@ class home extends CI_Controller {
 	      $table3='surat_undangan';
 	      $kondisi = array('kondisi' => $this->input->post('kondisi'));
 	      $datadiri = $this->m_user->get_data_pdln($table1,$no_aplikasi_data_diri);
-	      //$datadiri = $this->m_user->join();
+	      //$nama_instansi = $this->m_user->join();
 	      $data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
 	      $data_surat_undangan = $this->m_user->get_data_pdln($table3,$no_aplikasi);
 	      //print_r($datadiri);
@@ -510,6 +510,7 @@ class home extends CI_Controller {
   	  	print_r($_POST);
   	  	echo "</pre>";*/
   	  	$no_aplikasi = $this->input->post('no_aplikasi_data_diri',TRUE);
+  	  	$id_data_diri = $this->input->post('id_data_diri',TRUE);
 		$id_user = $_SESSION['logged']['id_user'];
 	    $table1='data_diri';
 	    $table2='surat_unit_utama';
@@ -591,17 +592,10 @@ class home extends CI_Controller {
 			}
         }
 
-        $result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
-		echo "<pre>";	  	  	
-	  	print_r($datadiri);
-	  	print_r($table1);
-	  	print_r($id_user);
-	  	print_r($no_aplikasi);	  	
-	  	echo "</pre>";
-	    	  	
-	  	/*$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
+        $result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi,$id_data_diri);
+	  	$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
 	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);  	
-	  	echo "<pre>";	  
+	  	/*echo "<pre>";	  
 	  	print_r($result_datadiri);
 	  	echo "</pre>";*/
 	  	/*if ($result_surat_bpkln == TRUE) {	    

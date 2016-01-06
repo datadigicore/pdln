@@ -23,6 +23,7 @@
                 </div>
                 <input type="hidden" name="no_aplikasi_data_diri" class="form-control" value="<?php echo $data['no_aplikasi_data_diri'] ?>">
                 <input type="hidden" name="id_user" class="form-control" value="<?php echo $data['id_user'] ?>">
+                <input type="hidden" name="id_data_diri" class="form-control" value="<?php echo $data['id_data_diri'] ?>">
                 <div class="col-sm-9">
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Nama</strong></label>
@@ -429,11 +430,11 @@
               processData: false,  // tell jQuery not to process the data
               contentType: false   // tell jQuery not to set contentType
             }).done(function( data ) {
-                var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
+               /* var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
                 var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id_user').val();                    
                 $form.append($input);
                 $("body").append($form);
-                $form.submit();
+                $form.submit();*/
 
             }); 
     });
