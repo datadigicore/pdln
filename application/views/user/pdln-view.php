@@ -4,7 +4,7 @@
     <div class="row mt">
         <div class="col-lg-12">
             <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf/cetak_surat" style="float:left; margin-right:12px">
-                <input type="hidden" name="iduser" value="<?php echo $data['id_data_diri'] ?>">
+                <input type="hidden" name="iduser" value="<?php $data['id_data_diri'] ?>">
                 <input type="hidden" name="kategori" value="setneg">
                 <input type="hidden" name="noaplikasi" value="<?php echo $data['no_aplikasi_data_diri'] ?>">
                 <a onclick="$(this).closest('form').submit()" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
@@ -29,7 +29,7 @@
         <!-- Tab panes -->
         <form class="form-horizontal style-form">
             <!-- Hidden Input -->
-            <input type="hidden" id="id" class="form-control" value="<?php echo $data['id_data_diri'] ?>">
+            <input type="hidden" id="id" class="form-control" value="<?php echo $data['id_data_diri']?>">
 
             <div class="tab-content pdln-panel">
                 <div role="tabpanel" class="tab-pane active" id="datadiri">
