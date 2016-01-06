@@ -5,15 +5,61 @@ class m_user extends CI_Model {
         parent::__construct();
 	}
 	function select_data_pdln() {		
-		$query = $this->db->select('*');
-    $query = $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
-    $query = $this->db->where('data_diri.instansi_pemohon = instansi.id');
-    $query = $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
-    $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
-    $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+		$this->db->select('*');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
     $query = $this->db->get();
     return $query->result_array();
 	}
+  function select_export_negara($data) {   
+    $this->db->select('*');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $this->db->where('surat_undangan.negara_tujuan = "'.$data.'"');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function select_export_sumber($data) {   
+    $this->db->select('*');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $this->db->where('surat_undangan.sumber_dana_kegiatan = "'.$data.'"');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function select_export_nip($data) {   
+    $this->db->select('*');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $this->db->where('data_diri.nip_pemohon = "'.$data.'"');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function select_export_tanggal($data) {   
+    
+    $this->db->select('*');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $this->db->where('surat_undangan.tgl_awal_kegiatan >= "'.$data['waktu_awal'].'"');
+    $this->db->where('surat_undangan.tgl_akhir_kegiatan <= "'.$data['waktu_akhir'].'"');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
   function list_user_surat() {   
     $query = $this->db->select('*');
     $query = $this->db->from('data_diri, instansi, sub_instansi, surat_undangan');
@@ -93,7 +139,21 @@ class m_user extends CI_Model {
 		$query = $this->db->get_where('sub_instansi',array('id_instansi' => $id));
 		return $query->result_array();
 	}
-
+  function get_country() {
+    $query = $this->db->get('countries');
+    return $query->result_array();
+  }
+  function get_nip() {
+    $query = $this->db->get('data_diri');
+    return $query->result_array();
+  }
+  function get_sumber() {
+    $this->db->select('sumber_dana_kegiatan');
+    $this->db->from('surat_undangan');
+    $this->db->group_by("sumber_dana_kegiatan");
+    $query = $this->db->get();
+    return $query->result_array();
+  }
 	function max_no_aplikasi(){
 		$this->db->select_max('no_aplikasi_data_diri');
 		$query = $this->db->get('data_diri');

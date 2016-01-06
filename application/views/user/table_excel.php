@@ -1,7 +1,6 @@
 Rekapitulasi Nama<br>
 Pejabat, Pegawai, Dosen, Guru dan Mahasiswa/Siswa ke Luar Negeri<br>
-Di Wilayah Sub Bagian Asia, Pasifik dan Afrika
-Bulan Tahun 2014<br><br>
+Tahun <?php echo date("Y"); ?><br><br>
 <table >
         <thead>
             <tr>

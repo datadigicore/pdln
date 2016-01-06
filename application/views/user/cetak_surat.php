@@ -5,7 +5,7 @@
         <div class="col-lg-12">
           <div class="form-panel">
             <h4 class="mb"><i class="fa fa-angle-right"></i> Cetak Surat ke Setneg</h4>
-            <form class="form-horizontal style-form" form method="POST" action="<?php echo base_url();?>c_mpdf">
+            <form class="form-horizontal style-form" method="POST" action="<?php echo base_url();?>c_mpdf">
             <input type="hidden" name="content" value="step1">
                 <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
                 <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
@@ -24,14 +24,14 @@
             <h4>Hasil Pencarian</h4>
 
             <div class="text-center">
-              <form method="POST" action="<?php echo base_url();?>c_mpdf">
+              <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf">
 
                 <input type="hidden" name="content" value="step1">
                 <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
                 <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
 
                 <a class="btn btn-warning" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-print"></i> Cetak Surat</a>
-              </form>              
+              </form>
             </div>
             <br>
             <table class="table  table-striped table-bordered pdln-table table-curved" cellspacing="0" width="100%">
