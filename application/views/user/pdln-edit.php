@@ -20,7 +20,7 @@
                             ?>
                     </div>
                     
-                </div> 
+                </div>
                 <input type="hidden" name="no_aplikasi_data_diri" class="form-control" value="<?php echo $data['no_aplikasi_data_diri'] ?>">
                 <input type="hidden" name="id_user" class="form-control" value="<?php echo $data['id_user'] ?>">
                 <input type="hidden" name="id_data_diri" class="form-control" value="<?php echo $data['id_data_diri'] ?>">
@@ -85,7 +85,7 @@
                     <div class="col-sm-8">
                       <select class="form-control" id="instansi_pemohon" name="instansi_pemohon">
                           <!-- query dari db -->
-                          <option value="<?php echo $data['id_instansi_pemohon']?>"><?php echo $data['instansi_pemohon']?></option>
+                          <option value="<?php echo $data['instansi_pemohon']?>"><?php echo $data['instansi_pemohon']?></option>
                           <option value="-">---Pilih Instansi Unit Utama---</option>
                           <?php echo "ini datanya";print_r($instansi); foreach ($instansi as $key => $value) {
                             echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
@@ -178,7 +178,7 @@
                     <div class="col-sm-8">
                       <select class="form-control" id="instansi_unit_utama" name="instansi_unit_utama">
                           <!-- query dari db -->
-                          <option value="<?php echo $data['id_instansi_unit_utama'] ?>"><?php echo $data['instansi_unit_utama'] ?></option>
+                          <option value="<?php echo $data['instansi_unit_utama'] ?>"><?php echo $data['instansi_unit_utama'] ?></option>
                           <option value="-">---Pilih Instansi Unit Utama---</option>
                           <?php echo "ini datanya";print_r($instansi); foreach ($instansi as $key => $value) {
                             echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
