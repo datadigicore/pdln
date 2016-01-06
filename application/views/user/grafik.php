@@ -1,9 +1,18 @@
 <!--main content start-->
+<style type="text/css">
+    @media print {
+        .noprint {display:none !important;}
+        a:link:after, a:visited:after {  
+          display: none;
+          content: "";    
+        }
+    }
+</style>
   <section id="main-content">
     <section class="wrapper">
-    <h3><i class="fa fa-angle-right"></i> Laporan</h3>
+    <h3 class="rem"><i class="fa fa-angle-right"></i> Laporan</h3>
 
-        <div class="form-group">
+        <div class="form-group rem">
           <label class="col-lg-3 col-sm-3 control-label">Filter</label>
           <div class="col-sm-9">
             <select class="form-control" id="grafik" name="lembaga">
@@ -72,6 +81,7 @@
                 </div>
             </div>
         </div>
+        <button id="printButton" class="btn btn-primary">Cetak</button>
         <!-- page end-->
     </section>          
 </section><!-- /MAIN CONTENT -->
@@ -82,7 +92,19 @@
   <script src="<?php echo base_url(); ?>js/chartjs-conf.js"></script>
 <script type="text/javascript">
     var chart = this;
-
+    $('#printButton').click(function(){
+        var restorepage = document.body.innerHTML;
+        // var printcontent = document.getElementById('main-content').innerHTML;
+        $(this).hide();
+        $('.rem').hide();
+        $('head').hide();
+        $('header').hide();
+        $('aside').hide();
+        $('footer').hide();
+        // document.body.innerHTML = printcontent;
+        window.print();
+        document.body.innerHTML = restorepage;
+    })
     $("#grafik").change(function(){
         $.ajax({
             type: "post",
