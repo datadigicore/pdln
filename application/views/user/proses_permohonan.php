@@ -194,6 +194,21 @@
               return false;
             });
             
+            $(document).on("click", "#nonaktif", function (){
+              var tr = $(this).closest('tr');
+              tabrow = table.row( tr );
+              row_id = tabrow.data()[0];
+              $.ajax({
+                type: "post",
+                url : "<?php echo base_url('admin/process') ?>",
+                data: {manage:'act_user',key:row_id},
+                success: function(data)
+                {
+                  table.draw();
+                }
+              });
+              return false;
+            })
           });
 
 
