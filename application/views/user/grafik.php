@@ -92,6 +92,8 @@
             success: function(result)
             {
                 new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(result); 
+                new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(result);
+                new Chart(document.getElementById("pie").getContext("2d")).Pie(result);
             }
           });
         $.ajax({
@@ -123,6 +125,8 @@
                 $.each(result.jmljabatan, function(key, val) {
                   lineChartData.datasets[0].data.push(val);
                 });
+                new Chart(document.getElementById("radar").getContext("2d")).Radar(lineChartData);
+                new Chart(document.getElementById("bar").getContext("2d")).Bar(lineChartData);
                 new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
             }
           });
