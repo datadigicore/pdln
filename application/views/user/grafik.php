@@ -6,11 +6,11 @@
         <div class="form-group">
           <label class="col-lg-3 col-sm-3 control-label">Filter</label>
           <div class="col-sm-9">
-            <select class="form-control" name="lembaga">
-                <option>Pilih salah satu</option>
-                <option>Golongan</option>
-                <option>Orang</option>
-                <option>Dll</option>
+            <select class="form-control" id="grafik" name="lembaga">
+                <option value="" disabled selected>-- Pilih Grafik Berdasarkan --</option>
+                <option value="golongan">Golongan</option>
+                <option value="orang">Orang</option>
+                <option value="lainlain">Dll</option>
             </select>
           </div>
         </div>
@@ -80,3 +80,51 @@
 <!--script for this page-->
   <script src="<?php echo base_url(); ?>js/chart-master/Chart.js"></script>
   <script src="<?php echo base_url(); ?>js/chartjs-conf.js"></script>
+<script type="text/javascript">
+    var chart = this;
+
+    $("#grafik").change(function(){
+        $.ajax({
+            type: "post",
+            url : "<?php echo base_url('home/process') ?>",
+            data: {manage:'select_grafik_doughnut'},
+            dataType: "json",
+            success: function(result)
+            {
+                new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(result); 
+            }
+          });
+        $.ajax({
+            type: "post",
+            url : "<?php echo base_url('home/process') ?>",
+            data: {manage:'select_grafik_line'},
+            dataType: "json",
+            success: function(result)
+            {
+                var lineChartData = {
+                    labels : [],
+                    datasets : [
+                        {
+                            fillColor : "rgba(220,220,220,0.5)",
+                            strokeColor : "rgba(220,220,220,1)",
+                            pointColor : "rgba(220,220,220,1)",
+                            pointStrokeColor : "#fff",
+                            data : []
+                        },
+                    ]
+                };
+                $.each(result.nmjabatan, function(key, val) {
+                  if (result.nmjabatan) {
+                    lineChartData.labels.push(val); 
+                  } else {
+                    lineChartData.labels.push('');
+                  }
+                });
+                $.each(result.jmljabatan, function(key, val) {
+                  lineChartData.datasets[0].data.push(val);
+                });
+                new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+            }
+          });
+    })
+</script>
