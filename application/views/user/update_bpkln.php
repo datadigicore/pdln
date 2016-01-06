@@ -232,21 +232,22 @@
         <input type="hidden" name="manage" value="tambah_surat_bpkln">
         <input type="hidden" name="key" id="row_no_aplikasi">
         <label>No. Surat BPKLN ke Setneg</label>
-        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Setneg" autofocus id="no_surat_bpkln_setneg" name="no_surat_bpkln_setneg">
+        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Setneg" autofocus id="no_surat_bpkln_setneg" name="no_surat_bpkln_setneg" required>
         <br>
         <label>Tgl. Surat BPKLN ke Setneg</label>
-        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" >
+        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" required>
         <br>
         <label>Surat BPKLN ke Setneg</label>
         <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1">   
+        <br>
         <label>No. Surat BPKLN ke Kemlu</label>
-        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Kemlu" autofocus id="no_surat_bpkln_kemlu" name="no_surat_bpkln_kemlu">
+        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Kemlu" autofocus id="no_surat_bpkln_kemlu" name="no_surat_bpkln_kemlu"required>
         <br>
         <label>Tgl. Surat BPKLN ke Kemlu</label>
-        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Kemlu" autofocus id="tgl_surat_bpkln_kemlu" name="tgl_surat_bpkln_kemlu" >
+        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Kemlu" autofocus id="tgl_surat_bpkln_kemlu" name="tgl_surat_bpkln_kemlu" required>
         <br>
         <label>Surat BPKLN ke Kemlu</label>
-        <input type="file" class="form-control" autofocus id="upl_file2" name="upl_file2">        
+        <input type="file" class="form-control" autofocus id="upl_file2" name="upl_file2" required>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success">Submit</button>
