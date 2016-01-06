@@ -62,23 +62,22 @@ class home extends CI_Controller {
 	  	$table = 'instansi';
       	$data['instansi'] = $this->m_user->select_data($table);      	
 	  	//ini load data dari data diri nya udh bener
-	      $no_aplikasi_data_diri = array('no_aplikasi_data_diri' => $this->input->post('id'),'id_data_diri' => $this->input->post('id_data_diri'));
-	      $no_aplikasi = array('no_aplikasi' => $this->input->post('id'));
+	      //$no_aplikasi_data_diri = array('no_aplikasi_data_diri' => $this->input->post('id'),'id_data_diri' => $this->input->post('id_data_diri'));
+	      $no_aplikasi_pdln = array('no_aplikasi' => $this->input->post('id'));
+        $no_aplikasi = $this->input->post('id');
         $id_data_diri= $this->input->post('id_data_diri');
-	      $table1='data_diri';
-	      $table2='surat_unit_utama';
 	      $table3='surat_undangan';
 	      $kondisi = array('kondisi' => $this->input->post('kondisi'));
-	      //$datadiri = $this->m_user->get_data_pdln($table1,$no_aplikasi_data_diri);
 	      $datadiri = $this->m_user->join($id_data_diri);
-	      $data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
-	      $data_surat_undangan = $this->m_user->get_data_pdln($table3,$no_aplikasi);
+	      //$data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
+        $data_surat_unit_utama = $this->m_user->join_unit($no_aplikasi);
+	      $data_surat_undangan = $this->m_user->get_data_pdln($table3,$no_aplikasi_pdln);
 	      //print_r($id_data_diri);
 	      /*print_r($data_surat_unit_utama);
 	      print_r($data_surat_undangan);*/
 	      //if ($result == true) {
 	        $data['data'] = array(
-	          'id_data_diri' => $datadiri->id_data_diri,
+	          'id_data_diri' => $id_data_diri,
 	          'id_user' => $datadiri->id_user,
 	          'no_aplikasi_data_diri' => $datadiri->no_aplikasi_data_diri,
 	          'nama_pemohon' => $datadiri->nama_pemohon,
@@ -88,6 +87,7 @@ class home extends CI_Controller {
 	          'no_passport_pemohon' => $datadiri->no_passport_pemohon,
 	          'tgl_terbit_passport' => $datadiri->tgl_terbit_passport,
 	          'tgl_habis_passport' => $datadiri->tgl_habis_passport,
+            'id_instansi_pemohon' => $datadiri->instansi_pemohon,
 	          'instansi_pemohon' => $datadiri->nama_instansi,
             'sub_instansi_pemohon' => $datadiri->nama_sub_instansi,
 	          'jabatan_pemohon' => $datadiri->jabatan_pemohon,
@@ -97,8 +97,10 @@ class home extends CI_Controller {
 	          'surat_tugas_pemohon' => $datadiri->surat_tugas_pemohon,
 	          'no_surat_unit_utama' => $data_surat_unit_utama->no_surat_unit_utama,
 	          'tgl_surat_unit_utama' => $data_surat_unit_utama->tgl_surat_unit_utama,
-	          'penandatangan_surat_unit_utama' => $data_surat_unit_utama->penandatangan_surat_unit_utama,
-	          'instansi_unit_utama' => $data_surat_unit_utama->instansi_unit_utama,
+	          'penandatangan_surat_unit_utama' => $data_surat_unit_utama->penandatangan_surat_unit_utama,            
+	          'id_instansi_unit_utama' => $data_surat_unit_utama->instansi_unit_utama,
+            'instansi_unit_utama' => $data_surat_unit_utama->nama_instansi,
+            'sub_instansi_unit_utama' => $data_surat_unit_utama->nama_sub_instansi,
 	          'perihal_surat_unit_utama' => $data_surat_unit_utama->perihal_surat_unit_utama,
 	          'surat_unit_utama' => $data_surat_unit_utama->surat_unit_utama,
 	          'no_surat_undangan' => $data_surat_undangan->no_surat_undangan,
@@ -114,7 +116,7 @@ class home extends CI_Controller {
 	          'surat_perjanjian' => $data_surat_undangan->surat_perjanjian	          
 	        );
         
-      //print_r($datadiri);
+      //print_r($data['data']);
 
 			if($kondisi['kondisi']=='view'){
 	        	$this->load->view('user/pdln-view',$data);
@@ -223,13 +225,14 @@ class home extends CI_Controller {
         // print_r($data2);
         echo json_encode(array("nmjabatan"=>$data1,"jmljabatan"=>$data2));
       break;
-  	  case 'add_data_diri': 
+  	  case 'add_data_diri':
+
   	  	$cek = $this->input->post('no_aplikasi');
   	  	if(isset($cek)){
   	  		$no_aplikasi = $this->input->post('no_aplikasi');
   	  	}else{
   	  		$max= $this->m_user->max_no_aplikasi();
-	  		$no_aplikasi = $max->no_aplikasi_data_diri+1;
+	  		 $no_aplikasi = $max->no_aplikasi_data_diri+1;
   	  	}
   	  	//$kondisi = $this->input->post('kondisi');  	  	
 		
@@ -253,20 +256,19 @@ class home extends CI_Controller {
         $datadiri = array(
   		  'id_user' => $_SESSION['logged']['id_user'],
   		  'no_aplikasi_data_diri' => $no_aplikasi,
-		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
-		  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
-		  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
-		  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
-		  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
-		  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
-		  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
-		  'pekerjaan_lainnya' => $pekerjaan_lainnya,
-		  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
-		  'tgl_terbit_passport' => $this->input->post('tgl_terbit_passport_pemohon', TRUE),
-		  'tgl_habis_passport' => $this->input->post('tgl_habis_passport_pemohon', TRUE),		  
-		  'status' => 'Permohonan'
-		  
-		);
+  		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
+  		  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
+  		  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
+  		  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
+  		  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
+  		  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
+  		  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
+  		  'pekerjaan_lainnya' => $pekerjaan_lainnya,
+  		  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
+  		  'tgl_terbit_passport' => $this->input->post('tgl_terbit_passport_pemohon', TRUE),
+  		  'tgl_habis_passport' => $this->input->post('tgl_habis_passport_pemohon', TRUE),		  
+  		  'status' => 'Permohonan'
+		    );
 
 
         for ($i = 1; $i <= 4; $i++) {
@@ -282,52 +284,47 @@ class home extends CI_Controller {
           }
           	if($i==1){
 					$datadiri['cv_pemohon']=$nama_file;
-			}else if($i==2){
-					$datadiri['foto_pemohon']=$nama_file;
-			}else if($i==3){
-					$datadiri['karpeg_pemohon']=$nama_file;	
-			}else if($i==4){
-					$datadiri['surat_tugas_pemohon']=$nama_file;	
-			}
+    			}else if($i==2){
+    					$datadiri['foto_pemohon']=$nama_file;
+    			}else if($i==3){
+    					$datadiri['karpeg_pemohon']=$nama_file;	
+    			}else if($i==4){
+    					$datadiri['surat_tugas_pemohon']=$nama_file;	
+    			}
         }
 
         //insert
-
-        
-		$data_surat =array(
-			'id_user' => $_SESSION['logged']['id_user'],
-  	  		'no_aplikasi' => $no_aplikasi
-			);
-
-
+    		$data_surat =array(
+    			'id_user' => $_SESSION['logged']['id_user'],
+      	  		'no_aplikasi' => $no_aplikasi
+    			);
         $result= $this->db->insert('data_diri',$datadiri);
-
         //buat redirect ke halaman lain
-        
         if ($result == TRUE ) {
         	if($this->input->post('tambah') == "tambah"){
     			$kondisi = "tambah";
     			/*print_r($kondisi);*/
     			print_r($datadiri);
     			$this->session->set_flashdata('error_message', $datadiri);
-	  	  		$this->session->set_flashdata('content','step1');
-	  	  		redirect('home');
-			}
-			if($this->input->post('lanjut')=="lanjut"){
+	  	 		$this->session->set_flashdata('content','step1');
+	  	 		redirect('home');
+			   }
+
+			 if($this->input->post('lanjut')=="lanjut"){
 				$result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
-        		$result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
-        		$result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
-			    $kondisi = "lanjut";
+      	$result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
+      	$result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
+			  $kondisi = "lanjut";
 			    /*print_r($kondisi);
     			print_r($datadiri);*/
-			    $this->session->set_flashdata('error_message', $datadiri);
-	  	  		$this->session->set_flashdata('content','step2');
-	  	  		redirect('home'); 	  	
+			  $this->session->set_flashdata('error_message', $datadiri);
+	  		$this->session->set_flashdata('content','step2');
+	  		redirect('home'); 	  	
 			}
-		}
-		else {
-		  redirect('home');
-		}
+  		}
+  		else {
+  		  redirect('home');
+  		}
             /*if ($result=1) {
                     echo "<script>alert('Data berhasil di simpan');window.location.href='http://localhost/dikbud/pdln/'</script>";
             }*/
@@ -654,28 +651,28 @@ class home extends CI_Controller {
 	            );*/
 
 	          }
-			}else echo "data== $data_file <br/>";
+      			}else echo "data== $data_file <br/>";
 
-			if($i==1){
-					$datadiri['foto_pemohon']=$nama_file;
-			}else if($i==2){
-					$datadiri['cv_pemohon']=$nama_file;
-			}else if($i==3){
-					$datadiri['karpeg_pemohon']=$nama_file;	
-			}else if($i==4){
-					$data_surat_unit_utama['surat_unit_utama']=$nama_file;	
-			}else if($i==5){
-					$data_surat_undangan['surat_undangan']=$nama_file;	
-			}else if($i==6){
-					$data_surat_undangan['surat_perjanjian']=$nama_file;	
-			}else if($i==7){
-					$datadiri['surat_tugas_pemohon']=$nama_file;	
-			}
+      			if($i==1){
+      					$datadiri['foto_pemohon']=$nama_file;
+      			}else if($i==2){
+      					$datadiri['cv_pemohon']=$nama_file;
+      			}else if($i==3){
+      					$datadiri['karpeg_pemohon']=$nama_file;	
+      			}else if($i==4){
+      					$data_surat_unit_utama['surat_unit_utama']=$nama_file;	
+      			}else if($i==5){
+      					$data_surat_undangan['surat_undangan']=$nama_file;	
+      			}else if($i==6){
+      					$data_surat_undangan['surat_perjanjian']=$nama_file;	
+      			}else if($i==7){
+      					$datadiri['surat_tugas_pemohon']=$nama_file;	
+      			}
         }
 
         $result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi,$id_data_diri);
-	  	$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
-	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
+	  	  $result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
+	  	  $result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
 	  	/*echo "<pre>";	  
 	  	print_r($datadiri);
 	  	echo "</pre>";
@@ -684,10 +681,10 @@ class home extends CI_Controller {
 		  //buat redirect ke halaman lain
 		  $this->session->set_flashdata('content','home');
 		  redirect('home');
-		}
-		else {		
-		  redirect('home');
-		}*/
+    		}
+    		else {		
+    		  redirect('home');
+    		}*/
   	  break;
 
   	  case 'tambah_surat_pdln':
@@ -698,36 +695,37 @@ class home extends CI_Controller {
         $this->upload->initialize($config);
         $result_array = array();        
         
+        $nama_file="";
         if (!empty($_FILES['surat_setneg']['name'])) {
           if (!$this->upload->do_upload('surat_setneg')) {
-            $error = $this->upload->display_errors();
-            $datasurat = array('surat_setneg' => $_FILES['surat_setneg']['name'] );            
+            $error = $this->upload->display_errors();            
           }
           else {
-            $this->upload->data();
+            $upload_data = $this->upload->data();
           }
+          $nama_file=$upload_data['file_name'];
+          $data_surat_bpkln['surat_setneg']=$nama_file;  
         }
         
-
-
   	  	$no_aplikasi = $this->input->post('key');
   	  	$id_user = $_SESSION['logged']['id_user'];
   	  	$table = 'surat_bpkln';
   	  	$table1= 'data_diri';
-	  	$data_surat_bpkln = array(
-		  'no_surat_setneg' => $this->input->post('no_surat_setneg',TRUE),
-		  'tgl_surat_setneg' => $this->input->post('tgl_surat_setneg',TRUE),
-		  'data_lain_bpkln' => $this->input->post('data_lain_bpkln', TRUE)		  
-		);
 
-		$datadiri= array('status' =>'Diterima');
+	  	  
+        $data_surat_bpkln = array(
+          'no_surat_setneg' => $this->input->post('no_surat_setneg',TRUE),
+          'tgl_surat_setneg' => $this->input->post('tgl_surat_setneg',TRUE),
+          'data_lain_bpkln' => $this->input->post('data_lain_bpkln', TRUE)
+        );
+		    $datadiri= array('status' =>'Diterima');
 
-		if (!empty($datasurat)) {
-			$this->m_user->update_surat($table,$datasurat,$id_user,$no_aplikasi);
-		}
+    		/*if (!empty($datasurat)) {
+    			$this->m_user->update_surat($table,$datasurat,$id_user,$no_aplikasi);
+    		}*/
 
-		$this->m_user->update_surat($table,$data_surat_bpkln,$id_user,$no_aplikasi);
-		$this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
+    		$this->m_user->update_surat($table,$data_surat_bpkln,$id_user,$no_aplikasi);
+    		$this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
 
 
 	  	//$this->m_user->upd_data_pdln($no_aplikasi, $data);

@@ -187,4 +187,11 @@ class m_user extends CI_Model {
 		$query = $this->db->query('SELECT * FROM data_diri a, instansi b , sub_instansi c WHERE a.instansi_pemohon=b.id AND c.id_sub_instansi = a.sub_instansi_pemohon AND a.id_data_diri='.$id_data_diri);
 		return $query->row();
 	}
+
+    function join_unit($no_aplikasi){
+        $query = $this->db->query('SELECT * FROM surat_unit_utama a, instansi b , sub_instansi c WHERE a.instansi_unit_utama=b.id AND c.id_sub_instansi = a.sub_instansi_unit_utama AND a.no_aplikasi='.$no_aplikasi);
+        return $query->row();
+    }
+
+    
 } 
