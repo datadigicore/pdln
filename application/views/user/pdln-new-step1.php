@@ -61,7 +61,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group" id="instansi">
                     <label class="col-lg-3 col-sm-3 control-label">Instansi</label>
                     <div class="col-sm-9">
                       <select class="form-control" id="instansi_pemohon" name="instansi_pemohon">
@@ -199,15 +199,20 @@
        $("#pekerjaan_lain").show();
       }else if ($(this).val()=="PNS"){
        $("#pekerjaan_lain").hide();
-       $("#nip").show(); 
+       $("#nip").show();
+       $("#instansi").show(); 
       }
       else{
        $("#pekerjaan_lain").hide();
        $("#nip").hide();
+       $("#instansi").hide();
+       $("#sub_instansi_pemohon").hide();
       }          
      });
      $("#pekerjaan_lain").hide();
      $("#nip").hide();
+     $("#instansi").hide();
+     $("#sub_instansi_pemohon").hide();
 
     $("#jabatan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
