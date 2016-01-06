@@ -134,11 +134,11 @@ class home extends CI_Controller {
 	  	$this->load->view('user/disetujui_setneg');
 	  	break;
 	  case 'cetak_surat':
-      $result['query'] = $this->m_user->list_user_surat();
-      // print('<pre>');
-      // print_r($result);
+      	$result['query'] = $this->m_user->list_user_surat();
+      	// print('<pre>');
+      	// print_r($result);
 	  	$this->load->view('user/cetak_surat', $result);
-	  	break;
+	  break;
 	  case 'excel':
 		$this->load->view('user/excel');
 	  break;
