@@ -62,14 +62,15 @@ class home extends CI_Controller {
 	  	$table = 'instansi';
       	$data['instansi'] = $this->m_user->select_data($table);      	
 	  	//ini load data dari data diri nya udh bener
-	      $no_aplikasi_data_diri = array('no_aplikasi_data_diri' => $this->input->post('id'),'id_data_diri' => $this->input->post('id_data_diri'));        
+	      $no_aplikasi_data_diri = array('no_aplikasi_data_diri' => $this->input->post('id'),'id_data_diri' => $this->input->post('id_data_diri'));
 	      $no_aplikasi = array('no_aplikasi' => $this->input->post('id'));
+        $id_data_diri= $this->input->post('id_data_diri');
 	      $table1='data_diri';
 	      $table2='surat_unit_utama';
 	      $table3='surat_undangan';
 	      $kondisi = array('kondisi' => $this->input->post('kondisi'));
-	      $datadiri = $this->m_user->get_data_pdln($table1,$no_aplikasi_data_diri);
-	      //$nama_instansi = $this->m_user->join();
+	      //$datadiri = $this->m_user->get_data_pdln($table1,$no_aplikasi_data_diri);
+	      $datadiri = $this->m_user->join($id_data_diri);
 	      $data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
 	      $data_surat_undangan = $this->m_user->get_data_pdln($table3,$no_aplikasi);
 	      //print_r($id_data_diri);
@@ -87,7 +88,8 @@ class home extends CI_Controller {
 	          'no_passport_pemohon' => $datadiri->no_passport_pemohon,
 	          'tgl_terbit_passport' => $datadiri->tgl_terbit_passport,
 	          'tgl_habis_passport' => $datadiri->tgl_habis_passport,
-	          'instansi_pemohon' => $datadiri->instansi_pemohon,
+	          'instansi_pemohon' => $datadiri->nama_instansi,
+            'sub_instansi_pemohon' => $datadiri->nama_sub_instansi,
 	          'jabatan_pemohon' => $datadiri->jabatan_pemohon,
 	          'cv_pemohon' => $datadiri->cv_pemohon,
 	          'foto_pemohon' => $datadiri->foto_pemohon,
@@ -112,7 +114,7 @@ class home extends CI_Controller {
 	          'surat_perjanjian' => $data_surat_undangan->surat_perjanjian	          
 	        );
         
-        //print_r($data['data']);
+      //print_r($datadiri);
 
 			if($kondisi['kondisi']=='view'){
 	        	$this->load->view('user/pdln-view',$data);

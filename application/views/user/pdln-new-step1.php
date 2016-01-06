@@ -30,7 +30,7 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Nama</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="nama_pemohon" placeholder="Nama">
+                      <input type="text" class="form-control" name="nama_pemohon" placeholder="Nama" required>
                     </div>
                   </div>
 
@@ -45,19 +45,19 @@
                     <label class="col-lg-3 col-sm-3 control-label">Pekerjaan</label>
                     <div class="col-sm-9">
                       <select class="form-control" id="pekerjaan_pemohon" name="pekerjaan_pemohon">
-                          <option value="">---Pilih Pekerjaan---</option>
+                          <option value="-">---Pilih Pekerjaan---</option>
                           <option value="PNS">PNS</option>
                           <option value="Swasta">Swasta</option>
                           <option value="Lainnya">Lainnya</option>
                       </select>
-                        <input type="text" class="form-control" id="pekerjaan_lain" name="pekerjaan_lainnya" placeholder="Pekerjaan">
+                        <input type="text" class="form-control" id="pekerjaan_lain" name="pekerjaan_lainnya" placeholder="Pekerjaan" required>
                     </div>
                   </div>
 
                   <div class="form-group" id="nip">
                     <label class="col-lg-3 col-sm-3 control-label">NIP</label>
                     <div class="col-sm-9">
-                      <input type="number" class="form-control" id="nip_pemohon" name="nip_pemohon" placeholder="NIP" min="0" max="999999999999999999">
+                      <input type="number" class="form-control" id="nip_pemohon" name="nip_pemohon" placeholder="NIP" min="0" max="999999999999999999" required>
                     </div>
                   </div>
 

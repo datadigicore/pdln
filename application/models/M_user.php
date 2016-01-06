@@ -184,13 +184,7 @@ class m_user extends CI_Model {
 	}
 
 	function join($id_data_diri){
-		$this->db->select('b.nama_instansi');
-        $this->db->from('data_diri a');
-		$this->db->where('a.id_data_diri="'.$id_data_diri.'"');        
-		$this->db->join('instansi b', 'b.id = a.instansi_pemohon');
-		
-		$query = $this->db->get();
-		return $query;
-
+		$query = $this->db->query('SELECT * FROM data_diri a, instansi b , sub_instansi c WHERE a.instansi_pemohon=b.id AND c.id_sub_instansi = a.sub_instansi_pemohon AND a.id_data_diri='.$id_data_diri);
+		return $query->row();
 	}
 } 

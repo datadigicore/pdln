@@ -92,6 +92,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label"><strong>Sub Instansi</strong></label>
+                                <div class="col-lg-8">
+                                    <p class="form-control-static"><?php echo $data['sub_instansi_pemohon'] ?></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Jabatan</strong></label>
                                 <div class="col-lg-8">
                                     <p class="form-control-static"><?php echo $data['jabatan_pemohon'] ?></p>
