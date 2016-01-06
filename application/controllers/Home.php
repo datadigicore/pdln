@@ -213,23 +213,6 @@ class home extends CI_Controller {
         $this->upload->initialize($config);
         $result_array = array();
 
-        for ($i = 1; $i <= 4; $i++) {
-          if (!empty($_FILES['upl_files'.$i]['name'])) {
-            if (!$this->upload->do_upload('upl_files'.$i)) {
-              $error = $this->upload->display_errors();
-            }
-            else {
-              $this->upload->data();
-            }
-          }
-        }
-
-        //insert        
-        $cv_pemohon = $_FILES['upl_files1']['name'];
-        $foto_pemohon = $_FILES['upl_files2']['name'];
-        $karpeg_pemohon = $_FILES['upl_files3']['name'];
-        $surat_tugas = $_FILES['upl_files4']['name'];
-
         $pekerjaan_pemohon = $this->input->post('pekerjaan_pemohon',TRUE);
         if ($pekerjaan_pemohon=="PNS") {
         	$pekerjaan_lainnya = "PNS";
@@ -252,15 +235,37 @@ class home extends CI_Controller {
 		  'pekerjaan_lainnya' => $pekerjaan_lainnya,
 		  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
 		  'tgl_terbit_passport' => $this->input->post('tgl_terbit_passport_pemohon', TRUE),
-		  'tgl_habis_passport' => $this->input->post('tgl_habis_passport_pemohon', TRUE),
-		  'cv_pemohon' => $cv_pemohon,
-		  'foto_pemohon' => $foto_pemohon,
-		  'karpeg_pemohon' => $karpeg_pemohon,
-		  'surat_tugas_pemohon' => $surat_tugas,
+		  'tgl_habis_passport' => $this->input->post('tgl_habis_passport_pemohon', TRUE),		  
 		  'status' => 'Permohonan'
 		  
 		);
 
+
+        for ($i = 1; $i <= 4; $i++) {
+        	$nama_file="";
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_files'.$i)) {
+              $error = $this->upload->display_errors();
+            }
+            else {
+              $upload_data = $this->upload->data();
+            }
+            $nama_file=$upload_data['file_name'];
+          }
+          	if($i==1){
+					$datadiri['cv_pemohon']=$nama_file;
+			}else if($i==2){
+					$datadiri['foto_pemohon']=$nama_file;
+			}else if($i==3){
+					$datadiri['karpeg_pemohon']=$nama_file;	
+			}else if($i==4){
+					$datadiri['surat_tugas_pemohon']=$nama_file;	
+			}
+        }
+
+        //insert
+
+        
 		$data_surat =array(
 			'id_user' => $_SESSION['logged']['id_user'],
   	  		'no_aplikasi' => $no_aplikasi
@@ -274,11 +279,11 @@ class home extends CI_Controller {
         if ($result == TRUE ) {
         	if($this->input->post('tambah') == "tambah"){
     			$kondisi = "tambah";
-    			/*print_r($kondisi);
-    			print_r($datadiri);*/
+    			/*print_r($kondisi);*/
+    			print_r($datadiri);
     			$this->session->set_flashdata('error_message', $datadiri);
 	  	  		$this->session->set_flashdata('content','step1');
-	  	  		redirect('home'); 	  	
+	  	  		redirect('home');
 			}
 			if($this->input->post('lanjut')=="lanjut"){
 				$result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
@@ -328,21 +333,23 @@ class home extends CI_Controller {
         $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        $result_array = array();
-
-        $surat_unit_utama = $_FILES['upl_files1']['name'];
+        $result_array = array();         
         $no_aplikasi = $this->input->post('no_aplikasi');
         $table = 'surat_unit_utama';
         $id_user = $_SESSION['logged']['id_user'];          
 	    
+	    $nama_file="";
 		if (!empty($_FILES['upl_files1']['name'])) {
 			if (!$this->upload->do_upload('upl_files1')) {
 			  $error = $this->upload->display_errors();			  
 			}
 			else {
-			  $this->upload->data();
-			}
-		}
+              $upload_data = $this->upload->data();
+            }
+            $nama_file=$upload_data['file_name'];
+          }
+		$surat_unit_utama=$nama_file;
+			
 
         //insert 	              
   	  	$data = array(
@@ -379,28 +386,9 @@ class home extends CI_Controller {
         $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        $result_array = array();           
-	    for ($i = 1; $i <= 4; $i++) {
-          if (!empty($_FILES['upl_files'.$i]['name'])) {
-            if (!$this->upload->do_upload('upl_files'.$i)) {
-              $error = $this->upload->display_errors();
+        $result_array = array();
 
-            }
-            else {
-              $this->upload->data();
-            }
-          }
-        }
-
-        //insert
-
-        $surat_undangan = $_FILES['upl_files1']['name'];
-        $surat_perjanjian = $_FILES['upl_files2']['name'];
-        $no_aplikasi = $this->input->post('no_aplikasi');
-        $table = 'surat_undangan';
-        $id_user = $_SESSION['logged']['id_user'];
-
-  	  	$data = array(  	  			    
+        $data = array(  	  			    
   	  				'no_surat_undangan' => $this->input->post('no_surat_undangan',TRUE),
   	  				'tgl_surat_undangan' => $this->input->post('tgl_surat_undangan',TRUE),
   	  				'instansi_pengundang' => $this->input->post('instansi_pengundang',TRUE),
@@ -410,10 +398,33 @@ class home extends CI_Controller {
   	  				'kategori_kegiatan' => $this->input->post('kategori_kegiatan',TRUE),
   	  				'rincian_kegiatan' => $this->input->post('rincian_kegiatan',TRUE),
   	  				'sumber_dana_kegiatan' => $this->input->post('sumber_dana_kegiatan',TRUE),
-  	  				'keterangan_sumber_dana_kegiatan' => $this->input->post('keterangan_sumber_dana_kegiatan',TRUE),
-  	  				'surat_undangan' => $surat_undangan,
-  	  				'surat_perjanjian' => $surat_perjanjian
+  	  				'keterangan_sumber_dana_kegiatan' => $this->input->post('keterangan_sumber_dana_kegiatan',TRUE)
   	  				 );
+
+
+	    for ($i = 1; $i <= 2; $i++) {
+	    	$nama_file="";
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+            if (!$this->upload->do_upload('upl_files'.$i)) {
+              $error = $this->upload->display_errors();
+
+            }
+            else {
+              $upload_data = $this->upload->data();
+            }
+            $nama_file=$upload_data['file_name'];
+          }
+          	if($i==1){
+				$data['surat_undangan']=$nama_file;
+			}else if($i==2){
+				$data['surat_perjanjian']=$nama_file;
+			}
+        }
+
+        //insert
+        $no_aplikasi = $this->input->post('no_aplikasi');
+        $table = 'surat_undangan';
+        $id_user = $_SESSION['logged']['id_user'];
 
   	  	$result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);
   	  	if ($result == TRUE) {	    
@@ -537,9 +548,9 @@ class home extends CI_Controller {
   	  	//$no_aplikasi = $this->input->post('key');  	  	
   	  	/*echo gettype($id);*/
   	  	//echo "masuk data 22";
-  	  	/*echo "<pre>";
+  	  	echo "<pre>";
   	  	print_r($_POST);
-  	  	echo "</pre>";*/
+  	  	echo "</pre>";
   	  	$no_aplikasi = $this->input->post('no_aplikasi_data_diri',TRUE);
   	  	$id_data_diri = $this->input->post('id_data_diri',TRUE);
 		$id_user = $_SESSION['logged']['id_user'];
@@ -592,18 +603,28 @@ class home extends CI_Controller {
 	    	$data_file=$this->input->post('txt_upl_files'.$i);
 	    	$nama_file=$data_file;
 	    	if($data_file==""){
+	          if (!empty($_FILES['upl_files'.$i]['name'])) {
+	          		//echo "masukkk ".$_FILES['upl_files'.$i]['name'];
+	            if (!$this->upload->do_upload('upl_files'.$i)) {
+	              $error = $this->upload->display_errors();
+	              //$nama_file=$_FILES['upl_files'.$i]['name'];
+	            }
+	            else {
+	              $upload_data = $this->upload->data();
+	            }
+	            $nama_file=$upload_data['file_name'];
+	            /*$upload_data = $this->upload->data();
+	            $data_ary = array(
+	                'title'     => $upload_data['client_name'],
+	                'file'      => $upload_data['file_name'],
+	                'width'     => $upload_data['image_width'],
+	                'height'    => $upload_data['image_height'],
+	                'type'      => $upload_data['image_type'],
+	                'size'      => $upload_data['file_size'],
+	                'date'      => time(),
+	            );*/
 
-			          if (!empty($_FILES['upl_files'.$i]['name'])) {
-			          		//echo "masukkk ".$_FILES['upl_files'.$i]['name'];
-			            if (!$this->upload->do_upload('upl_files'.$i)) {
-			              $error = $this->upload->display_errors();
-			              //$nama_file=$_FILES['upl_files'.$i]['name'];
-			            }
-			            else {
-			              $this->upload->data();
-			            }
-			            $nama_file=$_FILES['upl_files'.$i]['name'];
-			          }
+	          }
 			}else echo "data== $data_file <br/>";
 
 			if($i==1){
@@ -625,11 +646,11 @@ class home extends CI_Controller {
 
         $result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi,$id_data_diri);
 	  	$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
-	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);  	
+	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
 	  	/*echo "<pre>";	  
-	  	print_r($result_datadiri);
-	  	echo "</pre>";*/
-	  	/*if ($result_surat_bpkln == TRUE) {	    
+	  	print_r($datadiri);
+	  	echo "</pre>";
+	  	if ($result_surat_bpkln == TRUE) {	    
 	      $this->session->set_flashdata('error_message', $data);
 		  //buat redirect ke halaman lain
 		  $this->session->set_flashdata('content','home');
