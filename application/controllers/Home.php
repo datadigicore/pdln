@@ -197,6 +197,30 @@ class home extends CI_Controller {
           echo '<option value="'.$item["sumber_dana_kegiatan"].'">'.$item["sumber_dana_kegiatan"]."</option>";
         } 
       break;
+      case 'select_grafik_doughnut':      
+        $result = $this->m_user->get_golongan();
+        $data = array();
+        foreach ($result as $item) {
+          $temp = array(
+              'value' => $item['count(jabatan_pemohon)'],
+              'color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)),
+              'label' => $item["jabatan_pemohon"],
+          );
+          array_push($data, $temp);
+        } 
+        echo json_encode($data);
+      break;
+      case 'select_grafik_line':      
+        $result = $this->m_user->get_golongan();
+        $data1 = array();
+        $data2 = array();
+        foreach ($result as $item) {
+          $data1[] = $item["jabatan_pemohon"];
+          $data2[] = $item["count(jabatan_pemohon)"];
+        } 
+        // print_r($data2);
+        echo json_encode(array("nmjabatan"=>$data1,"jmljabatan"=>$data2));
+      break;
   	  case 'add_data_diri': 
   	  	$cek = $this->input->post('no_aplikasi');
   	  	if(isset($cek)){

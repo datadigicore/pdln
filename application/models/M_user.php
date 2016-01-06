@@ -4,8 +4,15 @@ class m_user extends CI_Model {
 	function __construct() {
         parent::__construct();
 	}
+    function get_golongan() {   
+    $this->db->select('jabatan_pemohon,count(jabatan_pemohon)');
+    $this->db->from('data_diri');
+    $this->db->group_by("jabatan_pemohon");
+    $query = $this->db->get();
+    return $query->result_array();
+    }
 	function select_data_pdln() {		
-		$this->db->select('*');
+    $this->db->select('*');
     $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
     $this->db->where('data_diri.instansi_pemohon = instansi.id');
     $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');

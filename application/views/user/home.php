@@ -39,6 +39,7 @@
               "scrollX" : true,
               "processing": true,
               "serverSide": true,
+              "fixedColumns":   true,
               "ajax": {
                 "url": "<?php echo base_url('home/process') ?>",
                 "data": {manage:'tab_pdln'},
