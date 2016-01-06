@@ -114,7 +114,7 @@
                         <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
                         <div class="col-lg-8">
                             <?php if ($data['cv_pemohon']!=""){ 
-                                echo '<input type="hidden" name="txt_upl_files1" value="'.$data["cv_pemohon"].'">';
+                                echo '<input type="hidden" name="txt_upl_files2" value="'.$data["cv_pemohon"].'">';
                                 echo ' "'.$data["cv_pemohon"].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files2" class="form-control" style="width: auto;">
@@ -128,7 +128,7 @@
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
                         <div class="col-lg-8">
                             <?php if ($data['karpeg_pemohon']!=""){ 
-                                echo '<input type="hidden" name="txt_upl_files2" value="'.$data['karpeg_pemohon'].'">';
+                                echo '<input type="hidden" name="txt_upl_files3" value="'.$data['karpeg_pemohon'].'">';
                                 echo ' "'.$data["karpeg_pemohon"].'"  '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
                                 <input type="file" name="upl_files3" class="form-control" style="width: auto;">
@@ -142,7 +142,7 @@
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Tugas</strong></label>
                         <div class="col-lg-8">
                             <?php if ($data['surat_tugas_pemohon']!=""){ 
-                                echo '<input type="hidden" name="txt_upl_files2" value="'.$data['surat_tugas_pemohon'].'">';
+                                echo '<input type="hidden" name="txt_upl_files7" value="'.$data['surat_tugas_pemohon'].'">';
                                 echo ' "'.$data['surat_tugas_pemohon'].'" '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
                                 <input type="file" name="upl_files7" class="form-control" style="width: auto;">
@@ -215,7 +215,7 @@
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
                             <?php if ($data['surat_unit_utama']!=""){ 
-                                echo '<input type="hidden" name="txt_upl_files2" value="'.$data['surat_unit_utama'].'">';
+                                echo '<input type="hidden" name="txt_upl_files4" value="'.$data['surat_unit_utama'].'">';
                                 echo ' "'.$data['surat_unit_utama'].'" '; 
                                 echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
@@ -319,7 +319,7 @@
                     <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Perjanjian</strong></label>
                     <div class="col-lg-8">
                         <?php if ($data['surat_perjanjian']!=""){ 
-                            echo '<input type="hidden" name="txt_upl_files5" value="'.$data['surat_perjanjian'].'">';
+                            echo '<input type="hidden" name="txt_upl_files6" value="'.$data['surat_perjanjian'].'">';
                             echo ' "'.$data['surat_perjanjian'].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files6" class="form-control" style="width: auto;">
@@ -430,11 +430,11 @@
               processData: false,  // tell jQuery not to process the data
               contentType: false   // tell jQuery not to set contentType
             }).done(function( data ) {
-               /* var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
+               var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
                 var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id_user').val();                    
                 $form.append($input);
                 $("body").append($form);
-                $form.submit();*/
+                $form.submit();
 
             }); 
     });

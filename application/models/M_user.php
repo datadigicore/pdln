@@ -80,6 +80,12 @@ class m_user extends CI_Model {
 		$query = $this->db->get_where($table,$no_aplikasi);
 		return $query->row();
 	}
+
+    function get_data_diri($table,$no_aplikasi,$id_data_diri) {       
+        $query = $this->db->get_where($table,$no_aplikasi,$id_data_diri);
+        return $query->row();
+    }
+
 	function add_data_pdln($data) {
 		$query = $this->db->insert('data_pdln', $data);
 		return $query;
@@ -177,11 +183,12 @@ class m_user extends CI_Model {
 		return $query;
 	}
 
-	function join($no_aplikasi_data_diri){
+	function join($id_data_diri){
 		$this->db->select('b.nama_instansi');
-		$this->db->from('data_diri a');
+        $this->db->from('data_diri a');
+		$this->db->where('a.id_data_diri="'.$id_data_diri.'"');        
 		$this->db->join('instansi b', 'b.id = a.instansi_pemohon');
-		$this->db->where('a.no_aplikasi_data_diri="'.$no_aplikasi_data_diri.'"');
+		
 		$query = $this->db->get();
 		return $query;
 

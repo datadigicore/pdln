@@ -62,7 +62,7 @@ class home extends CI_Controller {
 	  	$table = 'instansi';
       	$data['instansi'] = $this->m_user->select_data($table);      	
 	  	//ini load data dari data diri nya udh bener
-	      $no_aplikasi_data_diri = array('no_aplikasi_data_diri' => $this->input->post('id'));
+	      $no_aplikasi_data_diri = array('no_aplikasi_data_diri' => $this->input->post('id'),'id_data_diri' => $this->input->post('id_data_diri'));        
 	      $no_aplikasi = array('no_aplikasi' => $this->input->post('id'));
 	      $table1='data_diri';
 	      $table2='surat_unit_utama';
@@ -72,7 +72,7 @@ class home extends CI_Controller {
 	      //$nama_instansi = $this->m_user->join();
 	      $data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
 	      $data_surat_undangan = $this->m_user->get_data_pdln($table3,$no_aplikasi);
-	      //print_r($datadiri);
+	      //print_r($id_data_diri);
 	      /*print_r($data_surat_unit_utama);
 	      print_r($data_surat_undangan);*/
 	      //if ($result == true) {
@@ -111,6 +111,8 @@ class home extends CI_Controller {
 	          'surat_undangan' => $data_surat_undangan->surat_undangan,
 	          'surat_perjanjian' => $data_surat_undangan->surat_perjanjian	          
 	        );
+        
+        //print_r($data['data']);
 
 			if($kondisi['kondisi']=='view'){
 	        	$this->load->view('user/pdln-view',$data);
@@ -470,15 +472,16 @@ class home extends CI_Controller {
 		$key = "id_data_diri";
 		$column = array(	    
 	    array( 'db' => 'no_aplikasi_data_diri', 			'dt' => 0),
-	    array( 'db' => 'nama_pemohon', 						'dt' => 1),
-	    array( 'db' => 'nip_pemohon', 						'dt' => 2),
-	    array( 'db' => 'nama_instansi', 					'dt' => 3),
-	    array( 'db' => 'nama_sub_instansi', 				'dt' => 4),
-	    array( 'db' => 'negara_tujuan', 					'dt' => 5),
-	    array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 6),
-	    array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 7),
-	    array( 'db' => 'rincian_kegiatan', 					'dt' => 8),
-	    array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 9)
+      array( 'db' => 'id_data_diri',       'dt' => 1),
+	    array( 'db' => 'nama_pemohon', 						'dt' => 2),
+	    array( 'db' => 'nip_pemohon', 						'dt' => 3),
+	    array( 'db' => 'nama_instansi', 					'dt' => 4),
+	    array( 'db' => 'nama_sub_instansi', 				'dt' => 5),
+	    array( 'db' => 'negara_tujuan', 					'dt' => 6),
+	    array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 7),
+	    array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 8),
+	    array( 'db' => 'rincian_kegiatan', 					'dt' => 9),
+	    array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 10)
 	    
 	 	 );
       	$where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi";
@@ -577,11 +580,11 @@ class home extends CI_Controller {
   	  	echo "</pre>";
   	  	$no_aplikasi = $this->input->post('no_aplikasi_data_diri',TRUE);
   	  	$id_data_diri = $this->input->post('id_data_diri',TRUE);
-		$id_user = $_SESSION['logged']['id_user'];
-	    $table1='data_diri';
-	    $table2='surat_unit_utama';
-	    $table3='surat_undangan';
-	    $table4='surat_bpkln';
+  		  $id_user = $_SESSION['logged']['id_user'];
+  	    $table1='data_diri';
+  	    $table2='surat_unit_utama';
+  	    $table3='surat_undangan';
+  	    $table4='surat_bpkln';
 
       	$datadiri = array(
 	      'nama_pemohon' => $this->input->post('nama_pemohon',TRUE),

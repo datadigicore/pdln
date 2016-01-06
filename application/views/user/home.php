@@ -13,6 +13,7 @@
               <thead>
                   <tr>
                       <th>Id</th>
+                      <th>Id Data Diri</th>
                       <th>Nama</th>
                       <th>NIP Pemohon</th>
                       <th>Instansi</th>
@@ -47,7 +48,8 @@
               "columnDefs" : [
                 {"targets" : 0,
                  "visible" : false},
-                {"targets" : 1},
+                {"targets" : 1,
+                  "visible" : false},
                 {"targets" : 2},
                 {"targets" : 3}, 
                 {"targets" : 4},
@@ -56,13 +58,14 @@
                 {"targets" : 7},
                 {"targets" : 8},
                 {"targets" : 9},
+                {"targets" : 10},
                 {"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
                                     '<a style="margin:0 2px;" id="btn-view" class="btn btn-primary"><i class="fa fa-search"></i></a>'+
                                     '<a style="margin:0 2px;" id="btn-edit" class="btn btn-success"><i class="fa fa-edit"></i></a>'+
                                     '</div>',
-                 "targets": 10}
+                 "targets": 11}
               ],
               "order": [[ 0, "desc" ]]
             });
@@ -73,12 +76,14 @@
               var tr = $(this).closest('tr');
               tabrow = table.row(tr);
               row_id = tabrow.data()[0];
+              row_id_data_diri = tabrow.data()[1];
               kondisi = 'view';
               var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
               var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
+              var $input1=$(document.createElement('input')).css({display:'none'}).attr('name','id_data_diri').val(row_id_data_diri);
               var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);
               var $input3=$(document.createElement('input')).css({display:'none'}).attr('name','kondisi').val(kondisi);
-              $form.append($input).append($input2).append($input3);
+              $form.append($input).append($input1).append($input2).append($input3);
               $("body").append($form);
               $form.submit();
             });
@@ -88,12 +93,14 @@
               var tr = $(this).closest('tr');
               tabrow = table.row(tr);
               row_id = tabrow.data()[0];
+              row_id_data_diri = tabrow.data()[1];
               kondisi = 'edit';
               var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
               var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
+              var $input1=$(document.createElement('input')).css({display:'none'}).attr('name','id_data_diri').val(row_id_data_diri);
               var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);
               var $input3=$(document.createElement('input')).css({display:'none'}).attr('name','kondisi').val(kondisi);
-              $form.append($input).append($input2).append($input3);
+              $form.append($input).append($input1).append($input2).append($input3);
               $("body").append($form);
               $form.submit();
             });
