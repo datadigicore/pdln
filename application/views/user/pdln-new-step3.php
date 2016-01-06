@@ -56,7 +56,7 @@
                     <div class="col-sm-9">
                       <select class="form-control" id="negara_tujuan" name="negara_tujuan">
                           <!-- query dari db -->
-                          <option value="">---Pilih Instansi Unit Utama---</option>
+                          <option value="">---Pilih Negara Tujuan---</option>
                           <?php foreach ($countries as $key => $value) {
                             echo '<option value="'.$value['country_name'].'">'.$value['country_name'].'</option>';                          
                           }?>

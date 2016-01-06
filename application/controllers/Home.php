@@ -469,7 +469,8 @@ class home extends CI_Controller {
 	      array( 'db' => 'status', 								'dt' => 8)     
 	    );
 	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon 
-	    AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi";
+	    AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi
+	    AND surat_bpkln.no_surat_bpkln_setneg <> ''";
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
   	  break;
 
@@ -488,7 +489,9 @@ class home extends CI_Controller {
 	      array( 'db' => 'keterangan_sumber_dana_kegiatan',		'dt' => 4),
 	      array( 'db' => 'data_lain_bpkln', 		 			'dt' => 5)
 	    );
-	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi AND data_diri.status='Diterima'";
+	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon 
+	    AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi 
+	    AND data_diri.status='Diterima'";
     	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
   	  break;
 

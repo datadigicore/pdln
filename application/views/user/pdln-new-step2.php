@@ -52,7 +52,7 @@
 
                        <select class="form-control" id="sub_instansi_unit_utama" name="sub_instansi_unit_utama" >
                           <!-- query dari db -->
-                          <option value="-">---Pilih Sub Instansi Unit Utama---</option>
+                          <option value="54">---Pilih Sub Instansi Unit Utama---</option>
                           <!-- <option value="lainnya">Lain-lain</option> -->
                       </select>                    
 

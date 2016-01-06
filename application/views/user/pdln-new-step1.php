@@ -19,7 +19,7 @@
               <input type="hidden" name="kondisi" value="tambah">
 
               <?php if (isset($error_message)){?>
-                <input type="text" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi_data_diri'];?>">
+                <input type="hidden" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi_data_diri'];?>">
               <?php } ?> 
 
               <div class="panel panel-default">
@@ -75,7 +75,7 @@
 
                       <select class="form-control" id="sub_instansi_pemohon" name="sub_instansi_pemohon" style="margin-top: 15px;">
                           <!-- query dari db -->
-                          <option value="-">---Pilih Sub Instansi Unit Utama---</option>
+                          <option value="54">---Pilih Sub Instansi Unit Utama---</option>
                           <!-- <option value="lainnya">Lain-lain</option> -->
                       </select>
                       <div id="result"></div>
