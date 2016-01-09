@@ -439,6 +439,14 @@ class SSP {
              $limit"
         );
 
+       /* $debug = "SELECT SQL_CALC_FOUND_ROWS `".implode("`, `", self::pluck($columns, 'db'))."`
+             FROM `$table1`,`$table2`,`$table3`,`$table4`,`$table5`
+             $where
+             $order
+             $limit";
+
+        print_r($debug);*/
+
         // Data set length after filtering
         $resFilterLength = self::sql_exec( $db,
             "SELECT FOUND_ROWS()"

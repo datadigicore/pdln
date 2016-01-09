@@ -166,49 +166,7 @@
               error: function(){}           
             });
             });
-
-            $("#tambahdata").click(function(){              
-              row_no_aplikasi = tabrow.data()[0];
-              row_no_setneg = $("#no_surat_setneg").val();
-              row_tgl_setneg = $("#tgl_surat_setneg").val();
-              row_keterangan = $("#data_lain_bpkln").val();
-              row_surat_setneg = $("#surat_setneg").val();
-              $.ajax({
-                type: "post",
-                contentype: "multipart/form-data",
-                url : "<?php echo base_url('home/process') ?>",                
-                data: {
-                        manage:'tambah_surat_pdln',
-                        key:row_no_aplikasi,
-                        no_surat_setneg:row_no_setneg,
-                        tgl_surat_setneg:row_tgl_setneg,
-                        data_lain_bpkln:row_keterangan,
-                        surat_setneg:row_surat_setneg                        
-                      },
-                success: function(data)
-                {
-                  table.draw();
-                  $("#modal-tambahdata").modal('hide');
-                }
-              });
-              return false;
-            });
             
-            $(document).on("click", "#nonaktif", function (){
-              var tr = $(this).closest('tr');
-              tabrow = table.row( tr );
-              row_id = tabrow.data()[0];
-              $.ajax({
-                type: "post",
-                url : "<?php echo base_url('admin/process') ?>",
-                data: {manage:'act_user',key:row_id},
-                success: function(data)
-                {
-                  table.draw();
-                }
-              });
-              return false;
-            })
           });
 
 
@@ -270,7 +228,7 @@
         <input type="text" class="form-control" placeholder="Keterangan yang mendapat SP Setneg" autofocus id="data_lain_bpkln" name="data_lain_bpkln" required>        
         <br>
         <label>Surat Setneg</label>
-        <input type="file" class="form-control" autofocus id="surat_setneg" name="surat_setneg" required>        
+        <input type="file" class="form-control" autofocus id="upl_files1" name="upl_files1" required>        
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success">Submit</button>

@@ -443,10 +443,10 @@ class home extends CI_Controller {
             $nama_file=$upload_data['file_name'];
           }
           	if($i==1){
-				$data['surat_undangan']=$nama_file;
-			}else if($i==2){
-				$data['surat_perjanjian']=$nama_file;
-			}
+				      $data['surat_undangan']=$nama_file;
+			     }else if($i==2){
+				      $data['surat_perjanjian']=$nama_file;
+			   }
         }
 
         //insert
@@ -673,7 +673,7 @@ class home extends CI_Controller {
 			}
         }
 
-        $result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi,$id_data_diri);
+      $result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi,$id_data_diri);
 	  	$result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
 	  	$result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
 	  	/*echo "<pre>";	  
@@ -691,34 +691,37 @@ class home extends CI_Controller {
   	  break;
 
   	  case 'tambah_surat_pdln':
+
   	  	$config['upload_path'] = FCPATH.'../files/surat_setneg';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        $result_array = array();        
-        
-        if (!empty($_FILES['surat_setneg']['name'])) {
-          if (!$this->upload->do_upload('surat_setneg')) {
-            $error = $this->upload->display_errors();
-            $datasurat = array('surat_setneg' => $_FILES['surat_setneg']['name'] );            
+        $result_array = array();
+
+        $data_surat_bpkln = array(
+        'no_surat_setneg' => $this->input->post('no_surat_setneg',TRUE),
+        'tgl_surat_setneg' => $this->input->post('tgl_surat_setneg',TRUE),
+        'data_lain_bpkln' => $this->input->post('data_lain_bpkln', TRUE)      
+        );
+
+        $nama_file="";
+        if (!empty($_FILES['upl_files1']['name'])) {
+          if (!$this->upload->do_upload('upl_files1')) {
+            $error = $this->upload->display_errors();            
           }
           else {
-            $this->upload->data();
+             $upload_data = $this->upload->data();
           }
-        }
-        
+            $nama_file=$upload_data['file_name'];
+            $datasurat = array('surat_setneg' => $nama_file );
+        }        
 
 
   	  	$no_aplikasi = $this->input->post('key');
   	  	$id_user = $_SESSION['logged']['id_user'];
   	  	$table = 'surat_bpkln';
-  	  	$table1= 'data_diri';
-	  	$data_surat_bpkln = array(
-		  'no_surat_setneg' => $this->input->post('no_surat_setneg',TRUE),
-		  'tgl_surat_setneg' => $this->input->post('tgl_surat_setneg',TRUE),
-		  'data_lain_bpkln' => $this->input->post('data_lain_bpkln', TRUE)		  
-		);
+  	  	$table1= 'data_diri';	  	
 
 		$datadiri= array('status' =>'Diterima');
 
@@ -741,33 +744,37 @@ class home extends CI_Controller {
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $result_array = array();
-
-        $surat_bpkln_setneg = $_FILES['upl_file1']['name'];
-        $surat_bpkln_kemlu = $_FILES['upl_file2']['name'];
+        
         $no_aplikasi = $this->input->post('key');
         $table = 'surat_bpkln';
-        $id_user = $_SESSION['logged']['id_user'];          
+        $id_user = $_SESSION['logged']['id_user']; 
+
+        $data = array(
+          'no_surat_bpkln_setneg' => $this->input->post('no_surat_bpkln_setneg',TRUE),          
+          'tgl_surat_bpkln_setneg' => $this->input->post('tgl_surat_bpkln_setneg',TRUE),          
+          'no_surat_bpkln_kemlu' => $this->input->post('no_surat_bpkln_kemlu',TRUE),
+          'tgl_surat_bpkln_kemlu' => $this->input->post('tgl_surat_bpkln_kemlu',TRUE)         
+         );          
         
 		for ($i = 1; $i <= 2; $i++) {
+      $nama_file="";
           if (!empty($_FILES['upl_file'.$i]['name'])) {
             if (!$this->upload->do_upload('upl_file'.$i)) {
               $error = $this->upload->display_errors();
-
             }
             else {
-              $this->upload->data();
+              $upload_data = $this->upload->data();
             }
+            $nama_file=$upload_data['file_name'];
           }
-        }
+            if($i==1){
+              $data['surat_bpkln_setneg']=$nama_file;
+           }else if($i==2){
+              $data['surat_bpkln_kemlu']=$nama_file;
+         }
+    }
         //insert 	              
-  	  	$data = array(
-					'no_surat_bpkln_setneg' => $this->input->post('no_surat_bpkln_setneg',TRUE),					
-  	  				'tgl_surat_bpkln_setneg' => $this->input->post('tgl_surat_bpkln_setneg',TRUE),
-  	  				'surat_bpkln_setneg' => $surat_bpkln_setneg,
-  	  				'no_surat_bpkln_kemlu' => $this->input->post('no_surat_bpkln_kemlu',TRUE),
-  	  				'tgl_surat_bpkln_kemlu' => $this->input->post('tgl_surat_bpkln_kemlu',TRUE),
-  	  				'surat_bpkln_kemlu' => $surat_bpkln_kemlu
-  	  				 );  	
+  	  	 	
 
   	  	$result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);  	  	
 	    if ($result == TRUE) {
