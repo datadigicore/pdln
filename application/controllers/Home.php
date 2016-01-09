@@ -705,6 +705,8 @@ class home extends CI_Controller {
         'data_lain_bpkln' => $this->input->post('data_lain_bpkln', TRUE)      
         );
 
+        $datadiri= array('status' =>'Diterima');
+
         $nama_file="";
         if (!empty($_FILES['upl_files1']['name'])) {
           if (!$this->upload->do_upload('upl_files1')) {
@@ -714,7 +716,7 @@ class home extends CI_Controller {
              $upload_data = $this->upload->data();
           }
             $nama_file=$upload_data['file_name'];
-            $datasurat = array('surat_setneg' => $nama_file );
+            $data_surat_bpkln['surat_setneg'] = $nama_file;
         }        
 
 
@@ -722,18 +724,13 @@ class home extends CI_Controller {
   	  	$id_user = $_SESSION['logged']['id_user'];
   	  	$table = 'surat_bpkln';
   	  	$table1= 'data_diri';	  	
+    		
+    		// if (!empty($datasurat)) {
+    		// 	$this->m_user->update_surat($table,$datasurat,$id_user,$no_aplikasi);
+    		// }
 
-		$datadiri= array('status' =>'Diterima');
-
-		if (!empty($datasurat)) {
-			$this->m_user->update_surat($table,$datasurat,$id_user,$no_aplikasi);
-		}
-
-		$this->m_user->update_surat($table,$data_surat_bpkln,$id_user,$no_aplikasi);
-		$this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi);
-
-
-	  	//$this->m_user->upd_data_pdln($no_aplikasi, $data);
+		    $this->m_user->update_surat($table,$data_surat_bpkln,$id_user,$no_aplikasi);
+		    $this->m_user->update_status($table1,$datadiri,$id_user,$no_aplikasi);	  
   	  break;
 
   	  case 'tambah_surat_bpkln':

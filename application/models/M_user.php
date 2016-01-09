@@ -183,6 +183,11 @@ class m_user extends CI_Model {
 		return $query;
 	}
 
+    function update_status($table,$data,$id_user,$no_aplikasi){
+        $query = $this->db->update($table, $data, array('id_user'=> $id_user,'no_aplikasi_data_diri' => $no_aplikasi));
+        return $query;
+    }
+
 	function join($id_data_diri){
 		$query = $this->db->query('SELECT * FROM data_diri a, instansi b , sub_instansi c WHERE a.instansi_pemohon=b.id AND c.id_sub_instansi = a.sub_instansi_pemohon AND a.id_data_diri='.$id_data_diri);
 		return $query->row();
