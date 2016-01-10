@@ -50,7 +50,7 @@
                           <option value="Swasta">Swasta</option>
                           <option value="Lainnya">Lainnya</option>
                       </select>
-                        <input type="text" class="form-control" id="pekerjaan_lain" name="pekerjaan_lainnya" placeholder="Pekerjaan" required>
+                        <input type="text" class="form-control" id="pekerjaan_lain" name="pekerjaan_lainnya" placeholder="Pekerjaan" style="margin-top: 15px;">
                     </div>
                   </div>
 
@@ -168,8 +168,8 @@
 
               <div class="form-group">
                 <div class="col-sm-9">      
-                    <input type="submit" name="tambah" value="tambah" title="Tambah data baru">
-                    <input type="submit" name="lanjut" value="lanjut"title="Lanjut">
+                    <input type="submit" class="btn btn-success mb" name="tambah" value="tambah" title="Tambah data baru">
+                    <input type="submit" class="btn btn-info mb" name="lanjut" value="lanjut"title="Lanjut">
                 </div>
               </div>
             </form>   
