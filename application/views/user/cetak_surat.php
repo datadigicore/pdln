@@ -30,7 +30,7 @@
                 <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
                 <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
 
-                <a class="btn btn-warning" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-print"></i> Cetak Surat</a>
+                <a class="btn btn-warning" onclick="$(this).closest('form').submit()"><i class="fa fa-print"></i> Cetak Surat</a>
               </form>
             </div>
             <br>

@@ -108,14 +108,25 @@
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data['cv_pemohon'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                 <?php if ($data['cv_pemohon']!="") {
+                                     echo '<p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data["cv_pemohon"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
+                                 }else{
+                                     /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
+                                     echo "<label>Tidak ada File</label>";
+                                 } ?>
+                                    <!-- <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data['cv_pemohon'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p> -->
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
                                 <div class="col-lg-8">
-                                    <p class="form-control-static"><a href="<?php echo base_url(); ?>home/download/<?php echo $data['karpeg_pemohon'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                    <?php if ($data['karpeg_pemohon']!="") {
+                                     echo '<p class="form-control-static"><a href="<?php echo base_url(); ?>home/download/<?php echo $data["karpeg_pemohon"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
+                                 }else{
+                                     /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
+                                     echo "<label>Tidak ada File</label>";
+                                 } ?>                                    
                                 </div>
                             </div>
                         </div>
@@ -163,7 +174,13 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data['surat_unit_utama'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                            <?php if ($data['surat_unit_utama']!="") {
+                                     echo '<p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data["surat_unit_utama"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
+                                 }else{
+                                     /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
+                                     echo "<label>Tidak ada File</label>";
+                                 } ?> 
+                            
                         </div>
                     </div>
                 </div>
@@ -227,7 +244,12 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Udangan</strong></label>
                         <div class="col-lg-8">
-                            <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data['surat_undangan'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                            <?php if ($data['surat_undangan']!="") {
+                                     echo '<p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data["surat_undangan"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
+                                 }else{
+                                     /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
+                                     echo "<label>Tidak ada File</label>";
+                                 } ?>                             
                         </div>
                     </div>
                 </div>
