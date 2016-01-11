@@ -67,6 +67,9 @@
 <script type="text/javascript">
           $(document).ready(function(){
             var table = $(".table").DataTable({
+              "oLanguage": {
+                "sInfoFiltered": ""
+              },
               "processing": true,
               "serverSide": true,
               "ajax": {
