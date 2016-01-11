@@ -43,6 +43,36 @@ class m_user extends CI_Model {
     $query = $this->db->get();
     return $query->result_array();
   }
+  function get_grafik_sumber() {   
+    $this->db->select('surat_undangan.sumber_dana_kegiatan');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function get_grafik_negara() {   
+    $this->db->select('surat_undangan.negara_tujuan');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function get_grafik_nip() {   
+    $this->db->select('data_diri.nip_pemohon');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
   function select_export_nip($data) {   
     $this->db->select('*');
     $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
