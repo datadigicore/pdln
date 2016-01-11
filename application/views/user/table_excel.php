@@ -1,7 +1,7 @@
 Rekapitulasi Nama<br>
 Pejabat, Pegawai, Dosen, Guru dan Mahasiswa/Siswa ke Luar Negeri<br>
 Tahun <?php echo date("Y"); ?><br><br>
-<table >
+<table border="1">
         <thead>
             <tr>
                 <th>No</th>
