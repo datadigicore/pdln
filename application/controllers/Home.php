@@ -138,10 +138,17 @@ class home extends CI_Controller {
 	  	$this->load->view('user/disetujui_setneg');
 	  	break;
 	  case 'cetak_surat':
-      	$result['query'] = $this->m_user->list_user_surat();
+        if (isset($no_surat_bpkln_setneg)) {
+          $no_surat_bpkln_setneg = $this->input->post('no_surat_bpkln_setneg');
+          $result['query'] = $this->m_user->list_user_surat_cari($no_surat_bpkln_setneg);
+          //$this->load->view('user/cetak_surat', $result);
+        } else {
+          $result['query'] = $this->m_user->list_user_surat();
+          $this->load->view('user/cetak_surat', $result);
+        }      	
       	// print('<pre>');
       	// print_r($result);
-	  	$this->load->view('user/cetak_surat', $result);
+	  	
 	  break;
 	  case 'excel':
 		$this->load->view('user/excel');
@@ -253,20 +260,20 @@ class home extends CI_Controller {
         $datadiri = array(
   		  'id_user' => $_SESSION['logged']['id_user'],
   		  'no_aplikasi_data_diri' => $no_aplikasi,
-		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
-		  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
-		  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
-		  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
-		  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
-		  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
-		  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
-		  'pekerjaan_lainnya' => $pekerjaan_lainnya,
-		  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
-		  'tgl_terbit_passport' => $this->input->post('tgl_terbit_passport_pemohon', TRUE),
-		  'tgl_habis_passport' => $this->input->post('tgl_habis_passport_pemohon', TRUE),		  
-		  'status' => 'Permohonan'
-		  
-		);
+  		  'nama_pemohon' => $this->input->post('nama_pemohon', TRUE),
+  		  'nip_pemohon' => $this->input->post('nip_pemohon', TRUE),
+  		  'no_hp_pemohon' => $this->input->post('no_hp_pemohon', TRUE),
+  		  'instansi_pemohon' => $this->input->post('instansi_pemohon', TRUE),
+  		  'sub_instansi_pemohon' => $this->input->post('sub_instansi_pemohon', TRUE),
+  		  'jabatan_pemohon' => $this->input->post('jabatan_pemohon', TRUE),
+  		  'pekerjaan_pemohon' => $this->input->post('pekerjaan_pemohon',TRUE),
+  		  'pekerjaan_lainnya' => $pekerjaan_lainnya,
+  		  'no_passport_pemohon' => $this->input->post('no_passport_pemohon', TRUE),
+  		  'tgl_terbit_passport' => $this->input->post('tgl_terbit_passport_pemohon', TRUE),
+  		  'tgl_habis_passport' => $this->input->post('tgl_habis_passport_pemohon', TRUE),		  
+  		  'status' => 'Permohonan'
+  		  
+  		);
 
 
         for ($i = 1; $i <= 4; $i++) {
