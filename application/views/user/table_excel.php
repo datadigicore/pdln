@@ -1,6 +1,64 @@
-Rekapitulasi Nama<br>
-Pejabat, Pegawai, Dosen, Guru dan Mahasiswa/Siswa ke Luar Negeri<br>
-Tahun <?php echo date("Y"); ?><br><br>
+<table>
+    <thead>
+            <tr>
+                <th colspan="17">Rekapitulasi Data</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th colspan="17">Pejabat, Pegawai, Dosen, Guru dan Mahasiswa/Siswa ke Luar Negeri</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th colspan="17">Tahun Kegiatan <?php echo date("Y"); ?><br><br></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+</table>
 <table border="1">
         <thead>
             <tr>
