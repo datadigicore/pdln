@@ -138,17 +138,16 @@ class home extends CI_Controller {
 	  	$this->load->view('user/disetujui_setneg');
 	  	break;
 	  case 'cetak_surat':
-        if (isset($no_surat_bpkln_setneg)) {
+        $kondisi = $this->input->post('kondisi');
+        //print($kondisi);
+        if ($kondisi=="cari") {
           $no_surat_bpkln_setneg = $this->input->post('no_surat_bpkln_setneg');
-          $result['query'] = $this->m_user->list_user_surat_cari($no_surat_bpkln_setneg);
-          //$this->load->view('user/cetak_surat', $result);
-        } else {
-          $result['query'] = $this->m_user->list_user_surat();
+          $result['query'] = $this->m_user->list_user_surat_cari($no_surat_bpkln_setneg);          
           $this->load->view('user/cetak_surat', $result);
-        }      	
-      	// print('<pre>');
-      	// print_r($result);
-	  	
+        } elseif ($kondisi=="cetak") {
+          $result['query'] = $this->m_user->list_user_surat();          
+          $this->load->view('user/cetak_surat', $result);
+        }
 	  break;
 	  case 'excel':
 		$this->load->view('user/excel');

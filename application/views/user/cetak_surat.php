@@ -7,7 +7,8 @@
             <h4 class="mb"><i class="fa fa-angle-right"></i> Cetak Surat ke Setneg</h4>
             <form class="form-horizontal style-form" method="POST" action="<?php echo base_url();?>home">                
               <div class="form-group">
-                  <input type="hidden" name="content" value="cetak_surat">                
+                  <input type="hidden" name="content" value="cetak_surat"> 
+                  <input type="hidden" name="kondisi" value="cari">
                   <label class="col-lg-3 col-sm-3 control-label">No Surat Unit Utama</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" name="no_surat_bpkln_setneg" placeholder="No Surat Unit Utama ke Setneg">
@@ -20,17 +21,15 @@
             </form>
 
             <h4>Hasil Pencarian</h4>
-
+            <?php if(count(array_filter($query))!=0){?>            
             <div class="text-center">
               <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf">
-
-                <input type="hidden" name="content" value="step1">
                 <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
                 <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
 
                 <a class="btn btn-warning" onclick="$(this).closest('form').submit()"><i class="fa fa-print"></i> Cetak Surat</a>
               </form>
-            </div>
+            </div>           
             <br>
             <table class="table  table-striped table-bordered pdln-table table-curved" cellspacing="0" width="100%">
               <thead>
@@ -57,6 +56,10 @@
             </table>
 
           </div>
+           <?php }
+            else {
+              echo "<label>Data Kosong</label>";
+            }?>
         </div>
       </div>
     </section><! --/wrapper -->

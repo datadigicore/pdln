@@ -116,6 +116,7 @@
             <li>
                 <form method="POST" action="<?php echo base_url();?>home">
                     <input type="hidden" name="content" value="cetak_surat">
+                    <input type="hidden" name="kondisi" value="cetak">
                     <a onclick="$(this).closest('form').submit()">
                     <i class="fa fa-print"></i>
                         Cetak Surat
