@@ -171,15 +171,15 @@ var chartbar = new Highcharts.Chart({
         },
         series: [{
             data: [
-                ['Bananas', 8],
-                ['Kiwi', 3],
-                ['Mixed nuts', 1],
-                ['Oranges', 6],
-                ['Apples', 8],
-                ['Pears', 4],
-                ['Clementines', 4],
-                ['Reddish (bag)', 1],
-                ['Grapes (bunch)', 1]
+                ['Example 1', 8],
+                ['Example 2', 3],
+                ['Example 3', 1],
+                ['Example 4', 6],
+                ['Example 5', 8],
+                ['Example 6', 4],
+                ['Example 7', 4],
+                ['Example 8', 1],
+                ['Example 9', 1]
             ]
         }]
     });        
@@ -207,15 +207,15 @@ var chartpie = new Highcharts.Chart({
         series: [{
             name: 'Delivered amount',
             data: [
-                ['Bananas', 8],
-                ['Kiwi', 3],
-                ['Mixed nuts', 1],
-                ['Oranges', 6],
-                ['Apples', 8],
-                ['Pears', 4],
-                ['Clementines', 4],
-                ['Reddish (bag)', 1],
-                ['Grapes (bunch)', 1]
+                ['Example 1', 8],
+                ['Example 2', 3],
+                ['Example 3', 1],
+                ['Example 4', 6],
+                ['Example 5', 8],
+                ['Example 6', 4],
+                ['Example 7', 4],
+                ['Example 8', 1],
+                ['Example 9', 1]
             ]
         }]
     });
