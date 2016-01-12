@@ -91,8 +91,8 @@
                         Update Data Pemohon
                     </a>
                 </form>
-            </li>
- -->
+            </li> -->
+
             <li>
                 <form method="POST" action="<?php echo base_url();?>home">
                     <input type="hidden" name="content" value="update_bpkln">

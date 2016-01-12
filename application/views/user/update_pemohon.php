@@ -70,7 +70,7 @@
               "serverSide": true,
               "ajax": {
                 "url": "<?php echo base_url('home/process') ?>",
-                "data": {manage:'tab_update_bpkln'},
+                "data": {manage:'tab_surat_unit'},
                 "type": "POST"
               },
               "columnDefs" : [
@@ -78,23 +78,59 @@
                  "visible" : false},
                 {"targets" : 1},
                 {"targets" : 2},
-                {"targets" : 3}, 
-                {"targets" : 4},
-                {"targets" : 5},
-                {"targets" : 6},
                 {"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
-                                    '<a style="margin:0 2px;" id="btn-edit" href="#modal-tambahdata" class="btn btn-success btn-sm" data-toggle="modal"><i class="fa fa-edit"></i></a>'+
-                                    /*'<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
-                                    '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+*/
+                                    '<a style="margin:0 2px;" id="btn-view" class="btn btn-primary"><i class="fa fa-search"></i></a>'+
+                                    '<a style="margin:0 2px;" id="btn-edit" class="btn btn-success"><i class="fa fa-edit"></i></a>'+
                                     '</div>',
-                 "targets": 7}
+                 "targets": 3}
               ],
               "order": [[ 0, "desc" ]]
             });
-            var tabrow;           
+            var tabrow;
 
-            
+          /*$(document).on("click", "#btn-view", function (){
+              content = 'view_unit_utama';
+              var tr = $(this).closest('tr');
+              tabrow = table.row(tr);
+              row_id = tabrow.data()[0];
+              row_no_surat_unit_utama = tabrow.data()[1];
+              kondisi = 'view';
+              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
+              var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
+              var $input1=$(document.createElement('input')).css({display:'none'}).attr('name','no_surat_unit_utama').val(row_no_surat_unit_utama);
+              var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);
+              var $input3=$(document.createElement('input')).css({display:'none'}).attr('name','kondisi').val(kondisi);
+              $form.append($input).append($input1).append($input2).append($input3);
+              $("body").append($form);
+              $form.submit();
+              table.draw();
+            });*/
+
+          $(document).on("click", "#btn-view", function (){
+              var tr = $(this).closest('tr');
+              tabrow = table.row( tr );
+              row_id = tabrow.data()[0];
+              row_no_surat_unit_utama = tabrow.data()[1];
+              $.ajax({
+                type: "post",
+                url : "<?php echo base_url('home/process') ?>",
+                data: {manage:'tab_pdln_unit_utama',
+                      key:row_id,
+                      no_surat_unit_utama:row_no_surat_unit_utama},
+                success: function(data)
+                {
+                  //table.draw(data);
+                  document.write(data);
+                }
+              });
+              return false;
+            })
+
+          
+         });
+
         </script>
+
       <!--main content end-->

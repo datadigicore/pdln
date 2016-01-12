@@ -12,13 +12,14 @@
                         <?php if ($data['foto_pemohon']!=""){
                             echo '<input type="hidden" name="txt_upl_files1" value="'.$data["foto_pemohon"].'"> <br>';
                             /*echo "<input type='file' name='upl_files1' class='form-control' style='width: auto;'' disable='true'>";*/
-                            echo ' FOTO PEMOHON <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
+                            echo '<a class="btn btn-danger" id="hapus" title="Hapus" ><i class="fa fa-remove"> FOTO PEMOHON </i></a>';
                             }else{?>
                                 <input type="file" name="upl_files1" class="form-control">
                             <?php
                             }
                             ?>
                     </div>
+                    <div id="data">Saya</div>
                     
                 </div>
                 <input type="hidden" name="no_aplikasi_data_diri" class="form-control" value="<?php echo $data['no_aplikasi_data_diri'] ?>">
@@ -85,7 +86,7 @@
                     <div class="col-sm-8">
                       <select class="form-control" id="instansi_pemohon" name="instansi_pemohon">
                           <!-- query dari db -->
-                          <option value="<?php echo $data['instansi_pemohon']?>"><?php echo $data['instansi_pemohon']?></option>
+                          <option value="<?php echo $data['id_instansi_pemohon']?>"><?php echo $data['instansi_pemohon']?></option>
                           <option value="-">---Pilih Instansi Unit Utama---</option>
                           <?php echo "ini datanya";print_r($instansi); foreach ($instansi as $key => $value) {
                             echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
@@ -178,7 +179,7 @@
                     <div class="col-sm-8">
                       <select class="form-control" id="instansi_unit_utama" name="instansi_unit_utama">
                           <!-- query dari db -->
-                          <option value="<?php echo $data['instansi_unit_utama'] ?>"><?php echo $data['instansi_unit_utama'] ?></option>
+                          <option value="<?php echo $data['id_instansi_unit_utama'] ?>"><?php echo $data['instansi_unit_utama'] ?></option>
                           <option value="-">---Pilih Instansi Unit Utama---</option>
                           <?php echo "ini datanya";print_r($instansi); foreach ($instansi as $key => $value) {
                             echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
@@ -348,6 +349,27 @@
 <!--main content end-->
 
 <script type="text/javascript">
+    $(document).ready(function()
+    {
+     
+     $(document).on("click", "#hapus", function (){
+        $("#data").show();
+        $("#hapus").hide();
+     });
+     $("#data").hide();
+     
+
+    $("#jabatan_pemohon").change(function(){
+      if($(this).val() == "Lainnya"){
+       $("#jabatan_lain").show();
+      }
+      else{
+       $("#jabatan_lain").hide();
+      }         
+     });
+    $("#jabatan_lain").hide();
+
+
     $("#pekerjaan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
        $("#pekerjaan_lain").show();
@@ -437,6 +459,7 @@
                 $form.submit();
 
             }); 
+    });
     });
 
 </script>

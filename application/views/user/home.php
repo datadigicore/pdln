@@ -64,6 +64,7 @@
                  "defaultContent":  '<div class="text-center">'+
                                     '<a style="margin:0 2px;" id="btn-view" class="btn btn-primary"><i class="fa fa-search"></i></a>'+
                                     '<a style="margin:0 2px;" id="btn-edit" class="btn btn-success"><i class="fa fa-edit"></i></a>'+
+                                    '<a style="margin:0 2px;" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i></a>'+
                                     '</div>',
                  "targets": 11}
               ],
@@ -105,42 +106,22 @@
               $form.submit();
             });
 
-
-            $(document).on("click", "#btn-del", function (){
+            $(document).on("click", "#btn-add", function (){
+              content = 'addstep1';
               var tr = $(this).closest('tr');
-              tabrow = table.row( tr );
+              tabrow = table.row(tr);
+              row_id = tabrow.data()[0];
+              row_id_data_diri = tabrow.data()[1];              
+              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
+              var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
+              var $input1=$(document.createElement('input')).css({display:'none'}).attr('name','id_data_diri').val(row_id_data_diri);
+              var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);              
+              $form.append($input).append($input1).append($input2);
+              $("body").append($form);
+              $form.submit();
             });
 
-            $("#deleteProject").click(function(){
-              row_id = tabrow.data()[0];
-              $.ajax({
-                type: "post",
-                url : "<?php echo base_url('admin/process') ?>",
-                data: {manage:'del_user',key:row_id},
-                success: function(data)
-                {
-                  table.draw();
-                  $("#modal-deleteProject").modal('hide');
-                }
-              });
-              return false;
-            });
-            
-            $(document).on("click", "#nonaktif", function (){
-              var tr = $(this).closest('tr');
-              tabrow = table.row( tr );
-              row_id = tabrow.data()[0];
-              $.ajax({
-                type: "post",
-                url : "<?php echo base_url('admin/process') ?>",
-                data: {manage:'act_user',key:row_id},
-                success: function(data)
-                {
-                  table.draw();
-                }
-              });
-              return false;
-            })
+
           });
         </script>
       <!--main content end-->
