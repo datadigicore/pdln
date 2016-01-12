@@ -476,19 +476,19 @@ class home extends CI_Controller {
 	    $table2 = "surat_unit_utama";
 	    $table3 = "surat_undangan";
 	    $table4 = "instansi";
-		$table5 = "sub_instansi";
-		$key = "id_data_diri";
-		$column = array(	    
-	    array( 'db' => 'no_aplikasi_data_diri', 			'dt' => 0),
-      array( 'db' => 'id_data_diri',       'dt' => 1),
-	    array( 'db' => 'nama_pemohon', 						'dt' => 2),
-	    array( 'db' => 'nip_pemohon', 						'dt' => 3),
-	    array( 'db' => 'nama_instansi', 					'dt' => 4),
-	    array( 'db' => 'nama_sub_instansi', 				'dt' => 5),
-	    array( 'db' => 'negara_tujuan', 					'dt' => 6),
-	    array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 7),
-	    array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 8),
-	    array( 'db' => 'rincian_kegiatan', 					'dt' => 9),
+		  $table5 = "sub_instansi";
+		  $key = "id_data_diri";
+		  $column = array(	    
+	    array( 'db' => 'no_aplikasi_data_diri', 			      'dt' => 0),
+      array( 'db' => 'id_data_diri',                      'dt' => 1),
+	    array( 'db' => 'nama_pemohon', 						          'dt' => 2),
+	    array( 'db' => 'nip_pemohon', 						          'dt' => 3),
+	    array( 'db' => 'nama_instansi', 					          'dt' => 4),
+	    array( 'db' => 'nama_sub_instansi', 				        'dt' => 5),
+	    array( 'db' => 'negara_tujuan', 					          'dt' => 6),
+	    array( 'db' => 'tgl_awal_kegiatan', 				        'dt' => 7),
+	    array( 'db' => 'tgl_akhir_kegiatan', 				        'dt' => 8),
+	    array( 'db' => 'rincian_kegiatan', 				      	  'dt' => 9),
 	    array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 10)
 	    
 	 	 );
