@@ -13,6 +13,7 @@
                       <th>No SP Setneg</th>
                       <th>Tanggal SP Setneg </th>
                       <th>Sumber Dana</th>
+                      <th>Julam Pemohon</th>
                       <th>Keterangan Lolos </th>
                       <!-- <th style="width: 15%;">Aksi</th> -->
                   </tr>
@@ -44,9 +45,10 @@
                 {"targets" : 1,
                 "visible" : false},
                 {"targets" : 2},
-                {"targets" : 3}, 
-                {"targets" : 4},                
-                {"targets" : 5}
+                {"targets" : 3},
+                {"targets" : 4},
+                {"targets" : 5},
+                {"targets" : 6}
                 /*{"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+

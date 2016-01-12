@@ -24,8 +24,8 @@
             <?php if(count(array_filter($query))!=0){?>            
             <div class="text-center">
               <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf">
-                <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
-                <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
+                <input type="text" name="banyak" value="<?php echo count(array_filter($query)); ?>">
+                <input type="text" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
 
                 <a class="btn btn-warning" onclick="$(this).closest('form').submit()"><i class="fa fa-print"></i> Cetak Surat</a>
               </form>
@@ -35,10 +35,9 @@
               <thead>
                   <tr>
                       <th style="width: 15%;">Nama</th>
-                      <th style="width: 10%;">Status</th>
                       <th style="width: 10%;">Lembaga</th>
                       <th style="width: 30%;">Kegiatan</th>
-                      <th style="width: 15%;">Tanggal Kegiatan</th>
+                      <th style="width: 15%;">Tanggal Awal Kegiatan</th>
                   </tr>
               </thead>
        
@@ -46,10 +45,9 @@
                   <?php foreach ($query as $item) { ?>
                     <tr>
                       <td><?php echo $item['nama_pemohon']; ?></td>
-                      <td><i><?php $item['status'];?></i></td>
                       <td><?php echo $item['nama_instansi']; ?></td>
                       <td><?php echo $item['rincian_kegiatan']; ?></td>
-                      <td><?php echo $item['tgl_awal_kegiatan']; ?></td>
+                      <td><?php echo $item['tgl_awal_kegiatan']; ?> s/d <br><?php echo $item['tgl_akhir_kegiatan']; ?></td>
                     </tr>
                   <?php } ?>
               </tbody>

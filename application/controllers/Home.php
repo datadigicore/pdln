@@ -616,15 +616,24 @@ class home extends CI_Controller {
 	    $table2 = "surat_undangan";
 	    $table3 = "surat_bpkln";
 	    $table4 = "instansi";
-		$table5 = "sub_instansi";
-		$key = "id_data_diri";
+		  $table5 = "sub_instansi";
+  		$key = "id_data_diri";
+
 	  	$column = array(
-	      array( 'db' => 'no_aplikasi_data_diri',				'dt' => 0),
-	      array( 'db' => 'nama_pemohon', 						'dt' => 1),	      
-	      array( 'db' => 'no_surat_setneg', 					'dt' => 2),
-	      array( 'db' => 'tgl_surat_setneg', 		 			'dt' => 3),
+	      array( 'db' => 'no_aplikasi_data_diri',			       	'dt' => 0),
+	      array( 'db' => 'nama_pemohon', 					          	'dt' => 1),	      
+	      array( 'db' => 'no_surat_setneg', 				         	'dt' => 2),
+	      array( 'db' => 'tgl_surat_setneg', 		 			        'dt' => 3),
 	      array( 'db' => 'keterangan_sumber_dana_kegiatan',		'dt' => 4),
-	      array( 'db' => 'data_lain_bpkln', 		 			'dt' => 5)
+	      array( 'db' => 'data_lain_bpkln',                            'dt' => 5, 'formatter' => function($table1,$row){ 
+        if($table1=="data_diri"){
+          return 'ada';
+        }
+        else{
+          return '<button id="nonaktif" class="btn btn-flat btn-danger btn-xs"><i class="fa fa-warning"></i> Belum Aktif</button>';
+        }
+      }),
+        array( 'db' => 'data_lain_bpkln',                   'dt' => 6)
 	    );
 	    $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon 
 	    AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi 

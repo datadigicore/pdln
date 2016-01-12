@@ -57,7 +57,7 @@
                   <div class="form-group" id="nip">
                     <label class="col-lg-3 col-sm-3 control-label">NIP</label>
                     <div class="col-sm-9">
-                      <input type="number" class="form-control" id="nip_pemohon" name="nip_pemohon" placeholder="NIP" min="0" max="999999999999999999" required>
+                      <input type="number" class="form-control" id="nip_pemohon" name="nip_pemohon" placeholder="NIP" min="0" max="999999999999999999">
                     </div>
                   </div>
 
@@ -66,7 +66,7 @@
                     <div class="col-sm-9">
                       <select class="form-control" id="instansi_pemohon" name="instansi_pemohon">
                           <!-- query dari db -->
-                          <option value="-">---Pilih Instansi Unit Utama---</option>
+                          <option value="16">---Pilih Instansi Unit Utama---</option>
                           <?php foreach ($instansi as $key => $value) {
                             echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
                           }?>
@@ -86,7 +86,7 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Jabatan</label>
                     <div class="col-sm-9">
-                      <select class="form-control" id="jabatan_pemohon" name="jabatan_pemohon" onchange="jabatan_pemohona(this.value)">
+                      <select class="form-control" id="jabatan_pemohon" name="jabatan_pemohon" onchange="jabatan_pemohon(this.value)">
                           <option value="-">---Pilih Jabatan---</option>
                           <option value="Eselon 1">Eselon 1</option>
                           <option value="Eselon 2">Eselon 2</option>

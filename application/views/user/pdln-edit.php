@@ -12,7 +12,7 @@
                         <?php if ($data['foto_pemohon']!=""){
                             echo '<input type="hidden" name="txt_upl_files1" value="'.$data["foto_pemohon"].'"> <br>';
                             /*echo "<input type='file' name='upl_files1' class='form-control' style='width: auto;'' disable='true'>";*/
-                            echo ' "'.$data["foto_pemohon"].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
+                            echo ' FOTO PEMOHON <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files1" class="form-control">
                             <?php
@@ -115,7 +115,7 @@
                         <div class="col-lg-8">
                             <?php if ($data['cv_pemohon']!=""){ 
                                 echo '<input type="hidden" name="txt_upl_files2" value="'.$data["cv_pemohon"].'">';
-                                echo ' "'.$data["cv_pemohon"].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
+                                echo ' CV PEMOHON <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files2" class="form-control" style="width: auto;">
                             <?php
@@ -129,7 +129,7 @@
                         <div class="col-lg-8">
                             <?php if ($data['karpeg_pemohon']!=""){ 
                                 echo '<input type="hidden" name="txt_upl_files3" value="'.$data['karpeg_pemohon'].'">';
-                                echo ' "'.$data["karpeg_pemohon"].'"  '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                                echo ' KARPEG PEMOHON  '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
                                 <input type="file" name="upl_files3" class="form-control" style="width: auto;">
                             <?php
@@ -143,7 +143,7 @@
                         <div class="col-lg-8">
                             <?php if ($data['surat_tugas_pemohon']!=""){ 
                                 echo '<input type="hidden" name="txt_upl_files7" value="'.$data['surat_tugas_pemohon'].'">';
-                                echo ' "'.$data['surat_tugas_pemohon'].'" '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                                echo ' SURAT TUGAS PEMOHON '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
                                 <input type="file" name="upl_files7" class="form-control" style="width: auto;">
                             <?php
@@ -216,7 +216,7 @@
                         <div class="col-lg-8">
                             <?php if ($data['surat_unit_utama']!=""){ 
                                 echo '<input type="hidden" name="txt_upl_files4" value="'.$data['surat_unit_utama'].'">';
-                                echo ' "'.$data['surat_unit_utama'].'" '; 
+                                echo 'SURAT UNIT UTAMA '; 
                                 echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
                             }else{?>
                                 <input type="file" name="upl_files4" class="form-control" style="width: auto;">
@@ -305,7 +305,7 @@
                     <div class="col-lg-8">
                         <?php if ($data['surat_undangan']!=""){ 
                             echo '<input type="hidden" name="txt_upl_files5" value="'.$data['surat_undangan'].'">';
-                            echo ' "'.$data['surat_undangan'].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
+                            echo ' SURAT UNDANGAN <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files5" class="form-control" style="width: auto;">
                             <?php
@@ -320,7 +320,7 @@
                     <div class="col-lg-8">
                         <?php if ($data['surat_perjanjian']!=""){ 
                             echo '<input type="hidden" name="txt_upl_files6" value="'.$data['surat_perjanjian'].'">';
-                            echo ' "'.$data['surat_perjanjian'].'" <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
+                            echo ' SURAT PERJANJIAN <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
                             }else{?>
                                 <input type="file" name="upl_files6" class="form-control" style="width: auto;">
                             <?php

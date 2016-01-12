@@ -3,8 +3,8 @@
   <section class="wrapper site-min-height">
     <div class="row mt">
         <div class="col-lg-12">
-            <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf/cetak_surat" style="float:left; margin-right:12px">
-                <input type="hidden" name="iduser" value="<?php $data['id_data_diri'] ?>">
+            <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf/cetak_surat" style="float:left; margin-right:12px">                
+                <input type="hidden" name="iduser" value="<?php echo $data['id_data_diri'] ?>">
                 <input type="hidden" name="kategori" value="setneg">
                 <input type="hidden" name="noaplikasi" value="<?php echo $data['no_aplikasi_data_diri'] ?>">
                 <a onclick="$(this).closest('form').submit()" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
@@ -108,12 +108,12 @@
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
                                 <div class="col-lg-8">
-                                 <?php if ($data['cv_pemohon']!="") {
-                                     echo '<p class="form-control-static"><a href="';echo base_url(); echo 'home/download/<?php echo $data["cv_pemohon"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
-                                 }else{
+                                 <?php if ($data['cv_pemohon']!="") {?>
+                                     <p class="form-control-static"><a href="<?php echo base_url(); ?>home/download/<?php echo $data['cv_pemohon'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                 <?php }else{
                                      /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
                                      echo "<label>Tidak ada File</label>";
-                                 } ?>
+                                 }?>
                                     <!-- <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data['cv_pemohon'] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p> -->
                                 </div>
                             </div>
@@ -121,9 +121,9 @@
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Kartu Pegawai</strong></label>
                                 <div class="col-lg-8">
-                                    <?php if ($data['karpeg_pemohon']!="") {
-                                     echo '<p class="form-control-static"><a href="<?php echo base_url(); ?>home/download/<?php echo $data["karpeg_pemohon"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
-                                 }else{
+                                    <?php if ($data['karpeg_pemohon']!="") {?>
+                                     <p class="form-control-static"><a href="<?php echo base_url(); ?>home/download/<?php echo $data["karpeg_pemohon"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                 <?php }else{
                                      /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
                                      echo "<label>Tidak ada File</label>";
                                  } ?>                                    
@@ -181,9 +181,9 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
-                            <?php if ($data['surat_unit_utama']!="") {
-                                     echo '<p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data["surat_unit_utama"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
-                                 }else{
+                            <?php if ($data['surat_unit_utama']!="") {?>
+                                     <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data["surat_unit_utama"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                 <?php }else{
                                      /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
                                      echo "<label>Tidak ada File</label>";
                                  } ?> 
@@ -251,9 +251,9 @@
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Udangan</strong></label>
                         <div class="col-lg-8">
-                            <?php if ($data['surat_undangan']!="") {
-                                     echo '<p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data["surat_undangan"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
-                                 }else{
+                            <?php if ($data['surat_undangan']!="") {?>
+                                     <p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data["surat_undangan"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>
+                                 <?php }else{
                                      /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
                                      echo "<label>Tidak ada File</label>";
                                  } ?>                             
