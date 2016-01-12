@@ -153,7 +153,7 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Kartu Pegawai</label>
                     <div class="col-sm-9">
-                      <input type="file" name="upl_files3" class="form-control">
+                      <input type="file" id="karpeg" name="upl_files3" class="form-control">
                     </div>
                   </div>
 
@@ -200,6 +200,8 @@
       }else if ($(this).val()=="PNS"){
        $("#pekerjaan_lain").hide();
        $("#nip").show();
+       $('#nip_pemohon').prop('required',true);
+       $('#karpeg').prop('required',true);
        $("#instansi").show(); 
       }
       else{
@@ -207,8 +209,12 @@
        $("#nip").hide();
        $("#instansi").hide();
        $("#sub_instansi_pemohon").hide();
+       $('#nip_pemohon').prop('required',false);
+       $('#karpeg').prop('required',false);
       }          
      });
+     $('#nip_pemohon').prop('required',false);
+     $('#karpeg').prop('required',false);
      $("#pekerjaan_lain").hide();
      $("#nip").hide();
      $("#instansi").hide();
