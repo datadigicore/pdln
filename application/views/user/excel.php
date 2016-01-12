@@ -12,24 +12,12 @@
                 <option value="negara">Negara</option>
                 <option value="nip">NIP</option>
                 <option value="sumber">Sumber Dana</option>
-                <!-- <option>Unit Utama</option> -->
+                <option value="pekerjaan">Pekerjaan</option>
+                <option value="kegiatan">Kategori Kegiatan</option>
                 <option value="waktu">Waktu Berkunjung</option>
             </select>
           </div>
         </div>
-
-        <!-- <div class="form-group">
-          <label class="col-lg-3 col-sm-3 control-label">Filter berdasarkan Unitutama</label>
-          <div class="col-sm-9">
-            <select class="form-control" name="lembaga">
-                <option>Pilih salah satu</option>
-                <option>Golongan</option>
-                <option>Orang</option>
-                <option>Dll</option>
-            </select>
-          </div>
-        </div> -->
-
         <div class="form-group">
             <label class="col-lg-3 col-sm-3 control-label"></label>
             <div class="col-sm-9">
@@ -48,6 +36,8 @@
     $("#sumber").remove();
     $("#waktu_awal").remove();
     $("#waktu_akhir").remove();
+    $("#kegiatan").remove();
+    $("#pekerjaan").remove();
   }
   $("#pilihexport").change(function(){
     if($(this).val() == "negara"){
@@ -65,16 +55,7 @@
     }
     else if ($(this).val()=="nip"){
      clear();
-     $("<select class='form-control' id='nip' name='nip' required></select>").insertAfter( $( "#pilihexport" ) );
-      $.ajax({
-        type: "post",
-        url : "<?php echo base_url('home/process') ?>",
-        data: {manage:'select_nip'},
-        success: function(result)
-        {
-          $("#nip").html(result);
-        }
-      });
+     $("<input type='hidden' class='form-control' id='nip' name='nip' value='nip'>").insertAfter( $( "#pilihexport" ) );
     }
     else if ($(this).val()=="sumber"){
      clear();
@@ -86,6 +67,32 @@
         success: function(result)
         {
           $("#sumber").html(result);
+        }
+      });
+    }
+    else if ($(this).val() == "pekerjaan"){
+      clear();
+      $("<select class='form-control' id='pekerjaan' name='pekerjaan' required></select>").insertAfter( $( "#pilihexport" ) );
+      $.ajax({
+        type: "post",
+        url : "<?php echo base_url('home/process') ?>",
+        data: {manage:'select_pekerjaan'},
+        success: function(result)
+        {
+          $("#pekerjaan").html(result);
+        }
+      });
+    }
+    else if ($(this).val() == "kegiatan"){
+      clear();
+      $("<select class='form-control' id='kegiatan' name='kegiatan' required></select>").insertAfter( $( "#pilihexport" ) );
+      $.ajax({
+        type: "post",
+        url : "<?php echo base_url('home/process') ?>",
+        data: {manage:'select_kegiatan'},
+        success: function(result)
+        {
+          $("#kegiatan").html(result);
         }
       });
     }

@@ -184,6 +184,20 @@ class home extends CI_Controller {
           echo '<option value="'.$item["country_name"].'">'.$item["country_name"]."</option>";
         } 
       break;
+      case 'select_pekerjaan':      
+        $result = $this->m_user->get_pekerjaan();
+        echo '<option value="" selected disabled>--- Pilih Pekerjaan ---</option>';
+        foreach ($result as $item) {
+          echo '<option value="'.$item["pekerjaan_pemohon"].'">'.$item["pekerjaan_pemohon"]."</option>";
+        } 
+      break;
+      case 'select_kegiatan':      
+        $result = $this->m_user->get_kegiatan();
+        echo '<option value="" selected disabled>--- Pilih Kegiatan ---</option>';
+        foreach ($result as $item) {
+          echo '<option value="'.$item["kategori_kegiatan"].'">'.$item["kategori_kegiatan"]."</option>";
+        } 
+      break;
       case 'select_nip':
         $result = $this->m_user->get_nip();
         echo '<option value="" selected disabled>--- Pilih NIP ---</option>';
@@ -205,29 +219,112 @@ class home extends CI_Controller {
           echo '<option value="'.$item["sumber_dana_kegiatan"].'">'.$item["sumber_dana_kegiatan"]."</option>";
         } 
       break;
-      case 'select_grafik_doughnut':      
-        $result = $this->m_user->get_golongan();
-        $data = array();
-        foreach ($result as $item) {
-          $temp = array(
-              'value' => $item['count(jabatan_pemohon)'],
-              'color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)),
-              'label' => $item["jabatan_pemohon"],
-          );
-          array_push($data, $temp);
-        } 
-        echo json_encode($data);
+      case 'sumber_dana':      
+        $results = $this->m_user->get_grafik_sumber();
+        $prev_value = array('value' => null, 'amount' => null);
+        foreach ($results as $data) {
+          if ($prev_value['value'] != $data['sumber_dana_kegiatan']) {
+              unset($prev_value);
+              $prev_value = array('value' => $data['sumber_dana_kegiatan'], 'amount' => 0);
+              $result[] =& $prev_value;
+          }
+          $prev_value['amount']++;
+        }
+        for ($i=0; $i < count($result) ; $i++) { 
+          $newresult[$i][] =& $result[$i]['value'];
+          $newresult[$i][] =& $result[$i]['amount'];
+        }
+        echo json_encode($newresult);
       break;
-      case 'select_grafik_line':      
-        $result = $this->m_user->get_golongan();
-        $data1 = array();
-        $data2 = array();
-        foreach ($result as $item) {
-          $data1[] = $item["jabatan_pemohon"];
-          $data2[] = $item["count(jabatan_pemohon)"];
-        } 
-        // print_r($data2);
-        echo json_encode(array("nmjabatan"=>$data1,"jmljabatan"=>$data2));
+      case 'sumber_pekerjaan':      
+        $results = $this->m_user->get_grafik_pekerjaan();
+        $prev_value = array('value' => null, 'amount' => null);
+        foreach ($results as $data) {
+          if ($prev_value['value'] != $data['pekerjaan_pemohon']) {
+              unset($prev_value);
+              $prev_value = array('value' => $data['pekerjaan_pemohon'], 'amount' => 0);
+              $result[] =& $prev_value;
+          }
+          $prev_value['amount']++;
+        }
+        for ($i=0; $i < count($result) ; $i++) { 
+          $newresult[$i][] =& $result[$i]['value'];
+          $newresult[$i][] =& $result[$i]['amount'];
+        }
+        echo json_encode($newresult);
+      break;
+      case 'sumber_kegiatan':      
+        $results = $this->m_user->get_grafik_kegiatan();
+        $prev_value = array('value' => null, 'amount' => null);
+        foreach ($results as $data) {
+          if ($prev_value['value'] != $data['kategori_kegiatan']) {
+              unset($prev_value);
+              $prev_value = array('value' => $data['kategori_kegiatan'], 'amount' => 0);
+              $result[] =& $prev_value;
+          }
+          $prev_value['amount']++;
+        }
+        for ($i=0; $i < count($result) ; $i++) { 
+          $newresult[$i][] =& $result[$i]['value'];
+          $newresult[$i][] =& $result[$i]['amount'];
+        }
+        echo json_encode($newresult);
+      break;
+      case 'sumber_negara':      
+        $results = $this->m_user->get_grafik_negara();
+        $prev_value = array('value' => null, 'amount' => null);
+        foreach ($results as $data) {
+          if ($prev_value['value'] != $data['negara_tujuan']) {
+              unset($prev_value);
+              $prev_value = array('value' => $data['negara_tujuan'], 'amount' => 0);
+              $result[] =& $prev_value;
+          }
+          $prev_value['amount']++;
+        }
+        for ($i=0; $i < count($result) ; $i++) { 
+          $newresult[$i][] =& $result[$i]['value'];
+          $newresult[$i][] =& $result[$i]['amount'];
+        }
+        echo json_encode($newresult);
+      break;
+      case 'sumber_waktu':
+        $data['awal'] = $this->input->post('awal');
+        $data['akhir'] = $this->input->post('akhir');
+        $results = $this->m_user->get_grafik_waktu($data);
+        if ($results != null) {
+          $prev_value = array('value' => null, 'amount' => null);
+          foreach ($results as $data) {
+            if ($prev_value['value'] != $data['nama_pemohon']) {
+                unset($prev_value);
+                $prev_value = array('value' => $data['nama_pemohon'], 'amount' => 0);
+                $result[] =& $prev_value;
+            }
+            $prev_value['amount']++;
+          }
+          for ($i=0; $i < count($result) ; $i++) { 
+            $newresult[$i][] =& $result[$i]['value'];
+            $newresult[$i][] =& $result[$i]['amount'];
+          }
+          echo json_encode($newresult);
+        }
+        else {}
+      break;
+      case 'sumber_nip':      
+        $results = $this->m_user->get_grafik_nip();
+        $prev_value = array('value' => null, 'amount' => null);
+        foreach ($results as $data) {
+          if ($prev_value['value'] != $data['nip_pemohon']) {
+              unset($prev_value);
+              $prev_value = array('value' => $data['nip_pemohon'], 'amount' => 0);
+              $result[] =& $prev_value;
+          }
+          $prev_value['amount']++;
+        }
+        for ($i=0; $i < count($result) ; $i++) { 
+          $newresult[$i][] =& $result[$i]['value'];
+          $newresult[$i][] =& $result[$i]['amount'];
+        }
+        echo json_encode($newresult);
       break;
   	  case 'add_data_diri': 
   	  	$cek = $this->input->post('no_aplikasi');

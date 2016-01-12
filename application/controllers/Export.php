@@ -14,6 +14,8 @@ class export extends CI_Controller {
 		$data['nip'] = $this->input->post('nip');
 		$data['waktu_awal'] = $this->input->post('waktu_awal');
 		$data['waktu_akhir'] = $this->input->post('waktu_akhir');
+		$data['pekerjaan'] = $this->input->post('pekerjaan');
+		$data['kegiatan'] = $this->input->post('kegiatan');
 		if (isset($data['negara'])) {
 			$result['query'] = $this->m_user->select_export_negara($data['negara']);
 		}
@@ -21,10 +23,16 @@ class export extends CI_Controller {
 			$result['query'] = $this->m_user->select_export_sumber($data['sumber']);
 		}
 		elseif (isset($data['nip'])) {
-			$result['query'] = $this->m_user->select_export_nip($data['nip']);
+			$result['query'] = $this->m_user->select_export_nip();
 		}
 		elseif (isset($data['waktu_awal']) && isset($data['waktu_akhir'])) {
 			$result['query'] = $this->m_user->select_export_tanggal($data);
+		}
+		elseif (isset($data['pekerjaan'])) {
+			$result['query'] = $this->m_user->select_export_pekerjaan($data['pekerjaan']);
+		}
+		elseif (isset($data['kegiatan'])) {
+			$result['query'] = $this->m_user->select_export_kegiatan($data['kegiatan']);
 		}
 		else {
 			$result['query'] = $this->m_user->select_data_pdln();
