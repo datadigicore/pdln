@@ -109,7 +109,7 @@
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>CV</strong></label>
                                 <div class="col-lg-8">
                                  <?php if ($data['cv_pemohon']!="") {
-                                     echo '<p class="form-control-static"><a href="<?php echo base_url();?>home/download/<?php echo $data["cv_pemohon"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
+                                     echo '<p class="form-control-static"><a href="';echo base_url(); echo 'home/download/<?php echo $data["cv_pemohon"] ?>" class="btn pdln-btn"><i class="fa  fa-download"></i> Unduh</a></p>';
                                  }else{
                                      /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
                                      echo "<label>Tidak ada File</label>";
@@ -154,6 +154,13 @@
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Instansi Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
                             <p class="form-control-static"><?php echo $data['instansi_unit_utama'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label"><strong>Sub Instansi Surat Unit Utama</strong></label>
+                        <div class="col-lg-8">
+                            <p class="form-control-static"><?php echo $data['sub_instansi_unit_utama'] ?></p>
                         </div>
                     </div>
 

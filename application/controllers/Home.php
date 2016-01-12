@@ -62,7 +62,7 @@ class home extends CI_Controller {
 	  	$table = 'instansi';
       	$data['instansi'] = $this->m_user->select_data($table);      	
 	  	//ini load data dari data diri nya udh bener
-	      $no_aplikasi_data_diri = array('no_aplikasi_data_diri' => $this->input->post('id'),'id_data_diri' => $this->input->post('id_data_diri'));
+	      $no_aplikasi_surat = $this->input->post('id');
 	      $no_aplikasi = array('no_aplikasi' => $this->input->post('id'));
         $id_data_diri= $this->input->post('id_data_diri');
 	      $table1='data_diri';
@@ -70,8 +70,9 @@ class home extends CI_Controller {
 	      $table3='surat_undangan';
 	      $kondisi = array('kondisi' => $this->input->post('kondisi'));
 	      //$datadiri = $this->m_user->get_data_pdln($table1,$no_aplikasi_data_diri);
-	      $datadiri = $this->m_user->join($id_data_diri);
-	      $data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
+	      $datadiri = $this->m_user->joindatadiri($id_data_diri);
+	      //$data_surat_unit_utama = $this->m_user->get_data_pdln($table2,$no_aplikasi);
+        $data_surat_unit_utama = $this->m_user->joinsurat($no_aplikasi_surat);
 	      $data_surat_undangan = $this->m_user->get_data_pdln($table3,$no_aplikasi);
 	      //print_r($id_data_diri);
 	      /*print_r($data_surat_unit_utama);
@@ -98,7 +99,8 @@ class home extends CI_Controller {
 	          'no_surat_unit_utama' => $data_surat_unit_utama->no_surat_unit_utama,
 	          'tgl_surat_unit_utama' => $data_surat_unit_utama->tgl_surat_unit_utama,
 	          'penandatangan_surat_unit_utama' => $data_surat_unit_utama->penandatangan_surat_unit_utama,
-	          'instansi_unit_utama' => $data_surat_unit_utama->instansi_unit_utama,
+	          'instansi_unit_utama' => $data_surat_unit_utama->nama_instansi,
+            'sub_instansi_unit_utama' => $data_surat_unit_utama->nama_sub_instansi,
 	          'perihal_surat_unit_utama' => $data_surat_unit_utama->perihal_surat_unit_utama,
 	          'surat_unit_utama' => $data_surat_unit_utama->surat_unit_utama,
 	          'no_surat_undangan' => $data_surat_undangan->no_surat_undangan,
@@ -182,20 +184,6 @@ class home extends CI_Controller {
         echo '<option value="" selected disabled>--- Pilih Negara ---</option>';
         foreach ($result as $item) {
           echo '<option value="'.$item["country_name"].'">'.$item["country_name"]."</option>";
-        } 
-      break;
-      case 'select_pekerjaan':      
-        $result = $this->m_user->get_pekerjaan();
-        echo '<option value="" selected disabled>--- Pilih Pekerjaan ---</option>';
-        foreach ($result as $item) {
-          echo '<option value="'.$item["pekerjaan_pemohon"].'">'.$item["pekerjaan_pemohon"]."</option>";
-        } 
-      break;
-      case 'select_kegiatan':      
-        $result = $this->m_user->get_kegiatan();
-        echo '<option value="" selected disabled>--- Pilih Kegiatan ---</option>';
-        foreach ($result as $item) {
-          echo '<option value="'.$item["kategori_kegiatan"].'">'.$item["kategori_kegiatan"]."</option>";
         } 
       break;
       case 'select_nip':
@@ -579,19 +567,19 @@ class home extends CI_Controller {
 	    $table2 = "surat_unit_utama";
 	    $table3 = "surat_undangan";
 	    $table4 = "instansi";
-		$table5 = "sub_instansi";
-		$key = "id_data_diri";
-		$column = array(	    
-	    array( 'db' => 'no_aplikasi_data_diri', 			'dt' => 0),
-      array( 'db' => 'id_data_diri',       'dt' => 1),
-	    array( 'db' => 'nama_pemohon', 						'dt' => 2),
-	    array( 'db' => 'nip_pemohon', 						'dt' => 3),
-	    array( 'db' => 'nama_instansi', 					'dt' => 4),
-	    array( 'db' => 'nama_sub_instansi', 				'dt' => 5),
-	    array( 'db' => 'negara_tujuan', 					'dt' => 6),
-	    array( 'db' => 'tgl_awal_kegiatan', 				'dt' => 7),
-	    array( 'db' => 'tgl_akhir_kegiatan', 				'dt' => 8),
-	    array( 'db' => 'rincian_kegiatan', 					'dt' => 9),
+		  $table5 = "sub_instansi";
+		  $key = "id_data_diri";
+		  $column = array(	    
+	    array( 'db' => 'no_aplikasi_data_diri', 			      'dt' => 0),
+      array( 'db' => 'id_data_diri',                      'dt' => 1),
+	    array( 'db' => 'nama_pemohon', 						          'dt' => 2),
+	    array( 'db' => 'nip_pemohon', 						          'dt' => 3),
+	    array( 'db' => 'nama_instansi', 					          'dt' => 4),
+	    array( 'db' => 'nama_sub_instansi', 				        'dt' => 5),
+	    array( 'db' => 'negara_tujuan', 					          'dt' => 6),
+	    array( 'db' => 'tgl_awal_kegiatan', 				        'dt' => 7),
+	    array( 'db' => 'tgl_akhir_kegiatan', 				        'dt' => 8),
+	    array( 'db' => 'rincian_kegiatan', 				      	  'dt' => 9),
 	    array( 'db' => 'keterangan_sumber_dana_kegiatan', 	'dt' => 10)
 	    
 	 	 );
