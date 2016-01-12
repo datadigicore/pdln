@@ -157,13 +157,15 @@ class home extends CI_Controller {
       break;
     case 'cetak_surat':
         $kondisi = $this->input->post('kondisi');
-        //print($kondisi);
+        $id_user = $this->input->post('id');
+        /*print($id_user);
+        print($kondisi);*/
         if ($kondisi=="cari") {
           $no_surat_bpkln_setneg = $this->input->post('no_surat_bpkln_setneg');
-          $result['query'] = $this->m_user->list_user_surat_cari($no_surat_bpkln_setneg);          
+          $result['query'] = $this->m_user->list_user_surat_cari($no_surat_bpkln_setneg,$id_user);          
           $this->load->view('user/cetak_surat', $result);
         } elseif ($kondisi=="cetak") {
-          $result['query'] = $this->m_user->list_user_surat();          
+          $result['query'] = $this->m_user->list_user_surat($id_user);          
           $this->load->view('user/cetak_surat', $result);
         }
     break;

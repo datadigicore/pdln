@@ -3,7 +3,7 @@
           <section class="wrapper site-min-height">
             <h3><i class="fa fa-angle-right"></i> Laporan</h3>
             
-            <form class="form-horizontal style-form" method="get">
+            <form class="form-horizontal style-form" method="post" action="<?php echo base_url(); ?>export/process">
               <div class="form-group">
                 <label class="col-lg-3 col-sm-3 control-label">Filter</label>
                 <div class="col-sm-9">

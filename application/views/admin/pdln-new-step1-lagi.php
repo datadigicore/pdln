@@ -7,16 +7,14 @@
             
             <!-- Steping Wizard -->
             <ul class="nav nav-wizard">
-              <li class="active"><a><span class="badge">1</span> Data Diri</a></li>              
-              <li><a><span class="badge">2</span> Surat Unit Utama</a></li>
-              <li><a><span class="badge">3</span> Surat Undangan Kunjungan</a></li>
+              <li class="active"><a><span class="badge">1</span> Data Diri</a></li>
             </ul>
             
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>admin/process" enctype="multipart/form-data">
-
             <!-- HIDDEN INPUT -->
               <input type="hidden" name="manage" value="add_data_diri">
               <input type="hidden" name="kondisi" value="tambah">
+              <input type="text" name="no_aplikasi" value="<?php echo $no_aplikasi; ?>">
 
               <?php if (isset($error_message)){?>
                 <input type="hidden" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi_data_diri'];?>">
@@ -153,7 +151,7 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Kartu Pegawai</label>
                     <div class="col-sm-9">
-                      <input type="file" id="karpeg" name="upl_files3" class="form-control">
+                      <input type="file" name="upl_files3" class="form-control">
                     </div>
                   </div>
 
@@ -168,8 +166,8 @@
 
               <div class="form-group">
                 <div class="col-sm-9">      
-                    <input type="submit" class="btn btn-success mb" name="tambah" value="tambah" title="Tambah data baru">
-                    <input type="submit" class="btn btn-info mb" name="lanjut" value="lanjut"title="Lanjut">
+                    <!-- <input type="submit" class="btn btn-success mb" name="tambah" value="tambah" title="Tambah data baru"> -->
+                    <input type="submit" class="btn btn-info mb" name="selesai" value="selesai" title="selesai">
                 </div>
               </div>
             </form>   
@@ -200,8 +198,6 @@
       }else if ($(this).val()=="PNS"){
        $("#pekerjaan_lain").hide();
        $("#nip").show();
-       $('#nip_pemohon').prop('required',true);
-       $('#karpeg').prop('required',true);
        $("#instansi").show(); 
       }
       else{
@@ -209,12 +205,8 @@
        $("#nip").hide();
        $("#instansi").hide();
        $("#sub_instansi_pemohon").hide();
-       $('#nip_pemohon').prop('required',false);
-       $('#karpeg').prop('required',false);
       }          
      });
-     $('#nip_pemohon').prop('required',false);
-     $('#karpeg').prop('required',false);
      $("#pekerjaan_lain").hide();
      $("#nip").hide();
      $("#instansi").hide();

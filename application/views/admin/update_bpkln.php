@@ -1,7 +1,7 @@
 <!--main content start-->
   <section id="main-content">
     <section class="wrapper site-min-height">
-      <h3><i class="fa fa-angle-right"></i> Proses Permohonan</h3>
+      <h3><i class="fa fa-angle-right"></i> Surat BPKLN</h3>
       <div class="row mt">
         <div class="col-lg-12">
           <div class="pdln-panel">
@@ -14,14 +14,12 @@
               <thead>
                   <tr>
                       <th>No Aplikasi</th>
-                      <th>Nama</th>                      
+                      <th>Nama</th>
                       <th>No. Surat Unit Utama</th>
                       <th>No. Surat BPKLN (setneg)</th>
                       <th>Tgl. Surat BPKLN (setneg)</th>
-                      <th>No. Surat Setneg </th>
-                      <th>Tgl. Surat Setneg </th>
-                      <th>Keterangan</th>                      
-                      <th>Status</th>
+                      <th>No. Surat BPKLN (kemlu)</th>
+                      <th>Tgl. Surat BPKLN (kemlu)</th>                      
                       <th style="width: 15%;">Aksi</th>
                   </tr>
               </thead>
@@ -76,7 +74,7 @@
               "serverSide": true,
               "ajax": {
                 "url": "<?php echo base_url('admin/process') ?>",
-                "data": {manage:'tab_proses_pdln'},
+                "data": {manage:'tab_update_bpkln'},
                 "type": "POST"
               },
               "columnDefs" : [
@@ -88,8 +86,6 @@
                 {"targets" : 4},
                 {"targets" : 5},
                 {"targets" : 6},
-                {"targets" : 7},
-                {"targets" : 8},
                 {"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
@@ -97,7 +93,7 @@
                                     /*'<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
                                     '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+*/
                                     '</div>',
-                 "targets": 9}
+                 "targets": 7}
               ],
               "order": [[ 0, "desc" ]]
             });
@@ -148,13 +144,14 @@
               var tr = $(this).closest('tr');
               tabrow = table.row( tr );
               $("#row_no_aplikasi").val(tabrow.data()[0]);
-              $("#no_surat_setneg").val(tabrow.data()[5]);
-              $("#tgl_surat_setneg").val(tabrow.data()[6]);
-              $("#data_lain_bpkln").val(tabrow.data()[7]);
+              $("#no_surat_bpkln_setneg").val(tabrow.data()[3]);
+              $("#tgl_surat_bpkln_setneg").val(tabrow.data()[4]);
+              $("#no_surat_bpkln_kemlu").val(tabrow.data()[5]);
+              $("#tgl_surat_bpkln_kemlu").val(tabrow.data()[6]);
             });
 
             $("#uploadForm").submit(function(e){
-            e.preventDefault();
+            e.preventDefault();            
             $.ajax({
               url: $(this).attr("action"),
               type: "POST",
@@ -169,7 +166,23 @@
               error: function(){}           
             });
             });
+          
             
+            $(document).on("click", "#nonaktif", function (){
+              var tr = $(this).closest('tr');
+              tabrow = table.row( tr );
+              row_id = tabrow.data()[0];
+              $.ajax({
+                type: "post",
+                url : "<?php echo base_url('admin/process') ?>",
+                data: {manage:'act_user',key:row_id},
+                success: function(data)
+                {
+                  table.draw();
+                }
+              });
+              return false;
+            });
           });
 
 
@@ -213,30 +226,36 @@
 
 <div class="modal fade" id="modal-tambahdata" tabindex="-1" data-backdrop="static" data-keyboard="false">
   <div class="modal-content">
-    <form id="uploadForm" action="<?php echo base_url('admin/process') ?>" method="post" enctype="multipart/form-data">
+  <form id="uploadForm" action="<?php echo base_url('admin/process') ?>" method="post" enctype="multipart/form-data">
       <div class="modal-header" style="background-color:green;">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Tambah Data Surat Dari Setneg</h4>
       </div>      
       <div class="modal-body">
-        <input type="hidden" name="manage" value="tambah_surat_pdln">
+        <input type="hidden" name="manage" value="tambah_surat_bpkln">
         <input type="hidden" name="key" id="row_no_aplikasi">
-        <label>No. Surat Setneg</label>
-        <input type="text" class="form-control" placeholder="Nomor Surat Setneg" autofocus id="no_surat_setneg" name="no_surat_setneg" required>
+        <label>No. Surat BPKLN ke Setneg</label>
+        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Setneg" autofocus id="no_surat_bpkln_setneg" name="no_surat_bpkln_setneg" required>
         <br>
-        <label>Tgl. Surat Setneg</label>
-        <input type="date" class="form-control" placeholder="Tanggal Surat Setneg" autofocus id="tgl_surat_setneg" name="tgl_surat_setneg" required >
+        <label>Tgl. Surat BPKLN ke Setneg</label>
+        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" required>
         <br>
-        <label>Keterangan Surat Setneg</label>
-        <input type="text" class="form-control" placeholder="Keterangan yang mendapat SP Setneg" autofocus id="data_lain_bpkln" name="data_lain_bpkln" required>        
+        <label>Surat BPKLN ke Setneg</label>
+        <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1">   
         <br>
-        <label>Surat Setneg</label>
-        <input type="file" class="form-control" autofocus id="upl_files1" name="upl_files1" required>        
+        <label>No. Surat BPKLN ke Kemlu</label>
+        <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Kemlu" autofocus id="no_surat_bpkln_kemlu" name="no_surat_bpkln_kemlu"required>
+        <br>
+        <label>Tgl. Surat BPKLN ke Kemlu</label>
+        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Kemlu" autofocus id="tgl_surat_bpkln_kemlu" name="tgl_surat_bpkln_kemlu" required>
+        <br>
+        <label>Surat BPKLN ke Kemlu</label>
+        <input type="file" class="form-control" autofocus id="upl_file2" name="upl_file2" required>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
       </div>
     </form>
-    </div>
+  </div>
 </div>

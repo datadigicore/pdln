@@ -15,12 +15,42 @@
                 </a>
             </li>
 
+            <!-- <li>
+                <form method="POST" action="<?php echo base_url();?>admin">
+                    <input type="hidden" name="content" value="update_pemohon">
+                    <a onclick="$(this).closest('form').submit()">
+                    <i class="fa fa-check-square-o"></i>
+                        Update Data Pemohon
+                    </a>
+                </form>
+            </li> -->
+
+            <li>
+                <form method="POST" action="<?php echo base_url();?>admin">
+                    <input type="hidden" name="content" value="update_bpkln">
+                    <a onclick="$(this).closest('form').submit()">
+                    <i class="fa fa-check-square-o"></i>
+                        Update Surat BPKLN
+                    </a>
+                </form>
+            </li>
+
             <li>
                 <form method="POST" action="<?php echo base_url();?>admin">
                     <input type="hidden" name="content" value="proses_permohonan">
                     <a onclick="$(this).closest('form').submit()">
                     <i class="fa fa-check-square-o"></i>
-                        Proses Permohonan
+                        Update Surat Setneg
+                    </a>
+                </form>
+            </li>
+
+            <li>
+                <form method="POST" action="<?php echo base_url();?>admin">
+                    <input type="hidden" name="content" value="disetujui_setneg">
+                    <a onclick="$(this).closest('form').submit()">
+                    <i class="fa fa-check-square-o"></i>
+                        Disetujui Setneg
                     </a>
                 </form>
             </li>
@@ -28,11 +58,13 @@
             <li>
                 <form method="POST" action="<?php echo base_url();?>admin">
                     <input type="hidden" name="content" value="cetak_surat">
+                    <input type="hidden" name="kondisi" value="cetak">
+                    <input type="hidden" name="id" value="<?php echo $_SESSION['logged']['id_user']; ?>">
                     <a onclick="$(this).closest('form').submit()">
                     <i class="fa fa-print"></i>
                         Cetak Surat
                     </a>
-                </form>
+                </form>                
             </li>
 
             <li class="sub-menu">
@@ -127,6 +159,7 @@
                 <form method="POST" action="<?php echo base_url();?>home">
                     <input type="hidden" name="content" value="cetak_surat">
                     <input type="hidden" name="kondisi" value="cetak">
+                    <input type="hidden" name="id" value="<?php echo $_SESSION['logged']['id_user']; ?>">
                     <a onclick="$(this).closest('form').submit()">
                     <i class="fa fa-print"></i>
                         Cetak Surat

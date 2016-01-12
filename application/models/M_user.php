@@ -151,18 +151,19 @@ class m_user extends CI_Model {
     $query = $this->db->get();
     return $query->result_array();
   }
-  function list_user_surat() {   
+  function list_user_surat($id_user) {   
     $query = $this->db->select('*');
     $query = $this->db->from('data_diri, instansi, sub_instansi, surat_undangan');
     $query = $this->db->where('data_diri.instansi_pemohon = instansi.id');
     $query = $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
     $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $query = $this->db->where('data_diri.id_user="'.$id_user.'"');
     $query = $this->db->limit(10);
     $query = $this->db->get();
     return $query->result_array();
   }
 
-  function list_user_surat_cari($no_surat_bpkln_setneg) {   
+  function list_user_surat_cari($no_surat_bpkln_setneg,$id_user) {   
     $query = $this->db->select('*');
     $query = $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_bpkln');
     $query = $this->db->where('data_diri.instansi_pemohon = instansi.id');
@@ -170,6 +171,7 @@ class m_user extends CI_Model {
     $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
     $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi');
     $query = $this->db->where('no_surat_bpkln_setneg="'.$no_surat_bpkln_setneg.'"');
+    $query = $this->db->where('data_diri.id_user="'.$id_user.'"');
     $query = $this->db->get();
     return $query->result_array();
   }
