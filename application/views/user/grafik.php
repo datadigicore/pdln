@@ -150,6 +150,7 @@ var chartbar = new Highcharts.Chart({
             }
         },
         series: [{
+            name: 'Banyak Data',
             data: [
                 ['Example 1', 8],
                 ['Example 2', 3],
@@ -185,7 +186,7 @@ var chartpie = new Highcharts.Chart({
             }
         },
         series: [{
-            name: 'Delivered amount',
+            name: 'Banyak Data',
             data: [
                 ['Example 1', 8],
                 ['Example 2', 3],
