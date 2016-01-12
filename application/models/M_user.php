@@ -43,8 +43,50 @@ class m_user extends CI_Model {
     $query = $this->db->get();
     return $query->result_array();
   }
+  function select_export_pekerjaan($data) {   
+    $this->db->select('*');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $this->db->where('data_diri.pekerjaan_pemohon = "'.$data.'"');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function select_export_kegiatan($data) {   
+    $this->db->select('*');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $this->db->where('surat_undangan.kategori_kegiatan = "'.$data.'"');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
   function get_grafik_sumber() {   
     $this->db->select('surat_undangan.sumber_dana_kegiatan');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function get_grafik_pekerjaan() {   
+    $this->db->select('data_diri.pekerjaan_pemohon');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function get_grafik_kegiatan() {   
+    $this->db->select('surat_undangan.kategori_kegiatan');
     $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
     $this->db->where('data_diri.instansi_pemohon = instansi.id');
     $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
@@ -73,14 +115,13 @@ class m_user extends CI_Model {
     $query = $this->db->get();
     return $query->result_array();
   }
-  function select_export_nip($data) {   
+  function select_export_nip() {   
     $this->db->select('*');
     $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
     $this->db->where('data_diri.instansi_pemohon = instansi.id');
     $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
     $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
     $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
-    $this->db->where('data_diri.nip_pemohon = "'.$data.'"');
     $query = $this->db->get();
     return $query->result_array();
   }
@@ -206,6 +247,20 @@ class m_user extends CI_Model {
     $this->db->select('sumber_dana_kegiatan');
     $this->db->from('surat_undangan');
     $this->db->group_by("sumber_dana_kegiatan");
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function get_pekerjaan() {
+    $this->db->select('pekerjaan_pemohon');
+    $this->db->from('data_diri');
+    $this->db->group_by("pekerjaan_pemohon");
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+  function get_kegiatan() {
+    $this->db->select('kategori_kegiatan');
+    $this->db->from('surat_undangan');
+    $this->db->group_by("kategori_kegiatan");
     $query = $this->db->get();
     return $query->result_array();
   }

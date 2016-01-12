@@ -19,48 +19,13 @@
               <option value="negara">Negara</option>
               <option value="nip">NIP</option>
               <option value="sumber">Sumber Dana</option>
-              <!-- <option>Unit Utama</option> -->
+              <option value="pekerjaan">Pekerjaan</option>
+              <option value="kegiatan">Kategori Kegiatan</option>
               <option value="waktu">Waktu Berkunjung</option>
             </select>
           </div>
         </div>
         <div class="tab-pane" id="chartjs">
-          <!-- <div class="row mt">
-            <div class="col-lg-6">
-              <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> Doughnut</h4>
-                <div class="panel-body text-center">
-                  <div id="doughnut" height="300" width="400"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> Line</h4>
-                <div class="panel-body text-center">
-                  <div id="line" height="300" width="400"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-            <div class="row mt">
-              <div class="col-lg-6">
-                <div class="content-panel">
-                  <h4><i class="fa fa-angle-right"></i> Radar</h4>
-                  <div class="panel-body text-center">
-                    <div id="radar" height="300" width="400"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="content-panel">
-                  <h4><i class="fa fa-angle-right"></i> Polar Area</h4>
-                  <div class="panel-body text-center">
-                    <div id="polarArea" height="300" width="400"></div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
             <div class="row mt">
               <div class="col-lg-6">
                 <div class="content-panel">
@@ -80,7 +45,6 @@
               </div>
             </div>
           </div>
-        <!-- <button id="printButton" class="btn btn-primary">Cetak</button> -->
     </section>          
   </section>
 <script src="<?php echo base_url();?>js/highcharts.js"></script>
@@ -99,45 +63,23 @@
       $("#pilihexport").change(function(){
     if($(this).val() == "negara"){
       clear();
-      $.ajax({
-        type: "post",
-        url : "<?php echo base_url('home/process') ?>",
-        data: {manage:'sumber_negara'},
-        dataType: "json",
-        success: function(result)
-        {
-          chartbar.series[0].setData(result);
-          chartpie.series[0].setData(result);
-        }
-      });
+      grafik('sumber_negara');
     }
     else if ($(this).val()=="nip"){
      clear();
-     $.ajax({
-        type: "post",
-        url : "<?php echo base_url('home/process') ?>",
-        data: {manage:'sumber_nip'},
-        dataType: "json",
-        success: function(result)
-        {
-          chartbar.series[0].setData(result);
-          chartpie.series[0].setData(result);
-        }
-      });
+     grafik('sumber_nip');
     }
     else if ($(this).val()=="sumber"){
      clear();
-     $.ajax({
-        type: "post",
-        url : "<?php echo base_url('home/process') ?>",
-        data: {manage:'sumber_dana'},
-        dataType: "json",
-        success: function(result)
-        {
-          chartbar.series[0].setData(result);
-          chartpie.series[0].setData(result);
-        }
-      });
+     grafik('sumber_dana');
+    }
+    else if ($(this).val()=="pekerjaan"){
+     clear();
+     grafik('sumber_pekerjaan');
+    }
+    else if ($(this).val()=="kegiatan"){
+     clear();
+     grafik('sumber_kegiatan');
     }
     else if ($(this).val()=="waktu"){
      clear();
@@ -145,6 +87,19 @@
      $("<input type='date' id='waktu_akhir' class='form-control' name='waktu_akhir' required>").insertAfter( $( "#waktu_awal" ) );
     }
   });
+function grafik(data){
+  $.ajax({
+    type: "post",
+    url : "<?php echo base_url('home/process') ?>",
+    data: {manage:data},
+    dataType: "json",
+    success: function(result)
+    {
+      chartbar.series[0].setData(result);
+      chartpie.series[0].setData(result);
+    }
+  });
+}
 var chartbar = new Highcharts.Chart({
         chart: {
             renderTo: 'bar',
