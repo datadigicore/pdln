@@ -150,6 +150,7 @@ var chartbar = new Highcharts.Chart({
             }
         },
         series: [{
+            name: 'Banyak Data',
             data: [
                 ['Example 1', 8],
                 ['Example 2', 3],
@@ -176,16 +177,21 @@ var chartpie = new Highcharts.Chart({
             text: 'Data Statistik'
         },
         subtitle: {
-            text: '3D Donut Diagram'
+            text: '3D Pie Diagram'
         },
         plotOptions: {
             pie: {
-                innerSize: 100,
-                depth: 45
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
             }
         },
         series: [{
-            name: 'Delivered amount',
+            name: 'Banyak Data',
             data: [
                 ['Example 1', 8],
                 ['Example 2', 3],
