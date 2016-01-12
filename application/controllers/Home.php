@@ -630,7 +630,7 @@ class home extends CI_Controller {
           return 'ada';
         }
         else{
-          return '<button id="nonaktif" class="btn btn-flat btn-danger btn-xs"><i class="fa fa-warning"></i> Belum Aktif</button>';
+          return 'ganti jd hasil count dari db';
         }
       }),
         array( 'db' => 'data_lain_bpkln',                   'dt' => 6)
@@ -643,23 +643,48 @@ class home extends CI_Controller {
 
   	  case 'tab_update_bpkln':
   	  	$table1 = "data_diri";
-	    $table2 = "surat_unit_utama";
-	    $table3 = "surat_bpkln";
-	    $table4 = "instansi";
-		$table5 = "sub_instansi";
-		$key = "id_data_diri";
-	  	$column = array(
-	      array( 'db' => 'no_aplikasi_data_diri',				'dt' => 0),
-	      array( 'db' => 'nama_pemohon', 						'dt' => 1),	      
-	      array( 'db' => 'no_surat_unit_utama',				 	'dt' => 2),
-	      array( 'db' => 'no_surat_bpkln_setneg',				'dt' => 3),
-	      array( 'db' => 'tgl_surat_bpkln_setneg',			 	'dt' => 4),
-	      array( 'db' => 'no_surat_bpkln_kemlu', 				'dt' => 5),
-	      array( 'db' => 'tgl_surat_bpkln_kemlu',				'dt' => 6),
-	    );
-	   	$where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi";
-    	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
+  	    $table2 = "surat_unit_utama";
+  	    $table3 = "surat_bpkln";
+  	    $table4 = "instansi";
+    		$table5 = "sub_instansi";
+    		$key = "id_data_diri";
+    	  $column = array(
+  	      array( 'db' => 'no_aplikasi_data_diri',				'dt' => 0),
+  	      array( 'db' => 'nama_pemohon', 						'dt' => 1),	      
+  	      array( 'db' => 'no_surat_unit_utama',				 	'dt' => 2),
+  	      array( 'db' => 'no_surat_bpkln_setneg',				'dt' => 3),
+  	      array( 'db' => 'tgl_surat_bpkln_setneg',			 	'dt' => 4),
+  	      array( 'db' => 'no_surat_bpkln_kemlu', 				'dt' => 5),
+  	      array( 'db' => 'tgl_surat_bpkln_kemlu',				'dt' => 6),
+  	    );
+  	   	$where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi";
+      	$this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
   	  break;
+
+      case 'tab_surat_unit':
+        $table1 = "data_diri";
+        $table2 = "surat_unit_utama";
+        $table3 = "surat_undangan";
+        $table4 = "instansi";
+        $table5 = "sub_instansi";
+        $key = "id_data_diri";
+        $column = array(      
+        array( 'db' => 'no_aplikasi_data_diri',             'dt' => 0),
+        array( 'db' => 'id_data_diri',                      'dt' => 1),
+        array( 'db' => 'nama_pemohon',                      'dt' => 2),
+        array( 'db' => 'nip_pemohon',                       'dt' => 3),
+        array( 'db' => 'nama_instansi',                     'dt' => 4),
+        array( 'db' => 'nama_sub_instansi',                 'dt' => 5),
+        array( 'db' => 'negara_tujuan',                     'dt' => 6),
+        array( 'db' => 'tgl_awal_kegiatan',                 'dt' => 7),
+        array( 'db' => 'tgl_akhir_kegiatan',                'dt' => 8),
+        array( 'db' => 'rincian_kegiatan',                  'dt' => 9),
+        array( 'db' => 'keterangan_sumber_dana_kegiatan',   'dt' => 10)
+        
+       );
+        $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon AND data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi";
+        $this->l_datatable->get_table_join_6($table1, $table2, $table3, $table4, $table5, $key, $column, $where);
+    break;
   	 
   	  case 'terima_data':
 	  	$id = $this->input->post('key');

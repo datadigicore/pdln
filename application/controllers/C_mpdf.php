@@ -7,17 +7,28 @@ class c_mpdf extends CI_Controller {
 		$timenow = unix_to_human(now('Asia/Jakarta'), TRUE, 'us');
 		$time = date("Ymd-Hi", strtotime($timenow));
 		$this->load->model('m_mpdf');
+		$nosurat = $this->input->post('hasilsearch', TRUE);
+		// print_r($nosurat);
+		// die();
 		$banyak = $this->input->post('banyak', TRUE);
 		$noaplikasi = $this->input->post('no_aplikasi', TRUE);
 		$menset = "";
 		$jenis = "setneg2";
 		if ($banyak == 1) {
-			$result = $this->m_mpdf->get_pdln();
-			$nip = $result['nip_pemohon'];
-			$html=$this->load->view('mpdf_template/surat_menlu', $result, true);
+			if ($jenis == "setneg2") {
+				$result['query'] = $this->m_mpdf->get_pdln_more($noaplikasi,$nosurat);
+				$nip = $result['query'][0]['nip_pemohon'];
+				$html1=$this->load->view('mpdf_template/surat_setneg_2', $result, true); 
+				$html2=$this->load->view('mpdf_template/surat_setneg_2_page2', $result, true); 
+			}
+			else {
+				$result = $this->m_mpdf->get_pdln();
+				$nip = $result['nip_pemohon'];
+				$html=$this->load->view('mpdf_template/surat_menlu', $result, true);
+			}
 		}
 		else {
-			$result['query'] = $this->m_mpdf->get_pdln_more($noaplikasi);
+			$result['query'] = $this->m_mpdf->get_pdln_more($noaplikasi,$nosurat);
 			$nip = $result['query'][0]['nip_pemohon'];
 			switch ($jenis) {
 				case 'setneg2':
@@ -37,8 +48,15 @@ class c_mpdf extends CI_Controller {
 		$this->load->library('l_mpdf');
 		$mpdf = $this->l_mpdf->load();
 		$mpdf=new mPDF('','A4','','',30,20,20,25); 
-		if ($banyak == 1 or $jenis == "setneg2es2") {
-			$mpdf->WriteHTML($html);
+		if ($banyak == 1) {
+			if ($jenis == "setneg2") {
+				$mpdf->WriteHTML($html1);
+				$mpdf->AddPage();
+				$mpdf->WriteHTML($html2);
+			}
+			else {
+				$mpdf->WriteHTML($html);
+			}
 		}
 		else {
 			$mpdf->WriteHTML($html1);

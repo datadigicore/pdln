@@ -157,6 +157,7 @@ class m_user extends CI_Model {
     $query = $this->db->where('data_diri.instansi_pemohon = instansi.id');
     $query = $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
     $query = $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $query = $this->db->limit(10);
     $query = $this->db->get();
     return $query->result_array();
   }

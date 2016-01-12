@@ -9,6 +9,7 @@
               <div class="form-group">
                   <input type="hidden" name="content" value="cetak_surat"> 
                   <input type="hidden" name="kondisi" value="cari">
+        
                   <label class="col-lg-3 col-sm-3 control-label">No Surat Unit Utama</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" name="no_surat_bpkln_setneg" placeholder="No Surat Unit Utama ke Setneg">
@@ -24,8 +25,12 @@
             <?php if(count(array_filter($query))!=0){?>            
             <div class="text-center">
               <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf">
-                <input type="text" name="banyak" value="<?php echo count(array_filter($query)); ?>">
-                <input type="text" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
+                <input type="hidden" name="hasilsearch" value="<?php 
+                if (isset($query[0]['no_surat_bpkln_setneg'])) {
+                  echo $query[0]['no_surat_bpkln_setneg'];
+                }else{}?>">
+                <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
+                <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
 
                 <a class="btn btn-warning" onclick="$(this).closest('form').submit()"><i class="fa fa-print"></i> Cetak Surat</a>
               </form>

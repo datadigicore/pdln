@@ -13,7 +13,7 @@
                       <th>No SP Setneg</th>
                       <th>Tanggal SP Setneg </th>
                       <th>Sumber Dana</th>
-                      <th>Julam Pemohon</th>
+                      <th>Jumlah Pemohon</th>
                       <th>Keterangan Lolos </th>
                       <!-- <th style="width: 15%;">Aksi</th> -->
                   </tr>
