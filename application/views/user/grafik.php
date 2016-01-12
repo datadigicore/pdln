@@ -181,8 +181,13 @@ var chartpie = new Highcharts.Chart({
         },
         plotOptions: {
             pie: {
-                innerSize: 100,
-                depth: 45
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
             }
         },
         series: [{
