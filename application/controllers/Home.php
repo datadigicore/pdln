@@ -287,6 +287,28 @@ class home extends CI_Controller {
         }
         echo json_encode($newresult);
       break;
+      case 'sumber_waktu':
+        $data['awal'] = $this->input->post('awal');
+        $data['akhir'] = $this->input->post('akhir');
+        $results = $this->m_user->get_grafik_waktu($data);
+        if ($results != null) {
+          $prev_value = array('value' => null, 'amount' => null);
+          foreach ($results as $data) {
+            if ($prev_value['value'] != $data['nama_pemohon']) {
+                unset($prev_value);
+                $prev_value = array('value' => $data['nama_pemohon'], 'amount' => 0);
+                $result[] =& $prev_value;
+            }
+            $prev_value['amount']++;
+          }
+          for ($i=0; $i < count($result) ; $i++) { 
+            $newresult[$i][] =& $result[$i]['value'];
+            $newresult[$i][] =& $result[$i]['amount'];
+          }
+          echo json_encode($newresult);
+        }
+        else {}
+      break;
       case 'sumber_nip':      
         $results = $this->m_user->get_grafik_nip();
         $prev_value = array('value' => null, 'amount' => null);

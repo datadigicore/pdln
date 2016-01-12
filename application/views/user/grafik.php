@@ -83,8 +83,20 @@
     }
     else if ($(this).val()=="waktu"){
      clear();
-     $("<input type='date' id='waktu_awal' class='form-control' name='waktu_awal' required>").insertAfter( $( "#pilihexport" ) );
-     $("<input type='date' id='waktu_akhir' class='form-control' name='waktu_akhir' required>").insertAfter( $( "#waktu_awal" ) );
+     var now = new Date();
+      var day = ("0" + now.getDate()).slice(-2);
+      var month = ("0" + (now.getMonth() + 1)).slice(-2);
+      var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+     $("<input type='date' id='waktu_awal' class='form-control' name='waktu_awal'>").insertAfter( $( "#pilihexport" ) );
+     $("#waktu_awal").val(today);
+     $("<input type='date' id='waktu_akhir' class='form-control' name='waktu_akhir'>").insertAfter( $( "#waktu_awal" ) );
+     $("#waktu_akhir").val(today);
+     $("#waktu_awal").change(function(){
+      grafiktime('sumber_waktu',$(this).val(),$("#waktu_akhir").val());
+     });
+     $("#waktu_akhir").change(function(){
+      grafiktime('sumber_waktu',$("#waktu_awal").val(),$(this).val());
+     });
     }
   });
 function grafik(data){
@@ -92,6 +104,19 @@ function grafik(data){
     type: "post",
     url : "<?php echo base_url('home/process') ?>",
     data: {manage:data},
+    dataType: "json",
+    success: function(result)
+    {
+      chartbar.series[0].setData(result);
+      chartpie.series[0].setData(result);
+    }
+  });
+}
+function grafiktime(data,waktuawal,waktuakhir){
+  $.ajax({
+    type: "post",
+    url : "<?php echo base_url('home/process') ?>",
+    data: {manage:data,awal:waktuawal,akhir:waktuakhir},
     dataType: "json",
     success: function(result)
     {

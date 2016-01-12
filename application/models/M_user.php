@@ -138,6 +138,18 @@ class m_user extends CI_Model {
     $query = $this->db->get();
     return $query->result_array();
   }
+  function get_grafik_waktu($data) {
+    $this->db->select('data_diri.nama_pemohon');
+    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $this->db->where('surat_undangan.tgl_awal_kegiatan >= "'.$data['awal'].'"');
+    $this->db->where('surat_undangan.tgl_akhir_kegiatan <= "'.$data['akhir'].'"');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
   function list_user_surat() {   
     $query = $this->db->select('*');
     $query = $this->db->from('data_diri, instansi, sub_instansi, surat_undangan');
