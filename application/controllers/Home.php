@@ -222,6 +222,7 @@ class home extends CI_Controller {
       case 'sumber_dana':      
         $results = $this->m_user->get_grafik_sumber();
         $prev_value = array('value' => null, 'amount' => null);
+        sort($results);
         foreach ($results as $data) {
           if ($prev_value['value'] != $data['sumber_dana_kegiatan']) {
               unset($prev_value);
@@ -239,6 +240,7 @@ class home extends CI_Controller {
       case 'sumber_pekerjaan':      
         $results = $this->m_user->get_grafik_pekerjaan();
         $prev_value = array('value' => null, 'amount' => null);
+        sort($results);
         foreach ($results as $data) {
           if ($prev_value['value'] != $data['pekerjaan_pemohon']) {
               unset($prev_value);
@@ -256,6 +258,7 @@ class home extends CI_Controller {
       case 'sumber_kegiatan':      
         $results = $this->m_user->get_grafik_kegiatan();
         $prev_value = array('value' => null, 'amount' => null);
+        sort($results);
         foreach ($results as $data) {
           if ($prev_value['value'] != $data['kategori_kegiatan']) {
               unset($prev_value);
@@ -273,6 +276,7 @@ class home extends CI_Controller {
       case 'sumber_negara':      
         $results = $this->m_user->get_grafik_negara();
         $prev_value = array('value' => null, 'amount' => null);
+        sort($results);
         foreach ($results as $data) {
           if ($prev_value['value'] != $data['negara_tujuan']) {
               unset($prev_value);
@@ -293,6 +297,7 @@ class home extends CI_Controller {
         $results = $this->m_user->get_grafik_waktu($data);
         if ($results != null) {
           $prev_value = array('value' => null, 'amount' => null);
+          sort($results);
           foreach ($results as $data) {
             if ($prev_value['value'] != $data['nama_pemohon']) {
                 unset($prev_value);
@@ -312,6 +317,7 @@ class home extends CI_Controller {
       case 'sumber_nip':      
         $results = $this->m_user->get_grafik_nip();
         $prev_value = array('value' => null, 'amount' => null);
+        sort($results);
         foreach ($results as $data) {
           if ($prev_value['value'] != $data['nip_pemohon']) {
               unset($prev_value);

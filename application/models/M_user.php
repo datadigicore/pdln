@@ -96,12 +96,13 @@ class m_user extends CI_Model {
     return $query->result_array();
   }
   function get_grafik_negara() {   
-    $this->db->select('surat_undangan.negara_tujuan');
-    $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
-    $this->db->where('data_diri.instansi_pemohon = instansi.id');
-    $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
-    $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
-    $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
+    $this->db->select('negara_tujuan');
+    $this->db->from('surat_undangan');
+    // $this->db->from('data_diri, instansi, sub_instansi, surat_undangan, surat_unit_utama');
+    // $this->db->where('data_diri.instansi_pemohon = instansi.id');
+    // $this->db->where('data_diri.sub_instansi_pemohon = sub_instansi.id_sub_instansi');
+    // $this->db->where('data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi');
+    // $this->db->where('data_diri.no_aplikasi_data_diri = surat_unit_utama.no_aplikasi');
     $query = $this->db->get();
     return $query->result_array();
   }
