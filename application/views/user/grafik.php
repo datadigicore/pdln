@@ -177,7 +177,7 @@ var chartpie = new Highcharts.Chart({
             text: 'Data Statistik'
         },
         subtitle: {
-            text: '3D Donut Diagram'
+            text: '3D Pie Diagram'
         },
         plotOptions: {
             pie: {
