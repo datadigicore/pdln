@@ -50,7 +50,7 @@
                           <!-- <option value="Lainnya">Lain-lain</option> -->
                       </select>
 
-                       <select class="form-control" id="sub_instansi_unit_utama" name="sub_instansi_unit_utama" >
+                       <select class="form-control" id="sub_instansi_unit_utama" name="sub_instansi_unit_utama" style="margin-top: 15px;">
                           <!-- query dari db -->
                           <option value="54">---Pilih Sub Instansi Unit Utama---</option>
                           <!-- <option value="lainnya">Lain-lain</option> -->
