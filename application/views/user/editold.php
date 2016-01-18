@@ -118,12 +118,15 @@
                         <div class="col-lg-8">
                             <?php if ($data['cv_pemohon']!=""){ 
                                 echo '<input type="hidden" name="txt_upl_files2" value="'.$data["cv_pemohon"].'">';
-                                echo ' CV PEMOHON <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
+                                echo '<a class="btn btn-danger" id="hapus2" title="Hapus" ><i class="fa fa-remove"> CV PEMOHON </i></a>';
                             }else{?>
                                 <input type="file" name="upl_files2" class="form-control" style="width: auto;">
                             <?php
                             }
                             ?>
+                            <div id="data2">
+                                <input type="file" name="upl_files2" class="form-control">
+                            </div>
                         </div>
                     </div>
 
@@ -132,12 +135,15 @@
                         <div class="col-lg-8">
                             <?php if ($data['karpeg_pemohon']!=""){ 
                                 echo '<input type="hidden" name="txt_upl_files3" value="'.$data['karpeg_pemohon'].'">';
-                                echo ' KARPEG PEMOHON  '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                                echo "<a class='btn btn-danger' id='hapus3' title='Hapus' ><i class='fa fa-remove'> KARPEG PEMOHON  </i></a>";
                             }else{?>
                                 <input type="file" name="upl_files3" class="form-control" style="width: auto;">
                             <?php
                             }
                             ?>
+                            <div id="data3">
+                                <input type="file" name="upl_files3" class="form-control">
+                            </div>
                         </div>
                     </div>
 
@@ -146,12 +152,15 @@
                         <div class="col-lg-8">
                             <?php if ($data['surat_tugas_pemohon']!=""){ 
                                 echo '<input type="hidden" name="txt_upl_files7" value="'.$data['surat_tugas_pemohon'].'">';
-                                echo ' SURAT TUGAS PEMOHON '; echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                                echo "<a class='btn btn-danger'id='hapus7' title='Hapus' ><i class='fa fa-remove'> SURAT TUGAS PEMOHON </i></a>";
                             }else{?>
                                 <input type="file" name="upl_files7" class="form-control" style="width: auto;">
                             <?php
                             }
                             ?>
+                            <div id="data7">
+                                <input type="file" name="upl_files7" class="form-control">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -218,14 +227,16 @@
                         <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Unit Utama</strong></label>
                         <div class="col-lg-8">
                             <?php if ($data['surat_unit_utama']!=""){ 
-                                echo '<input type="hidden" name="txt_upl_files4" value="'.$data['surat_unit_utama'].'">';
-                                echo 'SURAT UNIT UTAMA '; 
-                                echo "<a class='btn btn-danger' title='Hapus' ><i class='fa fa-remove'></i></a>";
+                                echo '<input type="hidden" name="txt_upl_files4" value="'.$data['surat_unit_utama'].'">';                                
+                                echo "<a class='btn btn-danger' id='hapus4' title='Hapus' ><i class='fa fa-remove'>SURAT UNIT UTAMA</i></a>";
                             }else{?>
                                 <input type="file" name="upl_files4" class="form-control" style="width: auto;">
                             <?php
                             }
                             ?>
+                            <div id="data4">
+                                <input type="file" name="upl_files4" class="form-control">
+                            </div>
 
                         </div>
                     </div>
@@ -308,12 +319,15 @@
                     <div class="col-lg-8">
                         <?php if ($data['surat_undangan']!=""){ 
                             echo '<input type="hidden" name="txt_upl_files5" value="'.$data['surat_undangan'].'">';
-                            echo ' SURAT UNDANGAN <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
+                            echo '<a class="btn btn-danger" id="hapus5" title="Hapus" ><i class="fa fa-remove"> SURAT UNDANGAN </i></a>';
                             }else{?>
                                 <input type="file" name="upl_files5" class="form-control" style="width: auto;">
                             <?php
                             }
                             ?>
+                            <div id="data5">
+                                <input type="file" name="upl_files5" class="form-control">
+                            </div>
                         
                     </div>
                 </div>
@@ -323,12 +337,15 @@
                     <div class="col-lg-8">
                         <?php if ($data['surat_perjanjian']!=""){ 
                             echo '<input type="hidden" name="txt_upl_files6" value="'.$data['surat_perjanjian'].'">';
-                            echo ' SURAT PERJANJIAN <a class="btn btn-danger" title="Hapus" ><i class="fa fa-remove"></i></a>';
+                            echo '<a class="btn btn-danger" id="hapus6" title="Hapus" ><i class="fa fa-remove"> SURAT PERJANJIAN </i></a>';
                             }else{?>
                                 <input type="file" name="upl_files6" class="form-control" style="width: auto;">
                             <?php
                             }
                             ?>
+                            <div id="data6">
+                                <input type="file" name="upl_files6" class="form-control">
+                            </div>
                     </div>
                 </div>
               </div>
@@ -339,8 +356,8 @@
         </div>
 
         <a class="btn btn-success" title="Update" id="editdata"><i class="fa fa-check-square-o"></i>Update</a>
-        <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>admin">
-            <input type="hidden" name="content" value="admin">
+        <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home">
+            <input type="hidden" name="content" value="home">
             <a class="btn btn-danger" title="Cancel" onclick="$(this).closest('form').submit()"><i class="fa fa-remove"></i>Cancel</a>
         </form>
 
@@ -354,7 +371,7 @@
     $(document).ready(function()
     {
      
-     $(document).on("click", "#hapus1", function (){
+      $(document).on("click", "#hapus1", function (){
         $("#data1").show();
         $("#hapus1").hide();
      });
@@ -368,7 +385,7 @@
 
      $(document).on("click", "#hapus3", function (){
         $("#data3").show();
-        $("#hapus").hide();
+        $("#hapus3").hide();
      });
      $("#data3").hide();
 
@@ -383,6 +400,18 @@
         $("#hapus5").hide();
      });
      $("#data5").hide();
+
+     $(document).on("click", "#hapus6", function (){
+        $("#data6").show();
+        $("#hapus6").hide();
+     });
+     $("#data6").hide();
+     
+     $(document).on("click", "#hapus7", function (){
+        $("#data7").show();
+        $("#hapus7").hide();
+     });
+     $("#data7").hide();
 
     $("#jabatan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
@@ -426,7 +455,7 @@
         id = $("#instansi_pemohon").val();      
         $.ajax({
                 type: "post",
-                url : "<?php echo base_url('admin/process') ?>",
+                url : "<?php echo base_url('home/process') ?>",
                 data: {manage:'select_data',key:id},
                 success: function(result)
                 {
@@ -448,7 +477,7 @@
         id = $("#instansi_unit_utama").val();      
         $.ajax({
                 type: "post",
-                url : "<?php echo base_url('admin/process') ?>",
+                url : "<?php echo base_url('home/process') ?>",
                 data: {manage:'select_data',key:id},
                 success: function(result)
                 {
@@ -470,14 +499,14 @@
             var fd = new FormData(document.getElementById("form-pdln"));
            
             $.ajax({
-              url : "<?php echo base_url('admin/process') ?>",
+              url : "<?php echo base_url('home/process') ?>",
               type: "POST",
               data: fd,
               enctype: 'multipart/form-data',
               processData: false,  // tell jQuery not to process the data
               contentType: false   // tell jQuery not to set contentType
             }).done(function( data ) {
-               var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('admin') ?>");
+               var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
                 var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id_user').val();                    
                 $form.append($input);
                 $("body").append($form);

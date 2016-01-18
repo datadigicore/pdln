@@ -40,7 +40,7 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Instansi Pengundang</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="instansi_pengundang" placeholder="Instansi Unit Utama">
+                      <input type="text" class="form-control" name="instansi_pengundang" placeholder="Instansi Pengundang">
                     </div>
                   </div>
                 </div>
@@ -107,7 +107,7 @@
                           <option value="APBN">APBN (Pemerintah)</option>
                           <option value="Pribadi">Pribadi (Dana Sendiri)</option>
                           <option value="Pengundang">Pengundang (Sponsor)</option>
-                          <option value="lain-lain">Lain-lain (Seniman )</option>
+                          <option value="lain-lain">Lain-lain</option>
                       </select>
                     </div>
                   </div>

@@ -14,7 +14,7 @@
             <!-- HIDDEN INPUT -->
               <input type="hidden" name="manage" value="add_data_diri">
               <input type="hidden" name="kondisi" value="tambah">
-              <input type="text" name="no_aplikasi" value="<?php echo $no_aplikasi; ?>">
+              <input type="hidden" name="no_aplikasi" value="<?php echo $no_aplikasi; ?>">
 
               <?php if (isset($error_message)){?>
                 <input type="hidden" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi_data_diri'];?>">

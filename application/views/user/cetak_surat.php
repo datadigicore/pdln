@@ -10,7 +10,7 @@
                   <input type="hidden" name="content" value="cetak_surat"> 
                   <input type="hidden" name="kondisi" value="cari">
         
-                  <label class="col-lg-3 col-sm-3 control-label">No Surat Unit Utama</label>
+                  <label class="col-lg-3 col-sm-3 control-label">No Surat Unit Utama ke Setneg</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" name="no_surat_bpkln_setneg" placeholder="No Surat Unit Utama ke Setneg">
                     <a style="margin:0 2px;" onclick="$(this).closest('form').submit()" class="btn btn-primary"><i class="fa fa-search"></i></a>

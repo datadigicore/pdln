@@ -384,7 +384,7 @@ class home extends CI_Controller {
       );
 
 
-        for ($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
           $nama_file="";
           if (!empty($_FILES['upl_files'.$i]['name'])) {
             if (!$this->upload->do_upload('upl_files'.$i)) {
@@ -403,6 +403,8 @@ class home extends CI_Controller {
           $datadiri['karpeg_pemohon']=$nama_file; 
       }else if($i==4){
           $datadiri['surat_tugas_pemohon']=$nama_file;  
+      }else if($i==5){
+          $datadiri['other_data']=$nama_file;  
       }
         }
 
@@ -651,15 +653,7 @@ class home extends CI_Controller {
         array( 'db' => 'no_surat_setneg',                   'dt' => 2),
         array( 'db' => 'tgl_surat_setneg',                  'dt' => 3),
         array( 'db' => 'keterangan_sumber_dana_kegiatan',   'dt' => 4),
-        array( 'db' => 'data_lain_bpkln',                            'dt' => 5, 'formatter' => function($table1,$row){ 
-        if($table1=="data_diri"){
-          return 'ada';
-        }
-        else{
-          return 'ganti jd hasil count dari db';
-        }
-      }),
-        array( 'db' => 'data_lain_bpkln',                   'dt' => 6)
+        array( 'db' => 'data_lain_bpkln',                   'dt' => 5)
       );
       $where = "instansi.id = data_diri.instansi_pemohon AND sub_instansi.id_sub_instansi = data_diri.sub_instansi_pemohon 
       AND data_diri.no_aplikasi_data_diri = surat_undangan.no_aplikasi AND data_diri.no_aplikasi_data_diri = surat_bpkln.no_aplikasi 
@@ -812,7 +806,7 @@ class home extends CI_Controller {
         'keterangan_sumber_dana_kegiatan' => $this->input->post('keterangan_sumber_dana_kegiatan',TRUE)       
         );
   
-      $config['upload_path'] = FCPATH.'../files/other';
+        $config['upload_path'] = FCPATH.'../files/other';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
