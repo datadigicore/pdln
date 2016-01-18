@@ -54,7 +54,7 @@
                                 <div class="col-sm-8">
                                   <select class="form-control" id="instansi_pemohon" name="instansi_pemohon">
                                       <!-- query dari db -->
-                                      <option value="<?php echo $data['id_instansi_pemohon']?>"><?php echo $data['instansi_pemohon']?></option>
+                                      <option value="<?php echo $data['id_instansi_pemohon']?>"><?php echo $data['instansi_pemohon']?></option>                                      
                                       <option value="-">---Pilih Instansi Unit Utama---</option>
                                       <?php echo "ini datanya";print_r($instansi); foreach ($instansi as $key => $value) {
                                         echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
@@ -84,7 +84,7 @@
                                     <div class="col-lg-8">
                                         <?php if ($data['cv_pemohon']!=""){ 
                                             echo '<input type="hidden" name="txt_upl_files2" value="'.$data["cv_pemohon"].'">';
-                                            echo '<a class="btn btn-danger" id="hapus2" title="Hapus" ><i class="fa fa-remove"> CV PEMOHON </i></a>';
+                                            echo '<a class="btn btn-danger" id="hapus2" title="Hapus" ><i class="fa fa-remove"> CV PEMOHON </i></a>';                                            
                                         }else{?>
                                             <input type="file" name="upl_files2" class="form-control" style="width: auto;">
                                         <?php
@@ -102,6 +102,7 @@
                                         <?php if ($data['karpeg_pemohon']!=""){ 
                                             echo '<input type="hidden" name="txt_upl_files3" value="'.$data['karpeg_pemohon'].'">';
                                             echo "<a class='btn btn-danger' id='hapus3' title='Hapus' ><i class='fa fa-remove'> KARPEG PEMOHON  </i></a>";
+
                                         }else{?>
                                             <input type="file" name="upl_files3" class="form-control" style="width: auto;">
                                         <?php
@@ -179,7 +180,6 @@
                         </div>
                     </div>
                 </div>
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Surat Unit Utama</h3>
@@ -187,7 +187,6 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
-
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Nomor Surat Unit Utama</strong></label>
                                 <div class="col-lg-8">
@@ -353,7 +352,6 @@
                                 
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label"><strong>Surat Perjanjian</strong></label>
                             <div class="col-lg-8">
@@ -448,7 +446,6 @@
       }         
      });
     $("#jabatan_lain").hide();
-
 
     $("#pekerjaan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
