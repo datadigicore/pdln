@@ -33,7 +33,7 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Surat Undangan</label>
                     <div class="col-sm-9">
-                      <input type="date" class="form-control" name="tgl_surat_undangan" placeholder="Tanggal Surat">
+                      <input class="form-control" name="tgl_surat_undangan" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd">
                     </div>
                   </div>
 
@@ -68,11 +68,11 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Waktu Kegiatan</label>
                     <div class="col-sm-4">
-                      <input type="date" class="form-control" name="tgl_awal_kegiatan" placeholder="Waktu Mulai Kegiatan">
+                      <input class="form-control" name="tgl_awal_kegiatan" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd">
                     </div>
                     <div class="col-sm-1"><p class="text-center" style="margin: 5px 0;">s/d</p></div>
                     <div class="col-sm-4">
-                      <input type="date" class="form-control" name="tgl_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan">
+                      <input class="form-control" name="tgl_akhir_kegiatan" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd">
                     </div>
                   </div> 
 
