@@ -131,7 +131,7 @@
 
                             <div class="form-group">
                             <div class="col-sm-3">
-                                <?php echo '<input type="text" id="text1" name="txt_upl_files1" value="'.$data["foto_pemohon"].'"> <br>'; ?>                                
+                                <?php echo '<input type="hidden" id="text1" name="txt_upl_files1" value="'.$data["foto_pemohon"].'"> <br>'; ?>                                
                                 <?php if ($data['foto_pemohon']!=""){ ?>
                                 <img src="<?php echo '../files/other/'.$data['foto_pemohon']; ?>" class="img-responsive"> 
                                 <?php                                        
