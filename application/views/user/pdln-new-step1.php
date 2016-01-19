@@ -170,14 +170,14 @@
                       <input type="file" name="upl_files4" class="form-control">
                     </div>
                   </div>
-                </div>
 
-                <div class="form-group">
+                  <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">KTP</label>
                     <div class="col-sm-9">
                       <input type="file" name="upl_files5" class="form-control">
                     </div>
                   </div>
+
                 </div>
 
               </div>
@@ -209,6 +209,12 @@
 
     $(document).ready(function()
     {
+
+    /*$('.fromdate').datepicker({
+      dateFormat: 'yy-mm-dd',
+      changeMonth: true,
+      changeYear: true,
+    });*/
      
      $("#pekerjaan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
@@ -262,17 +268,17 @@
         $("#sub_instansi_pemohon").show();
         id = $("#instansi_pemohon").val();      
         $.ajax({
-                type: "post",
-                url : "<?php echo base_url('home/process') ?>",
-                data: {manage:'select_data',key:id},
-                success: function(result)
-                {
-                  //document.write(result);
-                  $("#sub_instansi_pemohon").html(result);
-                  //$("#result").html(result);
-                }
-              });
-              return false;
+          type: "post",
+          url : "<?php echo base_url('home/process') ?>",
+          data: {manage:'select_data',key:id},
+          success: function(result)
+          {
+            //document.write(result);
+            $("#sub_instansi_pemohon").html(result);
+            //$("#result").html(result);
+          }
+        });
+        return false;
       }else{
         $("#sub_instansi_pemohon").hide();   
       }      

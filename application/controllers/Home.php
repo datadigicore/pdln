@@ -763,9 +763,9 @@ class home extends CI_Controller {
         //$no_aplikasi = $this->input->post('key');       
         /*echo gettype($id);*/
         //echo "masuk data 22";
-        echo "<pre>";
+        /*echo "<pre>";
         print_r($_POST);
-        echo "</pre>";
+        echo "</pre>";*/
         $no_aplikasi = $this->input->post('no_aplikasi_data_diri',TRUE);
         $id_data_diri = $this->input->post('id_data_diri',TRUE);
         $id_user = $_SESSION['logged']['id_user'];
@@ -818,28 +818,27 @@ class home extends CI_Controller {
         $data_file=$this->input->post('txt_upl_files'.$i);
         $nama_file=$data_file;
         if($data_file==""){
-            if (!empty($_FILES['upl_files'.$i]['name'])) {
-                //echo "masukkk ".$_FILES['upl_files'.$i]['name'];
-              if (!$this->upload->do_upload('upl_files'.$i)) {
-                $error = $this->upload->display_errors();
-                //$nama_file=$_FILES['upl_files'.$i]['name'];
-              }
-              else {
-                $upload_data = $this->upload->data();
-              }
-              $nama_file=$upload_data['file_name'];
-              /*$upload_data = $this->upload->data();
-              $data_ary = array(
-                  'title'     => $upload_data['client_name'],
-                  'file'      => $upload_data['file_name'],
-                  'width'     => $upload_data['image_width'],
-                  'height'    => $upload_data['image_height'],
-                  'type'      => $upload_data['image_type'],
-                  'size'      => $upload_data['file_size'],
-                  'date'      => time(),
-              );*/
-
+          if (!empty($_FILES['upl_files'.$i]['name'])) {
+              //echo "masukkk ".$_FILES['upl_files'.$i]['name'];
+            if (!$this->upload->do_upload('upl_files'.$i)) {
+              $error = $this->upload->display_errors();
+              //$nama_file=$_FILES['upl_files'.$i]['name'];
             }
+            else {
+              $upload_data = $this->upload->data();
+            }
+            $nama_file=$upload_data['file_name'];
+            /*$upload_data = $this->upload->data();
+            $data_ary = array(
+                'title'     => $upload_data['client_name'],
+                'file'      => $upload_data['file_name'],
+                'width'     => $upload_data['image_width'],
+                'height'    => $upload_data['image_height'],
+                'type'      => $upload_data['image_type'],
+                'size'      => $upload_data['file_size'],
+                'date'      => time(),
+            );*/
+          }
       }else echo "data== $data_file <br/>";
 
       if($i==1){
