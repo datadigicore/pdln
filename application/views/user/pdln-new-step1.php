@@ -216,11 +216,17 @@
       changeYear: true,
     });*/
      
-     $("#pekerjaan_pemohon").change(function(){
+      $("#pekerjaan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
-       $("#pekerjaan_lain").show();
-       $("#jabatan_lain").show();
        $("#jabatan").hide();
+       $("#pekerjaan_lain").show();
+       $("#nip").hide();
+       $("#instansi").hide();
+       $("#sub_instansi_pemohon").hide();
+       $("#kartupegawai").hide();
+       $('#nip_pemohon').prop('required',false);
+       $('#karpeg').prop('required',false);       
+       $("#jabatan_lain").show();    
       }else if ($(this).val()=="PNS"){
        $("#jabatan").show();
        $("#pekerjaan_lain").hide();

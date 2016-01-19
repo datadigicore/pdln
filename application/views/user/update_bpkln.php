@@ -241,7 +241,7 @@
         <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" required>
         <br>
         <label>Surat BPKLN ke Setneg</label>
-        <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1">   
+        <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1" required>   
         <br>
         <label>No. Surat BPKLN ke Kemlu</label>
         <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Kemlu" autofocus id="no_surat_bpkln_kemlu" name="no_surat_bpkln_kemlu"required>
