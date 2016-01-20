@@ -17,6 +17,9 @@
 <!--common script for all pages-->
 <script type="text/javascript">
     $(document).ready(function() {
-    	$('#blueimp-gallery').toggleClass('blueimp-gallery-controls', true); 
+    	$('.hasDatepicker').datepicker({
+	        format: "yyyy/mm/dd",
+	        autoclose: true
+		});
     });
 </script>

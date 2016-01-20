@@ -33,7 +33,10 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Surat Undangan</label>
                     <div class="col-sm-9">
-                      <input class="form-control" name="tgl_surat_undangan" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd">
+                      <div class="input-group">
+                        <input class="form-control" name="tgl_surat_undangan" readonly="1" style="cursor:pointer" placeholder="Tanggal Surat Undangan">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      </div>
                     </div>
                   </div>
 
@@ -68,11 +71,17 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Waktu Kegiatan</label>
                     <div class="col-sm-4">
-                      <input class="form-control" name="tgl_awal_kegiatan" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd">
+                      <div class="input-group">
+                        <input class="form-control hasDatepicker" name="tgl_awal_kegiatan" readonly="1" style="cursor:pointer" placeholder="Mulai">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      </div>
                     </div>
                     <div class="col-sm-1"><p class="text-center" style="margin: 5px 0;">s/d</p></div>
                     <div class="col-sm-4">
-                      <input class="form-control" name="tgl_akhir_kegiatan" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd">
+                      <div class="input-group">
+                        <input class="form-control hasDatepicker" name="tgl_akhir_kegiatan" readonly="1" style="cursor:pointer" placeholder="Berakhir">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      </div>
                     </div>
                   </div> 
 

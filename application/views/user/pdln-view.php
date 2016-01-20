@@ -131,7 +131,13 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <img src="<?php echo '../files/other/'.$data['foto_pemohon']; ?>" class="img-responsive img-thumbnail">                            
+                            <?php if ($data['foto_pemohon']!="") {?>
+                                     <img src="<?php echo '../files/other/'.$data['foto_pemohon']; ?>" class="img-responsive img-thumbnail">
+                                 <?php }else{
+                                     /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
+                                     echo "<label class='img-responsive img-thumbnail' >Tidak ada Foto</label>";
+                                 }?>
+                            <!-- <img src="<?php echo '../files/other/'.$data['foto_pemohon']; ?>" class="img-responsive img-thumbnail">                             -->
                         </div>
                     </div>
                 </div>
