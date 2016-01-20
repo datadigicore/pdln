@@ -125,14 +125,20 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Terbit</label>
                     <div class="col-sm-9">
-                      <input class="form-control" name="tgl_terbit_passport_pemohon" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd">
+                      <div class="input-group">
+                        <input class="form-control hasDatepicker" name="tgl_terbit_passport_pemohon" readonly="1" style="cursor:pointer" placeholder="Tanggal Terbit">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      </div>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Kadaluarsa</label>
                     <div class="col-sm-9">
-                      <input class="form-control" name="tgl_habis_passport_pemohon" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd">
+                      <div class="input-group">
+                        <input class="form-control hasDatepicker" name="tgl_habis_passport_pemohon" readonly="1" style="cursor:pointer" placeholder="Tanggal Kadaluarsa">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
                     </div>
                   </div>
                 </div>
