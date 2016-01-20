@@ -225,7 +225,8 @@
         <input type="text" class="form-control" placeholder="Nomor Surat Setneg" autofocus id="no_surat_setneg" name="no_surat_setneg" required>
         <br>
         <label>Tgl. Surat Setneg</label>
-        <input type="date" class="form-control" placeholder="Tanggal Surat Setneg" autofocus id="tgl_surat_setneg" name="tgl_surat_setneg" required >
+        <input class="form-control" name="tgl_surat_setneg" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd" required>
+        <!-- <input type="date" class="form-control" placeholder="Tanggal Surat Setneg" autofocus id="tgl_surat_setneg" name="tgl_surat_setneg" required > -->
         <br>
         <label>Keterangan Surat Setneg</label>
         <input type="text" class="form-control" placeholder="Keterangan yang mendapat SP Setneg" autofocus id="data_lain_bpkln" name="data_lain_bpkln" required>        
