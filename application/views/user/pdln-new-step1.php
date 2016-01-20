@@ -12,7 +12,7 @@
               <li><a><span class="badge">3</span> Surat Undangan Kunjungan</a></li>
             </ul>
             
-            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
+            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data" onsubmit="return validasi();">
 
             <!-- HIDDEN INPUT -->
               <input type="hidden" name="manage" value="add_data_diri">
@@ -56,8 +56,8 @@
 
                   <div class="form-group" id="nip">
                     <label class="col-lg-3 col-sm-3 control-label">NIP</label>
-                    <div class="col-sm-9">
-                      <input type="number" class="form-control" id="nip_pemohon" name="nip_pemohon" placeholder="NIP" min="0" max="999999999999999999">
+                    <div class="col-sm-9">                      
+                      <input type="text" class="form-control" id="nip_pemohon" name="nip_pemohon" placeholder="NIP" maxlength="18">
                     </div>
                   </div>
 
@@ -204,7 +204,29 @@
     </section><! --/wrapper -->
   </section><!-- /MAIN CONTENT -->
 
-  <script type="text/javascript">
+  <script type="text/javascript">    
+  function validasi()
+    {
+        var nip=document.getElementById("nip_pemohon").value;
+        var numbers=/^[0-9]+$/;
+        if (nip==null || nip=="")
+          {
+          alert("NIP tidak boleh kosong !");
+          return false;
+          };
+          
+        if (!nip.match(numbers))
+          {
+          alert("NIP harus angka !");
+          return false;
+          };
+          
+        if (nip.length!=18)
+          {
+          alert("NIP harus 18 digit");
+          return false;
+          };
+     }
 
     $(document).ready(function()
     {
