@@ -1,6 +1,6 @@
-<table width="100%">
+<table>
   <tr>
-	<td align="left" valign="middle"><img width="14%" src="<?php echo base_url()?>img/logo_kemdikbud.jpg"></td>
+	<td align="left" valign="middle" width="10%"><img style="margin-top:15px;margin-left:15px" width="90" height="90" src="<?php echo base_url()?>img/logo_kemdikbud.jpg"></td>
 	<td align="center" valign="middle" width="85%">
 	  <h3>KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN</h3>
 	  Jalan Jenderal Sudirman, Senayan, Jakarta 10270<br>
@@ -11,23 +11,9 @@
 </table>
 <hr/>
 <br><br>
-<table>
-  <tr>
-      <td width="15%">Nomor</td>
-      <td width="5%" align="right">:</td>
-      <td><?php for ($i=0; $i < 20; $i++) { echo "&nbsp;"; } echo "/A1.3/LN/".date("Y") ?></td>
-  </tr>
-  <tr>
-      <td>Lampiran</td>
-      <td align="right">:</td>
-      <td>Satu Berkas</td>
-  </tr>
-  <tr>
-      <td valign="top">Hal</td>
-      <td align="right" valign="top">:</td>
-      <td>Persetujuan Perjalanan Dinas Luar Negeri</td>
-  </tr>
-</table>
+Nomor<?php for ($i=0; $i < 14; $i++) { echo "&nbsp;"; }?>: <?php for ($i=0; $i < 20; $i++) { echo "&nbsp;"; } echo "/A1.3/LN/".date("Y") ?><br>
+Lampiran<?php for ($i=0; $i < 10; $i++) { echo "&nbsp;"; }?>: Satu Berkas<br>
+Hal<?php for ($i=0; $i < 20; $i++) { echo "&nbsp;"; }?>: Persetujuan Perjalanan Dinas Luar Negeri<br>
 <br>
 Yth. Kepala Biro Kerja Sama Teknik Luar Negeri<br>
 Kementerian Sekretariat Negara RI<br>

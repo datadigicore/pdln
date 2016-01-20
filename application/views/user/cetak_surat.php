@@ -24,7 +24,7 @@
             <h4>Hasil Pencarian</h4>
             <?php if(count(array_filter($query))!=0){?>            
             <div class="text-center">
-              <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf">
+              <form target="blank" method="POST" action="<?php echo base_url();?>c_doc">
                 <input type="hidden" name="hasilsearch" value="<?php 
                 if (isset($query[0]['no_surat_bpkln_setneg'])) {
                   echo $query[0]['no_surat_bpkln_setneg'];
