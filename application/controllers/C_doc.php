@@ -67,10 +67,9 @@ class c_doc extends CI_Controller {
 				$html=$this->load->view('mpdf_template/surat_menlu', $result, true);
 			}
 			else {
-				$result['query'] = $this->m_mpdf->get_pdln_user2($iduser,$noaplikasi);
-				$nip = $result['query'][0]['nip_pemohon'];
-				$html1=$this->load->view('mpdf_template/surat_setneg_2', $result, true); 
-				$html2=$this->load->view('mpdf_template/surat_setneg_2_page2', $result, true); 
+				$result = $this->m_mpdf->get_pdln_user3($iduser,$noaplikasi);
+				$nip = $result['nip_pemohon'];
+				$html=$this->load->view('mpdf_template/surat_setneg', $result, true); 
 			}
 			$filename=$time.'-'.$kategori.'-'.$nip;
 			// $this->load->library('l_mpdf');
@@ -81,15 +80,9 @@ class c_doc extends CI_Controller {
 			header("Expires: 0");
 			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 			header("Content-disposition: attachment; filename=".$filename.'.doc');
-			if ($kategori == "menlu") {
-				echo $html;
-			}
-			else {
-				echo $html1;
-				echo '<br clear="all" style="page-break-before:always" />';
-				echo $html2;
-			}
-			
+			echo $html;
+				// echo '<br clear="all" style="page-break-before:always" />';
+				// echo $html2;
 			// if ($filename != "") {
 			// 	$mpdf->Output(FCPATH.'../files/'.$kategori.'.pdf','F');	
 			// }
