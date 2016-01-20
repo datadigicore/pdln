@@ -43,7 +43,7 @@
                     <div class="col-sm-9">
                       <select class="form-control" id="instansi_unit_utama" name="instansi_unit_utama">
                           <!-- query dari db -->
-                          <option value="-">---Pilih Instansi Unit Utama---</option>
+                          <option value="16">---Pilih Instansi Unit Utama---</option>
                           <?php foreach ($instansi as $key => $value) {
                             echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
                           }?>
