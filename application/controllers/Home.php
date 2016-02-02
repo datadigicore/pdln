@@ -158,8 +158,8 @@ class home extends CI_Controller {
     case 'cetak_surat':
         $kondisi = $this->input->post('kondisi');
         $id_user = $_SESSION['logged']['id_user'];
-        print($id_user);
-        print($kondisi);
+        // print($id_user);
+        // print($kondisi);
         if ($kondisi=="cari") {
           $no_surat_bpkln_setneg = $this->input->post('no_surat_bpkln_setneg');
           $result['query'] = $this->m_user->list_user_surat_cari($no_surat_bpkln_setneg,$id_user);          
