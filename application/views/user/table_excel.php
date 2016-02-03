@@ -1,24 +1,9 @@
 <table>
     <thead>
             <tr>
-                <th colspan="15">Rekapitulasi Data</th>
+                <th colspan="17">Rekapitulasi Data</th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th colspan="15">Pejabat, Pegawai, Dosen, Guru dan Mahasiswa/Siswa ke Luar Negeri</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -35,7 +20,28 @@
                 <th></th>
             </tr>
             <tr>
-                <th colspan="15">Tahun Kegiatan <?php echo date("Y"); ?><br><br></th>
+                <th colspan="17">Pejabat, Pegawai, Dosen, Guru dan Mahasiswa/Siswa ke Luar Negeri</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th colspan="17">Tahun Kegiatan <?php echo date("Y"); ?><br><br></th>
+                <th></th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -64,6 +70,8 @@
                 <th>Tanggal Surat BPKLN</th>
                 <th>Nomor Surat Setneg</th>
                 <th>Tanggal Surat Setneg</th>
+                <th>Nomor Surat Kemlu</th>
+                <th>Tanggal Surat Kemlu</th>
                 <th>Nama</th>
                 <th>Jabatan</th>
                 <th>Lembaga</th>
@@ -84,6 +92,8 @@
                 <td><?php echo $item['tgl_surat_bpkln_setneg']; ?></td>
                 <td><?php echo $item['no_surat_setneg']; ?></td>
                 <td><?php echo $item['tgl_surat_setneg']; ?></td>
+                <td><?php echo $item['no_surat_bpkln_kemlu']; ?></td>
+                <td><?php echo $item['tgl_surat_bpkln_kemlu']; ?></td>
                 <td><?php echo $item['nama_pemohon']; ?></td>
                 <td><?php echo $item['jabatan_pemohon']; ?></td>
                 <td><?php echo $item['nama_instansi']; ?></td>
