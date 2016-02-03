@@ -4,7 +4,7 @@
       <h3><i class="fa fa-angle-right"></i> Data Permohonan</h3>
       <div class="row mt">
         <div class="col-lg-12">
-          <form method="POST" action="<?php echo base_url();?>admin">
+          <form method="POST" action="<?php echo base_url();?>home">
             <input type="hidden" name="content" value="step1">
             <a class="btn pdln-btn mb" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-plus-square"></i> Tambah Data</a>
           </form>
@@ -63,8 +63,8 @@
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
                                     '<a style="margin:0 2px;" id="btn-view" class="btn btn-primary"><i class="fa fa-search"></i></a>'+
-                                    '<a style="margin:0 2px;" id="btn-edit" class="btn btn-success"><i class="fa fa-edit"></i></a>'+
-                                    '<a style="margin:0 2px;" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i></a>'+
+                                   /* '<a style="margin:0 2px;" id="btn-edit" class="btn btn-success"><i class="fa fa-edit"></i></a>'+
+                                    '<a style="margin:0 2px;" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i></a>'+*/
                                     '</div>',
                  "targets": 11}
               ],
@@ -96,7 +96,7 @@
               row_id = tabrow.data()[0];
               row_id_data_diri = tabrow.data()[1];
               kondisi = 'edit';
-              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('admin') ?>");
+              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
               var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
               var $input1=$(document.createElement('input')).css({display:'none'}).attr('name','id_data_diri').val(row_id_data_diri);
               var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);
@@ -112,7 +112,7 @@
               tabrow = table.row(tr);
               row_id = tabrow.data()[0];
               row_id_data_diri = tabrow.data()[1];              
-              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('admin') ?>");
+              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
               var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
               var $input1=$(document.createElement('input')).css({display:'none'}).attr('name','id_data_diri').val(row_id_data_diri);
               var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);              

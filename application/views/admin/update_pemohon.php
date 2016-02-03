@@ -97,7 +97,7 @@
               row_id = tabrow.data()[0];
               row_no_surat_unit_utama = tabrow.data()[1];
               kondisi = 'view';
-              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('admin') ?>");
+              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
               var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
               var $input1=$(document.createElement('input')).css({display:'none'}).attr('name','no_surat_unit_utama').val(row_no_surat_unit_utama);
               var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);

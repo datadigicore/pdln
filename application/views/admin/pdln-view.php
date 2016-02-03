@@ -3,16 +3,16 @@
   <section class="wrapper site-min-height">
     <div class="row mt">
         <div class="col-lg-12">
-            <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf/cetak_surat" style="float:left; margin-right:12px">                
+            <form target="blank" method="POST" action="<?php echo base_url();?>c_doc/cetak_surat" style="float:left; margin-right:12px">                
                 <input type="hidden" name="iduser" value="<?php echo $data['id_data_diri'] ?>">
                 <input type="hidden" name="kategori" value="setneg">
                 <input type="hidden" name="noaplikasi" value="<?php echo $data['no_aplikasi_data_diri'] ?>">
                 <a onclick="$(this).closest('form').submit()" title="Cetak Surat ke Setneg" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Setneg</a>
               </form>
-            <form target="blank" method="POST" action="<?php echo base_url();?>c_mpdf/cetak_surat">
+            <form target="blank" method="POST" action="<?php echo base_url();?>c_doc/cetak_surat">
                 <input type="hidden" name="iduser" value="<?php echo $data['id_data_diri'] ?>">
                 <input type="hidden" name="kategori" value="menlu">
-                <a onclick="$(this).closest('form').submit()" title="Cetak Surat ke Menlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Menlu</a>
+                <a onclick="$(this).closest('form').submit()" title="Cetak Surat ke Kemlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Kemlu</a>
               </form>          
         </div>
     </div>
@@ -131,7 +131,13 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <img src="<?php echo '../files/other/'.$data['foto_pemohon']; ?>" class="img-responsive img-thumbnail">                            
+                            <?php if ($data['foto_pemohon']!="") {?>
+                                     <img src="<?php echo '../files/other/'.$data['foto_pemohon']; ?>" class="img-responsive img-thumbnail">
+                                 <?php }else{
+                                     /*echo '<script type="text/javascript">alert("'.$data["cv_pemohon"].'" );</script>';*/
+                                     echo "<label class='img-responsive img-thumbnail' >Tidak ada Foto</label>";
+                                 }?>
+                            <!-- <img src="<?php echo '../files/other/'.$data['foto_pemohon']; ?>" class="img-responsive img-thumbnail">                             -->
                         </div>
                     </div>
                 </div>
@@ -285,7 +291,7 @@
                 },                
                 success: function(data)
                 {                    
-                    var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('admin') ?>");
+                    var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
                     var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(id);                    
                     $form.append($input);
                     $("body").append($form);
@@ -304,7 +310,7 @@
                 },                
                 success: function(data)
                 {                    
-                    var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('admin') ?>");
+                    var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
                     var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(id);                    
                     $form.append($input);
                     $("body").append($form);

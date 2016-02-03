@@ -20,7 +20,7 @@
                       <th>Tgl. Surat BPKLN (setneg)</th>
                       <th>No. Surat BPKLN (kemlu)</th>
                       <th>Tgl. Surat BPKLN (kemlu)</th>                      
-                      <th style="width: 15%;">Aksi</th>
+                      <!-- <th style="width: 15%;">Aksi</th> -->
                   </tr>
               </thead>
        
@@ -85,15 +85,15 @@
                 {"targets" : 3}, 
                 {"targets" : 4},
                 {"targets" : 5},
-                {"targets" : 6},
-                {"orderable": false,
+                {"targets" : 6}
+                /*{"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
                                     '<a style="margin:0 2px;" id="btn-edit" href="#modal-tambahdata" class="btn btn-success btn-sm" data-toggle="modal"><i class="fa fa-edit"></i></a>'+
-                                    /*'<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
-                                    '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+*/
+                                    '<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
+                                    '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+
                                     '</div>',
-                 "targets": 7}
+                 "targets": 7}*/
               ],
               "order": [[ 0, "desc" ]]
             });
@@ -238,16 +238,18 @@
         <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Setneg" autofocus id="no_surat_bpkln_setneg" name="no_surat_bpkln_setneg" required>
         <br>
         <label>Tgl. Surat BPKLN ke Setneg</label>
-        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" required>
-        <br>
+        <input class="form-control" name="tgl_surat_bpkln_setneg" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd" required>
+<!--         <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" required>
+ -->        <br>
         <label>Surat BPKLN ke Setneg</label>
-        <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1">   
+        <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1" required>   
         <br>
         <label>No. Surat BPKLN ke Kemlu</label>
         <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Kemlu" autofocus id="no_surat_bpkln_kemlu" name="no_surat_bpkln_kemlu"required>
         <br>
         <label>Tgl. Surat BPKLN ke Kemlu</label>
-        <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Kemlu" autofocus id="tgl_surat_bpkln_kemlu" name="tgl_surat_bpkln_kemlu" required>
+        <input class="form-control" name="tgl_surat_bpkln_kemlu" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd" required>
+        <!-- <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Kemlu" autofocus id="tgl_surat_bpkln_kemlu" name="tgl_surat_bpkln_kemlu" required> -->
         <br>
         <label>Surat BPKLN ke Kemlu</label>
         <input type="file" class="form-control" autofocus id="upl_file2" name="upl_file2" required>

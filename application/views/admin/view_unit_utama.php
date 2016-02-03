@@ -43,7 +43,7 @@
               "serverSide": true,
               "fixedColumns":   true,
               "ajax": {
-                "url": "<?php echo base_url('home/process') ?>",
+                "url": "<?php echo base_url('admin/process') ?>",
                 "data": {manage:'tab_pdln_unit_utama',
                           no_surat_unit_utama:no_surat_unit_utama},
                 "type": "POST"

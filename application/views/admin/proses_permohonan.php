@@ -1,7 +1,7 @@
 <!--main content start-->
   <section id="main-content">
     <section class="wrapper site-min-height">
-      <h3><i class="fa fa-angle-right"></i> Proses Permohonan</h3>
+      <h3><i class="fa fa-angle-right"></i> Surat Setneg</h3>
       <div class="row mt">
         <div class="col-lg-12">
           <div class="pdln-panel">
@@ -22,7 +22,7 @@
                       <th>Tgl. Surat Setneg </th>
                       <th>Keterangan</th>                      
                       <th>Status</th>
-                      <th style="width: 15%;">Aksi</th>
+                      <!-- <th style="width: 15%;">Aksi</th> -->
                   </tr>
               </thead>
        
@@ -89,15 +89,15 @@
                 {"targets" : 5},
                 {"targets" : 6},
                 {"targets" : 7},
-                {"targets" : 8},
-                {"orderable": false,
+                {"targets" : 8}
+                /*{"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
                                     '<a style="margin:0 2px;" id="btn-edit" href="#modal-tambahdata" class="btn btn-success btn-sm" data-toggle="modal"><i class="fa fa-edit"></i></a>'+
-                                    /*'<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
-                                    '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+*/
+                                    '<a id="btn-terima" title="Terima" href="#modal-terimadata" class="open-terimadata btn btn-warning" data-toggle="modal"><i class="fa fa-check-square-o"></i></a>'+
+                                    '<a data-toggle="modal" id="btn-tolak" title="Tolak" class="open-tolakdata btn btn-danger" href="#modal-tolakdata"><i class="fa fa-remove"></i></a>'+
                                     '</div>',
-                 "targets": 9}
+                 "targets": 9}*/
               ],
               "order": [[ 0, "desc" ]]
             });
@@ -225,7 +225,8 @@
         <input type="text" class="form-control" placeholder="Nomor Surat Setneg" autofocus id="no_surat_setneg" name="no_surat_setneg" required>
         <br>
         <label>Tgl. Surat Setneg</label>
-        <input type="date" class="form-control" placeholder="Tanggal Surat Setneg" autofocus id="tgl_surat_setneg" name="tgl_surat_setneg" required >
+        <input class="form-control" name="tgl_surat_setneg" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd" required>
+        <!-- <input type="date" class="form-control" placeholder="Tanggal Surat Setneg" autofocus id="tgl_surat_setneg" name="tgl_surat_setneg" required > -->
         <br>
         <label>Keterangan Surat Setneg</label>
         <input type="text" class="form-control" placeholder="Keterangan yang mendapat SP Setneg" autofocus id="data_lain_bpkln" name="data_lain_bpkln" required>        

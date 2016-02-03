@@ -34,10 +34,7 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Surat Unit Utama</label>
                     <div class="col-sm-9">
-                      <div class="input-group">
-                        <input class="form-control hasDatepicker" name="tgl_surat_unit_utama" readonly="1" style="cursor:pointer" placeholder="Tanggal Surat Unit Utama">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                      </div>
+                      <input type="date" class="form-control" name="tgl_surat_unit_utama" placeholder="Tanggal Surat Unit Utama">
                     </div>
                   </div>
 
@@ -46,14 +43,14 @@
                     <div class="col-sm-9">
                       <select class="form-control" id="instansi_unit_utama" name="instansi_unit_utama">
                           <!-- query dari db -->
-                          <option value="16">---Pilih Instansi Unit Utama---</option>
+                          <option value="-">---Pilih Instansi Unit Utama---</option>
                           <?php foreach ($instansi as $key => $value) {
                             echo '<option value="'.$value['id'].'">'.$value['nama_instansi'].'</option>';                          
                           }?>
                           <!-- <option value="Lainnya">Lain-lain</option> -->
                       </select>
 
-                       <select class="form-control" id="sub_instansi_unit_utama" name="sub_instansi_unit_utama" style="margin-top: 15px;">
+                       <select class="form-control" id="sub_instansi_unit_utama" name="sub_instansi_unit_utama" >
                           <!-- query dari db -->
                           <option value="54">---Pilih Sub Instansi Unit Utama---</option>
                           <!-- <option value="lainnya">Lain-lain</option> -->
