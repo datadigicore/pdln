@@ -10,46 +10,32 @@ class c_doc extends CI_Controller {
 		$nosurat = $this->input->post('hasilsearch', TRUE);
 		$banyak = $this->input->post('banyak', TRUE);
 		$noaplikasi = $this->input->post('no_aplikasi', TRUE);
-		$menset = "";
-		$jenis = "setneg2";
-		if ($banyak == 1) {
-			if ($jenis == "setneg2") {
+		$jenis = $this->input->post('jenis', TRUE);
+		if (!empty($nosurat)) {
+			if ($jenis == "setneg") {
 				$result['query'] = $this->m_mpdf->get_pdln_more($noaplikasi,$nosurat);
 				$nip = $result['query'][0]['nip_pemohon'];
 				$html1=$this->load->view('mpdf_template/surat_setneg_2', $result, true); 
 				$html2=$this->load->view('mpdf_template/surat_setneg_2_page2', $result, true); 
 			}
-			else {
-				$result = $this->m_mpdf->get_pdln();
-				$nip = $result['nip_pemohon'];
-				$html=$this->load->view('mpdf_template/surat_menlu', $result, true);
+			elseif ($jenis == "menlu") {
+				$result['query'] = $this->m_mpdf->get_pdln_more($noaplikasi,$nosurat);
+				$nip = $result['query'][0]['nip_pemohon'];
+				$html1=$this->load->view('mpdf_template/surat_menlu_2', $result, true); 
+				$html2=$this->load->view('mpdf_template/surat_menlu_2_page2', $result, true); 
 			}
+			$filename=$time.'-'.$jenis.'-'.$nip;
+			header("Content-Type: application/vnd.ms-word");
+			header("Expires: 0");
+			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+			header("Content-disposition: attachment; filename=".$filename.'.doc');
+			echo $html1;
+			echo '<br clear="all" style="page-break-before:always" />';
+			echo $html2;
 		}
-		else {
-			$result['query'] = $this->m_mpdf->get_pdln_more($noaplikasi,$nosurat);
-			$nip = $result['query'][0]['nip_pemohon'];
-			switch ($jenis) {
-				case 'setneg2':
-					$html1=$this->load->view('mpdf_template/surat_setneg_2', $result, true); 
-					$html2=$this->load->view('mpdf_template/surat_setneg_2_page2', $result, true); 
-				break;
-				case 'setneg2es2':
-					$html=$this->load->view('mpdf_template/surat_setneg_2_es2', $result, true); 
-				break;
-				default:
-					$html1=$this->load->view('mpdf_template/surat_setneg_2', $result, true); 
-					$html2=$this->load->view('mpdf_template/surat_setneg_2_page2', $result, true); 
-				break;
-			}
+		else{
+			echo "Maaf Anda Belum Melakukan Pencarian Nomor Surat";
 		}
-		$filename=$time.'-'.$menset.'-'.$nip;
-		header("Content-Type: application/vnd.ms-word");
-		header("Expires: 0");
-		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-		header("Content-disposition: attachment; filename=".$filename.'.doc');
-		echo $html1;
-		echo '<br clear="all" style="page-break-before:always" />';
-		echo $html2;
 	}
 
 	public function cetak_surat() {
@@ -72,21 +58,11 @@ class c_doc extends CI_Controller {
 				$html=$this->load->view('mpdf_template/surat_setneg', $result, true); 
 			}
 			$filename=$time.'-'.$kategori.'-'.$nip;
-			// $this->load->library('l_mpdf');
-			// $mpdf = $this->l_mpdf->load();
-			// $mpdf=new mPDF('','A4','','',30,20,20,25); 
-			
 			header("Content-Type: application/vnd.ms-word");
 			header("Expires: 0");
 			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 			header("Content-disposition: attachment; filename=".$filename.'.doc');
 			echo $html;
-				// echo '<br clear="all" style="page-break-before:always" />';
-				// echo $html2;
-			// if ($filename != "") {
-			// 	$mpdf->Output(FCPATH.'../files/'.$kategori.'.pdf','F');	
-			// }
-			// $mpdf->Output();
 		}
 
 	function tab_cetak_surat(){
