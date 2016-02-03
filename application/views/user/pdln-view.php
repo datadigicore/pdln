@@ -12,7 +12,7 @@
             <form target="blank" method="POST" action="<?php echo base_url();?>c_doc/cetak_surat">
                 <input type="hidden" name="iduser" value="<?php echo $data['id_data_diri'] ?>">
                 <input type="hidden" name="kategori" value="menlu">
-                <a onclick="$(this).closest('form').submit()" title="Cetak Surat ke Menlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Menlu</a>
+                <a onclick="$(this).closest('form').submit()" title="Cetak Surat ke Kemlu" class="btn btn-warning mb"><i class="fa fa-print"></i> Cetak Surat ke Kemlu</a>
               </form>          
         </div>
     </div>

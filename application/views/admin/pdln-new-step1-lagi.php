@@ -14,7 +14,7 @@
             <!-- HIDDEN INPUT -->
               <input type="hidden" name="manage" value="add_data_diri">
               <input type="hidden" name="kondisi" value="tambah">
-              <input type="text" name="no_aplikasi" value="<?php echo $no_aplikasi; ?>">
+              <input type="hidden" name="no_aplikasi" value="<?php echo $no_aplikasi; ?>">
 
               <?php if (isset($error_message)){?>
                 <input type="hidden" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi_data_diri'];?>">
@@ -81,7 +81,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                   <div class="form-group" id="jabatan">
                     <label class="col-lg-3 col-sm-3 control-label">Jabatan</label>
                     <div class="col-sm-9">
                       <select class="form-control" id="jabatan_pemohon" name="jabatan_pemohon" onchange="jabatan_pemohon(this.value)">
@@ -92,12 +92,19 @@
                           <option value="Eselon 4">Eselon 4</option>
                           <option value="Auditor">Auditor</option>
                           <option value="Fungsional">Fungsional</option>
-                          <option value="Pembantu Pimpinan">Pembantu Pimpinan</option>
+                          <option value="Fungsional Umum">Fungsional Umum</option>
                           <option value="Lainnya">Lain-lain</option>
                       </select>
-                      <input type="text" class="form-control" id="jabatan_lain" name="jabatan_lain" placeholder="Jabatan">
                     </div>
                   </div>
+
+                  <div class="form-group" id="jabatan_lain">
+                    <label class="col-lg-3 col-sm-3 control-label">Keterangan Jabatan</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="jabatan_lain" placeholder="Jabatan">
+                    </div>
+                  </div>
+
                 </div>
               </div>
               
@@ -148,10 +155,10 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                 <div class="form-group" id="kartupegawai">
                     <label class="col-lg-3 col-sm-3 control-label">Kartu Pegawai</label>
                     <div class="col-sm-9">
-                      <input type="file" name="upl_files3" class="form-control">
+                      <input type="file" id="karpeg" name="upl_files3" class="form-control">
                     </div>
                   </div>
 
@@ -194,23 +201,46 @@
      
      $("#pekerjaan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
+       $("#jabatan").hide();
        $("#pekerjaan_lain").show();
+       $("#nip").hide();
+       $("#instansi").hide();
+       $("#sub_instansi_pemohon").hide();
+       $("#kartupegawai").hide();
+       $('#nip_pemohon').prop('required',false);
+       $('#karpeg').prop('required',false);       
+       $("#jabatan_lain").show();    
       }else if ($(this).val()=="PNS"){
+       $("#jabatan").show();
        $("#pekerjaan_lain").hide();
        $("#nip").show();
+       $("#kartupegawai").show();
+       $('#nip_pemohon').prop('required',true);
+       $('#karpeg').prop('required',true);
        $("#instansi").show(); 
+       $("#jabatan_lain").hide();
       }
       else{
+       $("#jabatan").hide();
        $("#pekerjaan_lain").hide();
        $("#nip").hide();
        $("#instansi").hide();
        $("#sub_instansi_pemohon").hide();
+       $("#kartupegawai").hide();
+       $('#nip_pemohon').prop('required',false);
+       $('#karpeg').prop('required',false);       
+       $("#jabatan_lain").show();
       }          
      });
+     $("#jabatan").hide();
+     $('#nip_pemohon').prop('required',false);
+     $('#karpeg').prop('required',false);
      $("#pekerjaan_lain").hide();
      $("#nip").hide();
      $("#instansi").hide();
      $("#sub_instansi_pemohon").hide();
+     $("#kartupegawai").hide();
+     $("#jabatan_lain").hide();
 
     $("#jabatan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
@@ -227,17 +257,17 @@
         $("#sub_instansi_pemohon").show();
         id = $("#instansi_pemohon").val();      
         $.ajax({
-                type: "post",
-                url : "<?php echo base_url('admin/process') ?>",
-                data: {manage:'select_data',key:id},
-                success: function(result)
-                {
-                  //document.write(result);
-                  $("#sub_instansi_pemohon").html(result);
-                  //$("#result").html(result);
-                }
-              });
-              return false;
+          type: "post",
+          url : "<?php echo base_url('admin/process') ?>",
+          data: {manage:'select_data',key:id},
+          success: function(result)
+          {
+            //document.write(result);
+            $("#sub_instansi_pemohon").html(result);
+            //$("#result").html(result);
+          }
+        });
+        return false;
       }else{
         $("#sub_instansi_pemohon").hide();   
       }      

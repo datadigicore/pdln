@@ -10,9 +10,9 @@
                   <input type="hidden" name="content" value="cetak_surat"> 
                   <input type="hidden" name="kondisi" value="cari">
         
-                  <label class="col-lg-3 col-sm-3 control-label">No Surat Unit Utama</label>
+                  <label class="col-lg-3 col-sm-3 control-label">No Surat BPKLN ke Setneg</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="no_surat_bpkln_setneg" placeholder="No Surat Unit Utama">
+                    <input type="text" class="form-control" name="no_surat_bpkln_setneg" placeholder="No Surat BPKLN ke Setneg">
                     <a style="margin:0 2px;" onclick="$(this).closest('form').submit()" class="btn btn-primary"><i class="fa fa-search"></i></a>
                   </div>
 
@@ -32,7 +32,7 @@
                 <input type="hidden" name="banyak" value="<?php echo count(array_filter($query)); ?>">
                 <input type="hidden" name="no_aplikasi" value="<?php echo $query[0]['no_aplikasi_data_diri']; ?>">
                 <button class="btn btn-warning" type="submit" name="jenis" value="setneg" style="margin:0 10px"><i class="fa fa-print"></i> Cetak Surat Setneg</button>
-                <button class="btn btn-warning" type="submit" name="jenis" value="menlu" style="margin:0 10px"><i class="fa fa-print"></i> Cetak Surat Menlu</button>
+                <button class="btn btn-warning" type="submit" name="jenis" value="menlu" style="margin:0 10px"><i class="fa fa-print"></i> Cetak Surat Kemlu</button>
               </form>
             </div>           
             <br>

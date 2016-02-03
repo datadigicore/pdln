@@ -13,7 +13,6 @@
                       <th>No SP Setneg</th>
                       <th>Tanggal SP Setneg </th>
                       <th>Sumber Dana</th>
-                      <th>Jumlah Pemohon</th>
                       <th>Keterangan Lolos </th>
                       <!-- <th style="width: 15%;">Aksi</th> -->
                   </tr>
@@ -47,8 +46,7 @@
                 {"targets" : 2},
                 {"targets" : 3},
                 {"targets" : 4},
-                {"targets" : 5},
-                {"targets" : 6}
+                {"targets" : 5}
                 /*{"orderable": false,
                  "data": null,
                  "defaultContent":  '<div class="text-center">'+
@@ -68,7 +66,7 @@
               tabrow = table.row(tr);
               row_id = tabrow.data()[0];
               kondisi = 'view';
-              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('admin') ?>");
+              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
               var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
               var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);
               var $input3=$(document.createElement('input')).css({display:'none'}).attr('name','kondisi').val(kondisi);
@@ -83,7 +81,7 @@
               tabrow = table.row(tr);
               row_id = tabrow.data()[0];
               kondisi = 'edit';
-              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('admin') ?>");
+              var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
               var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
               var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);
               var $input3=$(document.createElement('input')).css({display:'none'}).attr('name','kondisi').val(kondisi);
@@ -159,7 +157,7 @@
         <h4 class="modal-title" id="myModalLabel">Data PDLN</h4>
       </div>
       <div class="modal-body">
-        <input type="hidden" name="content" value="admin">
+        <input type="hidden" name="content" value="home">
         <br>        
         <img id="foto_pemohon" src="<?php base_url();?>img/img_person.jpg" class="img-responsive">
         <br>
