@@ -66,7 +66,7 @@ class Admin extends CI_Controller {
       case 'view':
         $table = 'instansi';
           $data['instansi'] = $this->m_admin->select_data($table);       
-        //ini load data dari data diri nya udh bener
+          //ini load data dari data diri nya udh bener
           $no_aplikasi_surat = $this->input->post('id');
           $no_aplikasi = array('no_aplikasi' => $this->input->post('id'));
           $id_data_diri= $this->input->post('id_data_diri');

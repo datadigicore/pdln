@@ -248,7 +248,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label class="col-lg-4 col-sm-4 control-label">Keterangan Sumber Dana</label>
+                      <label class="col-lg-4 col-sm-4 control-label"><strong>Keterangan Sumber Dana</strong></label>
                       <div class="col-lg-8">
                         <p class="form-control-static"><?php echo $data['keterangan_sumber_dana_kegiatan'] ?></p>
                       </div>

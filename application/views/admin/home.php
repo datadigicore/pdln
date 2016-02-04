@@ -4,10 +4,10 @@
       <h3><i class="fa fa-angle-right"></i> Data Permohonan</h3>
       <div class="row mt">
         <div class="col-lg-12">
-          <form method="POST" action="<?php echo base_url();?>home">
+          <!-- <form method="POST" action="<?php echo base_url();?>home">
             <input type="hidden" name="content" value="step1">
             <a class="btn pdln-btn mb" title="Tambah data baru" onclick="$(this).closest('form').submit()"><i class="fa fa-plus-square"></i> Tambah Data</a>
-          </form>
+          </form> -->
           <div class="pdln-panel">
             <table class="table  table-striped table-bordered pdln-table table-curved" cellspacing="0" width="100%">
               <thead>

@@ -12,7 +12,7 @@
               <li><a><span class="badge">3</span> Surat Undangan Kunjungan</a></li>
             </ul>
             
-            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data" onsubmit="return validasi();">
+            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
 
             <!-- HIDDEN INPUT -->
               <input type="hidden" name="manage" value="add_data_diri">

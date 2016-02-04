@@ -5,7 +5,7 @@
         <div class="col-lg-12">
           <div class="form-panel">
             <h4 class="mb"><i class="fa fa-angle-right"></i> Cetak Surat</h4>
-            <form class="form-horizontal style-form" method="POST" action="<?php echo base_url();?>home">                
+            <form class="form-horizontal style-form" method="POST" action="<?php echo base_url();?>admin">                
               <div class="form-group">
                   <input type="hidden" name="content" value="cetak_surat"> 
                   <input type="hidden" name="kondisi" value="cari">
