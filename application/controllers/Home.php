@@ -43,7 +43,6 @@ class home extends CI_Controller {
     $this->load->view('template/sidebar');
     switch ($content) {
       case 'addstep1':
-          $data['no_aplikasi'] = $this->input->post('id');
           $table = 'instansi';
           $data['instansi'] = $this->m_user->select_data($table);
           $this->load->view('user/pdln-new-step1-lagi',$data);   
@@ -333,6 +332,7 @@ class home extends CI_Controller {
         }
         echo json_encode($newresult);
       break;
+
       case 'add_data_diri': 
         $cek = $this->input->post('no_aplikasi');
         if(isset($cek)){
@@ -409,6 +409,10 @@ class home extends CI_Controller {
             'no_aplikasi' => $no_aplikasi
         );
 
+        $result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
+        $result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
+        $result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
+
         $result= $this->db->insert('data_diri',$datadiri);
           //buat redirect ke halaman lain      
         if ($result == TRUE ) {
@@ -420,24 +424,40 @@ class home extends CI_Controller {
           $this->session->set_flashdata('content','step1');
           redirect('home');
           }
-          if($this->input->post('lanjut')=="lanjut"){
+          /*if($this->input->post('lanjut')=="lanjut"){
             $result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
             $result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
             $result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
             $kondisi = "lanjut";
             /*print_r($kondisi);
-            print_r($datadiri);*/
+            print_r($datadiri);
             $this->session->set_flashdata('error_message', $datadiri);
             $this->session->set_flashdata('content','step2');
             redirect('home');       
-          }
+          }*/
           if($this->input->post('selesai')=="selesai"){
             $this->session->set_flashdata('error_message', $datadiri);
             $this->session->set_flashdata('content','home');
-            redirect('home');       
+            redirect('home');
           }
+          if($this->input->post('tambah_lagi')=="Tambah Pemohon"){
+            $this->session->set_flashdata('error_message', $datadiri);
+            $this->session->set_flashdata('content','addstep1');            
+            redirect('home');
+          }
+          if ($this->input->post('cancel')=="Cancel"){
+            $this->session->set_flashdata('error_message', $datadiri);
+            $this->session->set_flashdata('content','home');
+            redirect('home');
+          }
+          else{
+            $this->session->set_flashdata('error_message', $datadiri);
+            $this->session->set_flashdata('content','step2');
+            redirect('home');
+          }
+
         }
-        else {
+        else {          
           redirect('home');
         }
         /*if ($result=1) {
@@ -518,7 +538,6 @@ class home extends CI_Controller {
       break;
 
       case 'add_surat_undangan':
-
         //upload        
         $config['upload_path'] = FCPATH.'../files/surat_undangan';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
@@ -562,19 +581,32 @@ class home extends CI_Controller {
 
         //insert
         $no_aplikasi = $this->input->post('no_aplikasi');
+        $no_aplikasi_array = array(
+        'no_aplikasi_data_diri' => $this->input->post('no_aplikasi')
+        );
         $table = 'surat_undangan';
         $id_user = $_SESSION['logged']['id_user'];
 
         $result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);
-        if ($result == TRUE) {      
-         $this->session->set_flashdata('error_message', $data);
-          //buat redirect ke halaman lain
-          $this->session->set_flashdata('content','home');
-          redirect('home');
+        if ($result == TRUE) {                
+          if($this->input->post('tambah') == "tambah"){
+            $kondisi = "tambah";
+            /*print_r($kondisi);*/
+            /*print_r($datadiri);*/
+            $this->session->set_flashdata('error_message', $no_aplikasi_array);
+            $this->session->set_flashdata('content','addstep1');
+            redirect('home');
+          }        
+          if($this->input->post('selesai')=="selesai"){
+            $this->session->set_flashdata('error_message', $no_aplikasi);
+            $this->session->set_flashdata('content','home');
+            redirect('home');       
+          }        
         }
         else {
           redirect('home');
         }
+
       break;
       case 'tab_pdln':
         $id_user = $_SESSION['logged']['id_user'];

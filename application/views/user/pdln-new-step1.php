@@ -191,7 +191,8 @@
               <div class="form-group">
                 <div class="col-sm-9">      
                     <!-- <input type="submit" class="btn btn-success mb" name="tambah" value="tambah" title="Tambah data baru"> -->
-                    <input type="submit" class="btn btn-info mb" name="lanjut" value="lanjut" title="Lanjut">
+                    <!-- <input type="submit" class="btn btn-info mb" name="lanjut" value="lanjut" title="Lanjut"> -->
+                    <a class="btn btn-primary" title="Lanjut" onclick="$(this).closest('form').submit()"><i class="fa fa-check-square-o"></i> Simpan dan Lanjut</a>
                 </div>
               </div>
             </form>   

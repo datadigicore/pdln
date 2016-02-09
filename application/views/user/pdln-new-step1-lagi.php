@@ -7,14 +7,19 @@
             
             <!-- Steping Wizard -->
             <ul class="nav nav-wizard">
-              <li class="active"><a><span class="badge">1</span> Data Diri</a></li>
+              <li class="active"><a><span class="badge"></span>Tambah Data Diri</a></li>              
             </ul>
+
+            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home">
+              <input type="hidden" name="content" value="home">
+              <a class="btn btn-danger" title="Cancel" onclick="$(this).closest('form').submit()"><i class="fa fa-remove"></i>Cancel</a>
+            </form>
             
-            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
+            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data" onsubmit="return validasi()">
+
             <!-- HIDDEN INPUT -->
               <input type="hidden" name="manage" value="add_data_diri">
               <input type="hidden" name="kondisi" value="tambah">
-              <input type="hidden" name="no_aplikasi" value="<?php echo $no_aplikasi; ?>">
 
               <?php if (isset($error_message)){?>
                 <input type="hidden" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi_data_diri'];?>">
@@ -54,8 +59,8 @@
 
                   <div class="form-group" id="nip">
                     <label class="col-lg-3 col-sm-3 control-label">NIP</label>
-                    <div class="col-sm-9">
-                      <input type="number" class="form-control" id="nip_pemohon" name="nip_pemohon" placeholder="NIP" min="0" max="999999999999999999">
+                    <div class="col-sm-9">                      
+                      <input type="text" class="form-control" id="nip_pemohon" name="nip_pemohon" placeholder="NIP" maxlength="18">
                     </div>
                   </div>
 
@@ -81,7 +86,7 @@
                     </div>
                   </div>
 
-                   <div class="form-group" id="jabatan">
+                  <div class="form-group" id="jabatan">
                     <label class="col-lg-3 col-sm-3 control-label">Jabatan</label>
                     <div class="col-sm-9">
                       <select class="form-control" id="jabatan_pemohon" name="jabatan_pemohon" onchange="jabatan_pemohon(this.value)">
@@ -123,14 +128,20 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Terbit</label>
                     <div class="col-sm-9">
-                      <input type="date" class="form-control" name="tgl_terbit_passport_pemohon">
+                      <div class="input-group">
+                        <input class="form-control hasDatepicker" id="StartDate" name="tgl_terbit_passport_pemohon" readonly="1" style="cursor:pointer" placeholder="Tanggal Terbit">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      </div>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Kadaluarsa</label>
                     <div class="col-sm-9">
-                      <input type="date" class="form-control" name="tgl_habis_passport_pemohon">
+                      <div class="input-group">
+                        <input class="form-control hasDatepicker" id="EndDate" name="tgl_habis_passport_pemohon" readonly="1" style="cursor:pointer" placeholder="Tanggal Kadaluarsa">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -144,40 +155,49 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Curiculum Vitae</label>
                     <div class="col-sm-9">
-                      <input type="file" name="upl_files1" class="form-control">
+                      <input type="file" name="upl_files1" class="form-control" onchange="ValidateSingleInput(this);">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Foto</label>
                     <div class="col-sm-9">
-                      <input type="file" name="upl_files2" class="form-control">
+                      <input type="file" name="upl_files2" class="form-control" onchange="ValidateSingleInput(this);">
                     </div>
                   </div>
 
-                 <div class="form-group" id="kartupegawai">
+                  <div class="form-group" id="kartupegawai">
                     <label class="col-lg-3 col-sm-3 control-label">Kartu Pegawai</label>
                     <div class="col-sm-9">
-                      <input type="file" id="karpeg" name="upl_files3" class="form-control">
+                      <input type="file" id="karpeg" name="upl_files3" class="form-control" onchange="ValidateSingleInput(this);">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Surat Tugas</label>
                     <div class="col-sm-9">
-                      <input type="file" name="upl_files4" class="form-control">
+                      <input type="file" name="upl_files4" class="form-control" onchange="ValidateSingleInput(this);">
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 col-sm-3 control-label">KTP</label>
+                    <div class="col-sm-9">
+                      <input type="file" name="upl_files5" id="upl_files5" class="form-control" onchange="ValidateSingleInput(this);">
+                    </div>
+                  </div>
+
                 </div>
+
               </div>
 
               <div class="form-group">
                 <div class="col-sm-9">      
-                    <!-- <input type="submit" class="btn btn-success mb" name="tambah" value="tambah" title="Tambah data baru"> -->
-                    <input type="submit" class="btn btn-info mb" name="selesai" value="selesai" title="selesai">
+                    <input type="submit" class="btn btn-success mb" name="tambah_lagi" value="Tambah Pemohon" title="Tambah data baru">
+                    <input type="submit" class="btn btn-info mb" name="selesai" value="selesai" title="selesai">                    
                 </div>
               </div>
-            </form>   
+            </form>            
 
           <!--            
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
@@ -193,13 +213,113 @@
     </section><! --/wrapper -->
   </section><!-- /MAIN CONTENT -->
 
-  <script type="text/javascript">
+  <script type="text/javascript">  
+  var _validFileExtensions = [".jpg", ".jpeg", ".pdf", ".png"];
+  function ValidateSingleInput(oInput) {      
+      if (oInput.type == "file") {
+          var sFileName = oInput.value;
+           if (sFileName.length > 0) {
+              var blnValid = false;
+              for (var j = 0; j < _validFileExtensions.length; j++) {
+                  var sCurExtension = _validFileExtensions[j];
+                  if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                      blnValid = true;
+                      break;
+                  }
+              }
+               
+              if (!blnValid) {
+                  alert("Sorry allowed extensions are: " + _validFileExtensions.join(", "));
+                  oInput.value = "";
+                  return false;
+              }
+          }
+      }
+      return true;
+  }
 
+  function validasi()
+    {
+        var from = $("#StartDate").val();
+        var to = $("#EndDate").val();
+        var pekerjaan=document.getElementById("pekerjaan_pemohon").value;
+        var nip=document.getElementById("nip_pemohon").value;
+
+        if(Date.parse(from) > Date.parse(to)){
+          alert("Tanggal Habis Passport harus lebih atau sama dengan Tanggal Terbit Passport");
+          /*to.focus();*/
+        return false;
+        }        
+        return true;        
+        
+        /*//verifikasi upload
+        var fileInput = $("#upl_files5")[0];
+        var info=fileInput.files[0];
+
+        //untuk mendapatkan nama file
+        var nama= info.name;
+
+        //untuk mendapatkan ukuran file
+        var size= info.size;
+        alert(size);
+        //untuk mendapatkan tipe file
+        var type= info.type;*/
+
+      if (pekerjaan =="PNS") {        
+        var numbers=/^[0-9]+$/;
+        if (nip==null || nip=="")
+          {
+          alert("NIP tidak boleh kosong !");
+          return false;
+          };
+          
+        if (!nip.match(numbers))
+          {
+          alert("NIP harus angka !");
+          return false;
+          };
+          
+        if (nip.length!=18)
+          {
+          alert("NIP harus 18 digit");
+          return false;
+          };
+        };
+     }
 
     $(document).ready(function()
     {
+
+    /*$('.fromdate').datepicker({
+      dateFormat: 'yy-mm-dd',
+      changeMonth: true,
+      changeYear: true,      
+    });*/      
+      $("#upl_files5").change(function(){
+        var fileInput = $("#upl_files5")[0];
+        var info=fileInput.files[0];
+
+        //untuk mendapatkan nama file
+        var nama= info.name;
+
+        //untuk mendapatkan ukuran file
+        var size= info.size;
+        //alert(size);
+        //untuk mendapatkan tipe file
+        var type= info.type;
+        fileInput.focus();
+        //alert(type);
+
+        var fileName = document.getElementById("upl_files5").value;
+        var ext = fileName.substring(fileName.lastIndexOf('.') + 1);        
+        if(ext == "pdf" ){
+          alert("File harus dalam format JPG/PNG/PDF");
+          return false;
+        }
+
+      });
      
-     $("#pekerjaan_pemohon").change(function(){
+      $("#pekerjaan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
        $("#jabatan").hide();
        $("#pekerjaan_lain").show();
@@ -218,7 +338,7 @@
        $('#nip_pemohon').prop('required',true);
        $('#karpeg').prop('required',true);
        $("#instansi").show(); 
-       $("#jabatan_lain").hide();
+       $("#jabatan_lain").hide();       
       }
       else{
        $("#jabatan").hide();

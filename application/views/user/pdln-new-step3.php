@@ -33,7 +33,7 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Surat Undangan</label>
                     <div class="col-sm-9">
-                      <div class="input-group">
+                      <div class="input-group">                        
                         <input class="form-control hasDatepicker" name="tgl_surat_undangan" readonly="1" style="cursor:pointer" placeholder="Tanggal Surat Undangan">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       </div>
@@ -155,7 +155,9 @@
                   <div class="col-sm-9">
                     <!--<button type="submit" class="btn pdln-btn">Lanjut</button>-->
                     <input type="hidden" name="manage" value="add_surat_undangan">
-                    <a class="btn btn-primary" title="Selesai" onclick="$(this).closest('form').submit()"><i class="fa fa-check-square-o"></i> Selesai</a>
+                    <input type="submit" class="btn btn-success mb" name="tambah" value="tambah" title="Tambah data baru">
+                    <input type="submit" class="btn btn-info mb" name="selesai" value="selesai" title="Selesai">
+                    <!-- <a class="btn btn-primary" title="Selesai" onclick="$(this).closest('form').submit()"><i class="fa fa-check-square-o"></i> Selesai</a> -->
                     <!-- <a href="<?php echo $base_url;?>pdln-view.php" class="btn pdln-btn">Selesai</a> -->
                   </div>
                 </div>
