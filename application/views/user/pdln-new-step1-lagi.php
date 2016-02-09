@@ -6,11 +6,6 @@
         <div class="col-lg-12">
           <div class="form-panel">
             
-            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home">
-              <input type="hidden" name="content" value="home">
-              <a class="btn btn-danger mb" title="Cancel" onclick="$(this).closest('form').submit()"><i class="fa fa-remove"></i>Cancel</a>
-            </form>
-            
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data" onsubmit="return validasi()">
 
             <!-- HIDDEN INPUT -->
@@ -191,6 +186,10 @@
                 <div class="col-sm-9">      
                     <span class="icon tambah"><input type="submit" class="btn btn-success mb btn-icon" name="tambah_lagi" value="Tambah Pemohon" title="Tambah data baru"></span>
                     <span class="icon selesai"><input type="submit" class="btn btn-info mb btn-icon" name="selesai" value="selesai" title="selesai"></span>
+                    <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home">
+                      <input type="hidden" name="content" value="home">
+                      <a class="btn btn-danger mb" title="Cancel" onclick="$(this).closest('form').submit()"><i class="fa fa-remove"></i> Cancel</a>
+                    </form>
                 </div>
               </div>
             </form>            
