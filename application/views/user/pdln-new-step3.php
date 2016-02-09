@@ -34,7 +34,7 @@
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Surat Undangan</label>
                     <div class="col-sm-9">
                       <div class="input-group">
-                        <input class="form-control" name="tgl_surat_undangan" readonly="1" style="cursor:pointer" placeholder="Tanggal Surat Undangan">
+                        <input class="form-control hasDatepicker" name="tgl_surat_undangan" readonly="1" style="cursor:pointer" placeholder="Tanggal Surat Undangan">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       </div>
                     </div>

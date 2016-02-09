@@ -415,7 +415,7 @@ class home extends CI_Controller {
           if($this->input->post('tambah') == "tambah"){
           $kondisi = "tambah";
           /*print_r($kondisi);*/
-          print_r($datadiri);
+          /*print_r($datadiri);*/
           $this->session->set_flashdata('error_message', $datadiri);
           $this->session->set_flashdata('content','step1');
           redirect('home');

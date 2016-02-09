@@ -126,7 +126,7 @@
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Terbit</label>
                     <div class="col-sm-9">
                       <div class="input-group">
-                        <input class="form-control hasDatepicker" name="tgl_terbit_passport_pemohon" readonly="1" style="cursor:pointer" placeholder="Tanggal Terbit">
+                        <input class="form-control hasDatepicker" id="StartDate" name="tgl_terbit_passport_pemohon" readonly="1" style="cursor:pointer" placeholder="Tanggal Terbit">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       </div>
                     </div>
@@ -136,7 +136,7 @@
                     <label class="col-lg-3 col-sm-3 control-label">Tanggal Kadaluarsa</label>
                     <div class="col-sm-9">
                       <div class="input-group">
-                        <input class="form-control hasDatepicker" name="tgl_habis_passport_pemohon" readonly="1" style="cursor:pointer" placeholder="Tanggal Kadaluarsa">
+                        <input class="form-control hasDatepicker" id="EndDate" name="tgl_habis_passport_pemohon" readonly="1" style="cursor:pointer" placeholder="Tanggal Kadaluarsa">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
 
               <div class="form-group">
                 <div class="col-sm-9">      
-                    <input type="submit" class="btn btn-success mb" name="tambah" value="tambah" title="Tambah data baru">
+                    <!-- <input type="submit" class="btn btn-success mb" name="tambah" value="tambah" title="Tambah data baru"> -->
                     <input type="submit" class="btn btn-info mb" name="lanjut" value="lanjut" title="Lanjut">
                 </div>
               </div>
@@ -211,9 +211,8 @@
   </section><!-- /MAIN CONTENT -->
 
   <script type="text/javascript">  
-
   var _validFileExtensions = [".jpg", ".jpeg", ".pdf", ".png"];
-  function ValidateSingleInput(oInput) {
+  function ValidateSingleInput(oInput) {      
       if (oInput.type == "file") {
           var sFileName = oInput.value;
            if (sFileName.length > 0) {
@@ -238,8 +237,17 @@
 
   function validasi()
     {
+        var from = $("#StartDate").val();
+        var to = $("#EndDate").val();
         var pekerjaan=document.getElementById("pekerjaan_pemohon").value;
         var nip=document.getElementById("nip_pemohon").value;
+
+        if(Date.parse(from) > Date.parse(to)){
+          alert("Tanggal Habis Passport harus lebih atau sama dengan Tanggal Terbit Passport");
+          /*to.focus();*/
+        return false;
+        }        
+        return true;        
         
         /*//verifikasi upload
         var fileInput = $("#upl_files5")[0];
@@ -282,8 +290,8 @@
     /*$('.fromdate').datepicker({
       dateFormat: 'yy-mm-dd',
       changeMonth: true,
-      changeYear: true,
-    });*/
+      changeYear: true,      
+    });*/      
       $("#upl_files5").change(function(){
         var fileInput = $("#upl_files5")[0];
         var info=fileInput.files[0];
