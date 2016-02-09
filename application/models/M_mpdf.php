@@ -81,7 +81,7 @@ class m_mpdf extends CI_Model {
     $this->db->where($no_aplikasi.' = surat_undangan.no_aplikasi');
     $this->db->where($no_aplikasi.' = surat_bpkln.no_aplikasi');
     $this->db->where($no_aplikasi.' = surat_unit_utama.no_aplikasi');
-    $this->db->where("surat_bpkln.no_surat_bpkln_setneg = '$no_surat'");
+    $this->db->where("surat_unit_utama.no_surat_unit_utama = '$no_surat'");
     $query = $this->db->get();
         return $query->result_array();
     }

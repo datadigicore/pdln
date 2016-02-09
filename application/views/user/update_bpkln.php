@@ -242,7 +242,7 @@
 <!--         <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" required>
  -->        <br>
         <label>Surat BPKLN ke Setneg</label>
-        <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1" required>   
+        <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1" onchange="ValidateSingleInput(this);" required>   
         <br>
         <label>No. Surat BPKLN ke Kemlu</label>
         <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Kemlu" autofocus id="no_surat_bpkln_kemlu" name="no_surat_bpkln_kemlu"required>
@@ -252,7 +252,7 @@
         <!-- <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Kemlu" autofocus id="tgl_surat_bpkln_kemlu" name="tgl_surat_bpkln_kemlu" required> -->
         <br>
         <label>Surat BPKLN ke Kemlu</label>
-        <input type="file" class="form-control" autofocus id="upl_file2" name="upl_file2" required>
+        <input type="file" class="form-control" autofocus id="upl_file2" name="upl_file2" onchange="ValidateSingleInput(this);" required>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success">Submit</button>
@@ -261,3 +261,30 @@
     </form>
   </div>
 </div>
+
+<script type="text/javascript">
+  var _validFileExtensions = [".jpg", ".jpeg", ".pdf", ".png"];
+  function ValidateSingleInput(oInput) {
+      if (oInput.type == "file") {
+          var sFileName = oInput.value;
+           if (sFileName.length > 0) {
+              var blnValid = false;
+              for (var j = 0; j < _validFileExtensions.length; j++) {
+                  var sCurExtension = _validFileExtensions[j];
+                  if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                      blnValid = true;
+                      break;
+                  }
+              }
+               
+              if (!blnValid) {
+                  alert("Sorry allowed extensions are: " + _validFileExtensions.join(", "));
+                  oInput.value = "";
+                  return false;
+              }
+          }
+      }
+      return true;
+  }
+  
+</script>

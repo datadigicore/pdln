@@ -12,7 +12,7 @@
               <li><a><span class="badge">3</span> Surat Undangan Kunjungan</a></li>
             </ul>
             
-            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data">
+            <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data" onsubmit="return validasi()">
 
             <!-- HIDDEN INPUT -->
               <input type="hidden" name="manage" value="add_data_diri">
@@ -152,35 +152,35 @@
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Curiculum Vitae</label>
                     <div class="col-sm-9">
-                      <input type="file" name="upl_files1" class="form-control">
+                      <input type="file" name="upl_files1" class="form-control" onchange="ValidateSingleInput(this);">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Foto</label>
                     <div class="col-sm-9">
-                      <input type="file" name="upl_files2" class="form-control">
+                      <input type="file" name="upl_files2" class="form-control" onchange="ValidateSingleInput(this);">
                     </div>
                   </div>
 
                   <div class="form-group" id="kartupegawai">
                     <label class="col-lg-3 col-sm-3 control-label">Kartu Pegawai</label>
                     <div class="col-sm-9">
-                      <input type="file" id="karpeg" name="upl_files3" class="form-control">
+                      <input type="file" id="karpeg" name="upl_files3" class="form-control" onchange="ValidateSingleInput(this);">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">Surat Tugas</label>
                     <div class="col-sm-9">
-                      <input type="file" name="upl_files4" class="form-control">
+                      <input type="file" name="upl_files4" class="form-control" onchange="ValidateSingleInput(this);">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 col-sm-3 control-label">KTP</label>
                     <div class="col-sm-9">
-                      <input type="file" name="upl_files5" class="form-control">
+                      <input type="file" name="upl_files5" id="upl_files5" class="form-control" onchange="ValidateSingleInput(this);">
                     </div>
                   </div>
 
@@ -210,10 +210,51 @@
     </section><! --/wrapper -->
   </section><!-- /MAIN CONTENT -->
 
-  <script type="text/javascript">    
+  <script type="text/javascript">  
+
+  var _validFileExtensions = [".jpg", ".jpeg", ".pdf", ".png"];
+  function ValidateSingleInput(oInput) {
+      if (oInput.type == "file") {
+          var sFileName = oInput.value;
+           if (sFileName.length > 0) {
+              var blnValid = false;
+              for (var j = 0; j < _validFileExtensions.length; j++) {
+                  var sCurExtension = _validFileExtensions[j];
+                  if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                      blnValid = true;
+                      break;
+                  }
+              }
+               
+              if (!blnValid) {
+                  alert("Sorry allowed extensions are: " + _validFileExtensions.join(", "));
+                  oInput.value = "";
+                  return false;
+              }
+          }
+      }
+      return true;
+  }
+
   function validasi()
     {
+        var pekerjaan=document.getElementById("pekerjaan_pemohon").value;
         var nip=document.getElementById("nip_pemohon").value;
+        
+        /*//verifikasi upload
+        var fileInput = $("#upl_files5")[0];
+        var info=fileInput.files[0];
+
+        //untuk mendapatkan nama file
+        var nama= info.name;
+
+        //untuk mendapatkan ukuran file
+        var size= info.size;
+        alert(size);
+        //untuk mendapatkan tipe file
+        var type= info.type;*/
+
+      if (pekerjaan =="PNS") {        
         var numbers=/^[0-9]+$/;
         if (nip==null || nip=="")
           {
@@ -232,6 +273,7 @@
           alert("NIP harus 18 digit");
           return false;
           };
+        };
      }
 
     $(document).ready(function()
@@ -242,6 +284,29 @@
       changeMonth: true,
       changeYear: true,
     });*/
+      $("#upl_files5").change(function(){
+        var fileInput = $("#upl_files5")[0];
+        var info=fileInput.files[0];
+
+        //untuk mendapatkan nama file
+        var nama= info.name;
+
+        //untuk mendapatkan ukuran file
+        var size= info.size;
+        //alert(size);
+        //untuk mendapatkan tipe file
+        var type= info.type;
+        fileInput.focus();
+        //alert(type);
+
+        var fileName = document.getElementById("upl_files5").value;
+        var ext = fileName.substring(fileName.lastIndexOf('.') + 1);        
+        if(ext == "pdf" ){
+          alert("File harus dalam format JPG/PNG/PDF");
+          return false;
+        }
+
+      });
      
       $("#pekerjaan_pemohon").change(function(){
       if($(this).val() == "Lainnya"){
@@ -262,7 +327,7 @@
        $('#nip_pemohon').prop('required',true);
        $('#karpeg').prop('required',true);
        $("#instansi").show(); 
-       $("#jabatan_lain").hide();
+       $("#jabatan_lain").hide();       
       }
       else{
        $("#jabatan").hide();
