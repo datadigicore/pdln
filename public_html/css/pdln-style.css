@@ -869,4 +869,28 @@ label {
     min-height: 900px;
 }
 
+.btn-icon {
+    padding-left: 30px;
+}
 
+span.icon {
+    position: relative;
+}
+
+span.icon:before {
+    font-family: FontAwesome;
+    color: #FFF;
+    font-size: 13px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    pointer-events: none;
+}
+
+span.tambah:before {
+    content: "\f0fe";
+}
+
+span.selesai:before{
+    content: "\f046";
+}

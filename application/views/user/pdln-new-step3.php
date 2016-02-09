@@ -155,8 +155,8 @@
                   <div class="col-sm-9">
                     <!--<button type="submit" class="btn pdln-btn">Lanjut</button>-->
                     <input type="hidden" name="manage" value="add_surat_undangan">
-                    <input type="submit" class="btn btn-success mb" name="tambah" value="tambah" title="Tambah data baru">
-                    <input type="submit" class="btn btn-info mb" name="selesai" value="selesai" title="Selesai">
+                    <span class="icon tambah"><input type="submit" class="btn btn-success mb btn-icon" name="tambah" value="tambah" title="Tambah data baru"></span>
+                    <span class="icon selesai"><input type="submit" class="btn btn-info mb btn-icon" name="selesai" value="Selesai" title="Selesai"></span>
                     <!-- <a class="btn btn-primary" title="Selesai" onclick="$(this).closest('form').submit()"><i class="fa fa-check-square-o"></i> Selesai</a> -->
                     <!-- <a href="<?php echo $base_url;?>pdln-view.php" class="btn pdln-btn">Selesai</a> -->
                   </div>

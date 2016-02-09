@@ -1,18 +1,14 @@
 <!--main content start-->
   <section id="main-content">
     <section class="wrapper site-min-height">
+      <h3><i class="fa fa-angle-right"></i> Tambah Data Diri</h3>
       <div class="row mt">
         <div class="col-lg-12">
           <div class="form-panel">
             
-            <!-- Steping Wizard -->
-            <ul class="nav nav-wizard">
-              <li class="active"><a><span class="badge"></span>Tambah Data Diri</a></li>              
-            </ul>
-
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home">
               <input type="hidden" name="content" value="home">
-              <a class="btn btn-danger" title="Cancel" onclick="$(this).closest('form').submit()"><i class="fa fa-remove"></i>Cancel</a>
+              <a class="btn btn-danger mb" title="Cancel" onclick="$(this).closest('form').submit()"><i class="fa fa-remove"></i>Cancel</a>
             </form>
             
             <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home/process" enctype="multipart/form-data" onsubmit="return validasi()">
@@ -193,8 +189,8 @@
 
               <div class="form-group">
                 <div class="col-sm-9">      
-                    <input type="submit" class="btn btn-success mb" name="tambah_lagi" value="Tambah Pemohon" title="Tambah data baru">
-                    <input type="submit" class="btn btn-info mb" name="selesai" value="selesai" title="selesai">                    
+                    <span class="icon tambah"><input type="submit" class="btn btn-success mb btn-icon" name="tambah_lagi" value="Tambah Pemohon" title="Tambah data baru"></span>
+                    <span class="icon selesai"><input type="submit" class="btn btn-info mb btn-icon" name="selesai" value="selesai" title="selesai"></span>
                 </div>
               </div>
             </form>            
