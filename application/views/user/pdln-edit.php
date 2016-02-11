@@ -161,15 +161,15 @@
 
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Terbit Passport</strong></label>
-                            <div class="col-lg-8">
-                                <input type="date" name="tgl_terbit_passport" class="form-control" value="<?php echo $data['tgl_terbit_passport'] ?>">
+                            <div class="col-lg-8">                                
+                                <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_terbit_passport" value="<?php echo $data['tgl_terbit_passport'] ?>">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Kadaluarsa Passport</strong></label>
                             <div class="col-lg-8">
-                                <input type="date" name="tgl_habis_passport" class="form-control" value="<?php echo $data['tgl_habis_passport'] ?>">
+                                <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_habis_passport" value="<?php echo $data['tgl_habis_passport'] ?>">
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Unit Utama</strong></label>
                                 <div class="col-lg-8">
-                                    <input type="date" class="form-control" name="tgl_surat_unit_utama" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_unit_utama'] ?>">
+                                    <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_surat_unit_utama" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_unit_utama'] ?>">
                                 </div>
                             </div>
 
@@ -271,7 +271,7 @@
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Undangan</strong></label>
                             <div class="col-lg-8">
-                                <input type="date" class="form-control" name="tgl_surat_undangan" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_undangan'] ?>">
+                                <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_surat_undangan" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_undangan'] ?>">
                             </div>
                         </div>
 
@@ -292,10 +292,10 @@
                         <div class="form-group">
                           <label class="col-lg-4 col-sm-4 control-label"><strong>Waktu Kegiatan</strong></label>
                           <div class="col-sm-4">
-                            <input type="date" class="form-control" name="tgl_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $data['tgl_awal_kegiatan'] ?>">
+                            <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $data['tgl_awal_kegiatan'] ?>">
                           </div>
                           <div class="col-sm-4">
-                            <input type="date" class="form-control" name="tgl_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $data['tgl_akhir_kegiatan'] ?>">
+                            <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $data['tgl_akhir_kegiatan'] ?>">
                           </div>
                         </div> 
 
@@ -555,11 +555,11 @@
           processData: false,  // tell jQuery not to process the data
           contentType: false   // tell jQuery not to set contentType
         }).done(function( data ) {
-           /*var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
+            var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
             var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id_user').val();                    
             $form.append($input);
             $("body").append($form);
-            $form.submit();*/
+            $form.submit();
 
         }); 
      });
