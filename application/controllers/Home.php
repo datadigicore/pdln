@@ -923,13 +923,18 @@ class home extends CI_Controller {
           $log['keterangan'] = "Update Surat Undangan - ".$data_surat_undangan['no_surat_undangan'];
           $this->m_user->logs($log);
         $result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
-        /*echo "<pre>";   
-        print_r($datadiri);
-        echo "</pre>";
-        if ($result_surat_bpkln == TRUE) {      
-          $this->session->set_flashdata('error_message', $data);
+
+        $this->session->set_flashdata('error_message', $data);
         //buat redirect ke halaman lain
         $this->session->set_flashdata('content','home');
+        redirect('home');
+        /*echo "<pre>";   
+        print_r($datadiri);
+        echo "</pre>";*/
+        /*if ($result_surat_undangan == TRUE) {      
+          $this->session->set_flashdata('error_message', $data);
+          //buat redirect ke halaman lain
+          $this->session->set_flashdata('content','home');
         redirect('home');
         }
         else {    
