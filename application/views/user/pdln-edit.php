@@ -161,17 +161,21 @@
 
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Terbit Passport</strong></label>
-                            <div class="col-lg-8">                                
-                                <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_terbit_passport" value="<?php echo $data['tgl_terbit_passport'] ?>">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <div class="col-lg-8">
+                                <div class="input-group">                                
+                                    <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_terbit_passport" value="<?php echo $data['tgl_terbit_passport'] ?>">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Kadaluarsa Passport</strong></label>
                             <div class="col-lg-8">
-                                <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_habis_passport" value="<?php echo $data['tgl_habis_passport'] ?>">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <div class="input-group">
+                                    <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_habis_passport" value="<?php echo $data['tgl_habis_passport'] ?>">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -193,8 +197,10 @@
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Unit Utama</strong></label>
                                 <div class="col-lg-8">
-                                    <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_surat_unit_utama" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_unit_utama'] ?>">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <div class="input-group">
+                                        <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_surat_unit_utama" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_unit_utama'] ?>">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -274,8 +280,10 @@
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label"><strong>Tanggal Surat Undangan</strong></label>
                             <div class="col-lg-8">
-                                <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_surat_undangan" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_undangan'] ?>">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <div class="input-group">
+                                    <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_surat_undangan" placeholder="Tanggal Surat" value="<?php echo $data['tgl_surat_undangan'] ?>">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
                             </div>
                         </div>
 
@@ -296,12 +304,20 @@
                         <div class="form-group">
                           <label class="col-lg-4 col-sm-4 control-label"><strong>Waktu Kegiatan</strong></label>
                           <div class="col-sm-4">
-                            <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $data['tgl_awal_kegiatan'] ?>">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <div class="input-group">
+                                <div class="input-group">
+                                    <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_awal_kegiatan" placeholder="Waktu Mulai Kegiatan" value="<?php echo $data['tgl_awal_kegiatan'] ?>">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
                           </div>
                           <div class="col-sm-4">
-                            <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $data['tgl_akhir_kegiatan'] ?>">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <div class="input-group">
+                                <div class="input-group">
+                                    <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_akhir_kegiatan" placeholder="Waktu Akhir Kegiatan" value="<?php echo $data['tgl_akhir_kegiatan'] ?>">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
                           </div>
                         </div> 
 
