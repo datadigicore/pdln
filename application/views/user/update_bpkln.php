@@ -238,9 +238,8 @@
         <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Setneg" autofocus id="no_surat_bpkln_setneg" name="no_surat_bpkln_setneg" required>
         <br>
         <label>Tgl. Surat BPKLN ke Setneg</label>
-        <input class="form-control" name="tgl_surat_bpkln_setneg" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd" required>
-<!--         <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Setneg" autofocus id="tgl_surat_bpkln_setneg" name="tgl_surat_bpkln_setneg" required>
- -->        <br>
+        <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_surat_bpkln_setneg" placeholder="Tgl. Surat BPKLN ke Setneg" required>
+        <br>
         <label>Surat BPKLN ke Setneg</label>
         <input type="file" class="form-control" autofocus id="upl_file1" name="upl_file1" onchange="ValidateSingleInput(this);" required>   
         <br>
@@ -248,8 +247,7 @@
         <input type="text" class="form-control" placeholder="Nomor Surat BPKLN ke Kemlu" autofocus id="no_surat_bpkln_kemlu" name="no_surat_bpkln_kemlu"required>
         <br>
         <label>Tgl. Surat BPKLN ke Kemlu</label>
-        <input class="form-control" name="tgl_surat_bpkln_kemlu" data-provide="datepicker" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd" required>
-        <!-- <input type="date" class="form-control" placeholder="Tanggal Surat BPKLN ke Kemlu" autofocus id="tgl_surat_bpkln_kemlu" name="tgl_surat_bpkln_kemlu" required> -->
+        <input class="form-control hasDatepicker" readonly="1" style="cursor:pointer" name="tgl_surat_bpkln_kemlu" placeholder="Tgl. Surat BPKLN ke Kemlu" required>
         <br>
         <label>Surat BPKLN ke Kemlu</label>
         <input type="file" class="form-control" autofocus id="upl_file2" name="upl_file2" onchange="ValidateSingleInput(this);" required>

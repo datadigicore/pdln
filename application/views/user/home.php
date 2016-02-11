@@ -113,7 +113,7 @@
               row_id = tabrow.data()[0];
               row_id_data_diri = tabrow.data()[1];              
               var $form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","<?php echo base_url('home') ?>");
-              var $input=$(document.createElement('input')).css({display:'none'}).attr('name','id').val(row_id);
+              var $input=$(document.createElement('input')).css({display:'none'}).attr('name','no_aplikasi').val(row_id);
               var $input1=$(document.createElement('input')).css({display:'none'}).attr('name','id_data_diri').val(row_id_data_diri);
               var $input2=$(document.createElement('input')).css({display:'none'}).attr('name','content').val(content);              
               $form.append($input).append($input1).append($input2);

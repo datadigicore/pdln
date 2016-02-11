@@ -12,9 +12,11 @@
               <input type="hidden" name="manage" value="add_data_diri">
               <input type="hidden" name="kondisi" value="tambah">
 
+              <input type="hidden" class="form-control" name="no_aplikasi" value="<?php echo $no_aplikasi_data_diri;?>">   
+              
               <?php if (isset($error_message)){?>
                 <input type="hidden" class="form-control" name="no_aplikasi" value="<?php echo $error_message['no_aplikasi_data_diri'];?>">
-              <?php } ?> 
+              <?php } ?>            
 
               <div class="panel panel-default">
                 <div class="panel-heading">

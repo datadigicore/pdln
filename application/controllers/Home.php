@@ -42,9 +42,10 @@ class home extends CI_Controller {
     $this->load->view('template/header');
     $this->load->view('template/sidebar');
     switch ($content) {
-      case 'addstep1':
+      case 'addstep1':          
           $table = 'instansi';
           $data['instansi'] = $this->m_user->select_data($table);
+          $data['no_aplikasi_data_diri'] = $this->input->post('no_aplikasi');
           $this->load->view('user/pdln-new-step1-lagi',$data);   
       break;
       case 'step1':
@@ -402,35 +403,7 @@ class home extends CI_Controller {
               $datadiri['other_data']=$nama_file;  
           }
         }
-
-        //insert    
-        $data_surat =array(
-        'id_user' => $_SESSION['logged']['id_user'],
-            'no_aplikasi' => $no_aplikasi
-        );
-          $log['username'] = $_SESSION['logged']['username'];
-          $log['tanggal'] = date('Y-m-d H:i:s');
-          $log['aksi'] = "Insert";
-          $log['keterangan'] = "Insert Surat Unit Utama - ".$data_surat['no_aplikasi'];
-          $this->m_user->logs($log);
-        $result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
-          $log['username'] = $_SESSION['logged']['username'];
-          $log['tanggal'] = date('Y-m-d H:i:s');
-          $log['aksi'] = "Insert";
-          $log['keterangan'] = "Insert Surat Undangan - ".$data_surat['no_aplikasi'];
-          $this->m_user->logs($log);
-        $result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
-          $log['username'] = $_SESSION['logged']['username'];
-          $log['tanggal'] = date('Y-m-d H:i:s');
-          $log['aksi'] = "Insert";
-          $log['keterangan'] = "Insert Surat BPKLN - ".$data_surat['no_aplikasi'];
-          $this->m_user->logs($log);
-        $result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
-          $log['username'] = $_SESSION['logged']['username'];
-          $log['tanggal'] = date('Y-m-d H:i:s');
-          $log['aksi'] = "Insert";
-          $log['keterangan'] = "Insert Data Diri - ".$datadiri['nama_pemohon'];
-          $this->m_user->logs($log);
+        
         $result= $this->db->insert('data_diri',$datadiri);
           //buat redirect ke halaman lain      
         if ($result == TRUE ) {
@@ -441,24 +414,14 @@ class home extends CI_Controller {
           $this->session->set_flashdata('error_message', $datadiri);
           $this->session->set_flashdata('content','step1');
           redirect('home');
-          }
-          /*if($this->input->post('lanjut')=="lanjut"){
-            $result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
-            $result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
-            $result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
-            $kondisi = "lanjut";
-            /*print_r($kondisi);
-            print_r($datadiri);
-            $this->session->set_flashdata('error_message', $datadiri);
-            $this->session->set_flashdata('content','step2');
-            redirect('home');       
-          }*/
+          }          
           if($this->input->post('selesai')=="selesai"){
             $this->session->set_flashdata('error_message', $datadiri);
             $this->session->set_flashdata('content','home');
             redirect('home');
           }
           if($this->input->post('tambah_lagi')=="Tambah Pemohon"){
+            
             $this->session->set_flashdata('error_message', $datadiri);
             $this->session->set_flashdata('content','addstep1');            
             redirect('home');
@@ -469,6 +432,35 @@ class home extends CI_Controller {
             redirect('home');
           }
           else{
+            //insert    
+            $data_surat =array(
+            'id_user' => $_SESSION['logged']['id_user'],
+                'no_aplikasi' => $no_aplikasi
+            );
+              $log['username'] = $_SESSION['logged']['username'];
+              $log['tanggal'] = date('Y-m-d H:i:s');
+              $log['aksi'] = "Insert";
+              $log['keterangan'] = "Insert Surat Unit Utama - ".$data_surat['no_aplikasi'];
+              $this->m_user->logs($log);
+            $result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
+              $log['username'] = $_SESSION['logged']['username'];
+              $log['tanggal'] = date('Y-m-d H:i:s');
+              $log['aksi'] = "Insert";
+              $log['keterangan'] = "Insert Surat Undangan - ".$data_surat['no_aplikasi'];
+              $this->m_user->logs($log);
+            $result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
+              $log['username'] = $_SESSION['logged']['username'];
+              $log['tanggal'] = date('Y-m-d H:i:s');
+              $log['aksi'] = "Insert";
+              $log['keterangan'] = "Insert Surat BPKLN - ".$data_surat['no_aplikasi'];
+              $this->m_user->logs($log);
+            $result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
+              $log['username'] = $_SESSION['logged']['username'];
+              $log['tanggal'] = date('Y-m-d H:i:s');
+              $log['aksi'] = "Insert";
+              $log['keterangan'] = "Insert Data Diri - ".$datadiri['nama_pemohon'];
+              $this->m_user->logs($log);
+
             $this->session->set_flashdata('error_message', $datadiri);
             $this->session->set_flashdata('content','step2');
             redirect('home');
