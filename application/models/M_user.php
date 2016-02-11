@@ -316,4 +316,8 @@ class m_user extends CI_Model {
         $query = $this->db->query('SELECT * FROM surat_unit_utama a, instansi b , sub_instansi c WHERE a.instansi_unit_utama=b.id AND c.id_sub_instansi = a.sub_instansi_unit_utama AND a.no_aplikasi='.$no_aplikasi);
         return $query->row();
     }
+    function logs($data){
+        $this->db->insert('log_activity', $data);
+        // return $query;
+    }
 } 

@@ -408,11 +408,29 @@ class home extends CI_Controller {
         'id_user' => $_SESSION['logged']['id_user'],
             'no_aplikasi' => $no_aplikasi
         );
-
+          $log['username'] = $_SESSION['logged']['username'];
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $log['aksi'] = "Insert";
+          $log['keterangan'] = "Insert Surat Unit Utama - ".$data_surat['no_aplikasi'];
+          $this->m_user->logs($log);
         $result_surat_unit_utama = $this->db->insert('surat_unit_utama', $data_surat);
+          $log['username'] = $_SESSION['logged']['username'];
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $log['aksi'] = "Insert";
+          $log['keterangan'] = "Insert Surat Undangan - ".$data_surat['no_aplikasi'];
+          $this->m_user->logs($log);
         $result_surat_undangan = $this->db->insert('surat_undangan', $data_surat);
+          $log['username'] = $_SESSION['logged']['username'];
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $log['aksi'] = "Insert";
+          $log['keterangan'] = "Insert Surat BPKLN - ".$data_surat['no_aplikasi'];
+          $this->m_user->logs($log);
         $result_surat_bpkln = $this->db->insert('surat_bpkln', $data_surat);
-
+          $log['username'] = $_SESSION['logged']['username'];
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $log['aksi'] = "Insert";
+          $log['keterangan'] = "Insert Data Diri - ".$datadiri['nama_pemohon'];
+          $this->m_user->logs($log);
         $result= $this->db->insert('data_diri',$datadiri);
           //buat redirect ke halaman lain      
         if ($result == TRUE ) {
@@ -524,7 +542,12 @@ class home extends CI_Controller {
           $data['surat_unit_utama'] = $surat_unit_utama;
         }
 
-        $result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);       
+        $result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);
+          $log['username'] = $_SESSION['logged']['username'];
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $log['aksi'] = "Update";
+          $log['keterangan'] = "Update Surat Unit Utama - ".$no_aplikasi;
+          $this->m_user->logs($log);
         if ($result == TRUE) {
           $this->session->set_flashdata('error_message', $no_aplikasi);
           //$this->session->set_flashdata('error_message', 'Data Pengguna Berhasil di Tambahkan ke Dalam Database');
@@ -588,6 +611,11 @@ class home extends CI_Controller {
         $id_user = $_SESSION['logged']['id_user'];
 
         $result= $this->m_user->update_surat($table,$data,$id_user,$no_aplikasi);
+          $log['username'] = $_SESSION['logged']['username'];
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $log['aksi'] = "Update";
+          $log['keterangan'] = "Update Surat Undangan - ".$no_aplikasi;
+          $this->m_user->logs($log);
         if ($result == TRUE) {                
           if($this->input->post('tambah') == "tambah"){
             $kondisi = "tambah";
@@ -877,9 +905,23 @@ class home extends CI_Controller {
               $datadiri['surat_tugas_pemohon']=$nama_file;  
           }
         }
-
+          $log['username'] = $_SESSION['logged']['username'];
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $log['aksi'] = "Update";
+          $log['keterangan'] = "Update Data Diri - ".$datadiri['nama_pemohon'];
+          $this->m_user->logs($log);
         $result_datadiri= $this->m_user->update_data_diri($table1,$datadiri,$id_user,$no_aplikasi,$id_data_diri);
+          $log['username'] = $_SESSION['logged']['username'];
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $log['aksi'] = "Update";
+          $log['keterangan'] = "Update Surat Unit Utama - ".$data_surat_unit_utama['no_surat_unit_utama'];
+          $this->m_user->logs($log);
         $result_surat_unit_utama= $this->m_user->update_surat($table2,$data_surat_unit_utama,$id_user,$no_aplikasi);
+          $log['username'] = $_SESSION['logged']['username'];
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $log['aksi'] = "Update";
+          $log['keterangan'] = "Update Surat Undangan - ".$data_surat_undangan['no_surat_undangan'];
+          $this->m_user->logs($log);
         $result_surat_undangan= $this->m_user->update_surat($table3,$data_surat_undangan,$id_user,$no_aplikasi);
         /*echo "<pre>";   
         print_r($datadiri);

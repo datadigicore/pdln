@@ -366,7 +366,7 @@
             
             <input type="hidden" name="manage" value="edit_data_pdln" />
           </form>
-        <a class="btn btn-success pull-left" title="Update" id="editdata" style="margin-right: 15px;"><i class="fa fa-check-square-o"></i>Update</a>
+        <a class="btn btn-success pull-left" title="Update" id="editdata" style="margin-right: 15px;" onclick="$(this).closest('form').submit()"><i class="fa fa-check-square-o"></i>Update</a>
         <form class="form-horizontal style-form" method="post" action="<?php echo base_url();?>home">
             <input type="hidden" name="content" value="home">
             <a class="btn btn-danger" title="Cancel" onclick="$(this).closest('form').submit()"><i class="fa fa-remove"></i>Cancel</a>
