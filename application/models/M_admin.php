@@ -5,17 +5,17 @@ class m_admin extends CI_Model {
         parent::__construct();
     }
     function add_user($data) {
-        $query = $this->db->insert('pengguna', $data);
+        $query = $this->db->insert('user', $data);
         return $query;
     }
     function del_user($id) {
-        $query = $this->db->delete('pengguna', array('id'=>$id));
+        $query = $this->db->delete('user', array('id'=>$id));
         return $query;
     }
     function upd_user($id, $data) {
         print_r($data);
         $this->db->where('id', $id);
-        $query = $this->db->update('pengguna', $data);
+        $query = $this->db->update('user', $data);
         return $query;
     }
     function get_golongan() {   
